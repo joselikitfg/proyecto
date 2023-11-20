@@ -1,0 +1,1502 @@
+[
+    {
+        "name": "COCA COLA Refresco de cola COCA COLA pack 24 latas de 33 cl.",
+        "price": "17.76",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/463c8a34-6617-4e38-842e-f26f6d46c5c9/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi LG GBP31SWLZN NO FROST TOTAL, clasificaci\u00f3n energ\u00e9tica: E, H: 186cm, A: 60cm, F: 67cm, capacidad total: 342L.",
+        "price": "494.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6d53294c-4e94-4a15-aef3-3aeee94e3b42/500x500.jpg"
+    },
+    {
+        "name": "ESMIAGUA Agua mineral ESMIAGUA botella de 1,5 L, pack de 6 uds.",
+        "price": "1.44",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/99794002-f5e3-45ec-a5c9-dd694c0e62f4/500x500.jpg"
+    },
+    {
+        "name": "LA ESPA\u00d1OLA Aceite de oliva virgen extra garrafa de 5 l.",
+        "price": "51.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/72c0fb50-3f72-45ef-8e57-0ae5d632cf91/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Nata l\u00edquida ligera para cocinar, PRODUCTO ALCAMPO 200 ml.",
+        "price": "0.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/20e88a64-e19d-4598-885f-e6af8093b322/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente l\u00edquido Original ARIEL 29 lav 1,595 l.",
+        "price": "11.07",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8e084b97-7714-44dd-bf9a-f6e3dd05a0ae/500x500.jpg"
+    },
+    {
+        "name": "Rollo Papel de Regalo 10 Mts Modelos surtidos.",
+        "price": "2.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/81f817a6-18fb-4d33-8648-a38e5ce43358/500x500.jpg"
+    },
+    {
+        "name": "Pimientos tricolor bandeja de 500 g.",
+        "price": "1.79",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0eb5d3d8-2659-465a-a701-790b52f81c41/500x500.jpg"
+    },
+    {
+        "name": "Lavadora INDESIT BWE 81496X WS SPT N capacidad de carga: 8KG, clasificaci\u00f3n energ\u00e9tica: A, 1400RPM, H: 84,5cm, A: 59,5cm, F: 63cm.",
+        "price": "349.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c24024df-6682-42e8-b6f1-ef045f6bf4de/500x500.jpg"
+    },
+    {
+        "name": "CAMPOFR\u00cdO Pechuga de pavo cocida cortada en lonchas CAMPOFR\u00cdO Finissimas 115 g.",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/78e5a603-8c06-488d-9a5f-0e2ee19c45d8/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi BALAY 3KFE361WI, NO FROST, clasificaci\u00f3n energ\u00e9tica: E, H: 176cm, A: 60cm, F: 66cm, capacidad total: 279L.",
+        "price": "508.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8991fee8-dea6-433d-8357-a8e630aacd76/500x500.jpg"
+    },
+    {
+        "name": "VOLL-DAMM Cerveza doble malta VOLL DAMM pack 12 x 33 cl.",
+        "price": "11.32",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d78873cf-aedf-4f33-8190-ecb56de3852d/500x500.jpg"
+    },
+    {
+        "name": "Filetes de cinta de lomo extra",
+        "price": "5.16",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/059ef2b4-c600-4692-8ee3-ce449a3982fa/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola COCA COLA pack 12 latas x 33 cl.",
+        "price": "9.12",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/412e52ac-f1de-49ec-bd89-9816ebb20282/500x500.jpg"
+    },
+    {
+        "name": "CALVO At\u00fan claro aceite vegetal CALVO lata de 52 g. pack de 6 uds.",
+        "price": "6.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4e1c3c34-db6e-4d3f-97ac-740add9a3e19/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Queso en lonchas Havarti PRODUCTO ALCAMPO 200 g.",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3adec5e3-4f92-46ac-87a8-2e527542df7d/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi QILIVE Q.6623 C\u00cdCLICO, clasificaci\u00f3n energ\u00e9tica: E, H: 177,3cm, A: 54,7cm, F: 56,8cm, capacidad total: 262L.",
+        "price": "306.27",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/17fb3afb-2506-465a-aeb5-5b9d9a051f8b/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Mozzarella PRODUCTO ALCAMPO 125 g.",
+        "price": "0.92",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/dbc82b79-2b14-4cf4-aaa7-4d7d9baf982f/500x500.jpg"
+    },
+    {
+        "name": "Pechuga de pollo blanco, hecha filetes Bandeja ",
+        "price": "6.57",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/61282a5a-30cf-4909-8387-61e6be902617/500x500.jpg"
+    },
+    {
+        "name": "Bandeja de preparado de carne picada de vacuno, elaborada sin gluten ROLER 800 g.",
+        "price": "8.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5210c45f-044a-4b2f-93dd-997668f8c99a/500x500.jpg"
+    },
+    {
+        "name": "ESTRELLA GALICIA Cervezas ESTRELLA GALICIA ESPECIAL pack 10 uds. x 33 cl.",
+        "price": "6.67",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/baddd02e-ef18-44b8-bb8f-9bab434e1487/500x500.jpg"
+    },
+    {
+        "name": "BANDAI Tamagotchi Original (Nuevos Modelos) +8 a\u00f1os",
+        "price": "23.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ed93f9fb-67d8-4d1d-a206-fbc7dd450c30/500x500.jpg"
+    },
+    {
+        "name": "Tomate rama a granel",
+        "price": "2.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f2857bf9-b4e5-4dba-b50c-2da523b715d1/500x500.jpg"
+    },
+    {
+        "name": "HOLBRAND Cerveza cl\u00e1sica HOLBRAND pack de 12 uds. x 33 cl.",
+        "price": "3.72",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/34837990-a24d-418a-9433-ebe65ed56a91/500x500.jpg"
+    },
+    {
+        "name": "Mesa de juegos 5 en 1, 125x60 cent\u00edmetros ONE TWO FUN ALCAMPO.",
+        "price": "119.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3a5109b1-4996-4243-b670-00f67ad1c5a2/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Salm\u00f3n ahumado Noruego en lonchas PRODUCTO ALCAMPO 100 g.",
+        "price": "3.88",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/16bcdf8a-fdb5-4e3f-b155-241d59cb1537/500x500.jpg"
+    },
+    {
+        "name": "ESTRELLA GALICIA Cervezas ESTRELLA GALICIA ESPECIAL ESPECIAL pack 12 uds. x 25 cl",
+        "price": "6.78",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ca7260f6-6da8-408f-adcd-8ae4b2a0fb05/500x500.jpg"
+    },
+    {
+        "name": "PR\u00c9SIDENT Leche entera de vaca de origen 100% espa\u00f1ol PR\u00c9SIDENT 6 x 1 l.",
+        "price": "5.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/fd62dabd-aaa6-4c9d-ab60-531f263f049d/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola COCA COLA pack de 6 botellas x 2 l.",
+        "price": "10.73",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/fcb66e1f-4e6c-48af-abb7-aff37d653740/500x500.jpg"
+    },
+    {
+        "name": "ALBO At\u00fan claro en aceite de oliva virgen extra ALBO pack 3 uds. 67 g.",
+        "price": "7.21",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/be2404e1-0329-4668-9029-df01f23208fe/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Jam\u00f3n serrano reserva (curaci\u00f3n m\u00ednima de 12 meses) cortado en lonchas PRODUCTO ALCAMPO 250 g.",
+        "price": "3.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4928b833-4384-4f2d-8cdc-517b4e3ba0c5/500x500.jpg"
+    },
+    {
+        "name": "PR\u00c9SIDENT Leche semidesnatada de vaca de origen 100% espa\u00f1ol PR\u00c9SIDENT 6 x 1 l.",
+        "price": "5.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4f244c45-de7e-43fd-8e77-dc218c6e73ca/500x500.jpg"
+    },
+    {
+        "name": "Kiwi gold bandeja de 6 uds., 600 g,",
+        "price": "4.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ad9f526d-c2d3-446d-bc19-760c176a8aad/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Huevos frescos de gallinas criadas en suelo clase L y cat. A 12 uds.",
+        "price": "2.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5d7cdf80-1e9a-4abf-92d7-4823ed4db110/500x500.jpg"
+    },
+    {
+        "name": "Lavadora WINIA WVD-06T0WW10U capacidad de carga: 6KG, Clasificaci\u00f3n energ\u00e9tica: D, 1000RPM, H: 84,5cm, A: 59,7cm F: 49,7cm.",
+        "price": "259.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/55ccde53-6e28-47a7-89f5-cf45736d57ae/500x500.jpg"
+    },
+    {
+        "name": "MARCILLA Caf\u00e9 molido de tueste natural (50%) y torrefacto (50%) MARCILLA 500 g.",
+        "price": "6.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/20cd86b9-2030-4433-b11b-19831126504a/500x500.jpg"
+    },
+    {
+        "name": "Cebolla malla de 2 kg",
+        "price": "2.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a881434a-532b-4925-ad29-9cff248753d5/500x500.jpg"
+    },
+    {
+        "name": "Contramuslos fileteados de pollo blanco Bandeja",
+        "price": "4.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c288c717-4be9-47e5-811b-0c7d4d400da2/500x500.jpg"
+    },
+    {
+        "name": "Lavado de coches para acrobacias y salpicaduras HOT WHEELS",
+        "price": "19.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d6a93713-6d9e-4ef1-8f68-168681d1b634/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Az\u00facar blanco PRODUCTO ALCAMPO 1 Kg.",
+        "price": "1.45",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ababcc33-48e4-450a-8718-a4338aa45e3f/500x500.jpg"
+    },
+    {
+        "name": "AZUCARERA Az\u00facar blanco AZUCARERA 1 kg",
+        "price": "1.47",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d6bba5a0-b5c3-4059-9827-36085857abcd/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico de triple capa PRODUCTO ALCAMPO 12 uds.",
+        "price": "5.50",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/41c7ea01-122d-4d26-acf6-0110bb08762a/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel de cocina compacto PRODUCTO ALCAMPO 6 uds.",
+        "price": "4.34",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/57c4d602-cda1-4e44-9623-716d43ae73d3/500x500.jpg"
+    },
+    {
+        "name": "LANJAR\u00d3N Agua mineral LANJAR\u00d3N garrafa de 6, 25 l.",
+        "price": "2.12",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a18a5803-928d-4945-899e-7c2409d91633/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Arroz largo PRODUCTO ALCAMPO paquete de 1 kg.",
+        "price": "1.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/38e6e6f3-a05e-4cd8-a43b-86fe8cf1bcac/500x500.jpg"
+    },
+    {
+        "name": "MAR DE ALTURA Filetes de merluza sin piel MAR DE ALTURA P.N.E. 1000 g.",
+        "price": "10.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d438e667-0d47-45f2-8717-2598940c4f90/500x500.jpg"
+    },
+    {
+        "name": "Bandeja de preparado de carne picada mixta (vacuno-cerdo), elaborada sin gluten ROLER 800 g.",
+        "price": "5.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/237e0bbe-cbb7-4168-b21f-1d51f7757224/500x500.jpg"
+    },
+    {
+        "name": "Salm\u00f3n mostrador",
+        "price": "10.77",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/300d5560-559b-4db6-ae4f-657c82a29e8e/500x500.jpg"
+    },
+    {
+        "name": "L.R. Leche semidesnatada L.R. 6 x 1 l.",
+        "price": "5.04",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d0070e93-3578-4725-b895-ccfaa104347f/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Bebida de avena con alto contenido de calcio y vitamina D PRODUCTO ALCAMPO 6 x 1 l.",
+        "price": "5.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/18c35e6a-e8e4-4e4b-bd76-3bcfdbddf410/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche desnatada de vaca PRODUCTO ALCAMPO 6x 1 l.",
+        "price": "5.10",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6116023a-a532-47fa-8770-14ab4c6fb98a/500x500.jpg"
+    },
+    {
+        "name": "ORLANDO Tomate frito ORLANDO 3 uds. 212 g.",
+        "price": "1.58",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e3e52c28-2139-4baa-a4bb-c36fb6baa559/500x500.jpg"
+    },
+    {
+        "name": "GARC\u00cdA BAQUERO Queso semicurado de vaca, cabra y oveja GARC\u00edA BAQUERO, 405 g.",
+        "price": "6.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/16cd6a9a-74a6-44ef-ba7c-766b23373e95/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ECON\u00d3MICO ALCAMPO Magdalenas redondas PRODUCTO ECON\u00d3MICO ALCAMPO 615 gr,",
+        "price": "1.63",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/08707944-e352-47d7-acd1-7966329463ef/500x500.jpg"
+    },
+    {
+        "name": "Calculadora Cientifica ALCAMPO",
+        "price": "12.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f628ab13-1981-4089-a2e5-8b3b6ae48b3f/500x500.jpg"
+    },
+    {
+        "name": "PEPSI Refresco de cola sin az\u00facar PEPSI MAX pack 12 uds. x 33 cl.",
+        "price": "6.96",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ca973f65-5834-4ff0-b5d8-54092c152450/500x500.jpg"
+    },
+    {
+        "name": "CELTA Leche semidesnatada de vaca con bienestar animal garantizado CELTA 4 x 1.5 l.",
+        "price": "5.96",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/bc5e4ef0-8fa9-4905-9c42-689d0196347e/500x500.jpg"
+    },
+    {
+        "name": "Pechuga de pollo blanco enteras formato jumbo ",
+        "price": "10.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/412999c2-cda3-4839-a8bf-8f7837b975d7/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca entera de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 1.5 l.",
+        "price": "10.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e0d9b3e0-eafc-4c56-a60e-e4221c0e7865/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Queso en lonchas Havarti Light PRODUCTO ALCAMPO, 200 g.",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b51e078f-f36b-40eb-86e3-b42e7dec0dc4/500x500.jpg"
+    },
+    {
+        "name": "Pl\u00e1tano Canario extra bolsa",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a4dc4426-2ba5-4ad0-a447-1d7447fbefad/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente l\u00edquido ARIEL FRESH SENSATIONS 56 ds.",
+        "price": "21.86",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/31bf6025-d455-4baa-bbe5-f94e7a1f3bae/500x500.jpg"
+    },
+    {
+        "name": "Paquete Papel 90G 500 Hojas ALCAMPO",
+        "price": "7.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ae48021c-0a29-4805-a59a-6db36c1928ad/500x500.jpg"
+    },
+    {
+        "name": "Paquete Papel 80 Gr 500 Hojas ALCAMPO",
+        "price": "5.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2468e2fa-d612-47d3-9dde-629e21f96332/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente en polvo ARIEL ACTILIFT 65 dosis.",
+        "price": "23.08",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/34a91684-634b-4dfe-a3d4-efb0261e804b/500x500.jpg"
+    },
+    {
+        "name": "LA MAS\u00cdA Aceite de Oliva Suave MAS\u00cdA Botella 1 l",
+        "price": "8.81",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c730aa35-6f7e-4766-a6bc-87a81dbc311a/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Yogur estilo griego con stracciatella PRODUCTO ALCAMPO 4 x 125 g.",
+        "price": "1.26",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b5e2cc92-d7fb-4cf5-8ea8-06533b88aad5/500x500.jpg"
+    },
+    {
+        "name": "PESCANOVA Filetes de merluza sin piel de tama\u00f1o peque\u00f1o (10 / 20), ideales para plancha y rebozar PESCANOVA 800 g.",
+        "price": "8.90",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e3d473f9-3742-49d1-8d86-3c713960b7b6/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cervezas Cl\u00e1sicas MAHOU pack de 28 latas de 33 cl.",
+        "price": "15.19",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7083a88f-0a22-41bd-8ca7-69aee3207644/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi CANDY CCE3T618FW NO FROST, clasificaci\u00f3n energ\u00e9tica: F, H: 185cm, A: 59,5cm, F: 65,8cm, capacidad total: 344L.",
+        "price": "419.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c05efddb-2e01-47ba-91cc-406cb5d52d94/500x500.jpg"
+    },
+    {
+        "name": "LOS FRESQUITOS Huevos frescos de categoria A y clase M LOS FRESQUITOS 10 uds.",
+        "price": "1.52",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4d526adb-5577-47cf-af85-909b41a56c76/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche entera de vaca, sin lactosa PRODUCTO ALCAMPO 6 x 1 l.",
+        "price": "5.88",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/bdac35e0-1b2c-4d7b-a0ee-f2c06db6acd4/500x500.jpg"
+    },
+    {
+        "name": "Lavadora QILIVE Q-6326 capacidad de carga: 7KG, clasificaci\u00f3n energ\u00e9tica: B, 1400RPM, H: 85,50cm, A: 59,8cm, F: 57,5cm.",
+        "price": "259.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f89e132b-df8e-4386-a51f-d698099caf2b/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Bolsas de basura, lila con autocierre y aroma lavanda capacidad 30 litros 55 x 60 cmPRODUCTO ALCAMPO 20 uds.",
+        "price": "1.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d2dcd4c0-bd4b-497d-86fe-3808ea476a06/500x500.jpg"
+    },
+    {
+        "name": "PAZO DE VILANE Huevos camperos frescos clase M y cat. A 12 uds.",
+        "price": "3.53",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1b4cc1e4-34c2-4652-9ac6-fdc091f67b02/500x500.jpg"
+    },
+    {
+        "name": "Televisi\u00f3n 165,1 cm (65) DLED LG 65UR73006LA 4K, HDR 10 PRO, SMART TV, WIFI, BLUETOOTH, TDT T2, USB reproductor y grabador, 3HDMI, 60HZ.",
+        "price": "528.90",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/747922ba-8ea9-4e3e-b094-4b53018519dd/500x500.jpg"
+    },
+    {
+        "name": "FONT VELLA Agua mineral FONT VELLA garrafa de 6,25 l.",
+        "price": "1.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f009b7ad-5e0e-4282-b8b3-32a942518126/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche semidesnatada sin lactosa procedente de vacas con bienestar garantizado PASCUAL 6 x 1l.",
+        "price": "8.40",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f9da47fa-634e-465b-8589-6a752ae24e43/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca entera de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 2.2 l.",
+        "price": "14.76",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/605f5317-b827-44b4-9e71-d8afd1686df4/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico doble capa PRODUCTO ALCAMPO 32 uds.",
+        "price": "5.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/51a745bb-62e3-439e-bf93-18708b19a1ed/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Queso en lonchas Gouda PRODUCTO ALCAMPO 200 g.",
+        "price": "1.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/9757df23-ad48-4af3-93dd-b56a4a882119/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca entera de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 1l.",
+        "price": "6.54",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8b0a7b23-e035-42eb-96fc-fe7d9533f0e7/500x500.jpg"
+    },
+    {
+        "name": "Chuletas de aguja, idelaes para freir",
+        "price": "4.52",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/144521b6-1bb1-4d02-b9f6-7495178b0fdc/500x500.jpg"
+    },
+    {
+        "name": "SCOTTEX Papel higi\u00e9nico, Original, con toque de algod\u00f2n SCOTTEX 16 uds.",
+        "price": "6.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/bc27182a-9081-4471-9b02-9fa5d9c98eab/500x500.jpg"
+    },
+    {
+        "name": "Barbie Coche Fiat 500 Con Mu\u00f1eca",
+        "price": "35.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/77b9605f-6861-46ad-bfd2-5b2b89c69be2/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche desnatada de vaca, sin lactosa PRODUCTO ALCAMPO 6 x 1l.",
+        "price": "5.88",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/857657ae-ed94-47c4-9b1f-c355fa7311f4/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cervezas Cl\u00e1sicas MAHOU pack de 12 latas de 33 centilitros",
+        "price": "7.80",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/28369924-1272-4a22-8ee3-b90a4c5f8885/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Tissues de celulosa faciales PRODUCTO ALCAMPO 200 uds.",
+        "price": "1.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b00137e6-71cf-4a9d-8539-12530897c621/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Agua mineral PRODUCTO ALCAMPO pack 6 uds. x 1,5 l.",
+        "price": "2.33",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1ea9a3c8-01dc-4e55-b46b-1fc3f68be466/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cervezas MAHOU 5 ESTRELLAS pack de 12 latas de 33 cl.",
+        "price": "8.15",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/32ee425e-c81b-4f70-bd24-49b794d78aaa/500x500.jpg"
+    },
+    {
+        "name": "Lavadora HISENSE EFQP901418VM capacidad de carga: 9KG, clasificaci\u00f3n energ\u00e9tica: B, 1400RPM, H: 85cm, A: 60cm, F: 54cm.",
+        "price": "349.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a81c960e-10e8-4f28-9529-340a716f493b/500x500.jpg"
+    },
+    {
+        "name": "Pollo entero limpio, listo para asar Bandeja",
+        "price": "5.83",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/565ee40a-07f9-49c0-87b5-0dc3e44e7b29/500x500.jpg"
+    },
+    {
+        "name": "1906 Cervezas Reserva Especial 1906 pack de 12 botellines de 33 cl.",
+        "price": "11.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/10b7bf2a-9a1c-44a0-a0e4-c62f8c10d36a/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola COCA COLA pack 4 botellas de 2 l.",
+        "price": "7.36",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/aa795822-63dc-4ae6-a01a-641531258e61/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva suave 1 l.",
+        "price": "7.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/394d74ef-4d1c-473a-8a04-23e0ad4fc52f/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel de cocina multiusos gigante, doble capa PRODUCTO ALCAMPO 144 mts.",
+        "price": "3.44",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8ea7af82-486d-462e-9f56-5889d12affb0/500x500.jpg"
+    },
+    {
+        "name": "Pechuga de pollo en filetes extrafinos ROLER La carniceria 320 g",
+        "price": "4.32",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/937fe806-0810-41c3-9bb8-d8539317b6c0/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi LG GBP62SWNGN NO FROST, clasificaci\u00f3n energ\u00e9tica: D, H: 203cm, A: 59,5cm, F: 68,2cm, capacidad total: 384L.",
+        "price": "568.65",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/054d66d4-97fb-4a06-a2b6-4895dd205d27/500x500.jpg"
+    },
+    {
+        "name": "BEZOYA Agua mineral BEZOYA botella de 1,50 l. pack de 6 uds.",
+        "price": "3.70",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/af51993d-1ecc-437f-a479-432a0305249b/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Garbanzos cocidos PRODUCTO ALCAMPO 400 g.",
+        "price": "0.70",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/00356c10-a513-4beb-a45e-c797917f5bd2/500x500.jpg"
+    },
+    {
+        "name": "LANJAR\u00d3N Agua mineral LANJAR\u00d3N pack de 6 uds.x 1,5 l.",
+        "price": "3.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/848598ff-2396-4927-b54e-f154a4fca296/500x500.jpg"
+    },
+    {
+        "name": "Juego de mesa de estrategia Monopoly Gamer, de 2 a 4 jugadores, HASBRO.",
+        "price": "12.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f76a10d2-2d5f-42d5-b926-7495e017a980/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche desnatada 0% materia grasa PASCUAL 6 x 1l.",
+        "price": "7.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6c10f4af-8dd5-4db9-b723-547907433dd1/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO At\u00fan claro al natural PRODUCTO ALCAMPO 6 uds. x 56 g.",
+        "price": "4.08",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a0b8f93d-4ace-4755-93f7-cb0815ed2471/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Caf\u00e9 molido mezcla de tueste natural 50% y torrefacto 50% PRODUCTO ALCAMPO 250 g.",
+        "price": "1.55",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ae1fec71-8bdc-4417-bef2-f4204fb99880/500x500.jpg"
+    },
+    {
+        "name": "Pack de 2 pizarras magn\u00e9ticas, ONE TWO FUN ALCAMPO.",
+        "price": "9.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/10ab780c-9490-4c21-8daa-1715995a623e/500x500.jpg"
+    },
+    {
+        "name": "PR\u00cdNCIPE Galletas rellenas de crema de chocolate pack 3 x 300 g.",
+        "price": "5.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f79d8baf-6e14-4512-94f7-826baad739b7/500x500.jpg"
+    },
+    {
+        "name": "PULEVA Preparado lacteo desnatado, enriquecido con \u00e1cido oleico y Omega 3 PULEVA Omega 3 6 x 1l.",
+        "price": "10.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1d4afa21-78a9-417a-bb9f-957f74d1e8c3/500x500.jpg"
+    },
+    {
+        "name": "Bandeja  de filetes de pechuga de pavo COREN",
+        "price": "7.17",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4a073037-4e27-4309-b33a-e92ff20becc2/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO At\u00fan claro en aceite de oliva lata de 52 g. pack de 6 uds.",
+        "price": "4.54",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/949f6993-4a3b-4b62-920a-007b468b70e4/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cerveza especial MAHOU 5 ESTRELLAS pack 12 uds. x. 25 cl.",
+        "price": "6.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0d34475e-6830-427e-9e3e-c53ec0ddc8de/500x500.jpg"
+    },
+    {
+        "name": "LITORAL Fabada Asturiana LITORAL 420 g",
+        "price": "2.50",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8fdfc27a-3fd2-4237-9b5f-2f29e88b0537/500x500.jpg"
+    },
+    {
+        "name": "Cintas Correctoras 8M 3Uds. ALCAMPO",
+        "price": "3.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0681b1ec-3f5e-4a64-8fe7-3e56bef7269a/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche semidesnatada de vaca, sin lactosa PRODUCTO ALCAMPO 6 x 1l.",
+        "price": "5.88",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1e33fc88-3ef2-44ac-946f-5b1245eb262c/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Tomate frito PRODUCTO ALCAMPO brik de 3 uds x 210 g.",
+        "price": "1.09",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/229a5a45-0f6b-4af1-a551-39d056d69738/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Detergente l\u00edquido Jab\u00f3n de Marsella PRODUCTO ALCAMPO 55 lav. 2,97 l.",
+        "price": "4.17",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2d6be535-6cd5-46f4-9856-cfc0a40254e8/500x500.jpg"
+    },
+    {
+        "name": "Secadora por condensaci\u00f3n con bomba de calor BOSCH WTR85V92ES capacidad de secado: 8KG, clasificaci\u00f3n energ\u00e9tica: A++, H: 84,2cm, A: 59,8cm, F: 59,9cm.",
+        "price": "619.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/12533e17-1f8e-43f2-a202-b7d11ba2ac54/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Suavizante concentrado Azul PRODUCTO ALCAMPO 80 ds.2 l.",
+        "price": "1.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/cea8fdba-e7d4-4b47-83ba-95c5d63359e6/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel de cocina PRODUCTO ALCAMPO 4 uds.",
+        "price": "2.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e53c7776-eb3c-4c39-a461-7d0c22178b4a/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Huevos frescos de gallinas criadas en suelo clase M y cat. A 30 uds..",
+        "price": "5.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2c466d19-958d-4b8a-8406-95e7cdf92b4f/500x500.jpg"
+    },
+    {
+        "name": "Lavavajillas FAGOR 3LVF623.1X, capacidad: 12 servicios, clasificaci\u00f3n energ\u00e9tica: E, H: 84,5cm, A: 59,8cm, F: 60cm.",
+        "price": "429.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3167d9d2-6c93-45e7-80d8-073513941de9/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico compacto PRODUCTO ALCAMPO, paquete de 30 uds.",
+        "price": "10.57",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ece84623-9150-451d-8469-74fb44f33573/500x500.jpg"
+    },
+    {
+        "name": "TELENO Agua mineral TELENO garrafa de 5 litros",
+        "price": "1.08",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8ad52529-9a49-470a-8c98-2618498c614e/500x500.jpg"
+    },
+    {
+        "name": "NESCAF\u00c9 Caf\u00e9 soluble natural NESCAF\u00c9 CLASSIC 200 g.",
+        "price": "6.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/db23dee5-94fa-40b4-9a9b-3a7e63289ab4/500x500.jpg"
+    },
+    {
+        "name": "TELENO Agua mineral TELENO botella de 1,5 litros pack de 6 uds.",
+        "price": "1.86",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3ed18760-5880-4841-8d2b-4bb5a4ede820/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ECON\u00d3MICO ALCAMPO Arena para gato PRODUCTO ECON\u00d3MICO ALCAMPO 5 kg.",
+        "price": "1.39",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/be52ba48-ba8b-48ff-be21-6154b7c74833/500x500.jpg"
+    },
+    {
+        "name": "Frigor\u00edfico combi QILIVE Q.6950 NO FROST, clasificaci\u00f3n energ\u00e9tica: E, H: 180cm, A: 54,5cm, F: 62cm, capacidad total: 265L.",
+        "price": "429.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2a6e8a78-e57d-4ee5-b25e-6750e3a3c09f/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel de cocina decorado Jumbo PRODUCTO ALCAMPO, rollo de 90 mt.",
+        "price": "2.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c0cd880d-3c76-45c7-8cd3-a1ee8eb47b0d/500x500.jpg"
+    },
+    {
+        "name": "ALVALLE Gazpacho receta original, elaborado con ingredientes 100% naturales ALVALLE 2 x 1 l.",
+        "price": "6.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ab77da68-c5a2-478a-8929-2e690c1bdf41/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca desnatada de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 1l.",
+        "price": "6.54",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a2fbf9fb-ddd0-4255-9b3d-bae753fc771b/500x500.jpg"
+    },
+    {
+        "name": "Mu\u00f1eca fashion doll de ojos m\u00e1gicos UNIQUE EYES",
+        "price": "11.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6eb42c24-57df-4b6e-a2b5-b6932f0acf42/500x500.jpg"
+    },
+    {
+        "name": "HOT WHEELS - Paquete de 5 autos a escala 1:64, regalo para coleccionistas y ni\u00f1os a partir de 3 a\u00f1os (los estilos pueden variar), 1806",
+        "price": "10.70",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/06b0b95c-1494-4010-bb9a-6d19cb540559/500x500.jpg"
+    },
+    {
+        "name": "FONT VELLA Agua mineral sin gas FONT VELLA pack 6 uds.x 2 l.",
+        "price": "5.52",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b01ae177-2fc2-42da-9a0a-0c49452fbf40/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Taquitos de jam\u00f3n curado en bodega PRODUCTO ALCAMPO 2 x 75 g.",
+        "price": "2.07",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c79da4d0-51fd-4f61-8b2b-1c65710444c9/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche entera procedente de animales con bienestar garantizado PASCUAL 6x 1l.",
+        "price": "7.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1411f4ef-6044-4fe8-a2be-8f095ad46276/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Zero zero Refresco de cola sin az\u00facar y sin cafe\u00edna pack 24 latas de 33 cl",
+        "price": "17.76",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4391d2ed-93da-4940-a470-0c9be5e56d5e/500x500.jpg"
+    },
+    {
+        "name": "CARBONELL Aceite de oliva suave CARBONELL 1 l.",
+        "price": "11.83",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/55ba0c39-1b49-49d5-aa4d-9d7a67a30026/500x500.jpg"
+    },
+    {
+        "name": "CASA TARRADELLAS Espetec de categoria extra CASA TARRADELLAS 2 x 170 g.",
+        "price": "4.88",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/cb7b15dd-f95d-48b9-a1c3-36fa69f6c29d/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico premium AUCHAN 4 capas x 8 uds.",
+        "price": "3.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f831dbe0-d274-41f8-93f0-2631a6628afb/500x500.jpg"
+    },
+    {
+        "name": "Coche Radiocontrol 2,4g 1:16 con lanzador de vapor y proyectiles ONE TWO FUN ALCAMPO +3 a\u00f1os.",
+        "price": "34.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f415e153-df6a-4258-a1ac-f76c21d155b3/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Zero Refresco de cola sin az\u00facar y sin cafe\u00edna pack 4 botellas de 2 l.",
+        "price": "7.36",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/902e5b4b-cb56-47aa-82d9-044310417487/500x500.jpg"
+    },
+    {
+        "name": "FAIRY Detergente lavavajillas a mano FAIRY ULTRA 1,41 l.",
+        "price": "6.08",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/74760413-0593-4562-bb62-4bf124682750/500x500.jpg"
+    },
+    {
+        "name": "Patatas malla de 5 kg",
+        "price": "4.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d7a96a1f-43ab-40cc-a1ea-3e1a2f793b2f/500x500.jpg"
+    },
+    {
+        "name": "SCOTTEX Papel higi\u00e9nico triple capa, acolchado SCOTTEX 9 uds.",
+        "price": "5.28",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3b741bdd-9543-4614-b1f8-78bb2a975b13/500x500.jpg"
+    },
+    {
+        "name": "Pera conferencia a granel",
+        "price": "2.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b9b84317-7ac3-4569-9898-7f3cf19582cd/500x500.jpg"
+    },
+    {
+        "name": "SOLAN DE CABRAS Agua mineral SOLAN DE CABRAS botella de 1,5 litros pack de 6 uds.",
+        "price": "4.68",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a0e4a7f8-65c8-4a32-80af-2cb90db0c936/500x500.jpg"
+    },
+    {
+        "name": "CHOCO FLAKES Galleta con arroz inflado chocolateado CHOCO FLAKES 450 g.",
+        "price": "3.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e6640fb6-a467-4464-a9ed-fa680f71292f/500x500.jpg"
+    },
+    {
+        "name": "PESCANOVA Corazones de merluza (filetes sin piel) ultracongelados PESCANOVA 500 g.",
+        "price": "6.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/30173dd0-31af-4c79-98c0-50b6740f16d4/500x500.jpg"
+    },
+    {
+        "name": "NANCY Aitana Un d\u00eda siendo Aitana. +3 a\u00f1os.",
+        "price": "39.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/cb030e76-5166-4319-b0cd-b20ecc4d71c0/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola COCA COLA ZERO MINI pack 6 uds. x 200 ml",
+        "price": "3.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/dba353e9-5ab1-48eb-a68a-898a79ddd4fc/500x500.jpg"
+    },
+    {
+        "name": "LA MAS\u00cdA Aceite de orujo de oliva Lindoliva LA MAS\u00cdA, garrafa de 5 l.",
+        "price": "21.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/efa3ef76-8f6d-4d22-8aca-1401a92ef98d/500x500.jpg"
+    },
+    {
+        "name": "Paquete Papel 100G 500 Hojas ALCAMPO",
+        "price": "8.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e486b922-7dcd-4b77-9b33-187b307e90ab/500x500.jpg"
+    },
+    {
+        "name": "Pechugas de pollo certificado entera ALCAMPO PRODUCCI\u00d3N CONTROLADA bandeja",
+        "price": "7.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/951fd597-fafc-4bb6-bf31-f64997276cbe/500x500.jpg"
+    },
+    {
+        "name": "Helic\u00f3ptero con ambulancia y m\u00e1s de 15 accesoiros, incluye 5 figuras HELLO KITTY.",
+        "price": "24.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/681413d1-4bbd-4053-ad79-125fb482bb41/500x500.jpg"
+    },
+    {
+        "name": "LANJAR\u00d3N Agua mineral natural LANJAR\u00d3N pack de 6 uds. x 2 l.",
+        "price": "5.58",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/83cd5f59-d8c5-4a1e-9242-7c768b2d8d40/500x500.jpg"
+    },
+    {
+        "name": "Carro para mu\u00f1ecas beb\u00e9 con bolso incluido, 63x41x68cm ONE TWO FUN ALCAMPO.",
+        "price": "49.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/12ae9404-d425-43d4-9663-1c74f85f0340/500x500.jpg"
+    },
+    {
+        "name": "Pack de inicio de peonza con lanzador HASBRO.",
+        "price": "6.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/97767dcd-177e-4ba7-943d-a0eb9013312e/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche semidesnatada procedente de animales con bienestar garantizado PASCUAL 6 x 1l.",
+        "price": "7.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c4c5c838-b414-40a7-b91a-30de65ef0056/500x500.jpg"
+    },
+    {
+        "name": "Televisi\u00f3n 127 cm (50) LED TCL 50P635 4K, HDR10, SMART TV, WIFI, BLUETOOTH, TDT T2, USB reproductor, 3HDMI, 60HZ.",
+        "price": "329.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b6af685d-663e-4f60-a11a-abe86d727c5c/500x500.jpg"
+    },
+    {
+        "name": "CARBONELL Aceite de oliva virgen extra CARBONELL botella de 1 l.",
+        "price": "9.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2ba47b82-61b4-412e-beb0-014a77d34bd6/500x500.jpg"
+    },
+    {
+        "name": "Trozo de cinta de lomo",
+        "price": "8.34",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7a342cb8-bb34-4ce6-b08a-35ac18876a80/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cervezas tostadas 0,0 % alcohol MAHOU Pack 12 latas x 33 cl.",
+        "price": "6.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b115f9c0-e7ff-4951-87a5-0c34194c9a58/500x500.jpg"
+    },
+    {
+        "name": "LAY'S Patatas fritas lisas crujientes LAY'S Gourmet bolsa de 180 g.",
+        "price": "2.65",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5644cd3e-7cc4-4b9a-8c28-331312fcf198/500x500.jpg"
+    },
+    {
+        "name": "Naranjas de zumo malla 1,5 kg.",
+        "price": "1.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/45bc319d-2898-4a03-b9cc-72e3813b3c59/500x500.jpg"
+    },
+    {
+        "name": "Juego de mesa infantil de acertijos y deducci\u00f3n Mansi\u00f3n Misterio, mas de 1 jugador, PLAY FUN.",
+        "price": "9.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/036c3cb1-cabe-4013-b6ba-c28e8936a6cf/500x500.jpg"
+    },
+    {
+        "name": "ACTIMEL Leche fermentada con Lcasei y sabor a fresa y pl\u00e1tano ACTIMEL Kids de Danone 14 x 100 g.",
+        "price": "6.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/11ea875a-12ef-4701-a95c-51b178f6496e/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Tiras de bacon cocido elaboradas sin gluten ni lactosa PRODUCTO ALCAMPO 2 x 100 g.",
+        "price": "1.68",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8b0f55b8-f2d1-429c-ad67-983c048c28d4/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente l\u00edquido ARIEL ORIGINAL 65 ds.",
+        "price": "20.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c0e7a131-36e2-4eb7-9faf-275a2bd34552/500x500.jpg"
+    },
+    {
+        "name": "Aguacates a granel",
+        "price": "3.35",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/58893be8-2170-422a-89b9-0bc42502dfca/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola Zero az\u00facar COCA COLA pack 12 uds. x 33 cl.",
+        "price": "9.12",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2b2339af-4cbd-4f51-9b18-4a07d4fbab3d/500x500.jpg"
+    },
+    {
+        "name": "ACTUEL Servilletas de papel desechables blancas 2 capas 33 x 33 cm ACTUEL 200 uds",
+        "price": "2.85",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/cdb139e4-c43f-46b1-8d52-fe4f5c0aa912/500x500.jpg"
+    },
+    {
+        "name": "FRUTO DEL SUR Aceite de oliva virgen extra FRUTO DEL SUR garrafa de 5 l.",
+        "price": "43.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a9745859-4f05-4a51-969e-509ebca38276/500x500.jpg"
+    },
+    {
+        "name": "Miniaturas de veh\u00edculos HOT WHEELS.",
+        "price": "2.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/73bfbc53-0c35-4691-9526-d59c22a075cf/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca semidesnatada de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 1.5 l.",
+        "price": "10.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a727e29a-c8b5-4739-a636-5d7b02c9af62/500x500.jpg"
+    },
+    {
+        "name": "Televisi\u00f3n 190,5 cm (75) LED LG 75UR78006LA 4K, HDR 10, SMART TV, WIFI, BLUETOOTH, TDT T2, USB reproductor y grabador, 3HDMI, 50HZ.",
+        "price": "799.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/337cb709-cbe7-4264-8986-ff4fd791c698/500x500.jpg"
+    },
+    {
+        "name": "FOXY Papel de cocina multiusos de tres capas FOXY Tornado Azul",
+        "price": "5.22",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8f15b942-48c5-4dd6-a853-d9154f6d805e/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva virgen extra 1 l.",
+        "price": "9.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d0ea45bc-365b-4288-92d8-a3bca6447a0e/500x500.jpg"
+    },
+    {
+        "name": "Cebolla tubo 1 kg",
+        "price": "1.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/75cb11df-df65-403b-b57f-4135488b85b4/500x500.jpg"
+    },
+    {
+        "name": "Licencia Frozen 10mts Rollo Papel Regalo Modelos Surtidos.",
+        "price": "2.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/fea212f4-0233-4339-9280-9d940a0389d6/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva suave PRODUCTO ALCAMPO garrafa de 5 l.",
+        "price": "35.90",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d2581722-1f31-492c-a332-742838a2d0bc/500x500.jpg"
+    },
+    {
+        "name": "Lavadora LG F2WT2008S3W capacidad de carga: 8KG, clasificaci\u00f3n energ\u00e9tica: B, 1200RPM,H: 85cm, A: 60cm, F: 56cm.",
+        "price": "322.15",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/926aed45-9085-4eef-af48-49cb8711263d/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Agua mineral PRODUCTO ALCAMPO garrafa de 8 l",
+        "price": "1.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7e7da637-3ebc-4554-871c-5ad84f00f45d/500x500.jpg"
+    },
+    {
+        "name": "Paquete Folios De Papel Essential A4 500H 75G 21X29,7Cm ALCAMPO",
+        "price": "4.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/deea4ec7-0cbe-4e86-9be9-8caa298924ff/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche desnatada 0% materia grasa sin lactosa CENTRAL LECHERA ASTURIANA 6 x 1l.",
+        "price": "7.80",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3806220c-81bd-4846-8f63-5e8e3c0c4981/500x500.jpg"
+    },
+    {
+        "name": "DAGU Huevos frescos clase M y cat. A 30 uds.",
+        "price": "4.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f9c8e7c2-71b6-41b5-83be-85829a07aa57/500x500.jpg"
+    },
+    {
+        "name": "Lavadora EDESA EWF-6000 WH capacidad de carga: 6KG, clasificaci\u00f3n energ\u00e9tica: D, 1000RPM, H: 81,5cm, A: 59,5cm, F: 40cm.",
+        "price": "249.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a934ed44-60d6-4535-b9b9-1dfbbfc6db73/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola Zero az\u00facar COCA COLA pack 4 botellas de 2 l.",
+        "price": "7.36",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/bed70ca4-274a-42e1-a2ae-b40b26926373/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca semidesnatada sin lactosa CENTRAL LECHERA ASTURIANA 6 x 1l.",
+        "price": "7.80",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/80843580-9baf-4bba-b4bc-6a0967139fd1/500x500.jpg"
+    },
+    {
+        "name": "Peluche solidario Julio El Chef 28cm ONE TWO FUN ALCAMPO",
+        "price": "6.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/64597151-f31f-438e-8b71-a2dd984f3b9a/500x500.jpg"
+    },
+    {
+        "name": "Pechuga de pollo fileteada ALCAMPO PRODUCCI\u00d3N CONTROLADA Bandeja",
+        "price": "7.17",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3f7d9bac-02db-4cc5-aaac-4e80a63f8c14/500x500.jpg"
+    },
+    {
+        "name": "Dorada mostrador",
+        "price": "3.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6fa40e93-0dcc-47b5-8885-706c4f3cac21/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente en c\u00e1psulas para lavadora ARIEL ORIGINAL 45 ds.",
+        "price": "18.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ae34d323-dbe7-41c1-baa8-fc9e349e9671/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Zero zero Refresco de cola sin az\u00facar ni cafeina pack 12 latas de 33 cl.",
+        "price": "9.12",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f184be22-a47e-4b58-8052-e324a5588bc2/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO At\u00fan en aceite de girasol PRODUCTO ALCAMPO 650 g.",
+        "price": "6.65",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a5e2b588-936d-4e1a-bca7-1b3550c5f453/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola light COCA COLA pack 24 latas de 33 cl.",
+        "price": "18.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7f3b9308-6c98-489b-a5a3-2b43647bf1fc/500x500.jpg"
+    },
+    {
+        "name": "Aguacate malla de 500 g.",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0efcbb61-3b6e-42a3-b837-378bdd1861d7/500x500.jpg"
+    },
+    {
+        "name": "Mu\u00f1eco beb\u00e9 blandito con 5 funciones, My Little Nenuco Soft, NENUCO.",
+        "price": "16.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/12ea2de8-ef1f-4569-bea2-0c844a06e36d/500x500.jpg"
+    },
+    {
+        "name": "Set de 50 latas de Masas y Plastilinas para moldear PLAY-DOH",
+        "price": "11.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/677ed9d3-c3aa-421b-8b2d-1546295d76b9/500x500.jpg"
+    },
+    {
+        "name": "GARC\u00cdA BAQUERO Queso semicurado de vaca, oveja y cabra Ya Cortado GARC\u00cdA BAQUERO, cu\u00f1a de 250 g.",
+        "price": "4.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1514dcee-1dd3-4c95-94f8-1b4eef338e8e/500x500.jpg"
+    },
+    {
+        "name": "SOS Arroz redondo SOS paquete 1 kg.",
+        "price": "1.87",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8c6e32b6-b98a-4423-94e2-a65e7c7ea3e7/500x500.jpg"
+    },
+    {
+        "name": "Patatas lavadas malla 3 kg",
+        "price": "2.85",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f37f80d5-c27d-4340-b70e-b088cf3dc010/500x500.jpg"
+    },
+    {
+        "name": "FAIRY Detergente para lavavajillas a mano FAIRY 1150 ml.",
+        "price": "4.81",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/999e7472-0998-46dc-990a-21721868827f/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico compacto de doble capa PRODUCTO ALCAMPO, 24 uds.",
+        "price": "8.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/706fbe78-9bb9-437b-b9d0-3078a16320a1/500x500.jpg"
+    },
+    {
+        "name": "LA ESPA\u00d1OLA Aceite de oliva suave LA ESPA\u00d1OLA garrafa de 5 l.",
+        "price": "38.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/dcd06376-799b-4393-a3a1-9e2618f919c4/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de girasol PRODUCTO ALCAMPO botella de 1 l.",
+        "price": "1.55",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/dc30d530-6128-4b3e-b6ce-4bb5d6433a4c/500x500.jpg"
+    },
+    {
+        "name": "FANTA Refresco de naranja pack de 9 latas x 33 cl.",
+        "price": "6.03",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/43e30adb-58e5-46ff-8789-ff24bf09d081/500x500.jpg"
+    },
+    {
+        "name": "L\u00e1mpara cuentacuentos Funny Sunny rosa y morado, LEAPFROG.",
+        "price": "29.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/47029fcb-1d74-4a9f-8a1d-3a533b9c8f37/500x500.jpg"
+    },
+    {
+        "name": "CAMPOFR\u00cdO Salchichas cocidas tipo Frankfurt, sabor ahumado CAMPOFR\u00cdO 4 x 140 g.",
+        "price": "2.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/199b85c4-a410-4c67-a6b9-4a138fa1f03b/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de girasol PRODUCTO ALCAMPO garrafa de 5 l",
+        "price": "7.19",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ecebc6e1-32e4-45c9-b020-ba3a5be26ae6/500x500.jpg"
+    },
+    {
+        "name": "Mochila transport\u00edn con mascota y accesorios de peluquer\u00eda canina MY PETS.",
+        "price": "12.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7cf10da6-09a3-4b27-89e9-83a53ff1e8ec/500x500.jpg"
+    },
+    {
+        "name": "DINOSAURUS Galleta de cereales con forma de dinosaurios DINOSAURUS 411 g.",
+        "price": "3.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/acbad929-570e-4df6-8fe8-431933e35bab/500x500.jpg"
+    },
+    {
+        "name": "Disney Frozen Getting Ready Elsa ",
+        "price": "9.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5acf0a70-fed3-477b-b6f9-e7f6902e8e00/500x500.jpg"
+    },
+    {
+        "name": "GALLINA BLANCA Caldo de pollo GALLINA BLANCA 1 l.",
+        "price": "2.20",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/68f439d1-8cb0-43e9-9bbe-fcda03e77de3/500x500.jpg"
+    },
+    {
+        "name": "Salm\u00f3n (lomo)",
+        "price": "9.58",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/08945a16-0235-48b6-8a1b-98b5301cf582/500x500.jpg"
+    },
+    {
+        "name": "SCOTTEX Papel higi\u00e9nico de triple capa y acolchado SCOTTEX 24 uds.",
+        "price": "14.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/bb9033df-2aa0-4e95-8b35-11b8bcb20683/500x500.jpg"
+    },
+    {
+        "name": "MAR DE OLIVOS Aceite de oliva virgen extra MAR DE OLIVOS botella de 1 l.",
+        "price": "9.18",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6fb0e434-ab4a-48e4-8edf-66017ac0cccc/500x500.jpg"
+    },
+    {
+        "name": "Zanahoria bolsa de1 kg.",
+        "price": "1.19",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a3639586-fc2b-4fd3-95b3-94bf9e286443/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche semidesnatada de vaca PRODUCTO ALCAMPO 6 x 1l.",
+        "price": "5.22",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1fab3eb1-de8c-41b1-b9fd-daf003d5be45/500x500.jpg"
+    },
+    {
+        "name": "Puerros manojo",
+        "price": "1.89",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d2a9c8e1-be92-42e3-b8ce-620fb78d61e2/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Yogur griego sabor natural PRODUCTO ALCAMPO 4 x 125 g.",
+        "price": "1.06",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/58423097-e908-46ac-877e-ba7b36c41b09/500x500.jpg"
+    },
+    {
+        "name": "CELTA Leche entera de vaca con bienestar animal garantizado CELTA 4 x 1.5 l.",
+        "price": "5.96",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a035c971-dd79-47c5-8fa3-7e500219e8e4/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche desnatada de vaca, con calcio y con un alto contenido en vitamina D PASCUAL 6 x 1 l.",
+        "price": "9.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a8e8adaa-3f60-464f-8360-034bdd38edc1/500x500.jpg"
+    },
+    {
+        "name": "10mts Rollo Papel Regalo Modelos Surtidos.",
+        "price": "2.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0e41f46d-ba38-47fe-97a1-e548fb12b497/500x500.jpg"
+    },
+    {
+        "name": "Avengers Titan Hero Series MARBEL",
+        "price": "19.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e3424f67-806a-4f22-8e23-014addfa09fb/500x500.jpg"
+    },
+    {
+        "name": "Escenario de juego con figuras, accesorios y sonidos LA GRANJA DE ZEN\u00d3N.",
+        "price": "24.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e47aeb2e-3247-4f2a-ac52-04f04760d61f/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola Zero az\u00facar COCA COLA pack 24 latas de 33 cl.",
+        "price": "17.76",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0e8c65e8-cf5a-467e-b82d-c99c6794cd9b/500x500.jpg"
+    },
+    {
+        "name": "BEZOYA Agua mineral con dispensador BEZOYA bag in box 8 l.",
+        "price": "3.18",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b7b92be7-76f3-411c-8ebf-4a3ac8c660fe/500x500.jpg"
+    },
+    {
+        "name": "Juego de Mesa Infantil La Joya de la Serpiente, 1 o m\u00e1s Jugadores IMC 1 Unidad",
+        "price": "9.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/92d3a558-1887-47cc-8ae8-737a7fddc549/500x500.jpg"
+    },
+    {
+        "name": "HEIFER Cerveza HEIFER pack de 12 latas de 33 cl.",
+        "price": "3.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/29530df4-22a4-41f6-8453-35d45a89b5d4/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva intenso PRODUCTO ALCAMPO garrafa de 5 l.",
+        "price": "35.90",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/67332857-1c9c-451a-804a-e42fe51a2ef8/500x500.jpg"
+    },
+    {
+        "name": "Coche Teledirigido De Acrobacias Storm Monster REVELL RC 24649",
+        "price": "19.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/38081a66-a557-434f-be4b-4ffceaa175a1/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceitunas rellenas de anchoa PRODUCTO ALCAMPO pack 3 uds. x 150 g.",
+        "price": "2.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7c10a223-3e93-4f41-9a73-83c720792941/500x500.jpg"
+    },
+    {
+        "name": "FONT VELLA Agua sin gas mineral FONT VELLA pack de 6 uds. x 1,5 l",
+        "price": "3.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ea7454c7-7202-46a0-a3f6-6d8d9c684090/500x500.jpg"
+    },
+    {
+        "name": "ESMIAGUA Agua mineral natural de mineralizaci\u00f3n muy d\u00e9bil ESMIAGUA garrafa de 5 l.",
+        "price": "1.10",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6645f7c2-8b6d-4519-a76f-d228ce5fc202/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Leche entera de vaca PRODUCTO ALCAMPO 6 x 1 l.",
+        "price": "5.40",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1913370d-da82-4dce-817e-ebd337a6595b/500x500.jpg"
+    },
+    {
+        "name": "AQUAREL Agua sin gas mineral AQUAREL pack 6 uds. x 1,50 l",
+        "price": "3.41",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1b829364-d064-4ba4-a979-d600a265f4b2/500x500.jpg"
+    },
+    {
+        "name": "Tomate ensalada malla de 1 kg",
+        "price": "2.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5f76cc51-a4c7-4ddb-95df-3ecd9a4a3649/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico de triple capa perfumado PRODUCTO ALCAMPO 12 uds.",
+        "price": "4.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c94b60c7-944d-4cb7-a743-95398ca07a93/500x500.jpg"
+    },
+    {
+        "name": "Solomillo de pavo envasado al vac\u00edo COREN",
+        "price": "5.73",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/681573b3-3820-46b3-a7e8-b62fd89889dc/500x500.jpg"
+    },
+    {
+        "name": "BIMBO Pan estilo artesano BIMBO 550 g.",
+        "price": "2.80",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6931ac5d-15c2-430e-84e3-bdcb9567b282/500x500.jpg"
+    },
+    {
+        "name": "CASA TARRADELLAS Pizza fresca de jam\u00f3n y queso cocida al horno de piedra CASA TARRADELLAS 405 g.",
+        "price": "3.18",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3b9b4229-e94f-47ff-ae40-056dea1a8a00/500x500.jpg"
+    },
+    {
+        "name": "COCA COLA Refresco de cola Zero az\u00facar COCA COLA pack 2 botellas de 2 I.",
+        "price": "3.72",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/02b10b50-3fbf-43cd-b306-f64a2f71e075/500x500.jpg"
+    },
+    {
+        "name": "ORLANDO Tomate frito ORLANDO brik de 3 uds x 350 g.",
+        "price": "2.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/0299f566-f911-4e83-ba3b-b8459af61639/500x500.jpg"
+    },
+    {
+        "name": "Banana a granel",
+        "price": "1.19",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/d31e072b-3526-4f0d-b09d-cbc4c47a218a/500x500.jpg"
+    },
+    {
+        "name": "L.R. Leche entera L.R. 6 x 1 l.",
+        "price": "5.22",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1493758e-9fc5-4710-8749-ca98821ff6d4/500x500.jpg"
+    },
+    {
+        "name": "CASA TARRADELLAS Bacon cortado en c\u00f3modas y practicas cintas, elaborado sin gluten CASA TARRADELLAS 2 x 100 g.",
+        "price": "1.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6c21f9a9-3aeb-4f8d-b5bc-2c5dae556eea/500x500.jpg"
+    },
+    {
+        "name": "Cami\u00f3n de Transporte de Coches ONE TWO FUN ALCAMPO.",
+        "price": "12.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e5ed2b70-df3a-4638-9c8e-2cce40bc1d5d/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca semidesnatada, de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 2.2 l.",
+        "price": "14.76",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/444d6a6c-d023-461c-b540-60c1d6afad3e/500x500.jpg"
+    },
+    {
+        "name": "L.R. Leche desnatada L.R. 6 x 1 l.",
+        "price": "4.92",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/43f09b7e-d0da-4a14-944c-80d1c61184f0/500x500.jpg"
+    },
+    {
+        "name": "2mts Rollo Papel Regalo Modelos Surtidos.",
+        "price": "0.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/fa77113b-ed88-4219-b60f-0cb32f3466b0/500x500.jpg"
+    },
+    {
+        "name": "CENTRAL LECHERA ASTURIANA Leche de vaca semidesnatada de origen espa\u00f1ol CENTRAL LECHERA ASTURIANA 6 x 1 l.",
+        "price": "6.54",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e3e5a13b-5930-46c5-8a63-fe7c7ddb5119/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Bolsas de basura azul con autorcierre y antigoteo capacidad 30 litros 55 x 60 cm PRODUCTO ALCAMPO 40 uds.",
+        "price": "1.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e2d2c96e-e4a2-4dfd-9edd-506a3bd5bbc5/500x500.jpg"
+    },
+    {
+        "name": "ARIEL Detergente l\u00edquido ARIEL 36 lavados.",
+        "price": "11.48",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/19edf802-828d-4435-9b4c-d9574842abd3/500x500.jpg"
+    },
+    {
+        "name": "Lavadora SELECLINE capacidad de carga: 5KG, clasificaci\u00f3n energ\u00e9tica: E, 800RPM, H: 85cm, A: 59,5cm, F: 40cm.",
+        "price": "219.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b4214155-b865-4971-a84c-c46410dc5985/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva virgen extra garrafa de 5 l.",
+        "price": "45.90",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/abe5d579-1f3b-46cd-a9bc-cbfade6305b9/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico compacto de doble capa PRODUCTO ALCAMPO,12 uds.",
+        "price": "4.38",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2160b56d-ce5d-4590-9d47-16eb24f467cc/500x500.jpg"
+    },
+    {
+        "name": "SOLAN DE CABRAS Agua mineral SOLAN DE CABRAS garrafa de 5 l.",
+        "price": "2.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/91f94174-275e-4317-b21f-0017ea4f473d/500x500.jpg"
+    },
+    {
+        "name": "CORRAL DE MONEGROS Huevos camperos frescos clase M-L y cat. A 12 uds.",
+        "price": "3.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/acc7d3f8-3996-47a2-a29d-d48720ee6f87/500x500.jpg"
+    },
+    {
+        "name": "BEZOYA Agua mineral BEZOYA garrafa de 5 l.",
+        "price": "1.79",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/39017137-30dc-4dd4-8f6a-8d7acf41e02e/500x500.jpg"
+    },
+    {
+        "name": "NANCY 3 Vestidos De Cuento Con Mu\u00f1eca",
+        "price": "29.56",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/11963833-185d-4334-b049-933dd0fc1aee/500x500.jpg"
+    },
+    {
+        "name": "ALBO At\u00fan claro aceite de oliva ALBO pack 3 uds x 67g.",
+        "price": "7.21",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/715ec514-6b27-4d0e-b9c1-99828fff6467/500x500.jpg"
+    },
+    {
+        "name": "HEINEKEN Cervezas HEINEKEN pack de 12 latas de 33 cl.",
+        "price": "9.36",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/960cb8b3-f97a-45a6-b259-2067ed5d95c1/500x500.jpg"
+    },
+    {
+        "name": "Lavadora SELECLINE capacidad de carga: 6KG, clasificaci\u00f3n energ\u00e9tica: D, 1200RPM, H: 85cm, A: 65,5cm, F: 50cm.",
+        "price": "229.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5e5972c4-76dc-4cd0-8142-8bb525a872da/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Bacon cocido cortado en lonchas, elaborado sin gluten y sin lactosa PRODUCTO ALCAMPO 200 g.",
+        "price": "1.84",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/108fe543-0be3-44c5-ba1b-9201a47b06f6/500x500.jpg"
+    },
+    {
+        "name": "Br\u00f3coli filmado 500 g.",
+        "price": "1.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8328f8b9-c0c3-4b2e-90da-724f717a9982/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Galletas Mar\u00eda dorada PRODUCTO ALCAMPO 800 g.",
+        "price": "1.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3ed860d1-e7de-415b-9525-5b303956a504/500x500.jpg"
+    },
+    {
+        "name": "PASCUAL Leche desnatada sin lactosa procedente de vacas con bienestar garantizado PASCUAL 6 x 1l.",
+        "price": "8.40",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a6b45494-77ca-4b28-ab84-70237d35c706/500x500.jpg"
+    },
+    {
+        "name": "ESTRELLA GALICIA Cervezas ESTRELLA GALICIA ESPECIAL pack de 24 botellas de 25 cl.",
+        "price": "13.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7eaf69df-9587-4470-9d49-0a7141ce0a74/500x500.jpg"
+    },
+    {
+        "name": "MAESTROS DE HOJIBLANCA Aceite de oliva virgen extra MAESTROS DE HOJIBLANCA garrafa de 5 l.",
+        "price": "46.94",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f634a586-d353-419a-996b-af3728cc8bf2/500x500.jpg"
+    },
+    {
+        "name": "Calabac\u00edn  malla de 1 kg.",
+        "price": "1.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a14dd4c7-ffdd-4d18-81e6-eca88c1f42f5/500x500.jpg"
+    },
+    {
+        "name": "Pl\u00e1tano de Canarias (Indicaci\u00f3n Geogr\u00e1fica Protegida) ALCAMPO PRODUCCI\u00d3N CONTROLADA bandeja 700 g.",
+        "price": "2.49",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/93873312-85ba-4393-94e0-cadff4b2bcc7/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Bolsas de basura con autocierre capacidad. azul 50 litros 70 x 75 cm PRODUCTO ALCAMPO 15 uds.",
+        "price": "1.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/3cfd4757-ead1-494d-866a-58545571afa8/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Queso mozzarella rallado especial pizzas PRODUCTO ALCAMPO, 200 g.",
+        "price": "1.53",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/5c3af3fc-beab-4449-8abe-c8ae690a444b/500x500.jpg"
+    },
+    {
+        "name": "FOXY Papel higi\u00e9nico neutro para la piel con triple capa FOXY Seda 18 uds.",
+        "price": "8.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/665bd19e-f3fe-4c30-adbd-819a2d69fcd3/500x500.jpg"
+    },
+    {
+        "name": "CU\u00c9TARA Galleta Tostarica CU\u00c9TARA 760 gr.",
+        "price": "3.98",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2291f929-bab4-4026-b6aa-7da4403b53c2/500x500.jpg"
+    },
+    {
+        "name": "SCOTTEX Papel higi\u00e9nico Mega (m\u00e1s papel por rollo, 24 rollos de tipo mega rollo equivalen a 48 rollos standard) SCOTTEX 24 rollos",
+        "price": "18.54",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6e0af530-f501-4fde-b3c2-b6375d0e5c70/500x500.jpg"
+    },
+    {
+        "name": "Glitter Babyz Serie 2 - Marina Finley (Sirenita)",
+        "price": "14.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b5fc14d8-3974-4df5-9be0-3f7a8124958b/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Aceite de oliva intenso botella de 1 l.",
+        "price": "7.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/675ab46f-ec99-4ddd-971e-24da9c328d80/500x500.jpg"
+    },
+    {
+        "name": "Ar\u00e1ndanos vaso 500 g.",
+        "price": "8.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a0e1a248-2683-4067-ba6e-cf14f9aa0e75/500x500.jpg"
+    },
+    {
+        "name": "ALHAMBRA Cerveza ALHAMBRA RESERVA 1925 botella 12 uds. x 33 cl.",
+        "price": "13.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b8f40b1a-37b9-4428-96d4-7a208eefa356/500x500.jpg"
+    },
+    {
+        "name": "KRUSTASUR Lomos de salm\u00f3n sin piel, congelados KRUSTASUR 2 x 125 g.",
+        "price": "8.25",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/58d69262-e1ff-4d94-b059-6ab315a5f055/500x500.jpg"
+    },
+    {
+        "name": "Jamoncitos de pollo blanco con piel Bandeja",
+        "price": "5.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/33612a50-425a-48f0-986f-69b2448027b6/500x500.jpg"
+    },
+    {
+        "name": "MAHOU Cervezas MAHOU 5 ESTRELLAS pack 28 latas x 33 cl.",
+        "price": "21.00",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7ac4eb57-dbdd-449f-a1cd-bd5dc7b1aa1b/500x500.jpg"
+    },
+    {
+        "name": "Bandeja con preparado de carne picada de vacuno ROLER 800 g.",
+        "price": "7.95",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/79724afd-ba8a-449c-8d8a-b17a4005054c/500x500.jpg"
+    },
+    {
+        "name": "Papel de regalo cl\u00e1sico, dise\u00f1o \u00fanico, 3 metros de longitud, HALLMARK.",
+        "price": "1.59",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2c95f225-af8e-4851-9204-3ba133521373/500x500.jpg"
+    },
+    {
+        "name": "LAY'S Patatas fritas lisas con sal LAY'S Al punto de sal bolsa de 265 g.",
+        "price": "2.58",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/9707bba2-dabb-4c56-870d-9a70ab2b48e5/500x500.jpg"
+    },
+    {
+        "name": "SCOTTEX Papel higi\u00e9nico Original SCOTTEX 32 uds.",
+        "price": "14.31",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/76ad8f90-3af4-436f-b16d-5b02b1997f62/500x500.jpg"
+    },
+    {
+        "name": "BIMBO Pan de molde blanco sin corteza BIMBO 450 g.",
+        "price": "2.36",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/334b77e0-a7b1-4a24-b452-93bbdd238176/500x500.jpg"
+    },
+    {
+        "name": "L'OR Caf\u00e9 RIstretto I 11 en c\u00e1psulas compatibles con las Nespresso L'OR ESPRESSO 40 uds.",
+        "price": "15.22",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f4141182-2684-44cd-824a-41ec309cfb5d/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Yogur sabor natural PRODUCTO ALCAMPO 8 x 125 g.",
+        "price": "1.39",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a1bf317a-d976-42b6-95f7-6375b591af59/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Nueces mondadas PRODUCTO ALCAMPO 200 g.",
+        "price": "2.14",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/54568e71-d50b-4ad5-893a-c546211da337/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel de cocina compacto PRODUCTO ALCAMPO 3 uds.",
+        "price": "2.18",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c0caec9e-458d-4483-82fe-8121922f622c/500x500.jpg"
+    },
+    {
+        "name": "Carroza Princesa Con Mu\u00f1eca Y Caballo Caminante ONE TWO FUN ALCAMPO",
+        "price": "29.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f48de841-8bbd-47b6-929c-c97a2193c69f/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO Papel higi\u00e9nico de doble capa PRODUCTO ALCAMPO 12 uds.",
+        "price": "2.24",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ef228307-b7f3-4cca-9b42-473efd4a7f39/500x500.jpg"
+    },
+    {
+        "name": "COLACAO Cacao en polvo soluble natural, en formato ecobolsa COLACAO ORIGINAL 1,2 kg.",
+        "price": "9.02",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b32f4655-44d6-4e44-b770-e90600cfc0be/500x500.jpg"
+    },
+    {
+        "name": "Patatas para freir ALCAMPO PRODUCCI\u00d3N CONTROLADA 2,5 kg.",
+        "price": "4.69",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/b0ebd2a3-870b-4d51-919a-a9b241462bb6/500x500.jpg"
+    },
+    {
+        "name": "AQUARIUS Bebida isot\u00f3nica con sabor a lim\u00f3n lata 33 cl. pack de 9 uds.",
+        "price": "7.29",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/f8196e80-d873-4796-8f10-e59488772636/500x500.jpg"
+    },
+    {
+        "name": "PRODUCTO ALCAMPO At\u00fan claro en aceite de girasol PRODUCTO ALCAMPO lata de 52 g. pack de 6 unds.",
+        "price": "3.80",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/ff496aa7-4b5b-48ce-8d9a-7a0d5f6415b9/500x500.jpg"
+    },
+    {
+        "name": "OLIVAR CENTENARIO Aceite de oliva virgen extra OLIVAR CENTENARIO garrafa de 5 l.",
+        "price": "42.99",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/47239678-eef9-4bc8-92f7-9b3fa5dd1d8c/500x500.jpg"
+    },
+    {
+        "name": "ALCAMPO BABY Toallitas h\u00famedas para beb\u00e9, con aloe vera y aceite de almendras dulces ALCAMPO BABY 4 x 72 uds.",
+        "price": "3.77",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/58a9f70a-f46d-40df-bfd0-e3c618cf721a/500x500.jpg"
+    }
+]

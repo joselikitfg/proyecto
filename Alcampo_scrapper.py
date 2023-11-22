@@ -8,8 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# URL del producto
-url = 'https://www.compraonline.alcampo.es/categories'
+
 
 def scrap_alcampo(url):
     # Realiza la solicitud y obtén el contenido de la página
@@ -38,7 +37,7 @@ def scrap_alcampo(url):
     # Verificar que la solicitud tuvo exito
     if response_imagen.status_code == 200:
         # Genera un nombre de archivo único basado en el tiempo actual
-        image_filename = f'imagen_descargada_{int(time.time())}.jpg'
+        image_filename = f'./images/imagen_descargada_{int(time.time())}.jpg'
         # Escribe el contenido de la respuesta (la imagen) a un archivo
         with open(image_filename, 'wb') as f:
             f.write(response_imagen.content)
@@ -112,20 +111,38 @@ def save_product_to_json(product_name, product_price, product_image_url, json_fi
 
     print(f"Product '{product_name}' saved to {json_file}")
 
+def generate_urls(names, base_url):
+    """
+    Generates a list of URLs by replacing a placeholder in the base URL with each name in the list.
 
-urlsd = captura_urls_alcampo(url)
-for url in urlsd:
-    try:
-        product_name, product_price, product_image_url = scrap_alcampo(url)
-        print(f'Nombre del Producto: {product_name}')
-        print(f'Precio: {product_price}')
-        print(f'URL de la Imagen: {product_image_url}')
-    except Exception as e:
-        print(f"Error al procesar la URL {url}: {e}")
-        continue  # Continues with the next URL in case of an error
+    :param names: List of names to be inserted into the base URL
+    :param base_url: The base URL containing a placeholder for the name
+    :return: List of URLs with names inserted
+    """
+    # Replace {name} in base_url with each name from the names list
+    urls = [base_url.replace("{name}", name) for name in names]
+    return urls
 
-    if product_name is not None and product_price is not None and product_image_url is not None:
-        save_product_to_json(product_name, product_price, product_image_url)
-    else:
-        print(f"Datos no válidos para la URL {url}, omitiendo...")      
+
+#Listado "Leche","Huevos",
+names = ["Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
+# URL del producto
+url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+generated_urls = generate_urls(names, url_base)
+for url in generated_urls:
+        urlsd = captura_urls_alcampo(url)
+        for url in urlsd:
+            try:
+                product_name, product_price, product_image_url = scrap_alcampo(url)
+                print(f'Nombre del Producto: {product_name}')
+                print(f'Precio: {product_price}')
+                print(f'URL de la Imagen: {product_image_url}')
+            except Exception as e:
+                print(f"Error al procesar la URL {url}: {e}")
+                continue  # Continues with the next URL in case of an error
+
+            if product_name is not None and product_price is not None and product_image_url is not None:
+                save_product_to_json(product_name, product_price, product_image_url)
+            else:
+                print(f"Datos no válidos para la URL {url}, omitiendo...")      
 

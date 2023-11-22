@@ -48,30 +48,30 @@ def scrap_alcampo(url):
     return product_name, product_price, product_image_url
        
 def captura_urls_alcampo(url):
-    # Initialize the browser
+    # Inicia el navegador 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
 
-    # Navigate to the website
+    
     driver.get(url)
 
-    # Pause for initial loading
+    # sleep para cargar
     time.sleep(2)
+    
+    # Inicializa un set para almacenar URLs
 
-    urls = set()  # Initialize a set to store unique URLs
-
-    # Scroll through the page gradually and scrape URLs at each step
-    for i in range(20):  # Adjust this range as per the length of the page
+    urls = set()  
+    # Scroll gradual
+    for i in range(20):  # 20 parametro de configuracion dependiendo de la pagina
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)  # Wait between scrolls to allow data to load
-
-        # Find all links on the page after each scroll
+        time.sleep(1)  # sleep para carga de objetos dinamico
+        # Find todos los elementos
         links = driver.find_elements(By.TAG_NAME, "a")
 
-        # Extract the URLs and add them to the set
+        # Extrae urls y las almacena
         for link in links:
             href = link.get_attribute("href")
-            if href and not href.startswith("javascript:"):  # Ignore 'javascript:' links
+            if href and not href.startswith("javascript:"):  # Ignora los links 'javascript:' 
                 urls.add(href)
     driver.quit()            
     return urls     
@@ -86,26 +86,26 @@ def save_product_to_json(product_name, product_price, product_image_url, json_fi
         'image_url': product_image_url
     }
 
-    data = []  # Initialize data as an empty list
+    data = []  # Inicializa la lista
 
-    # Try to read existing data from the file
+    # Si ya contiene algo intenta leerlo
     try:
         with open(json_file, 'r',encoding='utf-8') as file:
-            # Load the data if the file is not empty
+            # Carga los datos si no esta vacio
             file_contents = file.read()
-            if file_contents:  # Check if file is not empty
+            if file_contents:  # Comprueba si no esta vacio
                 data = json.loads(file_contents)
     except FileNotFoundError:
-        # If the file does not exist, it's fine - we'll create it
+        # Si no existe lo crea
         pass
     except json.JSONDecodeError:
-        # Handle the case where the file content is not valid JSON
+        # Si el JSON no es valido
         print(f"Warning: {json_file} contains invalid JSON. Overwriting with new data.")
 
-    # Append new product data
+    # Append los nuevos datos
     data.append(product_data)
 
-    # Write updated data back to the file
+    # Actualizar los datos nuevos
     with open(json_file, 'w') as file:
         json.dump(data, file, indent=4)
 
@@ -113,19 +113,18 @@ def save_product_to_json(product_name, product_price, product_image_url, json_fi
 
 def generate_urls(names, base_url):
     """
-    Generates a list of URLs by replacing a placeholder in the base URL with each name in the list.
-
-    :param names: List of names to be inserted into the base URL
-    :param base_url: The base URL containing a placeholder for the name
-    :return: List of URLs with names inserted
+    Genera una lista de URLs reemplazando el placeholder de la URL base con cada elemento de la lista
+    :param names: Lista de nombres 
+    :param base_url: La URL base con {name} listo para ser modificado
+    :return: Lista de URLs con los elementos insertados
     """
-    # Replace {name} in base_url with each name from the names list
+    # Modifica {name} en base_url con cada elemento de la lista
     urls = [base_url.replace("{name}", name) for name in names]
     return urls
 
 
-#Listado "Leche","Huevos",
-names = ["Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
+#Listado 
+names = ["Leche","Huevos","Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
 # URL del producto
 url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
 generated_urls = generate_urls(names, url_base)
@@ -139,7 +138,7 @@ for url in generated_urls:
                 print(f'URL de la Imagen: {product_image_url}')
             except Exception as e:
                 print(f"Error al procesar la URL {url}: {e}")
-                continue  # Continues with the next URL in case of an error
+                continue  # Continua con la siguiente URL en caso de fallo
 
             if product_name is not None and product_price is not None and product_image_url is not None:
                 save_product_to_json(product_name, product_price, product_image_url)

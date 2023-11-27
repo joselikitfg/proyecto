@@ -16,7 +16,7 @@ def scrap_alcampo(url):
     cookies = response.cookies
 
     soup = BeautifulSoup(response.content, 'html.parser')
-
+    print(response.content)
     # Encuentra la etiqueta script con los datos estructurados de producto
     script = soup.find('script', {'type': 'application/ld+json'})
 

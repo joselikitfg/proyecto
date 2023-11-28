@@ -9,7 +9,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 
-
 def scrap_alcampo(url):
     # Realiza la solicitud y obtén el contenido de la página
     response = requests.get(url)

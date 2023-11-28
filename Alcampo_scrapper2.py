@@ -19,20 +19,19 @@ def scrape_product_details(url):
 
     products = []
     scraped_product_names = set() 
-    for i in range(20):  # Adjust based on page needs
+    for i in range(20):  
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
-        time.sleep(2)  # Wait for dynamic content
-        # Wait for images to be loaded
+        time.sleep(2)  
+        # Espera para cargar las imagenes lazy
         WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
 
-        # Get updated HTML
+
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 
-        # Find the parent elements that contain product details
-        # Replace 'parent_tag' and 'parent_class' with actual values
+
         product_containers = soup.find_all('div', {'class': 'components__ProductCardContainer-sc-filq44-2'})
 
         for container in product_containers:
@@ -63,25 +62,25 @@ def scrape_product_details(url):
     return products
 
 def save_product_to_json(product, json_file='products2.json'):
-    data = []  # Initialize the list
+    data = []  
 
-    # Try to read existing data from the file
+
     try:
         with open(json_file, 'r', encoding='utf-8') as file:
             file_contents = file.read()
-            if file_contents:  # Check if it's not empty
+            if file_contents:  
                 data = json.loads(file_contents)
     except FileNotFoundError:
-        # If the file doesn't exist, it will be created
+
         pass
     except json.JSONDecodeError:
-        # If the JSON is invalid
+
         print(f"Warning: {json_file} contains invalid JSON. Overwriting with new data.")
 
-    # Append the new product data
+
     data.append(product)
 
-    # Update the file with new data
+
     with open(json_file, 'w', encoding='utf-8') as file:
         json.dump(data, file, indent=4)
 

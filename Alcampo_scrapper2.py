@@ -10,6 +10,30 @@ import time
 import requests
 import json
 
+def scrap_alcampo_image(url):
+    # Realiza la solicitud y obtén el contenido de la página
+    response = requests.get(url)
+
+    soup = BeautifulSoup(response.content, 'html.parser')
+    # Encuentra la etiqueta script con los datos estructurados de producto
+    script = soup.find('script', {'type': 'application/ld+json'})
+
+    # Si encontramos la etiqueta script, cargamos el JSON
+    if script:
+        data = json.loads(script.string)
+        product_image_url = data.get('image', [])[0]  # Tomamos la primera imagen
+
+    else:
+        print('Datos del producto no encontrados.')
+        return None,
+
+    return product_image_url
+
+def scrap_image(product):
+
+    img_url = scrap_alcampo_image(product)
+    return img_url
+
 def scrape_product_details(url):
     # Inicia el navegador
     service = Service(ChromeDriverManager().install())
@@ -27,7 +51,6 @@ def scrape_product_details(url):
         EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
 
-
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -42,9 +65,17 @@ def scrape_product_details(url):
             if title_element:
                   product['name'] = title_element.text
 
+
+            
             image_element = container.find('img', {'data-test': 'lazy-load-image'})
             if image_element and 'src' in image_element.attrs:
                 product['image_url'] = image_element['src']
+            else:
+                product_link_element = container.find('a', {'data-test': 'fop-product-link'})
+                if product_link_element and 'href' in product_link_element.attrs:
+                    full_product_url = "https://www.compraonline.alcampo.es" + product_link_element['href']
+                    product['image_url'] = scrap_image(full_product_url)
+
 
             price_per_unit_element = container.find('span', {'data-test': 'fop-price-per-unit'})
             if price_per_unit_element:
@@ -60,6 +91,7 @@ def scrape_product_details(url):
 
     driver.quit()
     return products
+
 
 def save_product_to_json(product, json_file='products2.json'):
     data = []  

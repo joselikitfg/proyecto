@@ -5,10 +5,13 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import time
 import requests
 import json
+from multiprocessing import Process
+import multiprocessing
 
 def scrap_alcampo_image(url):
     # Realiza la solicitud y obtén el contenido de la página
@@ -36,9 +39,15 @@ def scrap_image(product):
 
 def scrape_product_details(url):
     # Inicia el navegador
+    options = Options()
+    options.add_argument("--headless") # Runs Chrome in headless mode.
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
+    options.add_argument("--window-size=1920,1080")
+
     service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
+    #driver.save_screenshot("screenshot.png")
     time.sleep(2)
 
     products = []
@@ -131,22 +140,39 @@ def generate_urls(names, base_url):
     urls = [base_url.replace("{name}", name) for name in names]
     return urls
 
+def scrap_product_by_category(url):
+    products = None
+    try:
+        products = scrape_product_details(url)
+    except Exception as e:
+        print(f"Error al procesar la URL {url}: {e}")
+        import traceback
+        traceback.print_exc() 
+    if products is not None:
+        for product in products:
+            save_product_to_json(product)
+    else:
+        print(f"Datos no válidos para la URL {url}, omitiendo...")         
+
+procs = [] 
 #Listado 
 names = ["Leche","Huevos","Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
 # URL del producto
 url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
 generated_urls = generate_urls(names, url_base)
 for url in generated_urls:
-            try:
-                products = scrape_product_details(url)
-            except Exception as e:
-                print(f"Error al procesar la URL {url}: {e}")
-                continue  # Continua con la siguiente URL en caso de fallo
-            if products is not None:
-                for product in products:
-                    save_product_to_json(product)
-            else:
-                print(f"Datos no válidos para la URL {url}, omitiendo...")      
+    #scrap_product_by_category(url)
+    # print(url)
+    proc = Process(target=scrap_product_by_category, args=(url,))
+    procs.append(proc)
 
+
+for proc in procs:
+    print("Lanzando proceso")
+    proc.start()
+
+for proc in procs:
+    proc.join()
             
+
 

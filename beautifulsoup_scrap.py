@@ -34,7 +34,7 @@ def scrapear_precio(url):
     soup1 = BeautifulSoup(page.content, "html.parser")
     soup2 = BeautifulSoup(soup1.prettify(), "html.parser")
     
-    price = soup2.find(class_='text__Text-sc-6l1yjp-0 sc-hmjpBu bIGwoI jOIaVf').get_text()
+    price = soup2.find(class_='_text_w6v0v_1 _text--bold_w6v0v_7 _text--xl_w6v0v_31 price__StyledText-sc-1om5bl6-0 igGbbW').get_text()
     price = price.strip()
     
     return price

@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
@@ -43,8 +42,11 @@ def scrape_product_details(url):
     options.add_argument("--headless") # Runs Chrome in headless mode.
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
     options.add_argument("--window-size=1920,1080")
+    options.add_argument("--no-sandbox")
 
-    service = Service(ChromeDriverManager().install())
+    # service = Service(ChromeDriverManager().install())
+    service = Service()
+    # driver = webdriver.Chrome(service=service, options=options)
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
     #driver.save_screenshot("screenshot.png")
@@ -154,25 +156,29 @@ def scrap_product_by_category(url):
     else:
         print(f"Datos no válidos para la URL {url}, omitiendo...")         
 
-procs = [] 
-#Listado 
-names = ["Leche","Huevos","Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
-# URL del producto
-url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-generated_urls = generate_urls(names, url_base)
-for url in generated_urls:
-    #scrap_product_by_category(url)
-    # print(url)
-    proc = Process(target=scrap_product_by_category, args=(url,))
-    procs.append(proc)
-
-
-for proc in procs:
-    print("Lanzando proceso")
-    proc.start()
-
-for proc in procs:
-    proc.join()
             
+def main():
+    procs = [] 
+    #Listado 
+    names = ["Leche","Huevos"]#,"Frutas"]#"Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
+    # URL del producto
+    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    generated_urls = generate_urls(names, url_base)
+    for url in generated_urls:
+        #scrap_product_by_category(url)
+        # print(url)
+        proc = Process(target=scrap_product_by_category, args=(url,))
+        procs.append(proc)
 
+    for proc in procs:
+        print("Lanzando proceso")
+        proc.start()
 
+    for proc in procs:
+        proc.join() 
+
+def lambda_handler(event, context): 
+    main()
+
+if __name__ == '__main__':
+    lambda_handler({},{})

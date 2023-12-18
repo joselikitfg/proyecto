@@ -132,3 +132,6 @@ dist
 # jpg
 *.jpg
 *.png
+
+.aws-sam
+*.deb

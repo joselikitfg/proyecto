@@ -156,7 +156,7 @@ def scrap_product_by_category(url):
 
 procs = [] 
 #Listado 
-names = ["Leche","Huevos","Frutas","Verduras","Pan","Cereales","Tubérculos","Harina","Quesos","Legumbres","Pasta","Aceite"]
+names = ["Leche","Huevos","Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
 # URL del producto
 url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
 generated_urls = generate_urls(names, url_base)

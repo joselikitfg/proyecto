@@ -1,7 +1,9 @@
 # docker build -t alcampo-chrome-v2 -f Dockerfile.chrome .
 #Usar Ubuntu 22.04 como imagen base
 # FROM --platform=linux/amd64 ubuntu:22.04
-FROM public.ecr.aws/lambda/python:3.11 as build
+
+#FROM public.ecr.aws/lambda/python:3.11 as build
+FROM --platform=linux/amd64 ubuntu:22.04
 
 # Definir argumentos para las versiones de Python y Chrome
 ARG PYTHON_VERSION=3.11.6

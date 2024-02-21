@@ -30,7 +30,7 @@ services:
 
     api:
         build: 
-            context: ./frontend
+            context: ./backend
             dockerfile: Dockerfile
         command: gunicorn --bind 0.0.0.0:5000 app:app
         ports:

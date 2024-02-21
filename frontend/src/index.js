@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
+function App() {
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // Realiza la solicitud GET a la ruta /todos cuando el componente se monta
-    fetch('/todos')
-      .then(response => response.json())
-      .then(data => {
-        // Actualiza el estado con los todos obtenidos
-        setTodos(data);
-      })
-      .catch(error => {
-        // Maneja cualquier error que pueda ocurrir durante la solicitud
-        console.error('Error fetching todos:', error);
-      });
-  }, []); // La dependencia vacía asegura que este efecto solo se ejecute una vez al montar el componente
+    async function fetchItems() {
+      try {
+        const response = await axios.get('/items');
+        setItems(response.data);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    }
+
+    fetchItems();
+  }, []);
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <h1>Items:</h1>
       <ul>
-        {todos.map(todo => (
-          <li key={todo._id}>{todo.title}</li>
+        {items.map(item => (
+          <li key={item._id}>{item.name}</li>
         ))}
       </ul>
     </div>
   );
 }
 
-export default TodoList;
+export default App;

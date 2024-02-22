@@ -3,12 +3,14 @@ import json
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from bson import json_util, ObjectId
-
-MONGODB_URI = os.environ.get("MONGODB_ENDPOINT")
+from pymongo import MongoClient
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = MONGODB_URI
-mongo = PyMongo(app)
+# MONGODB_URI = "mongodb://mongodb:27017/example"
+# app.config["MONGO_URI"] = MONGODB_URI
+
+uri = "mongodb://apiuser:apipassword@mongodb.com/?authSource=the_database&authMechanism=SCRAM-SHA-256"
+client = MongoClient(uri)
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))

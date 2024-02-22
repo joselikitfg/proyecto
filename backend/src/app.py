@@ -1,16 +1,14 @@
 import os
 import json
 from flask import Flask, request
-from flask_pymongo import PyMongo
 from bson import json_util, ObjectId
 from pymongo import MongoClient
 
 app = Flask(__name__)
-# MONGODB_URI = "mongodb://mongodb:27017/example"
-# app.config["MONGO_URI"] = MONGODB_URI
 
-uri = "mongodb://apiuser:apipassword@mongodb.com/?authSource=the_database&authMechanism=SCRAM-SHA-256"
+uri = os.getenv("MONGO_URI")
 client = MongoClient(uri)
+db = client['webapp']
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
@@ -21,7 +19,7 @@ def hello_world():
 
 @app.route('/items', methods=['GET'])
 def get_all_items():
-    items = list(client.db.items.find())
+    items = list(client.webapp.items.find())
     return parse_json(items), 200
 
 @app.route('/items', methods=['POST'])

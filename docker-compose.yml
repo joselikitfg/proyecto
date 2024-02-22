@@ -44,9 +44,7 @@ services:
         ports:
         - 5000:5000
         environment:
-            MONGODB_HOST: mongodb
-            MONGODB_USERNAME: "apiuser"
-            MONGODB_PASSWORD: "apipassword"
+            MONGO_URI: "mongodb://admin:password@mongodb:27017/webapp?authMechanism=SCRAM-SHA-256&authSource=admin&ssl=false"
         volumes:
         - ./src:/src
         depends_on: 

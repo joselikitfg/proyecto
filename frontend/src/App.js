@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     async function fetchItems() {
       try {
-        const response = await axios.get('/items');
+        const response = await axios.get('http://localhost:5000/items'); 
         setItems(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);

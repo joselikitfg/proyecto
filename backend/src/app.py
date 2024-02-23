@@ -1,10 +1,19 @@
 import os
 import json
-from flask import Flask, request
+from flask import Flask, Response, request
 from bson import json_util, ObjectId
 from pymongo import MongoClient
+import logging
 
 app = Flask(__name__)
+
+app.config['DEBUG'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
+gunicorn_logger = logging.getLogger('gunicorn.error')
+gunicorn_logger.setLevel(logging.DEBUG) 
+app.logger.handlers = gunicorn_logger.handlers
+app.logger.setLevel(gunicorn_logger.level)
 
 uri = os.getenv("MONGO_URI")
 client = MongoClient(uri)
@@ -20,7 +29,8 @@ def hello_world():
 @app.route('/items', methods=['GET'])
 def get_all_items():
     items = list(client.webapp.items.find())
-    return parse_json(items), 200
+    items_json = json.dumps(items, default=json_util.default)
+    return Response(response=items_json, status=200, mimetype="application/json")
 
 @app.route('/items', methods=['POST'])
 def create_item():
@@ -30,7 +40,7 @@ def create_item():
 
 @app.route('/items/<item_id>', methods=['GET'])
 def get_item(item_id):
-    item = client.db.items.find_one_or_404({'_id': ObjectId(item_id)})
+    item = client.db.items.find_one_or_404({'_id': ObjectIdpython(item_id)})
     return parse_json(item), 200
 
 @app.route('/items/<item_id>', methods=['PUT'])

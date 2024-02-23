@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
+
 
 function App() {
   const [items, setItems] = useState([]);
@@ -7,7 +9,9 @@ function App() {
   useEffect(() => {
     async function fetchItems() {
       try {
-        const response = await axios.get('http://localhost:5000/items'); 
+        const API_ENDPOINT = "http://localhost:8082";
+        const response = await axios.get(`${API_ENDPOINT}/items`); 
+        console.log(response);
         setItems(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);

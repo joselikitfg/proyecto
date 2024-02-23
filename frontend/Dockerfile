@@ -1,5 +1,5 @@
 # Pull latest official node image
-FROM node:latest
+FROM node:21-alpine3.18
 
 # Expose ports
 EXPOSE 3000
@@ -11,14 +11,14 @@ WORKDIR /app
 # Add /app/node_modules/.bin to environment variables
 ENV PATH /app/node_modules/.bin:$PATH
 
+RUN npm install react-scripts@5.0.1 -g
 # Copy package files and install app dependencies
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 RUN npm install ci
-RUN npm install react-scripts -g
 
-# Add React app to working directory
-ADD . /app
+# copy React app to working directory
+COPY . /app
 
 # Start the React app
 CMD ["npm", "start"]

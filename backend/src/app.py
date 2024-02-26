@@ -5,8 +5,10 @@ from bson import json_util, ObjectId
 from flask_cors import cross_origin
 from pymongo import MongoClient
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -35,9 +37,10 @@ def get_all_items():
     return Response(response=items_json, status=200, mimetype="application/json")
 
 @app.route('/items', methods=['POST'])
+@cross_origin(origin='localhost')
 def create_item():
     item = request.get_json()
-    inserted_item = client.db.items.insert_one(item)
+    inserted_item = client.webapp.items.insert_one(item)
     return parse_json(inserted_item.inserted_id), 201
 
 @app.route('/items/<item_id>', methods=['GET'])

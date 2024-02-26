@@ -2,34 +2,76 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-
-
-function App() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    async function fetchItems() {
-      try {
-        const API_ENDPOINT = "http://localhost:8082";
-        const response = await axios.get(`${API_ENDPOINT}/items`); 
-        console.log(response);
-        setItems(response.data);
-      } catch (error) {
-        console.error('Error fetching items:', error);
-      }
-    }
-
-    fetchItems();
-  }, []);
-
+function ItemList({ items }) {
   return (
     <div>
       <h1>Items:</h1>
       <ul>
         {items.map(item => (
-          <li key={item._id}>{item.name}</li>
+          <li key={item._id}>
+            <strong>Nombre:</strong> {item.name} - <strong>Descripcion:</strong> {item.description}
+          </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function App() {
+  const [items, setItems] = useState([]);
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemDescription, setNewItemDescription] = useState('');
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    try {
+      const API_ENDPOINT = "http://localhost:8082";
+      const response = await axios.get(`${API_ENDPOINT}/items`); 
+      setItems(response.data);
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const API_ENDPOINT = "http://localhost:8082";
+      await axios.post(`${API_ENDPOINT}/items`, {
+        name: newItemName,
+        description: newItemDescription
+      });
+      // Actualiza la lista de ítems después de agregar uno nuevo
+      fetchItems();
+      // Limpia los campos del formulario
+      setNewItemName('');
+      setNewItemDescription('');
+    } catch (error) {
+      console.error('Error creating item:', error);
+    }
+  };
+
+  return (
+    <div>
+      <ItemList items={items} />
+      <form onSubmit={handleFormSubmit}>
+        <input
+          type="text"
+          placeholder="Nombre del ítem"
+          value={newItemName}
+          onChange={(e) => setNewItemName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Descripción del ítem"
+          value={newItemDescription}
+          onChange={(e) => setNewItemDescription(e.target.value)}
+        />
+        <button type="submit">Agregar ítem</button>
+      </form>
     </div>
   );
 }

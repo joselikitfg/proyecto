@@ -2,6 +2,7 @@ import os
 import json
 from flask import Flask, Response, request
 from bson import json_util, ObjectId
+from flask_cors import cross_origin
 from pymongo import MongoClient
 import logging
 
@@ -27,6 +28,7 @@ def hello_world():
     return 'Hello, World!'
 
 @app.route('/items', methods=['GET'])
+@cross_origin(origin='localhost')
 def get_all_items():
     items = list(client.webapp.items.find())
     items_json = json.dumps(items, default=json_util.default)

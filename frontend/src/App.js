@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-function ItemList({ items }) {
+function ItemList({ items, onDelete }) {
   return (
     <div>
       <h1>Items:</h1>
@@ -10,6 +10,9 @@ function ItemList({ items }) {
         {items.map(item => (
           <li key={item._id}>
             <strong>Nombre:</strong> {item.name} - <strong>Descripcion:</strong> {item.description}
+            <button onClick={() => {
+              onDelete(item._id);
+            }}>Eliminar</button> 
           </li>
         ))}
       </ul>
@@ -54,9 +57,27 @@ function App() {
     }
   };
 
+  const handleDeleteItem = async (idObj) => {
+    try {
+      // Verifica si se recibió un objeto y si contiene la clave "$oid"
+      if (!idObj || !idObj["$oid"]) {
+        console.error('Error deleting item: Invalid ID');
+        return;
+      }
+      const id = idObj["$oid"]; // Obtiene el ID como una cadenar
+  
+      const API_ENDPOINT = "http://localhost:8082";
+      await axios.delete(`${API_ENDPOINT}/items/${id}`);
+      // Actualiza la lista de ítems después de eliminar uno
+      fetchItems();
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
+
   return (
     <div>
-      <ItemList items={items} />
+      <ItemList items={items} onDelete={handleDeleteItem} /> {/* Pasa la función handleDeleteItem como prop onDelete al componente ItemList */}
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"

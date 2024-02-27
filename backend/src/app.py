@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, Response, request
+from flask import Flask, Response, request, jsonify, abort
 from bson import json_util, ObjectId
 from flask_cors import cross_origin
 from pymongo import MongoClient
@@ -44,9 +44,30 @@ def create_item():
     return parse_json(inserted_item.inserted_id), 201
 
 @app.route('/items/<item_id>', methods=['GET'])
+@cross_origin(origin='localhost')
 def get_item(item_id):
-    item = client.db.items.find_one_or_404({'_id': ObjectIdpython(item_id)})
-    return parse_json(item), 200
+    try:
+        item = client.webapp.items.find_one({'_id': ObjectId(item_id)})
+        if item:
+            return jsonify(parse_json(item)), 200
+        else:
+            abort(404, description="Item not found")
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/items/<item_id>', methods=['DELETE'])
+@cross_origin(origin='localhost')
+def delete_item(item_id):
+    try:
+        item_id_obj = ObjectId(item_id)
+    except Exception as e:
+        return parse_json({'error': 'Invalid item ID format'}), 400
+
+    result = client.webapp.items.delete_one({'_id': item_id_obj})
+    if result.deleted_count == 0:
+        return parse_json({'error': 'Item not found'}), 404
+    return parse_json({'message': 'Item deleted successfully'}), 200
 
 @app.route('/items/<item_id>', methods=['PUT'])
 def update_item(item_id):
@@ -57,14 +78,5 @@ def update_item(item_id):
         return parse_json({'error': 'Item not found'}), 404
     updated_item = client.db.items.find_one({'_id': item_id_obj})
     return parse_json({'message': 'Item updated successfully', 'item': updated_item}), 200
-
-@app.route('/items/<item_id>', methods=['DELETE'])
-def delete_item(item_id):
-    item_id_obj = ObjectId(item_id)
-    result = client.db.items.delete_one({'_id': item_id_obj})
-    if result.deleted_count == 0:
-        return parse_json({'error': 'Item not found'}), 404
-    return parse_json({'message': 'Item deleted successfully'}), 200
-
 if __name__ == "__main__":
     app.run(debug=True)

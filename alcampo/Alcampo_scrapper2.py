@@ -23,7 +23,10 @@ def scrap_alcampo_image(url):
     # Si encontramos la etiqueta script, cargamos el JSON
     if script:
         data = json.loads(script.string)
-        product_image_url = data.get('image', [])[0]  # Tomamos la primera imagen
+        if 'image' in data and data['image']:
+            product_image_url = data['image'][0]
+        else:
+            product_image_url = None  # or any default value you want to set
 
     else:
         print('Datos del producto no encontrados.')

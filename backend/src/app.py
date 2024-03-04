@@ -40,8 +40,13 @@ def get_all_items():
 @cross_origin(origin='localhost')
 def create_item():
     item = request.get_json()
-    inserted_item = client.webapp.items.insert_one(item)
-    return parse_json(inserted_item.inserted_id), 201
+    name = item.get('name','')
+    description = item.get('description','')
+    if name.strip() and description.strip():  # Verificar si item no está vacío
+        inserted_item = client.webapp.items.insert_one(item)
+        return parse_json(inserted_item.inserted_id), 201
+    else:
+        return jsonify({'error': 'El objeto item está vacío'}), 400
 
 @app.route('/items/<item_id>', methods=['GET'])
 @cross_origin(origin='localhost')

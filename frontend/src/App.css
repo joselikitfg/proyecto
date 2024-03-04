@@ -36,4 +36,16 @@
       transform: rotate(360deg);
     }
   }
+  .btn {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+  }
+
   

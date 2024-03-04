@@ -1,42 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  BrowserRouter,
-} from "react-router-dom";
-import Item from "./pages/item";
-
-function ItemList({ items, onDelete, onEdit }) {
-  return (
-    <div>
-      <h1>Items:</h1>
-      <ul>
-        {items.map((item) => (
-          <li key={item._id}>
-            <strong>Nombre:</strong> {item.name} -{" "}
-            <strong>Descripcion: </strong> {item.description}
-            <button
-              class="btn"
-              onClick={() => {
-                onDelete(item._id);
-              }}
-            >
-              {" "}
-              Eliminar
-            </button>
-            <Link className="btn" to={`/item/${item._id}`}>
-              Editar
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ItemList from "./components/ItemList";
+import ItemDetail from "./components/ItemDetail";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -49,8 +15,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const API_ENDPOINT = "http://localhost:8082";
-      const response = await axios.get(`${API_ENDPOINT}/items`);
+      const response = await axios.get("http://localhost:8082/items");
       setItems(response.data);
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -60,14 +25,11 @@ function App() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const API_ENDPOINT = "http://localhost:8082";
-      await axios.post(`${API_ENDPOINT}/items`, {
+      await axios.post("http://localhost:8082/items", {
         name: newItemName,
         description: newItemDescription,
       });
-      // Actualiza la lista de ítems después de agregar uno nuevo
       fetchItems();
-      // Limpia los campos del formulario
       setNewItemName("");
       setNewItemDescription("");
     } catch (error) {
@@ -75,53 +37,24 @@ function App() {
     }
   };
 
-  const handleDeleteItem = async (idObj) => {
+  const deleteItem = async (idObj) => {
     try {
-      // Verifica si se recibió un objeto y si contiene la clave "$oid"
       if (!idObj || !idObj["$oid"]) {
         console.error("Error deleting item: Invalid ID");
         return;
       }
       const id = idObj["$oid"]; // Obtiene el ID como una cadenar
-
-      const API_ENDPOINT = "http://localhost:8082";
-      await axios.delete(`${API_ENDPOINT}/items/${id}`);
-      // Actualiza la lista de ítems después de eliminar uno
-      fetchItems();
+      await axios.delete(`http://localhost:8082/items/${id}`);
+      fetchItems(); // Actualizar la lista de ítems después de borrar
     } catch (error) {
       console.error("Error deleting item:", error);
-    }
-  };
-
-  const handleEditItem = async (idObj) => {
-    try {
-      // Verifica si se recibió un objeto y si contiene la clave "$oid"
-      if (!idObj || !idObj["$oid"]) {
-        console.error("Error navigating to recipe: Invalid ID");
-        return;
-      }
-      const id = idObj["$oid"]; // Obtiene el ID como una cadena
-
-      // Aquí puedes construir la URL de la página de receta, por ejemplo:
-      const recipePageUrl = `/recipe/${id}`;
-
-      // Redirige a la página de la receta
-      history.push(recipePageUrl);
-    } catch (error) {
-      console.error("Error navigating to recipe:", error);
     }
   };
 
   return (
     <div>
       <div>
-        <ItemList
-          items={items}
-          onDelete={handleDeleteItem}
-          onEdit={handleEditItem}
-        />
-      </div>
-      <div>
+        <h1>Agregar ítem</h1>
         <form onSubmit={handleFormSubmit}>
           <input
             type="text"
@@ -139,11 +72,15 @@ function App() {
         </form>
       </div>
       <div>
-
+        <Router>
           <Routes>
-            <Route path="/item" element={<Item />} />
+            <Route
+              path="/"
+              element={<ItemList items={items} setItems={setItems} deleteItem={deleteItem} />}
+            />
+            <Route path="/item/:id" element={<ItemDetail />} />
           </Routes>
-
+        </Router>
       </div>
     </div>
   );

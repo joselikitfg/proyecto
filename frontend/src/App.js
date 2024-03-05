@@ -54,6 +54,23 @@ function App() {
   return (
     <div>
       <div>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ItemList
+                  items={items}
+                  setItems={setItems}
+                  deleteItem={deleteItem}
+                />
+              }
+            />
+            <Route path="/item/:id" element={<ItemDetail />} />
+          </Routes>
+        </Router>
+      </div>
+      <div>
         <h1>Agregar ítem</h1>
         <form onSubmit={handleFormSubmit}>
           <input
@@ -70,17 +87,6 @@ function App() {
           />
           <button type="submit">Agregar ítem</button>
         </form>
-      </div>
-      <div>
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={<ItemList items={items} setItems={setItems} deleteItem={deleteItem} />}
-            />
-            <Route path="/item/:id" element={<ItemDetail />} />
-          </Routes>
-        </Router>
       </div>
     </div>
   );

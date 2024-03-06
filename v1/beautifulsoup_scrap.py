@@ -13,7 +13,7 @@ def scrapear_producto(url):
     soup1 = BeautifulSoup(page.content, "html.parser")
     soup2 = BeautifulSoup(soup1.prettify(), "html.parser")
     
-    title = soup2.find(class_ = '_display_v8p4a_1 _display--m_v8p4a_10 heading__Heading-sc-q2s63n-0 ezjVUk').get_text()
+    title = soup2.find(class_ = '_display_1e1p0_1 _display--m_1e1p0_10 heading__Heading-sc-q2s63n-0 ezjVUk').get_text()
     title = title.strip()
     return title
 
@@ -34,7 +34,7 @@ def scrapear_precio(url):
     soup1 = BeautifulSoup(page.content, "html.parser")
     soup2 = BeautifulSoup(soup1.prettify(), "html.parser")
     
-    price = soup2.find(class_='_text_w6v0v_1 _text--bold_w6v0v_7 _text--xl_w6v0v_31 price__StyledText-sc-1om5bl6-0 igGbbW').get_text()
+    price = soup2.find(class_='_text_f6lbl_1 _text--bold_f6lbl_7 _text--xl_f6lbl_31 price__StyledText-sc-1om5bl6-0 igGbbW').get_text()
     price = price.strip()
     
     return price

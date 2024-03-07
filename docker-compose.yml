@@ -78,6 +78,22 @@ services:
       ME_CONFIG_MONGODB_URL: >-
         mongodb://admin:password@mongo
 
+  astro:
+    container_name: astro
+    build:
+      context: ./frontend/Astro
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - '4321:4321'
+    volumes:
+      - './frontend/Astro:/app'
+      - /app/node_modules
+    networks:
+      - frontend
+    environment:
+      - WATCHPACK_POLLING=true
+
 networks:
   frontend:
     driver: bridge

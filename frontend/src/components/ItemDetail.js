@@ -42,7 +42,8 @@ function ItemDetail() {
         <h2>Detalles del Ítem:</h2>
         <p><strong>Nombre:</strong> {item.name}</p>
         <p><strong>Descripción:</strong> {item.description}</p>
-        {/* Agrega más detalles según tu modelo de datos */}
+        {/* Muestra la imagen utilizando la URL almacenada en la propiedad 'url' del ítem */}
+        {item.url && <img src={item.url} alt={`Imagen de ${item.name}`} style={{ maxWidth: "100%" }} />}
         <button onClick={handleBack}>Volver a la página principal</button>
         <button onClick={handleDelete}>Borrar Ítem</button>
       </div>

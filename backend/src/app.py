@@ -5,6 +5,7 @@ from bson import json_util, ObjectId
 from flask_cors import cross_origin
 from pymongo import MongoClient
 import logging
+import re
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -40,13 +41,21 @@ def get_all_items():
 @cross_origin(origin='localhost')
 def create_item():
     item = request.get_json()
-    name = item.get('name','')
-    description = item.get('description','')
-    if name.strip() and description.strip():  # Verificar si item no está vacío
-        inserted_item = client.webapp.items.insert_one(item)
-        return parse_json(inserted_item.inserted_id), 201
-    else:
-        return jsonify({'error': 'El objeto item está vacío'}), 400
+    name = item.get('name', '')
+    description = item.get('description', '')
+    url = item.get('url', '')  # Obtiene la URL de la imagen del objeto item
+
+    # Verifica si los campos requeridos están presentes y no están vacíos
+    if not (name.strip() and description.strip() and url.strip()):
+        return jsonify({'error': 'El nombre, la descripción y la URL son campos obligatorios'}), 400
+
+    # Verifica que la URL termine en un formato de imagen válido
+    if not re.search(r'\.(jpg|jpeg|png|gif)$', url, re.IGNORECASE):
+        return jsonify({'error': 'La URL de la imagen debe terminar con un formato válido (.jpg, .jpeg, .png, .gif)'}), 400
+
+    inserted_item = client.webapp.items.insert_one(item)
+    return parse_json(inserted_item.inserted_id), 201
+
 
 @app.route('/items/<item_id>', methods=['GET'])
 @cross_origin(origin='localhost')

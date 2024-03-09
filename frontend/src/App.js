@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
-import UploadFile from "./components/UploadFile"; // Asegúrate de importar el componente UploadFile
+import UploadFile from "./components/UploadFile";
+import Navbar from "./components/Navbar"; // Asegúrate de tener este import
 import useItems from './useItems';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const {
@@ -16,12 +18,14 @@ function App() {
     newItemImageUrl,
     setNewItemImageUrl,
     handleFormSubmit,
-    deleteItem
+    deleteItem,
+    searchItems // Asumiendo que tienes una función para buscar ítems
   } = useItems();
 
   return (
-    <div>
-      <Router>
+    <Router>
+      <Navbar onSearch={searchItems} />
+      <div className="container mt-4">
         <Routes>
           <Route path="/" element={
             <>
@@ -35,13 +39,13 @@ function App() {
                 setNewItemImageUrl={setNewItemImageUrl}
                 handleFormSubmit={handleFormSubmit}
               />
-              <UploadFile /> {/* Integrado en la página principal */}
+              <UploadFile />
             </>
           } />
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 

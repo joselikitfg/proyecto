@@ -1,19 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function ItemList({ items, deleteItem }) {
   return (
-    <div>
-      <h1>Lista de Ítems:</h1>
-      <ul>
-        {items.map((item) => (
-          <li key={item._id.$oid}>
-            <strong>Nombre:</strong> {item.name} - <strong>Precio:</strong> {item.price}
-            <Link to={`/item/${item._id.$oid}`}>Ver Detalles</Link>
-            <button onClick={() => deleteItem(item._id.$oid)}>Borrar Ítem</button>
-          </li>
-        ))}
-      </ul>
+    <div className="row row-cols-1 row-cols-md-4 g-4">
+      {items.map((item) => (
+        <div key={item._id.$oid} className="col d-flex align-items-stretch custom-card-size">
+          <div className="card h-100 d-flex flex-column">
+            <img src={item.image_url} className="card-img-top" alt={`Imagen de ${item.name}`} />
+            <div className="card-body">
+              <h5 className="card-title">{item.name}</h5>
+              <p className="card-text">Precio: {item.price}</p>
+            </div>
+            <div className="mt-auto p-2">
+              <Link to={`/item/${item._id.$oid}`} className="btn btn-primary">Ver Detalles</Link>
+              <button onClick={() => deleteItem(item._id.$oid)} className="btn btn-danger ms-2">Borrar Ítem</button>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

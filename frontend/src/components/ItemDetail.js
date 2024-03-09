@@ -34,19 +34,20 @@ function ItemDetail() {
     };
   
     if (!item) {
-      return <div>Cargando...</div>;
+      return <div className="container mt-5">Cargando...</div>;
     }
   
     return (
-      <div>
+      <div className="container mt-5">
         <h2>Detalles del Ítem:</h2>
         <p><strong>Nombre:</strong> {item.name}</p>
         <p><strong>Precio:</strong> {item.price}</p>
-        {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.name}`} style={{ maxWidth: "100%" }} />}
-        <button onClick={handleBack}>Volver a la página principal</button>
-        <button onClick={handleDelete}>Borrar Ítem</button>
+        {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.name}`} className="img-fluid" />}
+        <div className="mt-3">
+          <button onClick={handleBack} className="btn btn-secondary me-2">Volver a la página principal</button>
+          <button onClick={handleDelete} className="btn btn-danger">Borrar Ítem</button>
+        </div>
       </div>
     );
   }
 export default ItemDetail;
-{/* Muestra la imagen utilizando la URL almacenada en la propiedad 'url' del ítem */}

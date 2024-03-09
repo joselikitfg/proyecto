@@ -5,8 +5,8 @@ function ItemForm({
   setNewItemName,
   newItemprice,
   setNewItemprice,
-  newItemImageUrl, // Estado para la nueva URL de la imagen
-  setNewItemImageUrl, // Función para actualizar el estado de la URL de la imagen
+  newItemImageUrl, 
+  setNewItemImageUrl, 
   handleFormSubmit
 }) {
   return (
@@ -28,8 +28,8 @@ function ItemForm({
         <input
           type="text"
           placeholder="URL de la imagen del ítem"
-          value={newItemImageUrl} // Usa el estado para la URL de la imagen
-          onChange={(e) => setNewItemImageUrl(e.target.value)} // Actualiza el estado con la nueva URL
+          value={newItemImageUrl} 
+          onChange={(e) => setNewItemImageUrl(e.target.value)} 
         />
         <button type="submit">Agregar ítem</button>
       </form>

@@ -20,14 +20,14 @@ function ItemDetail() {
     }, [id]);
   
     const handleBack = () => {
-      navigate('/'); // Navega a la página principal
-      window.location.reload(); // Forzar recarga de la página
+      navigate('/'); 
+      window.location.reload(); 
     };
   
     const handleDelete = async () => {
       try {
         await axios.delete(`http://localhost:8082/items/${id}`);
-        navigate('/'); // Vuelve a la página principal después de borrar
+        navigate('/'); 
       } catch (error) {
         console.error("Error deleting item:", error);
       }
@@ -42,7 +42,6 @@ function ItemDetail() {
         <h2>Detalles del Ítem:</h2>
         <p><strong>Nombre:</strong> {item.name}</p>
         <p><strong>Precio:</strong> {item.price}</p>
-        {/* Muestra la imagen utilizando la URL almacenada en la propiedad 'url' del ítem */}
         {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.name}`} style={{ maxWidth: "100%" }} />}
         <button onClick={handleBack}>Volver a la página principal</button>
         <button onClick={handleDelete}>Borrar Ítem</button>
@@ -50,3 +49,4 @@ function ItemDetail() {
     );
   }
 export default ItemDetail;
+{/* Muestra la imagen utilizando la URL almacenada en la propiedad 'url' del ítem */}

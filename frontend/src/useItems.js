@@ -26,7 +26,7 @@ const useItems = () => {
       const newItem = {
         name: newItemName,
         price: newItemprice,
-        image_url: newItemImageUrl, // Asegúrate de incluir la URL de la imagen
+        image_url: newItemImageUrl, 
       };
       await axios.post('http://localhost:8082/items', newItem);
       fetchItems(); // Actualiza la lista de ítems después de añadir uno nuevo

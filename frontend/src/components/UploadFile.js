@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const UploadFile = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [isUploading, setIsUploading] = useState(false); // Para manejar el estado de carga
+    const [isUploading, setIsUploading] = useState(false); 
   
     const handleFileChange = (event) => {
       setSelectedFile(event.target.files[0]);

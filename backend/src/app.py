@@ -14,7 +14,7 @@ CORS(app)
 
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config['UPLOAD_FOLDER'] = '/tmp'  # Asegúrate de establecer este directorio
+app.config['UPLOAD_FOLDER'] = '/tmp'  
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limita el tamaño del archivo a 16MB
 
 ALLOWED_EXTENSIONS = {'json'}
@@ -45,7 +45,7 @@ def upload_file():
         file.save(filepath)  # Guarda el archivo en el servidor
         with open(filepath, 'r') as json_file:
             data = json.load(json_file)
-            # Asume que `data` es una lista de diccionarios
+            
             result = db.items.insert_many(data)
             inserted_count = len(result.inserted_ids)
         os.remove(filepath)  # Opcional: elimina el archivo después de procesarlo

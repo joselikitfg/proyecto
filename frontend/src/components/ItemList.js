@@ -7,9 +7,8 @@ function ItemList({ items, deleteItem }) {
       <h1>Lista de Ítems:</h1>
       <ul>
         {items.map((item) => (
-          <li key={item._id.$oid}> {/* Asegúrate de que la key también use el valor correcto */}
+          <li key={item._id.$oid}>
             <strong>Nombre:</strong> {item.name} - <strong>Precio:</strong> {item.price}
-            {/* Asegúrate de acceder a $oid para el ID */}
             <Link to={`/item/${item._id.$oid}`}>Ver Detalles</Link>
             <button onClick={() => deleteItem(item._id.$oid)}>Borrar Ítem</button>
           </li>

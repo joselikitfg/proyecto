@@ -3,8 +3,8 @@ import React from 'react';
 function ItemForm({
   newItemName,
   setNewItemName,
-  newItemDescription,
-  setNewItemDescription,
+  newItemprice,
+  setNewItemprice,
   newItemImageUrl, // Estado para la nueva URL de la imagen
   setNewItemImageUrl, // Función para actualizar el estado de la URL de la imagen
   handleFormSubmit
@@ -22,8 +22,8 @@ function ItemForm({
         <input
           type="text"
           placeholder="Descripción del ítem"
-          value={newItemDescription}
-          onChange={(e) => setNewItemDescription(e.target.value)}
+          value={newItemprice}
+          onChange={(e) => setNewItemprice(e.target.value)}
         />
         <input
           type="text"

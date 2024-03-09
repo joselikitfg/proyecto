@@ -7,12 +7,17 @@ from pymongo import MongoClient
 import logging
 import re
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 CORS(app)
 
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['UPLOAD_FOLDER'] = '/tmp'  # Asegúrate de establecer este directorio
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limita el tamaño del archivo a 16MB
+
+ALLOWED_EXTENSIONS = {'json'}
 
 gunicorn_logger = logging.getLogger('gunicorn.error')
 gunicorn_logger.setLevel(logging.DEBUG) 
@@ -22,6 +27,33 @@ app.logger.setLevel(gunicorn_logger.level)
 uri = os.getenv("MONGO_URI")
 client = MongoClient(uri)
 db = client['webapp']
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['POST'])
+@cross_origin(origin='localhost')
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)  # Guarda el archivo en el servidor
+        with open(filepath, 'r') as json_file:
+            data = json.load(json_file)
+            # Asume que `data` es una lista de diccionarios
+            result = db.items.insert_many(data)
+            inserted_count = len(result.inserted_ids)
+        os.remove(filepath)  # Opcional: elimina el archivo después de procesarlo
+        return jsonify({'message': f'{inserted_count} ítems insertados correctamente'}), 201
+    else:
+        return jsonify({'error': 'Tipo de archivo no permitido'}), 400
+
+
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
@@ -42,15 +74,15 @@ def get_all_items():
 def create_item():
     item = request.get_json()
     name = item.get('name', '')
-    description = item.get('description', '')
-    url = item.get('url', '')  # Obtiene la URL de la imagen del objeto item
+    price = item.get('price', '')
+    image_url = item.get('image_url', '')  # Obtiene la URL de la imagen del objeto item
 
     # Verifica si los campos requeridos están presentes y no están vacíos
-    if not (name.strip() and description.strip() and url.strip()):
+    if not (name.strip() and price.strip() and image_url.strip()):
         return jsonify({'error': 'El nombre, la descripción y la URL son campos obligatorios'}), 400
 
     # Verifica que la URL termine en un formato de imagen válido
-    if not re.search(r'\.(jpg|jpeg|png|gif)$', url, re.IGNORECASE):
+    if not re.search(r'\.(jpg|jpeg|png|gif)$', image_url, re.IGNORECASE):
         return jsonify({'error': 'La URL de la imagen debe terminar con un formato válido (.jpg, .jpeg, .png, .gif)'}), 400
 
     inserted_item = client.webapp.items.insert_one(item)
@@ -65,7 +97,7 @@ def get_item(item_id):
         if item:
             return jsonify(parse_json(item)), 200
         else:
-            abort(404, description="Item not found")
+            abort(404, price="Item not found")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
+import UploadFile from "./components/UploadFile"; // Asegúrate de importar el componente UploadFile
 import useItems from './useItems';
 
 function App() {
@@ -10,10 +11,10 @@ function App() {
     items,
     newItemName,
     setNewItemName,
-    newItemDescription,
-    setNewItemDescription,
-    newItemImageUrl, // Asume que useItems ahora proporciona estos
-    setNewItemImageUrl, // Asume que useItems ahora proporciona estos
+    newItemprice,
+    setNewItemprice,
+    newItemImageUrl,
+    setNewItemImageUrl,
     handleFormSubmit,
     deleteItem
   } = useItems();
@@ -28,12 +29,13 @@ function App() {
               <ItemForm
                 newItemName={newItemName}
                 setNewItemName={setNewItemName}
-                newItemDescription={newItemDescription}
-                setNewItemDescription={setNewItemDescription}
-                newItemImageUrl={newItemImageUrl} // Nuevo prop para la URL de la imagen
-                setNewItemImageUrl={setNewItemImageUrl} // Nuevo prop para actualizar la URL de la imagen
+                newItemprice={newItemprice}
+                setNewItemprice={setNewItemprice}
+                newItemImageUrl={newItemImageUrl}
+                setNewItemImageUrl={setNewItemImageUrl}
                 handleFormSubmit={handleFormSubmit}
               />
+              <UploadFile /> {/* Integrado en la página principal */}
             </>
           } />
           <Route path="/item/:id" element={<ItemDetail />} />

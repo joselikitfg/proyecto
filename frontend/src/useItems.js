@@ -4,7 +4,7 @@ import axios from 'axios';
 const useItems = () => {
   const [items, setItems] = useState([]);
   const [newItemName, setNewItemName] = useState("");
-  const [newItemDescription, setNewItemDescription] = useState("");
+  const [newItemprice, setNewItemprice] = useState("");
   const [newItemImageUrl, setNewItemImageUrl] = useState(''); // Estado para la URL de la imagen
   
   useEffect(() => {
@@ -25,13 +25,13 @@ const useItems = () => {
     try {
       const newItem = {
         name: newItemName,
-        description: newItemDescription,
-        url: newItemImageUrl, // Asegúrate de incluir la URL de la imagen
+        price: newItemprice,
+        image_url: newItemImageUrl, // Asegúrate de incluir la URL de la imagen
       };
       await axios.post('http://localhost:8082/items', newItem);
       fetchItems(); // Actualiza la lista de ítems después de añadir uno nuevo
       setNewItemName(''); // Restablece el estado del nombre del ítem
-      setNewItemDescription(''); // Restablece el estado de la descripción del ítem
+      setNewItemprice(''); // Restablece el estado de la descripción del ítem
       setNewItemImageUrl(''); // Restablece el estado de la URL de la imagen
     } catch (error) {
       console.error("Error al agregar el ítem:", error);
@@ -51,8 +51,8 @@ const useItems = () => {
     items,
     newItemName,
     setNewItemName,
-    newItemDescription,
-    setNewItemDescription,
+    newItemprice,
+    setNewItemprice,
     newItemImageUrl,
     setNewItemImageUrl,
     handleFormSubmit,

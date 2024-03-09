@@ -41,9 +41,9 @@ function ItemDetail() {
       <div>
         <h2>Detalles del Ítem:</h2>
         <p><strong>Nombre:</strong> {item.name}</p>
-        <p><strong>Descripción:</strong> {item.description}</p>
+        <p><strong>Precio:</strong> {item.price}</p>
         {/* Muestra la imagen utilizando la URL almacenada en la propiedad 'url' del ítem */}
-        {item.url && <img src={item.url} alt={`Imagen de ${item.name}`} style={{ maxWidth: "100%" }} />}
+        {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.name}`} style={{ maxWidth: "100%" }} />}
         <button onClick={handleBack}>Volver a la página principal</button>
         <button onClick={handleDelete}>Borrar Ítem</button>
       </div>

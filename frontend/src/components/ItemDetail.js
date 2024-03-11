@@ -12,7 +12,6 @@ function ItemDetail() {
         try {
           const response = await axios.get(`http://localhost:8082/items/${id}`);
           setItem(response.data);
-          fetchItems();
         } catch (error) {
           console.error("Error fetching item details:", error);
         }

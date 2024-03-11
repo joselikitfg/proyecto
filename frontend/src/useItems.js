@@ -41,12 +41,12 @@ const useItems = () => {
   const deleteItem = async (id) => {
     try {
       await axios.delete(`http://localhost:8082/items/${id}`);
-      fetchItems(); 
+      fetchItems(); // Actualiza la lista de ítems después de eliminar uno
     } catch (error) {
       console.error("Error deleting item:", error);
     }
   };
-
+  
 // En useItems.js
 const searchItems = async (searchTerm) => {
   try {

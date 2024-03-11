@@ -45,7 +45,6 @@ def upload_file():
         file.save(filepath)  
         with open(filepath, 'r') as json_file:
             data = json.load(json_file)
-            
             result = db.items.insert_many(data)
             inserted_count = len(result.inserted_ids)
         os.remove(filepath)  
@@ -107,12 +106,8 @@ def get_item(item_id):
 def search():
     query = request.args.get('q')
     items = client.webapp.items.find({"name": {"$regex": query, "$options": "i"}})
-    
-    items_list = list(items)
-    for item in items_list:
-        item["_id"] = str(item["_id"])  
-        
-    return jsonify(items_list)  
+    return Response(json.dumps(list(items), default=json_util.default), mimetype='application/json')
+
 
 @app.route('/items/<item_id>', methods=['DELETE'])
 @cross_origin(origin='localhost')

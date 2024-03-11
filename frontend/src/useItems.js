@@ -5,7 +5,7 @@ const useItems = () => {
   const [items, setItems] = useState([]);
   const [newItemName, setNewItemName] = useState("");
   const [newItemprice, setNewItemprice] = useState("");
-  const [newItemImageUrl, setNewItemImageUrl] = useState(''); // Estado para la URL de la imagen
+  const [newItemImageUrl, setNewItemImageUrl] = useState(''); 
   
   useEffect(() => {
     fetchItems();
@@ -29,10 +29,10 @@ const useItems = () => {
         image_url: newItemImageUrl, 
       };
       await axios.post('http://localhost:8082/items', newItem);
-      fetchItems(); // Actualiza la lista de ítems después de añadir uno nuevo
-      setNewItemName(''); // Restablece el estado del nombre del ítem
-      setNewItemprice(''); // Restablece el estado de la descripción del ítem
-      setNewItemImageUrl(''); // Restablece el estado de la URL de la imagen
+      fetchItems(); 
+      setNewItemName(''); 
+      setNewItemprice(''); 
+      setNewItemImageUrl(''); 
     } catch (error) {
       console.error("Error al agregar el ítem:", error);
     }
@@ -41,11 +41,21 @@ const useItems = () => {
   const deleteItem = async (id) => {
     try {
       await axios.delete(`http://localhost:8082/items/${id}`);
-      fetchItems(); // Actualiza la lista de ítems después de eliminar uno
+      fetchItems(); 
     } catch (error) {
       console.error("Error deleting item:", error);
     }
   };
+
+// En useItems.js
+const searchItems = async (searchTerm) => {
+  try {
+    const response = await axios.get(`http://localhost:8082/search?q=${encodeURIComponent(searchTerm)}`);
+    setItems(response.data); 
+  } catch (error) {
+    console.error("Error searching item:", error);
+  }
+};
 
   return {
     items,
@@ -57,6 +67,7 @@ const useItems = () => {
     setNewItemImageUrl,
     handleFormSubmit,
     deleteItem,
+    searchItems,
   };
 };
 

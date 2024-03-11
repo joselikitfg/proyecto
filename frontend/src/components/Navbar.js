@@ -7,8 +7,8 @@ function Navbar({ onSearch }) {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.search.value.trim();
-    onSearch(searchTerm); // Esta función debe manejar la búsqueda en tu aplicación
-    navigate('/'); // Opcionalmente, redirige a la página principal después de la búsqueda
+    onSearch(searchTerm); 
+    navigate('/'); 
   };
 
   return (
@@ -23,7 +23,6 @@ function Navbar({ onSearch }) {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
-            {/* Puedes agregar más enlaces de navegación aquí */}
           </ul>
           <form className="d-flex" onSubmit={handleSearchSubmit}>
             <input className="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="search" />

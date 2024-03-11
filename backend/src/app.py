@@ -15,7 +15,7 @@ CORS(app)
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['UPLOAD_FOLDER'] = '/tmp'  
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limita el tamaño del archivo a 16MB
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 
 ALLOWED_EXTENSIONS = {'json'}
 
@@ -42,13 +42,13 @@ def upload_file():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)  # Guarda el archivo en el servidor
+        file.save(filepath)  
         with open(filepath, 'r') as json_file:
             data = json.load(json_file)
             
             result = db.items.insert_many(data)
             inserted_count = len(result.inserted_ids)
-        os.remove(filepath)  # Opcional: elimina el archivo después de procesarlo
+        os.remove(filepath)  
         return jsonify({'message': f'{inserted_count} ítems insertados correctamente'}), 201
     else:
         return jsonify({'error': 'Tipo de archivo no permitido'}), 400
@@ -75,13 +75,13 @@ def create_item():
     item = request.get_json()
     name = item.get('name', '')
     price = item.get('price', '')
-    image_url = item.get('image_url', '')  # Obtiene la URL de la imagen del objeto item
+    image_url = item.get('image_url', '')  
 
-    # Verifica si los campos requeridos están presentes y no están vacíos
+
     if not (name.strip() and price.strip() and image_url.strip()):
         return jsonify({'error': 'El nombre, la descripción y la URL son campos obligatorios'}), 400
 
-    # Verifica que la URL termine en un formato de imagen válido
+
     if not re.search(r'\.(jpg|jpeg|png|gif)$', image_url, re.IGNORECASE):
         return jsonify({'error': 'La URL de la imagen debe terminar con un formato válido (.jpg, .jpeg, .png, .gif)'}), 400
 
@@ -101,6 +101,18 @@ def get_item(item_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+@app.route('/search')
+@cross_origin(origin='localhost')
+def search():
+    query = request.args.get('q')
+    items = client.webapp.items.find({"name": {"$regex": query, "$options": "i"}})
+    
+    items_list = list(items)
+    for item in items_list:
+        item["_id"] = str(item["_id"])  
+        
+    return jsonify(items_list)  
 
 @app.route('/items/<item_id>', methods=['DELETE'])
 @cross_origin(origin='localhost')

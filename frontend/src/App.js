@@ -4,7 +4,7 @@ import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
 import UploadFile from "./components/UploadFile";
-import Navbar from "./components/Navbar"; // Asegúrate de tener este import
+import Navbar from "./components/Navbar"; 
 import useItems from './useItems';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +19,7 @@ function App() {
     setNewItemImageUrl,
     handleFormSubmit,
     deleteItem,
-    searchItems // Asumiendo que tienes una función para buscar ítems
+    searchItems 
   } = useItems();
 
   return (

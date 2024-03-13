@@ -64,9 +64,23 @@ def hello_world():
 @app.route('/items', methods=['GET'])
 @cross_origin(origin='localhost')
 def get_all_items():
-    items = list(client.webapp.items.find())
-    items_json = json.dumps(items, default=json_util.default)
-    return Response(response=items_json, status=200, mimetype="application/json")
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 60))
+    skip = (page - 1) * limit
+    total_items = client.webapp.items.count_documents({}) # Cuenta el total de documentos en la colección
+    total_pages = (total_items + limit - 1) // limit # Calcula el total de páginas
+
+    items = client.webapp.items.find().skip(skip).limit(limit)
+    items_list = list(items)
+
+    # Asegúrate de usar json_util.default para manejar adecuadamente los ObjectIds de MongoDB
+    response = {
+        "items": items_list,
+        "totalPages": total_pages,
+    }
+
+    return Response(json.dumps(response, default=json_util.default), mimetype='application/json')
+
 
 @app.route('/items', methods=['POST'])
 @cross_origin(origin='localhost')

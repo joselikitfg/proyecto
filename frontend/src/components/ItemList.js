@@ -12,7 +12,7 @@ function ItemList({ items = [], deleteItem }) {
             <img src={item.image_url} className="card-img-top" alt={`Imagen de ${item.name}`} />
             <div className="card-body">
               <h5 className="card-title">{item.name}</h5>
-              <p className="card-text">Precio: {item.price}</p>
+              <p className="card-text">Precio: {item.price} €</p>
             </div>
             <div className="mt-auto p-2">
               <Link to={`/item/${item._id ? item._id.$oid : index}`} className="btn btn-primary">Ver Detalles</Link>

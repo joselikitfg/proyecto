@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Pagination = ({ page, totalPages, onPageChange }) => {
-  console.log("Paginas ", page);
-  console.log("Paginas totales", totalPages)
   const changePage = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
       onPageChange(newPage);

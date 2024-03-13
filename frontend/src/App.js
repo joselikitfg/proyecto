@@ -45,6 +45,7 @@ function App() {
           <Route path="/" element={
             <>
               <ItemList items={items} deleteItem={deleteItem} />
+              <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
               <ItemForm
                 newItemName={newItemName}
                 setNewItemName={setNewItemName}
@@ -54,7 +55,6 @@ function App() {
                 setNewItemImageUrl={setNewItemImageUrl}
                 handleFormSubmit={handleFormSubmit}
               />
-              <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
               <UploadFile />
             </>
           } />

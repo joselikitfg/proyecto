@@ -14,8 +14,10 @@ function App() {
     items,
     newItemName,
     setNewItemName,
-    newItemprice,
-    setNewItemprice,
+    newItemPricePerUnit, // Actualizado para reflejar los nuevos campos
+    setNewItemPricePerUnit, // Actualizado para reflejar los nuevos campos
+    newItemTotalPrice, // Actualizado para reflejar los nuevos campos
+    setNewItemTotalPrice, // Actualizado para reflejar los nuevos campos
     newItemImageUrl,
     setNewItemImageUrl,
     handleFormSubmit,
@@ -49,8 +51,10 @@ function App() {
               <ItemForm
                 newItemName={newItemName}
                 setNewItemName={setNewItemName}
-                newItemprice={newItemprice}
-                setNewItemprice={setNewItemprice}
+                newItemPricePerUnit={newItemPricePerUnit} // Actualizado
+                setNewItemPricePerUnit={setNewItemPricePerUnit} // Actualizado
+                newItemTotalPrice={newItemTotalPrice} // Actualizado
+                setNewItemTotalPrice={setNewItemTotalPrice} // Actualizado
                 newItemImageUrl={newItemImageUrl}
                 setNewItemImageUrl={setNewItemImageUrl}
                 handleFormSubmit={handleFormSubmit}

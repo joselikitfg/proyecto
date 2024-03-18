@@ -87,17 +87,20 @@ def get_all_items():
 def create_item():
     item = request.get_json()
     name = item.get('name', '')
-    price = item.get('price', '')
-    image_url = item.get('image_url', '')  
+    image_url = item.get('image_url', '')
+    price_per_unit = item.get('price_per_unit', '')
+    total_price = item.get('total_price', '')
 
+    # Validar la presencia de todos los campos necesarios
+    if not (name.strip() and image_url.strip() and price_per_unit.strip() and total_price.strip()):
+        return jsonify({'error': 'Todos los campos (nombre, URL de la imagen, precio por unidad, precio total) son obligatorios'}), 400
 
-    if not (name.strip() and price.strip() and image_url.strip()):
-        return jsonify({'error': 'El nombre, la descripción y la URL son campos obligatorios'}), 400
-
-
+    # Validar el formato de la URL de la imagen
     if not re.search(r'\.(jpg|jpeg|png|gif)$', image_url, re.IGNORECASE):
         return jsonify({'error': 'La URL de la imagen debe terminar con un formato válido (.jpg, .jpeg, .png, .gif)'}), 400
 
+
+    # Insertar el ítem en la base de datos
     inserted_item = client.webapp.items.insert_one(item)
     return parse_json(inserted_item.inserted_id), 201
 

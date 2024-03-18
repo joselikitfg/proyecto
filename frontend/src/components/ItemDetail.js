@@ -41,7 +41,8 @@ function ItemDetail() {
       <div className="container mt-5">
         <h2>Detalles del Ítem:</h2>
         <p><strong>Nombre:</strong> {item.name}</p>
-        <p><strong>Precio:</strong> {item.price}</p>
+        <p><strong>Precio por unidad:</strong> {item.price_per_unit}</p>
+        <p><strong>Precio total:</strong> {item.total_price}</p>
         {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.name}`} className="img-fluid" />}
         <div className="mt-3">
           <button onClick={handleBack} className="btn btn-secondary me-2">Volver a la página principal</button>
@@ -49,5 +50,5 @@ function ItemDetail() {
         </div>
       </div>
     );
-  }
+}
 export default ItemDetail;

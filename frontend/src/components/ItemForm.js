@@ -3,8 +3,10 @@ import React from 'react';
 function ItemForm({
   newItemName,
   setNewItemName,
-  newItemprice,
-  setNewItemprice,
+  newItemPricePerUnit,
+  setNewItemPricePerUnit,
+  newItemTotalPrice,
+  setNewItemTotalPrice,
   newItemImageUrl, 
   setNewItemImageUrl, 
   handleFormSubmit
@@ -26,9 +28,18 @@ function ItemForm({
           <input
             className="form-control"
             type="text"
-            placeholder="Precio del ítem"
-            value={newItemprice}
-            onChange={(e) => setNewItemprice(e.target.value)}
+            placeholder="Precio por unidad"
+            value={newItemPricePerUnit}
+            onChange={(e) => setNewItemPricePerUnit(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Precio total"
+            value={newItemTotalPrice}
+            onChange={(e) => setNewItemTotalPrice(e.target.value)}
           />
         </div>
         <div className="mb-3">

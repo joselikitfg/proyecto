@@ -17,6 +17,26 @@ services:
     environment:
         WATCHPACK_POLLING: true
 
+
+  python-selenium:
+    container_name: python-selenium
+    build:
+      context: ./python_scrappers
+      dockerfile: Dockerfile
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    volumes:
+      - './python_scrappers:/app' 
+    networks:
+      - backend 
+
+
+
+
   mongodb:
     image: mongo
     container_name: mongo

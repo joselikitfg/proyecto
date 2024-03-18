@@ -67,13 +67,13 @@ def get_all_items():
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 60))
     skip = (page - 1) * limit
-    total_items = client.webapp.items.count_documents({}) # Cuenta el total de documentos en la colección
-    total_pages = (total_items + limit - 1) // limit # Calcula el total de páginas
+    total_items = client.webapp.items.count_documents({}) 
+    total_pages = (total_items + limit - 1) // limit 
 
     items = client.webapp.items.find().skip(skip).limit(limit)
     items_list = list(items)
 
-    # Asegúrate de usar json_util.default para manejar adecuadamente los ObjectIds de MongoDB
+
     response = {
         "items": items_list,
         "totalPages": total_pages,
@@ -119,8 +119,19 @@ def get_item(item_id):
 @cross_origin(origin='localhost')
 def search():
     query = request.args.get('q')
-    items = client.webapp.items.find({"name": {"$regex": query, "$options": "i"}})
-    return Response(json.dumps(list(items), default=json_util.default), mimetype='application/json')
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 10))
+    skip = (page - 1) * limit
+
+    total_items = db.items.count_documents({"name": {"$regex": query, "$options": "i"}})
+    total_pages = (total_items + limit - 1) // limit
+    items = db.items.find({"name": {"$regex": query, "$options": "i"}}).skip(skip).limit(limit)
+
+    response = {
+        "items": list(items),
+        "totalPages": total_pages,
+    }
+    return Response(json.dumps(response, default=json_util.default), mimetype='application/json')
 
 
 @app.route('/items/<item_id>', methods=['DELETE'])

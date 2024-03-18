@@ -8,16 +8,18 @@ const useItems = () => {
   const [newItemImageUrl, setNewItemImageUrl] = useState("");
   const [page, setPage] = useState(1); 
   const [totalPages, setTotalPages] = useState(0); 
+  const [searchTerm, setSearchTerm] = useState('');
 
 
   const fetchItems = async () => {
+    const endpoint = searchTerm
+      ? `http://localhost:8082/search?q=${encodeURIComponent(searchTerm)}&page=${page}&limit=12`
+      : `http://localhost:8082/items?page=${page}&limit=12`;
+  
     try {
-      const response = await axios.get(
-        `http://localhost:8082/items?page=${page}&limit=12`
-      );
+      const response = await axios.get(endpoint);
       setItems(response.data.items || []);
       setTotalPages(response.data.totalPages);
-      console.log("Fetching items from backend", response.data);
     } catch (error) {
       console.error("Error fetching items:", error);
     }
@@ -26,7 +28,7 @@ const useItems = () => {
 
   useEffect(() => {
     fetchItems();
-  }, [page]);
+  }, [page, searchTerm]); 
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -58,15 +60,8 @@ const useItems = () => {
 
 
   const searchItems = async (searchTerm) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8082/search?q=${encodeURIComponent(searchTerm)}`
-      );
-      setItems(response.data); 
-
-    } catch (error) {
-      console.error("Error searching item:", error);
-    }
+    setSearchTerm(searchTerm); 
+    setPage(1);
   };
 
   return {

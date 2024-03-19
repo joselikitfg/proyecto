@@ -54,6 +54,4 @@ COPY . .
 
 # Instalar las dependencias de Python
 RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Definir el comando por defecto o punto de entrada
-CMD ["python3", "./Alcampo_scrapper.py"]
+ENTRYPOINT ["python", "./Alcampo_scrapper.py"]

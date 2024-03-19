@@ -12,6 +12,7 @@ import requests
 import json
 from multiprocessing import Process
 import multiprocessing
+import sys
 
 def scrap_alcampo_image(url):
     # Realiza la solicitud y obtén el contenido de la página
@@ -158,23 +159,24 @@ def scrap_product_by_category(url):
     else:
         print(f"Datos no válidos para la URL {url}, omitiendo...")         
 
-procs = [] 
-#Listado 
-names = ["Leche"]#,"Huevos"],"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
-# URL del producto
-url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-generated_urls = generate_urls(names, url_base)
-for url in generated_urls:
-    #scrap_product_by_category(url)
-    # print(url)
-    proc = Process(target=scrap_product_by_category, args=(url,))
-    procs.append(proc)
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Uso: python script.py termino1 termino2 termino3 ...")
+        sys.exit(1)
+    
 
+    names = sys.argv[1:]
+    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    generated_urls = generate_urls(names, url_base)
+    
+    procs = []
+    for url in generated_urls:
+        proc = Process(target=scrap_product_by_category, args=(url,))
+        procs.append(proc)
+        print("Lanzando proceso para URL:", url)
 
-for proc in procs:
-    print("Lanzando proceso")
-    proc.start()
+    for proc in procs:
+        proc.start()
 
-for proc in procs:
-    proc.join()
-            
+    for proc in procs:
+        proc.join()

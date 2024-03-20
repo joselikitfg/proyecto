@@ -9,6 +9,7 @@ import re
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
+import requests
 app = Flask(__name__)
 CORS(app)
 
@@ -34,31 +35,34 @@ def hello_world():
 @app.route('/scrape', methods=['POST'])
 @cross_origin(origin='localhost')
 def start_scraping():
-
-    if not request.json or 'terms' not in request.json:
-        abort(400)  
+    data = request.get_json()
+    terms = data.get('terms', [])
+    if not terms:
+        return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
     
-    terms = request.json['terms']
+    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    generated_urls = generate_urls(terms, url_base)
+    all_products = []
 
-    if not isinstance(terms, list):
-        abort(400)  
+    for url in generated_urls:
+        products = scrape_product_details(url)
+        all_products.extend(products)
     
-    results = []  
-    for term in terms:
-        url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-        generated_url = url_base.format(name=term)  
-        
-        
-        try:
-            products = scrape_product_details(generated_url)
-            for product in products:
-                save_product_to_json(product)  
-            results.append({term: products})  
-        except Exception as e:
-            app.logger.error(f"Error al procesar el término '{term}': {e}")
-    
+    try:
+        send_scraped_data_to_uploader(all_products)
+        return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-    return jsonify({'message': 'Scraping completado', 'results': results}), 200
+@cross_origin(origin='localhost')
+def send_scraped_data_to_uploader(data):
+    url = 'http://uploader:8094/api/scraped-items'
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, json=data, headers=headers)  
+    if response.status_code == 201:
+            print("Datos enviados exitosamente al servicio de carga.")
+    else:
+            print("Error al enviar datos al servicio de carga:", response.text)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   client:
@@ -8,15 +8,43 @@ services:
       dockerfile: Dockerfile
     tty: true
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
-      - './frontend:/app'
+      - "./frontend:/app"
       - /app/node_modules
     networks:
       - frontend
     environment:
-        WATCHPACK_POLLING: true
+      WATCHPACK_POLLING: true
 
+  uploader:
+    container_name: uploader
+    build:
+      context: ./uploader
+      dockerfile: Dockerfile
+    command: >
+      gunicorn 
+      --bind 0.0.0.0:8094 
+      --timeout 3000
+      app:app
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: >-
+        mongodb://admin:password@mongodb:27017/webapp?authMechanism=SCRAM-SHA-256&authSource=admin&ssl=false
+    ports:
+      - "8094:8094"
+    volumes:
+      - "./uploader:/app"
+    networks:
+      - backend
+      - frontend
 
   python-selenium:
     container_name: python-selenium
@@ -24,30 +52,28 @@ services:
       context: ./python_scrappers
       dockerfile: Dockerfile
     command: >
-     gunicorn 
-     --bind 0.0.0.0:8093 
-     --timeout 3000
-     app:app
+      gunicorn 
+      --bind 0.0.0.0:8093 
+      --timeout 3000
+      app:app
     deploy:
       replicas: 1
       resources:
         limits:
-          cpus: '2'
+          cpus: "2"
           memory: 2G
     depends_on:
-        - mongodb
+      - mongodb
     environment:
       MONGO_URI: >-
         mongodb://admin:password@mongodb:27017/webapp?authMechanism=SCRAM-SHA-256&authSource=admin&ssl=false
     ports:
-      - '8093:8093'
+      - "8093:8093"
     volumes:
-      - './python_scrappers:/app' 
+      - "./python_scrappers:/app"
     networks:
-      - backend 
+      - backend
       - frontend
-
-
 
   mongodb:
     image: mongo
@@ -59,37 +85,36 @@ services:
       MONGO_INITDB_DATABASE: webapp
       MONGODB_DATA_DIR: /data/db
     volumes:
-      - 'mongodbdata:/data/db'
+      - "mongodbdata:/data/db"
     networks:
       - backend
     ports:
-      - '27017:27017'
+      - "27017:27017"
 
   api:
     container_name: api
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: 'gunicorn --bind 0.0.0.0:8082 app:app'
+    command: "gunicorn --bind 0.0.0.0:8082 app:app"
     deploy:
       replicas: 1
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 1G
     ports:
-      - '8082:8082'
+      - "8082:8082"
     environment:
       MONGO_URI: >-
         mongodb://admin:password@mongodb:27017/webapp?authMechanism=SCRAM-SHA-256&authSource=admin&ssl=false
     volumes:
-      - './src:/src'
+      - "./src:/src"
     depends_on:
       - mongodb
     networks:
       - frontend
       - backend
-
 
   mongo-express:
     image: mongo-express
@@ -97,7 +122,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 0.5G
     ports:
       - 8090:8081
@@ -110,13 +135,11 @@ services:
       ME_CONFIG_MONGODB_URL: >-
         mongodb://admin:password@mongo
 
-
 networks:
   frontend:
     driver: bridge
   backend:
     driver: bridge
-
 
 volumes:
   mongodbdata:

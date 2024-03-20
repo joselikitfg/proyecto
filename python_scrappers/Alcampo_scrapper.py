@@ -15,20 +15,20 @@ import multiprocessing
 import sys
 
 def scrap_alcampo_image(url):
-    # Realiza la solicitud y obtén el contenido de la página
+
     response = requests.get(url)
 
     soup = BeautifulSoup(response.content, 'html.parser')
-    # Encuentra la etiqueta script con los datos estructurados de producto
+
     script = soup.find('script', {'type': 'application/ld+json'})
 
-    # Si encontramos la etiqueta script, cargamos el JSON
+
     if script:
         data = json.loads(script.string)
         if 'image' in data and data['image']:
             product_image_url = data['image'][0]
         else:
-            product_image_url = None  # or any default value you want to set
+            product_image_url = None  
 
     else:
         print('Datos del producto no encontrados.')
@@ -45,13 +45,13 @@ def scrape_product_details(url):
 
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--no-sandbox")  # Opción de seguridad recomendada
-    options.add_argument("--disable-dev-shm-usage")  # Soluciona problemas de recursos limitados
-    options.add_argument("--disable-gpu")  # Opcional, pero recomendado para algunas configuraciones
+    options.add_argument("--no-sandbox")  
+    options.add_argument("--disable-dev-shm-usage")  
+    options.add_argument("--disable-gpu")  
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
     options.add_argument("--window-size=1920,1080")
 
-    # Crear el WebDriver de Chrome con las opciones especificadas
+
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
@@ -63,7 +63,7 @@ def scrape_product_details(url):
     for i in range(20):  
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
         time.sleep(2)  
-        # Espera para cargar las imagenes lazy
+
         WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
@@ -77,7 +77,7 @@ def scrape_product_details(url):
         for container in product_containers:
             product = {}
 
-            # Extracting product details
+
             title_element = container.find('h3', {'data-test': 'fop-title'})
             if title_element:
                   product['name'] = title_element.text
@@ -141,7 +141,7 @@ def generate_urls(names, base_url):
     :param base_url: La URL base con {name} listo para ser modificado
     :return: Lista de URLs con los elementos insertados
     """
-    # Modifica {name} en base_url con cada elemento de la lista
+
     urls = [base_url.replace("{name}", name) for name in names]
     return urls
 
@@ -159,24 +159,24 @@ def scrap_product_by_category(url):
     else:
         print(f"Datos no válidos para la URL {url}, omitiendo...")         
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Uso: python script.py termino1 termino2 termino3 ...")
-        sys.exit(1)
+
+    # if len(sys.argv) < 2:
+    #     print("Uso: python script.py termino1 termino2 termino3 ...")
+    #     sys.exit(1)
     
 
-    names = sys.argv[1:]
-    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-    generated_urls = generate_urls(names, url_base)
+    # names = sys.argv[1:]
+    # url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    # generated_urls = generate_urls(names, url_base)
     
-    procs = []
-    for url in generated_urls:
-        proc = Process(target=scrap_product_by_category, args=(url,))
-        procs.append(proc)
-        print("Lanzando proceso para URL:", url)
+    # procs = []
+    # for url in generated_urls:
+    #     proc = Process(target=scrap_product_by_category, args=(url,))
+    #     procs.append(proc)
+    #     print("Lanzando proceso para URL:", url)
 
-    for proc in procs:
-        proc.start()
+    # for proc in procs:
+    #     proc.start()
 
-    for proc in procs:
-        proc.join()
+    # for proc in procs:
+    #     proc.join()

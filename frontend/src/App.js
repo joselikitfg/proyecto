@@ -7,6 +7,7 @@ import UploadFile from "./components/UploadFile";
 import Navbar from "./components/Navbar"; 
 import Pagination from "./components/Pagination"; 
 import useItems from './useItems';
+import ScrapingForm from "./components/ScrapingForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
                 handleFormSubmit={handleFormSubmit}
               />
               <UploadFile />
+              <ScrapingForm />
             </>
           } />
           <Route path="/item/:id" element={<ItemDetail />} />

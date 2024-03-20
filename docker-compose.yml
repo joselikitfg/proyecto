@@ -23,14 +23,24 @@ services:
     build:
       context: ./python_scrappers
       dockerfile: Dockerfile
+    command: >
+     gunicorn 
+     --bind 0.0.0.0:8093 
+     --timeout 3000
+     app:app
     deploy:
       replicas: 1
       resources:
         limits:
-          cpus: '1'
-          memory: 1G
-    entrypoint: ["python3", "./Alcampo_scrapper.py"]
-    command: ["Leche"]
+          cpus: '2'
+          memory: 2G
+    depends_on:
+        - mongodb
+    environment:
+      MONGO_URI: >-
+        mongodb://admin:password@mongodb:27017/webapp?authMechanism=SCRAM-SHA-256&authSource=admin&ssl=false
+    ports:
+      - '8093:8093'
     volumes:
       - './python_scrappers:/app' 
     networks:

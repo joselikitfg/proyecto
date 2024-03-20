@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Madrid
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Instalar dependencias necesarias para Chrome y Python
+
 RUN apt-get update -y && apt-get install -y \
     wget \
     gnupg \
@@ -31,7 +31,7 @@ RUN apt-get update -y && apt-get install -y \
     libffi-dev \
     liblzma-dev 
 
-# Instalar Python
+
 RUN curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz \
     && tar -xf Python-${PYTHON_VERSION}.tar.xz \
     && cd Python-${PYTHON_VERSION} \
@@ -39,19 +39,19 @@ RUN curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_
     && make -j 8 \
     && make altinstall
 
-# Instalar Google Chrome
+
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update && apt-get install -y google-chrome-stable
 
-# Limpiar archivos temporales y cachés
+
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* Python-${PYTHON_VERSION}.tar.xz
 
-# Copiar el script de Python y el archivo de requisitos al contenedor
+
 WORKDIR /app
 COPY . .
 
-# Instalar las dependencias de Python
+
 RUN pip3 install --no-cache-dir -r requirements.txt
-ENTRYPOINT ["python", "./Alcampo_scrapper.py"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]

@@ -60,4 +60,5 @@ Este TFG propone el desarrollo de una plataforma digital para facilitar la compa
     También se cuenta con un formulario para introducir items de forma manual.
     Este formulario solo aceptará url de imágenes en los formatos típicos de imagen [.jpg, .jpeg, 
     .png, .gif]
-    
+# Video demostración
+https://youtu.be/BJahiwIQeV4

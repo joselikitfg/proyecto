@@ -36,6 +36,7 @@ function ScrapingForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
+      <h1 className="mb-3">Scraping</h1>
         <label htmlFor="searchTerm" className="form-label">
           Términos de Búsqueda
         </label>

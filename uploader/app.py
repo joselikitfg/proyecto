@@ -54,9 +54,9 @@ def get_all_items():
 def upload_scraped_items():
     data = request.get_json()
     if not data:
-        return jsonify({'error': 'Solicitud inválida, se esperaba JSON'}), 400
+        return jsonify({'error': 'Solicitud invalida, se esperaba JSON'}), 400
     
 
     result = db.items.insert_many(data)
     inserted_count = len(result.inserted_ids)
-    return jsonify({'message': f'{inserted_count} ítems insertados correctamente'}), 201
+    return jsonify({'message': f'{inserted_count} items insertados correctamente'}), 201

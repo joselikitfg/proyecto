@@ -14,20 +14,20 @@ from multiprocessing import Process
 import multiprocessing
 
 def scrap_alcampo_image(url):
-    # Realiza la solicitud y obtén el contenido de la página
+
     response = requests.get(url)
 
     soup = BeautifulSoup(response.content, 'html.parser')
-    # Encuentra la etiqueta script con los datos estructurados de producto
+
     script = soup.find('script', {'type': 'application/ld+json'})
 
-    # Si encontramos la etiqueta script, cargamos el JSON
+
     if script:
         data = json.loads(script.string)
         if 'image' in data and data['image']:
             product_image_url = data['image'][0]
         else:
-            product_image_url = None  # or any default value you want to set
+            product_image_url = None
 
     else:
         print('Datos del producto no encontrados.')
@@ -41,16 +41,16 @@ def scrap_image(product):
     return img_url
 
 def scrape_product_details(url):
-    # Inicia el navegador
+
     options = Options()
-    options.add_argument("--headless") # Runs Chrome in headless mode.
+    options.add_argument("--headless") 
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
     options.add_argument("--window-size=1920,1080")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
-    #driver.save_screenshot("screenshot.png")
+
     time.sleep(2)
 
     products = []
@@ -58,7 +58,7 @@ def scrape_product_details(url):
     for i in range(20):  
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
         time.sleep(2)  
-        # Espera para cargar las imagenes lazy
+
         WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
@@ -72,7 +72,7 @@ def scrape_product_details(url):
         for container in product_containers:
             product = {}
 
-            # Extracting product details
+
             title_element = container.find('h3', {'data-test': 'fop-title'})
             if title_element:
                   product['name'] = title_element.text
@@ -158,9 +158,9 @@ def scrap_product_by_category(url):
         print(f"Datos no válidos para la URL {url}, omitiendo...")         
 
 procs = [] 
-#Listado 
-names = ["Leche","Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
-# URL del producto
+
+names = ["Agua"]#,"Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
+
 url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
 generated_urls = generate_urls(names, url_base)
 for url in generated_urls:

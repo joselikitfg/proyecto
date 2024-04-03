@@ -19,7 +19,7 @@ function ScrapingFormA() {
     const termsArray = searchTerm.split(',').map(term => term.trim()).filter(term => term.length > 0);
   
     try {
-      const response = await axios.post("http://localhost:8093/scrape/alcampo", {
+      const response = await axios.post("http://localhost:8093/scrape/hipercor", {
         terms: termsArray,
       });
   
@@ -38,7 +38,7 @@ function ScrapingFormA() {
       <div className="mb-3">
       <h1 className="mb-3">Scraping</h1>
         <label htmlFor="searchTerm" className="form-label">
-          Términos de Búsqueda para scrap Alcampo
+          Términos de Búsqueda para scrap Hipercor
         </label>
         <input
           type="text"

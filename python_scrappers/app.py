@@ -9,6 +9,7 @@ import re
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
+from Hipercor_scrapper import scrap_product_by_category, generate_urls_h
 import requests
 app = Flask(__name__)
 CORS(app)
@@ -32,9 +33,9 @@ def hello_world():
 
 
 
-@app.route('/scrape', methods=['POST'])
+@app.route('/scrape/alcampo', methods=['POST'])
 @cross_origin(origin='localhost')
-def start_scraping():
+def start_scraping_alcampo():
     data = request.get_json()
     terms = data.get('terms', [])
     if not terms:
@@ -47,6 +48,29 @@ def start_scraping():
     for url in generated_urls:
         products = scrape_product_details(url)
         all_products.extend(products)
+    
+    try:
+        send_scraped_data_to_uploader(all_products)
+        return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/scrape/hipercor', methods=['POST'])
+@cross_origin(origin='localhost')
+def start_scraping_hipercor():
+    data = request.get_json()
+    terms = data.get('terms', [])
+    if not terms:
+        return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
+    
+    url_base = 'https://www.hipercor.es/supermercado/buscar/'
+    generated_urls = generate_urls_h(url_base, terms)
+    all_products = []
+
+    for url in generated_urls:
+        products = scrap_product_by_category(url, terms[generated_urls.index(url)], url_base) 
+        if products:  
+            all_products.extend(products)
     
     try:
         send_scraped_data_to_uploader(all_products)

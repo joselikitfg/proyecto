@@ -81,7 +81,7 @@ def scrape_product_details(url):
             title_element = container.find('h3', {'data-test': 'fop-title'})
             if title_element:
                   product['name'] = title_element.text
-                  print(product['name'])
+
 
 
             

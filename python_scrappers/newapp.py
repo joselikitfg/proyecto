@@ -1,3 +1,48 @@
+# import os
+# import json
+# from flask import Flask, Response, request, jsonify, abort
+# from bson import json_util, ObjectId
+# from flask_cors import cross_origin
+# from pymongo import MongoClient
+# import logging
+# import re
+# from flask_cors import CORS
+# from werkzeug.utils import secure_filename
+# from Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
+# from Hipercor_scrapper import scrap_product_by_category
+# import requests
+# import awsgi
+# app = Flask(__name__)
+# CORS(app)
+
+
+# gunicorn_logger = logging.getLogger('gunicorn.error')
+# gunicorn_logger.setLevel(logging.DEBUG) 
+# app.logger.handlers = gunicorn_logger.handlers
+# app.logger.setLevel(gunicorn_logger.level)
+
+
+# # uri = os.getenv("MONGO_URI")
+# # client = MongoClient(uri)
+# # db = client['webapp']
+
+
+# @app.route('/')
+# # @cross_origin(origin='localhost')
+# def hello_world():
+#     return 'Hello, World!'
+
+# @app.route('/hello')
+# @cross_origin(origin='*')
+# def hello_world_V2():
+#     return '🐸 Hello, World! '
+
+
+# def lambda_handler(event, context):
+#     return awsgi.response(app, event, context, base64_content_types={"image/png"})
+
+
+
 import os
 import json
 from flask import Flask, Response, request, jsonify, abort
@@ -9,7 +54,7 @@ import re
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
-from Hipercor_scrapper import scrap_product_by_category, generate_urls_h
+from Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
 app = Flask(__name__)
@@ -56,7 +101,7 @@ def start_scraping_alcampo():
         all_products.extend(products)
     
     try:
-        send_scraped_data_to_uploader(all_products)
+        # send_scraped_data_to_uploader(all_products)
         return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -79,7 +124,7 @@ def start_scraping_hipercor():
             all_products.extend(products)
     
     try:
-        send_scraped_data_to_uploader(all_products)
+        # send_scraped_data_to_uploader(all_products)
         return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -98,4 +143,6 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 def lambda_handler(event, context):
+    print(event)
+    print(context)
     return awsgi.response(app, event, context, base64_content_types={"image/png"})

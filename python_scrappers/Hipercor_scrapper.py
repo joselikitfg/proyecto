@@ -35,23 +35,17 @@ def scroll_page(driver):
         
 def scrape_hipercor_product_details(url, search_term,url_base):
     options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")  
-    options.add_argument("--disable-dev-shm-usage")  
-    options.add_argument("--disable-gpu")  
+    options.add_argument("--headless") 
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
     options.add_argument("--window-size=1920,1080")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
-    
     initial_url = generate_url(url, search_term)
     driver.get(initial_url)
-    
     pagination_element = driver.find_element(By.CSS_SELECTOR, ".pagination-controls .c6-xs")
     total_pages_text = pagination_element.text
     total_pages = int(total_pages_text.split(" ")[-1])
-    
     scroll_page(driver)
     time.sleep(2)  
 
@@ -91,9 +85,9 @@ def scrape_hipercor_product_details(url, search_term,url_base):
 
                 price_element = container.find('div', class_='prices-price _current')
             if price_element:
-                product['total_price'] = price_element.text.strip()
+                product['price'] = price_element.text.strip()
             else:
-                product['total_price'] = "Precio no disponible"
+                product['price'] = "Precio no disponible"
 
 
             price_per_unit_element = container.find('div', class_='prices-price _pum')
@@ -130,19 +124,15 @@ def save_product_to_json(product, json_file='products2.json'):
     
 
 
-def generate_urls_h(base_url, search_terms):
+def generate_urls(base_url, search_terms):
     return [f"{base_url}?term={term}" for term in search_terms]
 
 
-def scrap_product_by_category(url, term, url_base):
-    try:
-        products = scrape_hipercor_product_details(url, term, url_base)
-        if products is None:  
-            return []  
-        return products
-    except Exception as e:
-        print(f"Error al extraer productos para {term}: {e}")
-        return []  
+def scrap_product_by_category(url, term,url_base):
+
+    products = scrape_hipercor_product_details(url, term,url_base)
+    for product in products:
+        save_product_to_json(product, json_file=f'products_{term}.json')
 
 def save_product_to_json(product, json_file='products.json'):
     try:
@@ -155,25 +145,27 @@ def save_product_to_json(product, json_file='products.json'):
         with open(json_file, 'w', encoding='utf-8') as file:
             json.dump([product], file, indent=4, ensure_ascii=False)
 
-# procs = [] 
-
-# names = ["Agua","Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
-
-# url_base = 'https://www.hipercor.es/supermercado/buscar/'
-# generated_urls = generate_urls_h(url_base, names)
-# for i, url in enumerate(generated_urls):
-
-#         proc = Process(target=scrap_product_by_category, args=(url, names[i],url_base))
-#         procs.append(proc)
-
-
-# for proc in procs:
-#     print("Lanzando proceso")
-#     proc.start()
-
-# for proc in procs:
-#     proc.join()
             
 
 
+if __name__ == '__main__':
+
+    procs = [] 
+
+    names = ["Agua","Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
+
+    url_base = 'https://www.hipercor.es/supermercado/buscar/'
+    generated_urls = generate_urls(url_base, names)
+    for i, url in enumerate(generated_urls):
+
+            proc = Process(target=scrap_product_by_category, args=(url, names[i],url_base))
+            procs.append(proc)
+
+
+    for proc in procs:
+        print("Lanzando proceso")
+        proc.start()
+
+    for proc in procs:
+        proc.join()
 

@@ -29,4 +29,4 @@ jobs:
       - name: set up node js
         uses: actions/setup-nodejs@v4
         with:
-          node-version: '21-alpine3.18'
+          node-version: 21

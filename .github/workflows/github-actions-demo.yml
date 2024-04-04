@@ -27,6 +27,6 @@ jobs:
           python-version: '3.11'    
       - run: python --version
       - name: set up node js
-        uses: actions/setup-nodejs@v4
+        uses: actions/setup-node@v4
         with:
           node-version: 21

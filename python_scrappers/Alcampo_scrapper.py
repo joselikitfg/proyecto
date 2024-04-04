@@ -42,15 +42,15 @@ def scrap_image(product):
     return img_url
 
 def scrape_product_details(url):
-
+    start_time = time.time()
+    
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--no-sandbox")  
-    options.add_argument("--disable-dev-shm-usage")  
-    options.add_argument("--disable-gpu")  
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
-    options.add_argument("--window-size=1920,1080")
-
+    options.add_argument("window-size=30720x18280")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -59,32 +59,29 @@ def scrape_product_details(url):
     time.sleep(2)
 
     products = []
-    scraped_product_names = set() 
-    for i in range(20):  
+    scraped_product_names = set()
+    prev_len = 0  # Almacenar la longitud de 'products' para comparar después de cada desplazamiento
+
+    while True:
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
-        time.sleep(2)  
+        time.sleep(2)  # Espera para el lazy loading
 
         WebDriverWait(driver, 20).until(
-        EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
+            EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
 
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-
 
         product_containers = soup.find_all('div', {'class': 'components__ProductCardContainer-sc-filq44-2'})
 
         for container in product_containers:
             product = {}
 
-
             title_element = container.find('h3', {'data-test': 'fop-title'})
             if title_element:
-                  product['name'] = title_element.text
+                product['name'] = title_element.text
 
-
-
-            
             image_element = container.find('img', {'data-test': 'lazy-load-image'})
             if image_element and 'src' in image_element.attrs:
                 product['image_url'] = image_element['src']
@@ -92,8 +89,7 @@ def scrape_product_details(url):
                 product_link_element = container.find('a', {'data-test': 'fop-product-link'})
                 if product_link_element and 'href' in product_link_element.attrs:
                     full_product_url = "https://www.compraonline.alcampo.es" + product_link_element['href']
-                    product['image_url'] = scrap_image(full_product_url)
-
+                    product['image_url'] = scrap_image(full_product_url)  # Asumiendo que esta función está definida
 
             price_per_unit_element = container.find('span', {'data-test': 'fop-price-per-unit'})
             if price_per_unit_element:
@@ -102,12 +98,24 @@ def scrape_product_details(url):
             total_price_element = container.find('span', {'data-test': 'fop-price'})
             if total_price_element:
                 product['total_price'] = total_price_element.text
-            
+
             if product.get('name') and product['name'] not in scraped_product_names:
                 products.append(product)
                 scraped_product_names.add(product['name'])
 
+        # Si la longitud de 'products' no cambia después de un desplazamiento, se asume que se ha llegado al final
+        if prev_len == len(products):
+            break
+        else:
+            prev_len = len(products)
+
     driver.quit()
+
+    
+    end_time = time.time()  # Finalizar el contador de tiempo
+    print(f"Tiempo total de scraping: {end_time - start_time} segundos.")
+    print(f"Tiempo total de scraping: {end_time - start_time} segundos.", file=sys.stdout)
+    sys.stdout.flush() 
     return products
 
 

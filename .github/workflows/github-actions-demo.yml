@@ -33,5 +33,5 @@ jobs:
       
       - name: ls 
         run: ls -la
-        working-directory: frontend
+        working-directory: frontend/build
       

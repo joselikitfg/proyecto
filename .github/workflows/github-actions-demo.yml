@@ -19,8 +19,8 @@ jobs:
         run: npm install -g pnpm
       - name: install dependencies
         run: pnpm install
-        working-directory: ./proyecto/frontend
+        working-directory: proyecto/frontend
       - name: build docker
-        run: |
-          docker compose build . -t frontend
+        run: docker compose build . -t frontend
+        working-directory: proyecto/frontend
       

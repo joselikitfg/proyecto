@@ -23,6 +23,10 @@ jobs:
       - name: Build with pnpm
         run: pnpm run build
         working-directory: frontend
+      - name: Build with pnpm serve 
+        run: serve -s build
+        working-directory: frontend
+
       - name: build docker
         run: docker build -t frontend .
         working-directory: frontend

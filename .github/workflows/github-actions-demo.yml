@@ -31,7 +31,7 @@ jobs:
         run: docker build -t frontend .
         working-directory: frontend
       
-      - name: ls 
-        run: ls -la
-        working-directory: frontend/build
+      - name: List build directory contents
+        run: ls -R ./frontend/build
+        working-directory: frontend
       

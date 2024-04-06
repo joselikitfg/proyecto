@@ -15,8 +15,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-      - name: install pnpm
-        run: npm install -g pnpm
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: install dependencies
         run: pnpm install
@@ -26,14 +28,7 @@ jobs:
         run: pnpm run build
         working-directory: frontend
         
-      - name: build docker
-        run: docker build -t frontend .
-        working-directory: frontend
-        
-      - name: Build with pnpm
-        run: pnpm run build
-        working-directory: frontend
-
+      
       
       - name: ls 
         run: ls -la

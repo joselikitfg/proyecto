@@ -32,6 +32,6 @@ jobs:
         working-directory: frontend
       
       - name: List build directory contents
-        run: ls -R ./frontend/build
+        run: ls -R frontend/build
         working-directory: frontend
       

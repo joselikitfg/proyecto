@@ -5,9 +5,9 @@ Description: 'python3.12 Sample SAM Template for python_scrappers
   '
 Globals:
   Function:
-    Timeout: 900
+    Timeout: 29
     Architectures: x86_64
-    MemorySize: 2048
+    MemorySize: 10240
     Environment:
       Variables:
         ENVIRONMENT: dev
@@ -21,6 +21,10 @@ Resources:
       PackageType: Image
       Architectures:
       - x86_64
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AmazonDynamoDBFullAccess
+      ReservedConcurrentExecutions: 1
       Events:
         FlaskAppAPI:
           Type: Api
@@ -29,7 +33,7 @@ Resources:
             Method: any
       ImageUri: alcamposcrappinglambdafunction:v1
     Metadata:
-      DockerContext: /Users/pp/Desktop/proyecto/python_scrappers
+      DockerContext: /Users/pp/VirtualDesktop/proyecto/python_scrappers
       DockerTag: v1
       Dockerfile: Dockerfile
       SamResourceId: AlcampoScrappingLambdaFunction

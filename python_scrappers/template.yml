@@ -7,9 +7,9 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 900
+    Timeout: 29
     Architectures: x86_64
-    MemorySize: 2048
+    MemorySize: 10240 # 8192 #4096
     Environment:
       Variables:
         ENVIRONMENT: dev
@@ -25,20 +25,16 @@ Resources:
       PackageType: Image
       Architectures:
         - x86_64
-      ReservedConcurrentExecutions: 0
+      Policies:
+        - AWSLambdaBasicExecutionRole # Política de IAM básica para ejecución de Lambda
+        - AmazonDynamoDBFullAccess # Ejemplo de política adicional, ajustar según necesidad
+      ReservedConcurrentExecutions: 1
       Events:
         FlaskAppAPI:
           Type: Api 
           Properties:
             Path: /{proxy+}
             Method: any
-      # Events:
-      #   HelloWorld:
-      #     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-      #     Properties:
-      #       Path: /
-      #       Method: post
-
     Metadata:
       # Dockerfile: Dockerfile.alcampo.lambda
       Dockerfile: Dockerfile

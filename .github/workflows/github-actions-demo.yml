@@ -21,6 +21,6 @@ jobs:
         run: pnpm install
         working-directory: frontend
       - name: build docker
-        run: docker-compose build 
+        run: docker build -t frontend .
         working-directory: frontend
       

@@ -8,8 +8,8 @@ import logging
 import re
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
-from Hipercor_scrapper import scrap_product_by_category
+from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
+from .hipercor.Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
 
@@ -31,13 +31,13 @@ db = client['webapp']
 @app.route('/')
 @cross_origin(origin='localhost')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, World from /!'
 
 
 @app.route('/hello')
 @cross_origin(origin='*')
 def hello_world_V2():
-    return 'Hello, World!'
+    return 'Hello, World! from /hello'
 
 
 @app.route('/scrape/alcampo', methods=['POST'])

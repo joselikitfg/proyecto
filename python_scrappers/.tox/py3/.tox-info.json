@@ -1,0 +1,42 @@
+{
+  "ToxEnv": {
+    "name": "py3",
+    "type": "UvVenvRunner"
+  },
+  "Python": {
+    "version_info": [
+      3,
+      null,
+      null,
+      "",
+      0
+    ],
+    "seed": false
+  },
+  "PythonRun": {
+    "deps": {
+      "options": [],
+      "requirements": [
+        "aws-lambda-powertools==2.36.0",
+        "aws-wsgi==0.2.7",
+        "beautifulsoup4==4.12.2",
+        "flask-cors>=4.0",
+        "flask==3.0.2",
+        "gunicorn==21.2.0",
+        "jmespath==1.0.1",
+        "pymongo==4.6.1",
+        "pytest",
+        "pytest-cov",
+        "requests==2.31.0",
+        "selenium==4.19.0",
+        "tox",
+        "webdriver-manager==4.0.1"
+      ],
+      "constraints": [],
+      "constraint_options": {
+        "constrain_package_deps": false,
+        "use_frozen_constraints": false
+      }
+    }
+  }
+}

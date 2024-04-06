@@ -15,7 +15,7 @@ FROM public.ecr.aws/lambda/python:3.12 AS executable_stage
 
 
 WORKDIR ${LAMBDA_TASK_ROOT}
-COPY Alcampo_scrapper.py Hipercor_scrapper.py requirements.txt app.py ./
+COPY src requirements.txt  ./
 
 RUN dnf install -y atk cups-libs gtk3 libXcomposite alsa-lib \
     libXcursor libXdamage libXext libXi libXrandr libXScrnSaver \
@@ -27,4 +27,4 @@ RUN dnf install -y atk cups-libs gtk3 libXcomposite alsa-lib \
 COPY --from=builder_stage /opt/chrome-linux64 /opt/chrome
 COPY --from=builder_stage /opt/chromedriver-linux64 /opt/
 
-CMD [ "app.lambda_handler" ]
+CMD [ "src.app.lambda_handler" ]

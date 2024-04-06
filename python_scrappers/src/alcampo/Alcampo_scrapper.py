@@ -23,8 +23,9 @@ logger = Logger(service='python-alcampo-scrapper', level='INFO')
 
 ## @todo: añadir typing :CHECK
 ## @todo: docstrings para los comentarios de las funciones :CHECK
-## @todo: unit test 
+## @todo: unit test
 ## @todo: coverage unit test
+# ENVIRONMENT="local" python src/alcampo/Alcampo_scrapper.py
 
 
 T = TypeVar('T')
@@ -106,7 +107,7 @@ def scrap_image(product: Any) -> str:
     return img_url
 
 
-@timeit
+# @timeit
 def get_driver() -> Any:
     """
     Configura y retorna una instancia de Selenium WebDriver para Google Chrome. La configuración se ajusta
@@ -153,8 +154,6 @@ def get_driver() -> Any:
 
 
 # @timeit
-
-
 def scrape_product_details(url: str) -> List[Dict[str, Any]]:
     """
     Navega a una URL dada con un navegador controlado por Selenium, extrae detalles de los productos
@@ -174,7 +173,7 @@ def scrape_product_details(url: str) -> List[Dict[str, Any]]:
     scraped_product_names = set()
     scrap_product_list(driver, products, scraped_product_names)
     driver.quit()
-    logger.info(f'Scrapped: {json.dumps(products, indent=3)}')
+    print(f'Scrapped: {json.dumps(products, indent=3)}')
     return products
 
 
@@ -256,7 +255,7 @@ def scrap_one_product(
         scraped_product_names.add(product['name'])
 
 
-@timeit
+# @timeit
 def save_product_to_json(product: Dict[str, Any], json_file: str = 'products2.json') -> None:
     """
     Guarda los detalles de un producto en un archivo JSON. Si el archivo ya existe, añade el producto a la lista
@@ -355,7 +354,7 @@ def lambda_handler(event: Optional[dict] = None, context: Optional[object] = Non
         List[Dict[str, any]]: Una lista de diccionarios, donde cada diccionario contiene detalles de un producto.
     """
     url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-    generated_urls = generate_urls(names=['hebilla'], base_url=url_base)
+    generated_urls = generate_urls(names=['leche'], base_url=url_base)
     all_products = []
 
     for url in generated_urls:

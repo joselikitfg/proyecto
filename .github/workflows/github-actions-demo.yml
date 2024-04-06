@@ -15,7 +15,7 @@ jobs:
       - name: set up node js
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
 
       - uses: pnpm/action-setup@v3
         with:
@@ -34,4 +34,11 @@ jobs:
       - name: ls 
         run: ls -la
         working-directory: frontend/build/static
+
+      - name: ls 
+        run: ls -la
+        working-directory: frontend/build/static/js
       
+      - name: ls 
+        run: ls -la
+        working-directory: frontend/build/static/css

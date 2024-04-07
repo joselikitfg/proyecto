@@ -44,8 +44,10 @@ jobs:
 
       - name: Setup test suite
         id: tox_pip_install
+        working-directory: python_scrappers
         run: tox -vv --notest
 
       - name: Run test suite
         id: tox_run_tests
+        working-directory: python_scrappers
         run: tox --skip-pkg-install

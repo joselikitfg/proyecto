@@ -134,3 +134,12 @@ dist
 
 python_scrappers/__pycache__/
 uploader/__pycache__/
+
+
+**/.coverage
+**/coverage.xml
+**/.ruff_cache
+**/.pytest_cache
+**/.tox
+**/htmlcov
+

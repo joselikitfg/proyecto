@@ -40,7 +40,7 @@ jobs:
 
       - name: Install tox
         id: tox_install
-        run: python -m pip install tox-gh>=1.2
+        run: python -m pip install tox-gh>=1.2 tox-uv>=1.7
 
       - name: Setup test suite
         id: tox_pip_install

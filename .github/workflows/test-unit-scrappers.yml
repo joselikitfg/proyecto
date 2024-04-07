@@ -1,7 +1,11 @@
 name: "🧪🐍[Tests][Unit] Scrappers"
 on:
   push:
-  workflow_call:
+    branches:
+      - "*"
+    paths:
+      - "python_scrappers"
+  workflow_dispatch:
 
 concurrency:
   group: check-${{ github.ref }}
@@ -15,14 +19,14 @@ jobs:
       fail-fast: false
       matrix:
         py:
-          - "3.14"
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
         os:
           - ubuntu-latest
-          - macos-latest
-          - windows-latest
+          - ubuntu-22.04
+          - ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
         with:

@@ -1,12 +1,13 @@
 name: "🧪🐍[Tests][Unit] Scrappers"
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - "*"
     paths:
-      - "python_scrappers"
-  workflow_dispatch:
-
+      - "python_scrappers/**"
+  
 concurrency:
   group: check-${{ github.ref }}
   cancel-in-progress: true

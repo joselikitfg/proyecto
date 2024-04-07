@@ -1,5 +1,18 @@
 # Sistema de Información de productos de primera necesidad.
 
+<table>
+<thead>
+  <tr>
+    <th>GH Actions Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><a href="https://github.com/joselikitfg/proyecto/actions/workflows/test-unit-scrappers.yml"><img src="https://github.com/joselikitfg/proyecto/actions/workflows/test-unit-scrappers.yml/badge.svg"></a></td>
+  </tr>
+</tbody>
+</table>
+
 This TFG proposses the development of a digital platform to facilitate the comparison
 and monitoring of prices of essential products. To do this, it proposes to address
 problems such as access to price information available on different websites that can be

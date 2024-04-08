@@ -25,16 +25,22 @@ jobs:
       - name: Build with pnpm
         run: pnpm run build
         working-directory: frontend
-        
       
-      - name: ls 
-        run: ls -la
-        working-directory: frontend/build/static
+      - name: Zip build directory
+        run: zip -r build.zip frontend/build
 
-      - name: ls 
-        run: ls -la
-        working-directory: frontend/build/static/js
-      
-      - name: ls 
-        run: ls -la
-        working-directory: frontend/build/static/css
+      - name: Install AWS CLI
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+
+      - name: Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region ${{ secrets.AWS_DEFAULT_REGION }}
+
+
+      - name: Upload to S3
+        run: aws s3 cp build.zip s3://frontend-amplify-jmc/path/to/build.zip

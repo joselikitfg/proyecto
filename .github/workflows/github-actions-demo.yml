@@ -43,6 +43,5 @@ jobs:
           aws configure set default.region ${{ secrets.AWS_DEFAULT_REGION }}
           aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
 
-
       - name: Upload to S3
         run: aws s3 cp build.zip s3://frontend-amplify-jmc/build.zip

@@ -48,12 +48,8 @@ jobs:
         shell: bash
         run: |
               AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .appId')
-              AMPLIFY_APP_BRANCH=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .productionBranch.branchName')
-      
-              # Check if AMPLIFY_APP_BRANCH is empty or null, if so use hardcoded branch name
-              if [ -z "$AMPLIFY_APP_BRANCH" ]; then
-                  AMPLIFY_APP_BRANCH="feature/frontend_gh_deploy"
-              fi
+              AMPLIFY_APP_BRANCH="feature/frontend_gh_deploy"
+
       
               aws amplify start-deployment \
               --app-id $AMPLIFY_APP_ID \

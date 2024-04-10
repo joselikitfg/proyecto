@@ -32,7 +32,7 @@ jobs:
         working-directory: frontend
       
       - name: Zip build directory
-        run: zip -r build.zip
+        run: zip -r build.zip .
         working-directory: frontend/build
 
       - name: Configure AWS credentials

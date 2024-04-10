@@ -7,6 +7,49 @@ Resources:
     Properties:
       BucketName: frontend-amplify-jmc
 
+  AmplifyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - amplify.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: Amplify
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "amplify:*"
+                Resource: "*"  
+  AmplifyApp:
+    Type: "AWS::Amplify::App"
+    Properties:
+      Name: descuentapp
+      Description: Frontend application for descuentapp
+      CustomRules:
+        - Source: /build/index.html
+          Target: /index.html
+          Status: '200'
+      IAMServiceRole: !GetAtt AmplifyRole.Arn
+
+  AmplifyBranch:
+    Type: AWS::Amplify::Branch
+    Properties:
+      BranchName: feature/frontend_gh_deploy
+      AppId: !GetAtt AmplifyApp.AppId
+      Description: feature/frontend_gh_deploy Branch
+      Tags:
+        - Key: Name
+          Value: descuentapp
+        - Key: Branch
+          Value: feature/frontend_gh_deploy
+
 Outputs:
   BucketName:
     Value: !Ref AmplifyFrontendBucket

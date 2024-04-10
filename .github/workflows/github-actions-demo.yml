@@ -49,8 +49,6 @@ jobs:
         run: |
               AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .appId')
               AMPLIFY_APP_BRANCH="feature/frontend_gh_deploy"
-
-      
               aws amplify start-deployment \
               --app-id $AMPLIFY_APP_ID \
               --branch-name $AMPLIFY_APP_BRANCH \

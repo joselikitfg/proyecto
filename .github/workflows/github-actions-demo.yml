@@ -44,6 +44,7 @@ jobs:
 
       - name: Upload to S3
         run: aws s3 cp build.zip s3://$S3_BUCKET/build.zip
+        working-directory: frontend/build
 
       - name: Start Deployment to Amplify
         shell: bash

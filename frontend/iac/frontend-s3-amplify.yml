@@ -5,7 +5,7 @@ Resources:
   AmplifyFrontendBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: frontend-amplify-jmc
+      BucketName: frontend-amplify-descuentapp
       OwnershipControls: 
           Rules:
             - ObjectOwnership: ObjectWriter

@@ -6,7 +6,7 @@ on:
 env:
       S3_BUCKET: frontend-amplify-jmc
       ARTIFAC_NAME: build.zip
-      AMPLIFY_APP_NAME: ahorrapp
+      AMPLIFY_APP_NAME: descuentapp
   
 jobs:
   build-and-deploy:

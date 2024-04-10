@@ -3,6 +3,11 @@ name: Deploy frontend in github actions with pnpm
 on:
   push:
     branches: [feature/frontend_gh_deploy]
+env:
+      S3_BUCKET: frontend-amplify-jmc
+      ARTIFAC_NAME: build.zip
+      AMPLIFY_APP_NAME: ahorrapp
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -37,4 +42,14 @@ jobs:
           aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
 
       - name: Upload to S3
-        run: aws s3 cp build.zip s3://frontend-amplify-jmc/build.zip
+        run: aws s3 cp build.zip s3://$S3_BUCKET/build.zip
+
+      - name: Start Deployment to Amplify
+        shell: bash
+        run: |
+              AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .appId')
+              AMPLIFY_APP_BRANCH=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .productionBranch.branchName')
+              aws amplify start-deployment \
+              --app-id $AMPLIFY_APP_ID \
+              --branch-name $AMPLIFY_APP_BRANCH \
+              --source-url s3://$S3_BUCKET/$ARTIFAC_NAME

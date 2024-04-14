@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+
+const BASE_URL = "http://localhost:8082/items";
+const SEARCH_URL = `${BASE_URL}/search`;
 
 const useItems = () => {
   const [items, setItems] = useState([]);
@@ -10,58 +13,66 @@ const useItems = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState(null);
 
-  const fetchItems = async () => {
+  const fetchItems = useCallback(async () => {
     const endpoint = searchTerm
-      ? `http://localhost:8082/search?q=${encodeURIComponent(searchTerm)}&page=${page}&limit=12`
-      : `http://localhost:8082/items?page=${page}&limit=12`;
+      ? `${SEARCH_URL}?q=${encodeURIComponent(searchTerm)}&page=${page}&limit=12`
+      : `${BASE_URL}?page=${page}&limit=12`;
 
     try {
       const response = await axios.get(endpoint);
       setItems(response.data.items || []);
       setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error("Error fetching items:", error);
+      setError(null);
+    } catch (err) {
+      console.error("Error fetching items:", err);
+      setError(err.message || "Error fetching data");
     }
-  };
+  }, [page, searchTerm]);
 
   useEffect(() => {
     fetchItems();
-  }, [page, searchTerm]);
+  }, [fetchItems]);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = useCallback(async (event) => {
+    event.preventDefault();
+    const newItem = {
+      name: newItemName,
+      price_per_unit: newItemPricePerUnit, 
+      total_price: newItemTotalPrice, 
+      image_url: newItemImageUrl,
+    };
+
     try {
-      const newItem = {
-        name: newItemName,
-        price_per_unit: newItemPricePerUnit, 
-        total_price: newItemTotalPrice, 
-        image_url: newItemImageUrl,
-      };
-      await axios.post("http://localhost:8082/items", newItem);
-      fetchItems(); 
+      await axios.post(BASE_URL, newItem);
+      fetchItems();
       setNewItemName("");
       setNewItemPricePerUnit(""); 
       setNewItemTotalPrice(""); 
       setNewItemImageUrl("");
-    } catch (error) {
-      console.error("Error al agregar el ítem:", error);
+      setError(null);
+    } catch (err) {
+      console.error("Error adding item:", err);
+      setError(err.message || "Failed to add item");
     }
-  };
+  }, [newItemName, newItemPricePerUnit, newItemTotalPrice, newItemImageUrl, fetchItems]);
 
-  const deleteItem = async (id) => {
+  const deleteItem = useCallback(async (id) => {
     try {
-      await axios.delete(`http://localhost:8082/items/${id}`);
-      fetchItems(); 
-    } catch (error) {
-      console.error("Error deleting item:", error);
+      await axios.delete(`${BASE_URL}/${id}`);
+      fetchItems();
+      setError(null);
+    } catch (err) {
+      console.error("Error deleting item:", err);
+      setError(err.message || "Failed to delete item");
     }
-  };
+  }, [fetchItems]);
 
-  const searchItems = async (searchTerm) => {
-    setSearchTerm(searchTerm);
-    setPage(1); 
-  };
+  const searchItems = useCallback((term) => {
+    setSearchTerm(term);
+    setPage(1);
+  }, []);
 
   return {
     items,
@@ -80,6 +91,7 @@ const useItems = () => {
     setPage,
     totalPages,
     fetchItems,
+    error
   };
 };
 

@@ -7,7 +7,12 @@ env:
       S3_BUCKET: frontend-amplify-descuentapp
       ARTIFAC_NAME: build.zip
       AMPLIFY_APP_NAME: descuentapp
-  
+
+permissions:
+  id-token: write
+  contents: read
+
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -35,12 +40,12 @@ jobs:
         run: zip -r build.zip .
         working-directory: frontend/build
 
-      - name: Configure AWS credentials
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region ${{ secrets.AWS_DEFAULT_REGION }}
-          aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: "Setup AWS Credentials"
+        if: ${{ github.event.inputs.environment=='dev' }}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Upload to S3
         run: aws s3 cp build.zip s3://$S3_BUCKET/build.zip

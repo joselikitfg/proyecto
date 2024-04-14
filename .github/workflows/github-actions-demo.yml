@@ -41,7 +41,6 @@ jobs:
         working-directory: frontend/build
 
       - name: "Setup AWS Credentials"
-        if: ${{ github.event.inputs.environment=='dev' }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}

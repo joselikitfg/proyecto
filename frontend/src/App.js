@@ -9,7 +9,7 @@ import Pagination from "./components/Pagination";
 import useItems from './useItems';
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const {

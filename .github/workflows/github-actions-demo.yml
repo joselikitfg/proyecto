@@ -57,6 +57,12 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+    - name: prueba
+      run: ls -la
+    - name: prueba2
+      run: ls -la
+      working-directory: frontend/iac
+
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
@@ -64,7 +70,7 @@ jobs:
           --stack-name frontend-amplify \
           --capabilities CAPABILITY_IAM \
           --region eu-west-1
-      working-directory: frontend/iac
+
 
   build-and-deploy:
     needs: cloudformation

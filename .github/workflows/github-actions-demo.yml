@@ -53,8 +53,21 @@ jobs:
       working-directory: frontend
       run: pnpm install-test
 
-  build-and-deploy:
+  cloudformation:
     needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy CloudFormation stack
+      run: |
+        aws cloudformation deploy \
+          --template-file iac/s3-frontend-amplify.yml \
+          --stack-name frontend-amplify \
+          --capabilities CAPABILITY_IAM \
+          --region eu-west-1
+      working-directory: frontend
+
+  build-and-deploy:
+    needs: cloudformation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

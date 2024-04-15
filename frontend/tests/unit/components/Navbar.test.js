@@ -13,7 +13,7 @@ describe('Navbar', () => {
     it('renders correctly', () => {
         const onSearchMock = jest.fn();
         render(<Navbar onSearch={onSearchMock} />);
-        expect(screen.getByText('DescuentApp')).toBeInTheDocument();
+        expect(screen.getByText('SmartTrackApp')).toBeInTheDocument();
         expect(screen.getByPlaceholderText('Buscar productos')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Buscar' })).toBeInTheDocument();
     });

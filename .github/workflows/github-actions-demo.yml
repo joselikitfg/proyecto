@@ -64,11 +64,11 @@ jobs:
       working-directory: frontend/iac
 
     - name: "Setup AWS Credentials"
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-          
+
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \

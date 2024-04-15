@@ -58,16 +58,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: prueba
       run: ls -la
+
     - name: prueba2
       run: ls -la
-      working-directory: frontend/iac
+      working-directory: frontend
+
+    - name: prueba3
+      run: ls -la /frontend
+
 
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
-          --template-file s3-frontend-amplify.yml \
+          --template-file frontend/iac/s3-frontend-amplify.yml \
           --stack-name frontend-amplify \
           --capabilities CAPABILITY_IAM \
           --region eu-west-1

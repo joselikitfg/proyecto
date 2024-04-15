@@ -59,25 +59,18 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: prueba
-      run: ls -la
-
     - name: prueba2
       run: ls -la
       working-directory: frontend/iac
 
-    - name: prueba3
-      run: ls -la /frontend
-
-
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
-          --template-file s3-frontend-amplify.yml \
+          --template-file frontend-s3-amplify.yml \
           --stack-name frontend-amplify \
           --capabilities CAPABILITY_IAM \
           --region eu-west-1
-      working-directory: frontend/iac/
+      working-directory: frontend/iac
 
 
   build-and-deploy:

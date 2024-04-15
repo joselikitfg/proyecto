@@ -15,7 +15,9 @@ permissions:
 
 jobs:
   build-and-deploy:
+    needs: test
     runs-on: ubuntu-latest
+    if: ${{ needs.tests.outputs.tests_passed == 'true' }}
     steps:
       - uses: actions/checkout@v4
       

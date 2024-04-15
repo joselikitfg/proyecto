@@ -39,7 +39,7 @@ jobs:
     - name: Install dependencies and run tests
       working-directory: frontend
       run: pnpm install-test
-
+ 
     - name: Condition to deploy
       if: success()
       run: echo "tests_passed=true" >> $GITHUB_ENV

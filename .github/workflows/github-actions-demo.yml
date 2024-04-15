@@ -2,13 +2,14 @@ name: Deploy frontend in github actions with pnpm
 
 on:
   push:
-    workflow_run:
-      workflows:
-        - 🧪⚛️[Tests][Unit] Frontend
-      branches:
-        [feature/frontend_gh_deploy]
-      types:
-        - completed
+    branches:
+      - feature/frontend_gh_deploy
+
+  workflow_run:
+    workflows:
+      - '🧪⚛️[Tests][Unit] Frontend'
+    types:
+      - completed
 env:
       S3_BUCKET: frontend-amplify-descuentapp
       ARTIFAC_NAME: build.zip

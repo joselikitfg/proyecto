@@ -41,4 +41,5 @@ jobs:
       run: pnpm install-test
 
     - name: Condition to deploy
-      run: echo "::set-output name=tests_passed::true"
+      if: success()
+      run: echo "tests_passed=true" >> $GITHUB_ENV

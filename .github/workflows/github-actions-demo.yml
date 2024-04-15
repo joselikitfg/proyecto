@@ -2,7 +2,13 @@ name: Deploy frontend in github actions with pnpm
 
 on:
   push:
-    branches: [feature/frontend_gh_deploy]
+    workflow_run:
+      workflows:
+        - 🧪⚛️[Tests][Unit] Frontend
+      branches:
+        [feature/frontend_gh_deploy]
+      types:
+        - completed
 env:
       S3_BUCKET: frontend-amplify-descuentapp
       ARTIFAC_NAME: build.zip
@@ -17,7 +23,7 @@ jobs:
   build-and-deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ needs.tests.outputs.tests_passed == 'true' }}
+    if: ${{ env.tests_passed == 'true' }}
     steps:
       - uses: actions/checkout@v4
       

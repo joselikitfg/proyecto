@@ -64,7 +64,7 @@ jobs:
 
     - name: prueba2
       run: ls -la
-      working-directory: frontend
+      working-directory: frontend/iac
 
     - name: prueba3
       run: ls -la /frontend
@@ -73,10 +73,11 @@ jobs:
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
-          --template-file frontend/iac/s3-frontend-amplify.yml \
+          --template-file s3-frontend-amplify.yml \
           --stack-name frontend-amplify \
           --capabilities CAPABILITY_IAM \
           --region eu-west-1
+      working-directory: frontend/iac/
 
 
   build-and-deploy:

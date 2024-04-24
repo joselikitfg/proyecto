@@ -14,6 +14,7 @@ import requests
 import json
 from multiprocessing import Process
 import multiprocessing
+import urllib.parse
 
 def scrap_alcampo_image(url):
 
@@ -42,6 +43,14 @@ def scrap_image(product):
     img_url = scrap_alcampo_image(product)
     return img_url
 
+def modify_url_image(url, new_width):
+    parsed_url = urllib.parse.urlparse(url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    query_params['imwidth'] = [new_width]  
+    new_query = urllib.parse.urlencode(query_params, doseq=True)
+    new_url = parsed_url._replace(query=new_query)
+    return urllib.parse.urlunparse(new_url)
+
 def scrape_product_details(url):
     options = Options()
     options.add_argument("--headless")
@@ -51,28 +60,25 @@ def scrape_product_details(url):
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
-
-    WebDriverWait(driver, 1).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[data-testid='product-cell']")))
-    time.sleep(2)
-    product_elements = driver.find_elements(By.CSS_SELECTOR, "[data-testid='product-cell']")
+    time.sleep(1)
+    product_elements = driver.find_elements(By.CSS_SELECTOR, "[data-test-id='search-product-card-list-item']")
     products = []
 
     for product_element in product_elements:
-        product_info = {
-            'image': product_element.find_element(By.CSS_SELECTOR, ".product-cell__image-wrapper img").get_attribute('src'),
-            'name': product_element.find_element(By.CSS_SELECTOR, "[data-testid='product-cell-name']").text,
-            
-        }
-        
         try:
-            product_info['precio_anterior'] = product_element.find_element(By.CSS_SELECTOR, ".product-price__previous-unit-price").text
-            product_info['precio_actual'] = product_element.find_element(By.CSS_SELECTOR, ".product-price__unit-price--discount").text
+            image_url = product_element.find_element(By.CSS_SELECTOR, ".search-product-card__product-image").get_attribute('src')
+            modified_image_url = modify_url_image(image_url, '300')
+            name = product_element.find_element(By.CSS_SELECTOR, ".search-product-card__product-name").text
+            try:
+                precio_anterior = product_element.find_element(By.CSS_SELECTOR, ".product-special-offer__strikethrough-price").text
+            except:
+                precio_anterior = None  
+            precio_actual = product_element.find_element(By.CSS_SELECTOR, ".search-product-card__active-price").text
+            product_info = {'image': modified_image_url, 'name': name, 'precio_anterior': precio_anterior, 'precio_actual': precio_actual}
+            products.append(product_info)
         except NoSuchElementException:
-            product_info['precio_anterior'] = None
-            product_info['precio_actual'] = product_element.find_element(By.CSS_SELECTOR, "[data-testid='product-price']").text
-
-        products.append(product_info)
-
+            print(f"Error procesando el producto {name}")
+    print(len(products))
     driver.quit()
     return products
 
@@ -104,7 +110,7 @@ def save_product_to_json(product, json_file='products2.json'):
     
 
 
-def generate_urls(categories, base_url="https://tienda.mercadona.es/search-results?query={category}"):
+def generate_urls(categories, base_url="https://www.dia.es/search?q={category}"):
     """
     Genera una lista de URLs para las categorías dadas.
     :param categories: Lista de categorías (números al final de la URL).
@@ -130,9 +136,9 @@ def scrap_product_by_category(url):
 
 procs = [] 
 
-names = ["Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
+names = ["Aceitunas"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
 
-url_base = "https://tienda.mercadona.es/search-results?query={category}"
+url_base = "https://www.dia.es/search?q={category}"
 generated_urls = generate_urls(names, url_base)
 for url in generated_urls:
     #scrap_product_by_category(url)

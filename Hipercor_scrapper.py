@@ -37,7 +37,7 @@ def scrape_hipercor_product_details(url, search_term,url_base):
     options = Options()
     options.add_argument("--headless") 
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--window-size=30720x18280")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -92,7 +92,7 @@ def scrape_hipercor_product_details(url, search_term,url_base):
 
             price_per_unit_element = container.find('div', class_='prices-price _pum')
             product['price_per_unit'] = price_per_unit_element.text.strip() if price_per_unit_element else "Información no disponible"
-
+            print(product['name'])
             products.append(product)
 
     driver.quit()
@@ -147,7 +147,7 @@ def save_product_to_json(product, json_file='products.json'):
 
 procs = [] 
 
-names = ["Agua","Huevos"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
+names = ["Agua"]#,"Frutas","Verduras","Pan","Cereales","Hortalizas","Harina","Quesos","Legumbres","Pasta","Aceite"]
 
 url_base = 'https://www.hipercor.es/supermercado/buscar/'
 generated_urls = generate_urls(url_base, names)

@@ -7,7 +7,7 @@ Globals:
   Function:
     Timeout: 29
     Architectures: x86_64
-    MemorySize: 10240
+    MemorySize: 3008
     Environment:
       Variables:
         ENVIRONMENT: dev
@@ -24,7 +24,6 @@ Resources:
       Policies:
       - AWSLambdaBasicExecutionRole
       - AmazonDynamoDBFullAccess
-      ReservedConcurrentExecutions: 1
       Events:
         FlaskAppAPI:
           Type: Api

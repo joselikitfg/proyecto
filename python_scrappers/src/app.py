@@ -68,28 +68,28 @@ def start_scraping_alcampo():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/scrape/hipercor', methods=['POST'])
-@cross_origin(origin='localhost')
-def start_scraping_hipercor():
-    data = request.get_json()
-    terms = data.get('terms', [])
-    if not terms:
-        return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
+# @app.route('/scrape/hipercor', methods=['POST'])
+# @cross_origin(origin='localhost')
+# def start_scraping_hipercor():
+#     data = request.get_json()
+#     terms = data.get('terms', [])
+#     if not terms:
+#         return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
 
-    url_base = 'https://www.hipercor.es/supermercado/buscar/'
-    generated_urls = generate_urls_h(url_base, terms)
-    all_products = []
+#     url_base = 'https://www.hipercor.es/supermercado/buscar/'
+#     generated_urls = generate_urls_h(url_base, terms)
+#     all_products = []
 
-    for url in generated_urls:
-        products = scrap_product_by_category(url, terms[generated_urls.index(url)], url_base)
-        if products:
-            all_products.extend(products)
+#     for url in generated_urls:
+#         products = scrap_product_by_category(url, terms[generated_urls.index(url)], url_base)
+#         if products:
+#             all_products.extend(products)
 
-    try:
-        # send_scraped_data_to_uploader(all_products)
-        return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+#     try:
+#         # send_scraped_data_to_uploader(all_products)
+#         return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
 
 
 @cross_origin(origin='localhost')

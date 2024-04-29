@@ -5,7 +5,6 @@ repos:
     rev: v4.6.0
     hooks:
       - id: check-json
-      - id: check-yaml
         exclude: (?x)^(
           code_/.*lock.yaml|
           )$
@@ -27,3 +26,9 @@ repos:
         args: ["--allow-missing-credentials"]
       - id: detect-private-key
 
+  - repo: https://github.com/awslabs/cfn-python-lint
+    rev: v0.86.4
+    hooks:
+      - id: cfn-python-lint
+        name: AWS CloudFormation Linter
+        files: template.*\.(yml|yaml)$

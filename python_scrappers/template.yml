@@ -9,7 +9,7 @@ Globals:
   Function:
     Timeout: 29
     Architectures: x86_64
-    MemorySize: 10240 # 8192 #4096
+    MemorySize:  3008 #10240 # 8192 #4096
     Environment:
       Variables:
         ENVIRONMENT: dev
@@ -28,7 +28,7 @@ Resources:
       Policies:
         - AWSLambdaBasicExecutionRole # Política de IAM básica para ejecución de Lambda
         - AmazonDynamoDBFullAccess # Ejemplo de política adicional, ajustar según necesidad
-      ReservedConcurrentExecutions: 1
+      # ReservedConcurrentExecutions: 1
       Events:
         FlaskAppAPI:
           Type: Api
@@ -40,6 +40,7 @@ Resources:
       Dockerfile: Dockerfile
       DockerContext: ./
       DockerTag: v1
+
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

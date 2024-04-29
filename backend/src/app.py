@@ -14,17 +14,17 @@ CORS(app)
 
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config['UPLOAD_FOLDER'] = '/tmp'  
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
+app.config['UPLOAD_FOLDER'] = '/tmp'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = {'json'}
 
 gunicorn_logger = logging.getLogger('gunicorn.error')
-gunicorn_logger.setLevel(logging.DEBUG) 
+gunicorn_logger.setLevel(logging.DEBUG)
 app.logger.handlers = gunicorn_logger.handlers
 app.logger.setLevel(gunicorn_logger.level)
 
-uri = os.getenv("MONGO_URI")
+uri = os.getenv('MONGO_URI')
 client = MongoClient(uri)
 db = client['webapp']
 
@@ -42,12 +42,12 @@ def upload_file():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)  
+        file.save(filepath)
         with open(filepath, 'r') as json_file:
             data = json.load(json_file)
             result = db.items.insert_many(data)
             inserted_count = len(result.inserted_ids)
-        os.remove(filepath)  
+        os.remove(filepath)
         return jsonify({'message': f'{inserted_count} ítems insertados correctamente'}), 201
     else:
         return jsonify({'error': 'Tipo de archivo no permitido'}), 400
@@ -64,16 +64,16 @@ def get_all_items():
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 60))
     skip = (page - 1) * limit
-    total_items = client.webapp.items.count_documents({}) 
-    total_pages = (total_items + limit - 1) // limit 
+    total_items = client.webapp.items.count_documents({})
+    total_pages = (total_items + limit - 1) // limit
 
     items = client.webapp.items.find().skip(skip).limit(limit)
     items_list = list(items)
 
 
     response = {
-        "items": items_list,
-        "totalPages": total_pages,
+        'items': items_list,
+        'totalPages': total_pages,
     }
 
     return Response(json.dumps(response, default=json_util.default), mimetype='application/json')
@@ -110,9 +110,9 @@ def get_item(item_id):
         if item:
             return jsonify(parse_json(item)), 200
         else:
-            abort(404, price="Item not found")
+            abort(404, price='Item not found')
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/search')
@@ -123,13 +123,13 @@ def search():
     limit = int(request.args.get('limit', 10))
     skip = (page - 1) * limit
 
-    total_items = db.items.count_documents({"name": {"$regex": query, "$options": "i"}})
+    total_items = db.items.count_documents({'name': {'$regex': query, '$options': 'i'}})
     total_pages = (total_items + limit - 1) // limit
-    items = db.items.find({"name": {"$regex": query, "$options": "i"}}).skip(skip).limit(limit)
+    items = db.items.find({'name': {'$regex': query, '$options': 'i'}}).skip(skip).limit(limit)
 
     response = {
-        "items": list(items),
-        "totalPages": total_pages,
+        'items': list(items),
+        'totalPages': total_pages,
     }
     return Response(json.dumps(response, default=json_util.default), mimetype='application/json')
 
@@ -156,5 +156,5 @@ def update_item(item_id):
         return parse_json({'error': 'Item not found'}), 404
     updated_item = client.db.items.find_one({'_id': item_id_obj})
     return parse_json({'message': 'Item updated successfully', 'item': updated_item}), 200
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

@@ -9,7 +9,7 @@ on:
   #     - "*"
   #   paths:
   #     - "python_scrappers/**"
-  
+
 concurrency:
   group: check-${{ github.ref }}
   cancel-in-progress: true

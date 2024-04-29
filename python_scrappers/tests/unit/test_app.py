@@ -15,7 +15,7 @@ def client(app):
 def test_start_scraping_alcampo(mock_scrape_product_details, mock_generate_urls, client):
     mock_generate_urls.return_value = ['https://www.compraonline.alcampo.es/search?q=leche']
     mock_scrape_product_details.return_value = [{'name': 'Leche', 'price': '1€'}]
-    
+
     response = client.post('/scrape/alcampo', json={'terms': ['leche']})
     data = response.get_json()
 
@@ -28,12 +28,12 @@ def test_start_scraping_alcampo(mock_scrape_product_details, mock_generate_urls,
 
 # Simulación de un evento y contexto de AWS Lambda
 mock_event = {
-    "httpMethod": "GET",
-    "path": "/",
-    "headers": {},
-    "queryStringParameters": {},
-    "body": None,
-    "isBase64Encoded": False,
+    'httpMethod': 'GET',
+    'path': '/',
+    'headers': {},
+    'queryStringParameters': {},
+    'body': None,
+    'isBase64Encoded': False,
 }
 mock_context = {}
 
@@ -44,10 +44,10 @@ def test_lambda_handler(mock_awsgi_response):
     utilizando awsgi para adaptar la respuesta de una aplicación Flask.
     """
     mock_response = {
-        "statusCode": 200,
-        "headers": {"Content-Type": "text/html"},
-        "body": "Hello, World from /!",
-        "isBase64Encoded": False,
+        'statusCode': 200,
+        'headers': {'Content-Type': 'text/html'},
+        'body': 'Hello, World from /!',
+        'isBase64Encoded': False,
     }
     mock_awsgi_response.return_value = mock_response
     response = lambda_handler(mock_event, mock_context)

@@ -1,0 +1,29 @@
+default_stages: [commit]
+fail_fast: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+        exclude: (?x)^(
+          code_/.*lock.yaml|
+          )$
+      - id: mixed-line-ending
+        args:
+        - --fix=lf
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: name-tests-test
+        args:
+          - "--pytest-test-first"
+      - id: double-quote-string-fixer
+      - id: requirements-txt-fixer
+      - id: debug-statements
+      - id: check-symlinks
+      - id: check-added-large-files
+      - id: destroyed-symlinks
+      - id: detect-aws-credentials
+        args: ["--allow-missing-credentials"]
+      - id: detect-private-key
+

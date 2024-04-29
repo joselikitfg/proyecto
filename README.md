@@ -37,10 +37,10 @@ difficult and the ineffectiveness of current systems in price monitoring
     Once initialized in order to start scraping you only have to enter either one or more search
     terms in the Scraping box. In case that there are several terms, separate them by commas;
     For example: Milk, Water, Cereals.
-    The scraping will start and once the first term is finished, the scraping will be automatically entered into the database by reloading the page you will 
+    The scraping will start and once the first term is finished, the scraping will be automatically entered into the database by reloading the page you will
     see the scrape of those terms.
     There is also a form to enter items manually.
-    This form will only accept url images in the typical image formats [.jpg, .jpeg, 
+    This form will only accept url images in the typical image formats [.jpg, .jpeg,
     .png, .gif]
 
 ----------------------------------------------------------------------------------------------------
@@ -65,13 +65,13 @@ Este TFG propone el desarrollo de una plataforma digital para facilitar la compa
     2. Construir y Ejecutar don Docker
         docker compose up --build
 ## Uso
-    Una vez iniciado para comenzar a scrapear sólo tienes que introducir uno o varios 
+    Una vez iniciado para comenzar a scrapear sólo tienes que introducir uno o varios
     terminos de búsqueda en el recuadro Scraping
     En caso de ser varios términos separalos por comas; Por ejemplo: Leche, Agua, Cereales
     El scrapeo se iniciará y una vez termine el primer término se irá introduciendo el scrapeo
     automáticamente en la base de datos y recargando la página se verá el scrapeo de dichos términos.
     También se cuenta con un formulario para introducir items de forma manual.
-    Este formulario solo aceptará url de imágenes en los formatos típicos de imagen [.jpg, .jpeg, 
+    Este formulario solo aceptará url de imágenes en los formatos típicos de imagen [.jpg, .jpeg,
     .png, .gif]
 # Video demostración
 

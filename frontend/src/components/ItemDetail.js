@@ -6,7 +6,7 @@ function ItemDetail() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [item, setItem] = useState(null);
-  
+
     useEffect(() => {
       const fetchItem = async () => {
         try {
@@ -18,25 +18,25 @@ function ItemDetail() {
       };
       fetchItem();
     }, [id]);
-  
+
     const handleBack = () => {
-      navigate('/'); 
-      window.location.reload(); 
+      navigate('/');
+      window.location.reload();
     };
-  
+
     const handleDelete = async () => {
       try {
         await axios.delete(`http://localhost:8082/items/${id}`);
-        navigate('/'); 
+        navigate('/');
       } catch (error) {
         console.error("Error deleting item:", error);
       }
     };
-  
+
     if (!item) {
       return <div className="container mt-5">Cargando...</div>;
     }
-  
+
     return (
       <div className="container mt-5">
         <h2>Detalles del Ítem:</h2>

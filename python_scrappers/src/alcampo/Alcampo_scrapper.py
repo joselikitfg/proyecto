@@ -137,7 +137,7 @@ def get_driver() -> Any:
     option.add_argument('--single-process')
     option.add_argument('--ignore-ssl-errors=yes')
     option.add_argument('--ignore-certificate-errors')
-    option.add_argument('window-size=2560x1440')
+    # option.add_argument('window-size=2560x1440')
     option.add_argument('--enable-logging')
     option.add_argument('enable-automation')
     option.add_argument(f'--user-data-dir={mkdtemp()}')
@@ -173,6 +173,7 @@ def scrape_product_details(url: str) -> List[Dict[str, Any]]:
     scraped_product_names = set()
     scrap_product_list(driver, products, scraped_product_names)
     driver.quit()
+    print(f'Scrapped Total Items: {len(products)}')
     print(f'Scrapped: {json.dumps(products, indent=3)}')
     return products
 
@@ -202,8 +203,8 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
+    product_containers = soup.find_all('div', {'class': 'product-card-container'})
 
-    product_containers = soup.find_all('div', {'class': 'components__ProductCardContainer-sc-filq44-2'})
     logger.info(f'Products to be scrapped in this driver session: {len(product_containers)}')
     for container in product_containers:
         scrap_one_product(product_containers, container, scraped_product_names, products)
@@ -229,9 +230,11 @@ def scrap_one_product(
     """
     product = {}
 
-    title_element = container.find('h3', {'data-test': 'fop-title'})
+    mi_contenedor = container.find('div', {'data-test': 'fop-body'})
+    title_element = mi_contenedor.find('h3', {'data-test': 'fop-title'})
+    # title_element = container.find('a', {'data-test': 'fop-product-link'})
     if title_element:
-        product['name'] = title_element.text.strip()
+        product['name'] = title_element.text
 
     image_element = container.find('img', {'data-test': 'lazy-load-image'})
     if image_element and 'src' in image_element.attrs:

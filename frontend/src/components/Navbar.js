@@ -7,8 +7,8 @@ function Navbar({ onSearch }) {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.search.value.trim();
-    onSearch(searchTerm); 
-    navigate('/'); 
+    onSearch(searchTerm);
+    navigate('/');
   };
 
   return (

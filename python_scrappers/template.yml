@@ -31,7 +31,7 @@ Resources:
       ReservedConcurrentExecutions: 1
       Events:
         FlaskAppAPI:
-          Type: Api 
+          Type: Api
           Properties:
             Path: /{proxy+}
             Method: any

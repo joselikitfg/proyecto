@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
 
 function ScrapingFormA() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,21 +15,21 @@ function ScrapingFormA() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const termsArray = searchTerm.split(',').map(term => term.trim()).filter(term => term.length > 0);
-  
+
     try {
       const response = await axios.post("http://localhost:8093/scrape/hipercor", {
         terms: termsArray,
       });
-  
+
       console.log(response.data);
       setConfirmationMessage(`Scraping finalizado para: ${searchTerm}`);
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error.message);
       setConfirmationMessage('Error al iniciar el scraping.');
     }
-  
+
     setSearchTerm("");
   };
 

@@ -147,7 +147,7 @@ def product_container():
         <h3 data-test="fop-title">
             CELTA Leche de vaca semidesnatada con bienestar animal garantizado 1.5 l.
         </h3>
-        <img data-test="lazy-load-image" 
+        <img data-test="lazy-load-image"
             src="https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2d2908ae-a8d8-42da-b351-ea29a32f9653/500x500.jpg"/>
         <span data-test="fop-price-per-unit">(0,99 € por litro)</span>
         <span data-test="fop-price">1,49 €</span>

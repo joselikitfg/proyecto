@@ -23,8 +23,8 @@ services:
       context: ./uploader
       dockerfile: Dockerfile
     command: >
-      gunicorn 
-      --bind 0.0.0.0:8094 
+      gunicorn
+      --bind 0.0.0.0:8094
       --timeout 3000
       app:app
     deploy:
@@ -53,8 +53,8 @@ services:
       context: ./python_scrappers
       dockerfile: Dockerfile
     command: >
-      gunicorn 
-      --bind 0.0.0.0:8093 
+      gunicorn
+      --bind 0.0.0.0:8093
       --timeout 3000
       app:app
     deploy:

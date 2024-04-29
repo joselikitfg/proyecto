@@ -66,14 +66,14 @@ def scrape_product_details(url):
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
         time.sleep(2)  # Espera para el lazy loading
 
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
         )
 
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 
-        product_containers = soup.find_all('div', {'class': 'components__ProductCardContainer-sc-filq44-2'})
+        product_containers = soup.find_all('div', {'class': 'product-card-container'})
 
         for container in product_containers:
             product = {}
@@ -81,7 +81,7 @@ def scrape_product_details(url):
             title_element = container.find('h3', {'data-test': 'fop-title'})
             if title_element:
                 product['name'] = title_element.text
-
+            #print(product['name'])
             image_element = container.find('img', {'data-test': 'lazy-load-image'})
             if image_element and 'src' in image_element.attrs:
                 product['image_url'] = image_element['src']

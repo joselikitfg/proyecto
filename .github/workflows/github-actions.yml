@@ -37,6 +37,6 @@ jobs:
       working-directory: python_scrappers/
     - name: Deploy Sam Image
       run: |
-        sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name stack-name-${{ env.BRANCH_NAME }} 
+        sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name fix-python-scrappers
       working-directory: python_scrappers/
 

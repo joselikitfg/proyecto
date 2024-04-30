@@ -1,0 +1,37 @@
+name: Deploy frontend in github actions with pnpm
+
+on:
+  push:
+    branches:
+      - fix/python_scrappers-debian
+
+env:
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+   
+    - uses: aws-actions/setup-sam@v2
+    
+    - name: "Setup AWS Credentials"
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - name: Build Sam Image
+      run: |
+        sam build
+      working-directory: python_scrappers/
+    - name: Deploy Sam Image
+      run: |
+        sam deploy --no-fail-on-empty-changeset --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}
+      working-directory: python_scrappers/
+

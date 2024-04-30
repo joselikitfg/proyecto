@@ -4,7 +4,7 @@ version = 0.1
 
 [default]
 [default.global.parameters]
-stack_name = "seleniumpython-pepito"
+stack_name = "seleniumpython-joseliki"
 
 [default.build.parameters]
 parallel = true
@@ -17,6 +17,8 @@ capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
 resolve_image_repos = true
+s3_prefix = "seleniumpython-joseliki"
+region = "eu-west-1"
 
 [default.package.parameters]
 resolve_s3 = true

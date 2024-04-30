@@ -17,7 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-   
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
     - uses: aws-actions/setup-sam@v2
     
     - name: "Setup AWS Credentials"
@@ -28,10 +33,10 @@ jobs:
 
     - name: Build Sam Image
       run: |
-        sam build
+        sam build --use-container
       working-directory: python_scrappers/
     - name: Deploy Sam Image
       run: |
-        sam deploy --no-fail-on-empty-changeset --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}
+        sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name stack-name-${{ env.BRANCH_NAME }} 
       working-directory: python_scrappers/
 

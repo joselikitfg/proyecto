@@ -1,8 +1,8 @@
 FROM public.ecr.aws/lambda/python:3.12 AS builder_stage
 
 # Chrome version from: https://chromereleases.googleblog.com/
-ENV CHROME_VERSION 123.0.6312.86
-ENV CHROME_DRIVER_VERION 123.0.6312.86
+ENV CHROME_VERSION 124.0.6367.95
+ENV CHROME_DRIVER_VERION 124.0.6367.95
 
 RUN dnf install -y unzip && \
     curl -Lo "/tmp/chromedriver-linux64.zip" "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" && \

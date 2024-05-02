@@ -1,0 +1,31 @@
+name: Deploy cognito user pool
+
+on:
+  push:
+    branches:
+      - feat/multilayered-api-security
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  cloudformation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: "Setup AWS Credentials"
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - name: Deploy CloudFormation stack
+      run: |
+        aws cloudformation deploy \
+          --template-file cognito.yml \
+          --stack-name cognito-prueba \
+          --capabilities CAPABILITY_IAM \
+          --region eu-west-1
+      working-directory: python_scrappers/iac

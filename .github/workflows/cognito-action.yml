@@ -27,6 +27,5 @@ jobs:
           --template-file cognito.yml \
           --stack-name cognito-prueba \
           --capabilities CAPABILITY_IAM \
-          --parameter-overrides CognitoDomain= \
           --region eu-west-1
       working-directory: python_scrappers/iac

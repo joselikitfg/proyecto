@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation para crear una user pool en cognito'
+Description: 'CloudFormation para crear una user pool en cognito sin flujos OAuth'
 
 Resources:
   UserPool:
@@ -18,26 +18,18 @@ Resources:
           AttributeDataType: String
           Mutable: true
           Required: true
+
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
       UserPoolId: !Ref UserPool
-      AllowedOAuthFlowsUserPoolClient: true
-      AllowedOAuthFlows:
-        - code
-        - implicit
-      AllowedOAuthScopes:
-        - phone
-        - email
-        - openid
-        - profile
       SupportedIdentityProviders:
         - COGNITO
 
 Outputs:
   CognitoUserPoolID:
     Value: !Ref UserPool
-    Description: The UserPool ID
+    Description: 'The UserPool ID'
   CognitoAppClientID:
     Value: !Ref UserPoolClient
-    Description: The app client
+    Description: 'The app client ID'

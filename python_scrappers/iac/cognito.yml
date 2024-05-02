@@ -47,6 +47,7 @@ Resources:
     Properties:
       Domain: !Ref CognitoDomain
       UserPoolId: !Ref UserPool
+      
 Outputs:
   CognitoUserPoolID:
     Value: !Ref UserPool

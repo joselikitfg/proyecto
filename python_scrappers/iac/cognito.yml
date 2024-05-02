@@ -1,14 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation para crear una user pool en cognito'
 
-Parameters:
-  CognitoDomain:
-    Type: String
-    MinLength: 3
-    MaxLength: 63
-    AllowedPattern: ^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$
-    Description: Enter a string. Must be alpha numeric 3-63 in length
-
 Resources:
   UserPool:
     Type: AWS::Cognito::UserPool
@@ -17,7 +9,6 @@ Resources:
         CaseSensitive: false
       AutoVerifiedAttributes:
         - email
-      UserPoolName: !Sub ${CognitoDomain}-user-pool
       Schema:
         - Name: email
           AttributeDataType: String
@@ -42,12 +33,7 @@ Resources:
         - profile
       SupportedIdentityProviders:
         - COGNITO
-  UserPoolDomain:
-    Type: AWS::Cognito::UserPoolDomain
-    Properties:
-      Domain: !Ref CognitoDomain
-      UserPoolId: !Ref UserPool
-      
+
 Outputs:
   CognitoUserPoolID:
     Value: !Ref UserPool

@@ -18,6 +18,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+import concurrent.futures
 
 logger = Logger(service='python-alcampo-scrapper', level='INFO')
 
@@ -126,23 +127,19 @@ def get_driver() -> Any:
         service = ChromeService(executable_path='/opt/chromedriver')
         option.binary_location = '/opt/chrome/chrome'
 
-    option.add_argument('--headless')
-    option.add_argument(f'--window-size={1920*64},{1080*64}')
-    option.add_argument('--start-maximized')
-    option.add_argument('--disable-dev-tools')
+    # option.add_argument("--headless=new")
+    option.add_argument("--headless")
     option.add_argument('--no-sandbox')
-    option.add_argument('--disable-dev-shm-usage')
-    option.add_argument('--disable-gpu')
-    option.add_argument('--no-zygote')
-    option.add_argument('--single-process')
-    option.add_argument('--ignore-ssl-errors=yes')
-    option.add_argument('--ignore-certificate-errors')
-    # option.add_argument('window-size=2560x1440')
-    option.add_argument('--enable-logging')
-    option.add_argument('enable-automation')
-    option.add_argument(f'--user-data-dir={mkdtemp()}')
-    option.add_argument(f'--data-path={mkdtemp()}')
-    option.add_argument(f'--disk-cache-dir={mkdtemp()}')
+    option.add_argument("--disable-gpu")
+    option.add_argument(f'--window-size={1920*64},{1080*64}')
+    option.add_argument("--single-process")
+    option.add_argument("--disable-dev-shm-usage")
+    option.add_argument("--disable-dev-tools")
+    option.add_argument("--no-zygote")
+    option.add_argument(f"--user-data-dir={mkdtemp()}")
+    option.add_argument(f"--data-path={mkdtemp()}")
+    option.add_argument(f"--disk-cache-dir={mkdtemp()}")
+    option.add_argument("--remote-debugging-port=9222")
     option.add_argument(
         'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
     )
@@ -173,8 +170,9 @@ def scrape_product_details(url: str) -> List[Dict[str, Any]]:
     scraped_product_names = set()
     scrap_product_list(driver, products, scraped_product_names)
     driver.quit()
-    print(f'Scrapped Total Items: {len(products)}')
-    print(f'Scrapped: {json.dumps(products, indent=3)}')
+    logger.info(f'Scrapped Total Items: {len(products)}')
+    # logger.info(f'Scrapped: {json.dumps(products, indent=3)}')
+    logger.info(f'First 3 Scrapped elements: {json.dumps(products[0:3], indent=3)}')
     return products
 
 
@@ -204,11 +202,12 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     product_containers = soup.find_all('div', {'class': 'product-card-container'})
+    product_containers = product_containers[:int(len(product_containers)/5)]
 
     logger.info(f'Products to be scrapped in this driver session: {len(product_containers)}')
+
     for container in product_containers:
         scrap_one_product(product_containers, container, scraped_product_names, products)
-
 
 # @timeit
 def scrap_one_product(

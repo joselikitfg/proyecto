@@ -5,9 +5,11 @@ Description: 'python3.12 Sample SAM Template for python_scrappers
   '
 Globals:
   Function:
-    Timeout: 29
+    Timeout: 900
     Architectures: x86_64
-    MemorySize: 3008
+    MemorySize: 10240
+    EphemeralStorage:
+      Size: 2048
     Environment:
       Variables:
         ENVIRONMENT: dev

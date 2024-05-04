@@ -2,10 +2,10 @@ name: Deploy frontend in github actions with pnpm
 'on':
   push:
     branches:
-      - feature/frontend_gh_deploy
+      - feat/aws-cognito-login-integration
   workflow_run:
     workflows:
-      - "\U0001F9EA⚛️[Tests][Unit] Frontend"
+        - '🧪⚛️[Tests][Unit] Frontend'
     types:
       - completed
 env:

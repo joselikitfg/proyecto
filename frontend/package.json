@@ -7,6 +7,7 @@
     "@astrojs/react": "^3.0.10",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "aws-amplify": "^6.2.0",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
@@ -20,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
-    },
+  },
   "browserslist": {
     "production": [
       ">0.2%",

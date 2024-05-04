@@ -11,6 +11,18 @@ import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Amplify from 'aws-amplify';
+
+Amplify.configure({
+    Auth: {
+        mandatorySignIn: true,
+        region: 'us-west-2', // actualiza esto con tu región
+        userPoolId: 'us-west-2_1a2b3c4d5', // actualiza esto con tu User Pool ID
+        userPoolWebClientId: '1b2c3d4e5example', // actualiza esto con tu App client ID
+    }
+});
+
+
 function App() {
   const {
     items,

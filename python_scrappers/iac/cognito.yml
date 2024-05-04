@@ -28,8 +28,12 @@ Resources:
 
 Outputs:
   CognitoUserPoolID:
-    Value: !Ref UserPool
     Description: 'The UserPool ID'
+    Value: !Ref UserPool
+    Export:
+      Name: "${AWS::StackName}-UserPoolId"
   CognitoAppClientID:
-    Value: !Ref UserPoolClient
     Description: 'The app client ID'
+    Value: !GetAtt UserPoolClient.ClientId
+    Export:
+      Name: "${AWS::StackName}-UserPoolWebClientId"

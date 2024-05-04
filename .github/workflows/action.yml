@@ -1,0 +1,142 @@
+name: Deploy frontend in github actions with pnpm
+'on':
+  push:
+    branches:
+      - feature/frontend_gh_deploy
+  workflow_run:
+    workflows:
+      - "\U0001F9EA⚛️[Tests][Unit] Frontend"
+    types:
+      - completed
+env:
+  S3_BUCKET: frontend-amplify-descuentapp
+  ARTIFAC_NAME: build.zip
+  AMPLIFY_APP_NAME: descuentapp
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-20.04
+        node-version:
+          - 16.20.2
+          - 18.20.2
+          - 20.12.2
+    runs-on: '${{ matrix.os }}'
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout code
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '${{ matrix.node-version }}'
+      - name: Install dependencies and run tests
+        working-directory: frontend
+        run: pnpm install-test
+  cloudformation:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: '${{ secrets.AWS_OIDC_ROLE }}'
+          aws-region: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - name: Deploy CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --template-file frontend-s3-amplify.yml \
+            --stack-name frontend-amplify \
+            --capabilities CAPABILITY_IAM \
+            --region eu-west-1
+        working-directory: frontend/iac
+      - name: Deploy CloudFormation stack for cognito
+        run: |
+          aws cloudformation deploy \
+            --template-file cognito.yml \
+            --stack-name cognito-prueba \
+            --capabilities CAPABILITY_IAM \
+            --region eu-west-1
+        working-directory: python_scrappers/iac
+      - name: Retrieve CloudFormation Outputs
+        id: cf-outputs
+        run: >
+          user_pool_id=$(aws cloudformation describe-stacks --stack-name
+          cognito-prueba --query
+          "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output
+          text)
+
+          user_pool_web_client_id=$(aws cloudformation describe-stacks
+          --stack-name cognito-prueba --query
+          "Stacks[0].Outputs[?OutputKey=='UserPoolWebClientId'].OutputValue"
+          --output text)
+
+          echo "::set-output name=user_pool_id::$user_pool_id"
+
+          echo "::set-output
+          name=user_pool_web_client_id::$user_pool_web_client_id"
+        working-directory: python_scrappers/iac
+      - name: Prepare Amplify configuration
+        run: >
+            echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{
+            secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{
+            steps.cf-outputs.outputs.user_pool_id }}\",\"userPoolWebClientId\":\"${{
+            steps.cf-outputs.outputs.user_pool_web_client_id }}\"}}" >
+            ./frontend/src/amplify-config.js
+        working-directory: python_scrappers/iac
+  build-and-deploy:
+    needs: cloudformation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up node js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.12.1
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: install dependencies
+        run: pnpm install
+        working-directory: frontend
+      - name: Build with pnpm
+        run: pnpm run build
+        working-directory: frontend
+      - name: Zip build directory
+        run: zip -r build.zip .
+        working-directory: frontend/build
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: '${{ secrets.AWS_OIDC_ROLE }}'
+          aws-region: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - name: Upload to S3
+        run: 'aws s3 cp build.zip s3://$S3_BUCKET/build.zip'
+        working-directory: frontend/build
+      - name: Start Deployment to Amplify
+        shell: bash
+        run: >
+          AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME
+          "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) |
+          .appId')
+
+          AMPLIFY_APP_BRANCH="feature/frontend_gh_deploy"
+
+          aws amplify start-deployment \
+
+          --app-id $AMPLIFY_APP_ID \
+
+          --branch-name $AMPLIFY_APP_BRANCH \
+
+          --source-url s3://$S3_BUCKET/$ARTIFAC_NAME

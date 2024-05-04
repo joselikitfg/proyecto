@@ -28,7 +28,7 @@ Resources:
       Policies:
         - AWSLambdaBasicExecutionRole # Política de IAM básica para ejecución de Lambda
         - AmazonDynamoDBFullAccess # Ejemplo de política adicional, ajustar según necesidad
-      # ReservedConcurrentExecutions: 1
+      ReservedConcurrentExecutions: 2
       Events:
         FlaskAppAPI:
           Type: Api

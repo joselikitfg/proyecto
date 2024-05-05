@@ -76,20 +76,11 @@ jobs:
       - name: Retrieve CloudFormation Outputs
         id: cf-outputs
         run: >
-          user_pool_id=$(aws cloudformation describe-stacks --stack-name
-          cognito-prueba --query
-          "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output
-          text)
-
-          user_pool_web_client_id=$(aws cloudformation describe-stacks
-          --stack-name cognito-prueba --query
-          "Stacks[0].Outputs[?OutputKey=='UserPoolWebClientId'].OutputValue"
-          --output text)
-
-          echo "::set-output name=user_pool_id::$user_pool_id"
-
-          echo "::set-output
-          name=user_pool_web_client_id::$user_pool_web_client_id"
+          user_pool_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
+          echo "USER_POOL_ID=$user_pool_id" >> $GITHUB_ENV
+          
+          user_pool_web_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolWebClientId'].OutputValue" --output text)
+          echo "USER_POOL_WEB_CLIENT_ID=$user_pool_web_client_id" >> $GITHUB_ENV
         working-directory: python_scrappers/iac
       - name: Prepare Amplify configuration
         run: >

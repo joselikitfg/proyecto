@@ -3,7 +3,11 @@ name: Deploy frontend in github actions with pnpm
   push:
     branches:
       - feat/aws-cognito-login-integration
-
+  workflow_run:
+    workflows:
+      - '🧪⚛️[Tests][Unit] Frontend'
+    types:
+      - completed
 env:
   S3_BUCKET: frontend-amplify-descuentapp
   ARTIFAC_NAME: build.zip
@@ -12,7 +16,39 @@ permissions:
   id-token: write
   contents: read
 jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-20.04
+        node-version:
+          - "16.20.2"
+          - "18.20.2"
+          - "20.12.2"
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+      name: Checkout code
+      with:
+          fetch-depth: 0
+
+    - uses: pnpm/action-setup@v3
+      with:
+        version: 8
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+      
+    - name: Install dependencies and run tests
+      working-directory: frontend
+      run: pnpm install-test
   cloudformation:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

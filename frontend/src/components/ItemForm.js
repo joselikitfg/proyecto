@@ -7,8 +7,8 @@ function ItemForm({
   setNewItemPricePerUnit,
   newItemTotalPrice,
   setNewItemTotalPrice,
-  newItemImageUrl,
-  setNewItemImageUrl,
+  newItemImageUrl, 
+  setNewItemImageUrl, 
   handleFormSubmit
 }) {
   return (
@@ -47,8 +47,8 @@ function ItemForm({
             className="form-control"
             type="text"
             placeholder="URL de la imagen del ítem"
-            value={newItemImageUrl}
-            onChange={(e) => setNewItemImageUrl(e.target.value)}
+            value={newItemImageUrl} 
+            onChange={(e) => setNewItemImageUrl(e.target.value)} 
           />
         </div>
         <button type="submit" className="btn btn-primary">Agregar ítem</button>

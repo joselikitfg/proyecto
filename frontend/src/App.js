@@ -1,47 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'; 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
 import UploadFile from "./components/UploadFile";
-import Navbar from "./components/Navbar";
-import Pagination from "./components/Pagination";
+import Navbar from "./components/Navbar"; 
+import Pagination from "./components/Pagination"; 
 import useItems from './useItems';
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Amplify from 'aws-amplify';
-import amplifyConfig from './amplify-config';
-
-Amplify.configure(amplifyConfig);
 
 function App() {
   const {
     items,
     newItemName,
     setNewItemName,
-    newItemPricePerUnit,
-    setNewItemPricePerUnit,
-    newItemTotalPrice,
-    setNewItemTotalPrice,
+    newItemPricePerUnit, 
+    setNewItemPricePerUnit, 
+    newItemTotalPrice, 
+    setNewItemTotalPrice, 
     newItemImageUrl,
     setNewItemImageUrl,
     handleFormSubmit,
     deleteItem,
     searchItems,
-    page,
+    page, 
     setPage,
-    totalPages,
-    fetchItems,
+    totalPages, 
+    fetchItems, 
   } = useItems();
 
   useEffect(() => {
-    fetchItems();
-  }, [page]);
+    fetchItems(); 
+  }, [page]); 
 
   const handlePageChange = (newPage) => {
-    setPage(newPage);
+    setPage(newPage); 
   };
 
   console.log('Pagination props in App:', { page, totalPages });
@@ -58,10 +53,10 @@ function App() {
               <ItemForm
                 newItemName={newItemName}
                 setNewItemName={setNewItemName}
-                newItemPricePerUnit={newItemPricePerUnit}
-                setNewItemPricePerUnit={setNewItemPricePerUnit}
-                newItemTotalPrice={newItemTotalPrice}
-                setNewItemTotalPrice={setNewItemTotalPrice}
+                newItemPricePerUnit={newItemPricePerUnit} 
+                setNewItemPricePerUnit={setNewItemPricePerUnit} 
+                newItemTotalPrice={newItemTotalPrice} 
+                setNewItemTotalPrice={setNewItemTotalPrice} 
                 newItemImageUrl={newItemImageUrl}
                 setNewItemImageUrl={setNewItemImageUrl}
                 handleFormSubmit={handleFormSubmit}

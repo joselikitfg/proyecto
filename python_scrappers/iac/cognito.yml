@@ -1,5 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation para crear una user pool en cognito con flujos OAuth'
+Parameters:
+  AMPLIFY_APP_URL:  
+    Type: String
+    Description: "URL base for the Amplify app (without https:// and trailing slash)"
 
 Resources:
   UserPool:

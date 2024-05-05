@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation para crear una user pool en cognito sin flujos OAuth'
+Description: 'CloudFormation para crear una user pool en cognito con flujos OAuth'
 
 Resources:
   UserPool:
@@ -25,6 +25,17 @@ Resources:
       UserPoolId: !Ref UserPool
       SupportedIdentityProviders:
         - COGNITO
+      CallbackURLs:
+        - !Sub "https://${AMPLIFY_APP_URL}/"
+      LogoutURLs:
+        - !Sub "https://${AMPLIFY_APP_URL}/"
+      AllowedOAuthFlows:
+        - code
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthScopes:
+        - email
+        - openid
+        - profile
 
 Outputs:
   CognitoUserPoolID:

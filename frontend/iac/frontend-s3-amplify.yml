@@ -57,3 +57,6 @@ Outputs:
   BucketName:
     Value: !Ref AmplifyFrontendBucket
     Description: Nombre del Bucket de S3
+  AmplifyBranchUrl:
+    Description: "URL of the deployed Amplify branch"
+    Value: !GetAtt AmplifyBranch.AppUrl

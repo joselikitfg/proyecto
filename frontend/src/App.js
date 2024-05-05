@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'; 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react'; 
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Auth } from 'aws-amplify';
+import amplifyConfig from './components/amplify-config';
+
+// Componentes
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
 import UploadFile from "./components/UploadFile";
 import Navbar from "./components/Navbar"; 
 import Pagination from "./components/Pagination"; 
+import Login from "./components/Login"; 
 import useItems from './useItems';
-import ScrapingFormA from "./components/ScrapingForm";
-import ScrapingFormH from "./components/ScrapingFormH";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+Amplify.configure(amplifyConfig);
 
 function App() {
+  const [user, setUser] = useState(null);
+
   const {
     items,
     newItemName,
@@ -32,14 +38,19 @@ function App() {
   } = useItems();
 
   useEffect(() => {
-    fetchItems(); 
-  }, [page]); 
+    fetchItems();
+    checkUser(); 
+  }, [page]);
 
-  const handlePageChange = (newPage) => {
-    setPage(newPage); 
-  };
-
-  console.log('Pagination props in App:', { page, totalPages });
+  async function checkUser() {
+    try {
+      const userData = await Auth.currentAuthenticatedUser();
+      setUser(userData);
+    } catch (error) {
+      console.error('No hay usuario logueado:', error);
+      setUser(null);
+    }
+  }
 
   return (
     <Router>
@@ -48,6 +59,11 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
+              {user ? (
+                <p>Hola, {user.username}</p>
+              ) : (
+                <Link to="/login">Iniciar sesión</Link>
+              )}
               <ItemList items={items} deleteItem={deleteItem} />
               <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
               <ItemForm
@@ -66,6 +82,7 @@ function App() {
               <ScrapingFormH/>
             </>
           } />
+          <Route path="/login" element={<Login />} />
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
       </div>

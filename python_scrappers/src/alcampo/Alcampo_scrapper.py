@@ -171,8 +171,7 @@ def scrape_product_details(url: str) -> List[Dict[str, Any]]:
     scrap_product_list(driver, products, scraped_product_names)
     driver.quit()
     logger.info(f'Scrapped Total Items: {len(products)}')
-    # logger.info(f'Scrapped: {json.dumps(products, indent=3)}')
-    logger.info(f'First 3 Scrapped elements: {json.dumps(products[0:3], indent=3)}')
+    logger.info(f'Scrapped: {json.dumps(products, indent=3)}')
     return products
 
 
@@ -202,14 +201,13 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     product_containers = soup.find_all('div', {'class': 'product-card-container'})
-    product_containers = product_containers[:int(len(product_containers)/5)]
 
     logger.info(f'Products to be scrapped in this driver session: {len(product_containers)}')
 
     for container in product_containers:
         scrap_one_product(product_containers, container, scraped_product_names, products)
 
-# @timeit
+@timeit
 def scrap_one_product(
     product_containers: List[Tag], container: Tag, scraped_product_names: Set[str], products: List[Dict[str, Any]]
 ) -> None:

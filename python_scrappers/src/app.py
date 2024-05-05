@@ -12,6 +12,7 @@ from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, sav
 from .hipercor.Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
+import boto3
 
 app = Flask(__name__)
 CORS(app)
@@ -48,20 +49,37 @@ def start_scraping_alcampo():
     if not terms:
         return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
 
-    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-    generated_urls = generate_urls(terms, url_base)
-    all_products = []
+    sqs = boto3.client('sqs')
 
-    for url in generated_urls:
-        products = scrape_product_details(url)
-        all_products.extend(products)
+    # URL de la cola de SQS
+    queue_url = 'https://sqs.eu-west-1.amazonaws.com/590183922248/MiColaSQS'
+
+    # Mensaje a enviar
+    message = {
+        "scrapper": "alcampo",
+        "terms": terms
+    }
+
+    # Envía el mensaje a SQS
+    response = sqs.send_message(
+        QueueUrl=queue_url,
+        MessageBody=json.dumps(message)
+    )
+
+    # url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    # generated_urls = generate_urls(terms, url_base)
+    # all_products = []
+
+    # for url in generated_urls:
+    #     products = scrape_product_details(url)
+    #     all_products.extend(products)
 
     try:
         # send_scraped_data_to_uploader(all_products)
         return jsonify(
             {
                 'message': 'Scraping iniciado y datos enviados al servicio de carga.',
-                'data': all_products,
+                # 'data': all_products,
             }
         ), 200
     except Exception as e:

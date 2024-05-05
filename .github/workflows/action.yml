@@ -83,7 +83,7 @@ jobs:
                   --template-file cognito.yml \
                   --stack-name cognito-prueba \
                   --capabilities CAPABILITY_IAM \
-                  --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}"
+                  --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}" \
                   --region eu-west-1
         working-directory: python_scrappers/iac
       - name: Retrieve CloudFormation Outputs

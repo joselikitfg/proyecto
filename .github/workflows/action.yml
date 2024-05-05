@@ -65,13 +65,11 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region eu-west-1
         working-directory: frontend/iac
-      - name: Retrieve CloudFormation Outputs
-        id: cf-outputs-amplify
+      - name: Retrieve Amplify Branch URL
+        id: cf-outputs-amplify-url
         run: |
-          amplify_app_url=$(aws cloudformation describe-stacks --stack-name frontend-amplify --query "Stacks[0].Outputs[?OutputKey=='AmplifyBranchUrl'].OutputValue" --output text)
-          echo "AMPLIFY_APP_URL=$amplify_app_url" >> $GITHUB_ENV
-          echo "export AMPLIFY_APP_URL=$amplify_app_url" >> $GITHUB_ENV_FILE  # Asegúrate de que la URL se pasa correctamente al siguiente paso
-      
+            amplify_app_url=$(aws amplify get-branch --app-id ${{ steps.deploy.outputs.amplify_app_id }} --branch-name feature/frontend_gh_deploy --query 'branch.branchArn' --output text)
+            echo "AMPLIFY_APP_URL=$amplify_app_url" >> $GITHUB_ENV
       - name: Deploy CloudFormation stack for cognito
         run: |
               

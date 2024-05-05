@@ -30,9 +30,9 @@ Resources:
       SupportedIdentityProviders:
         - COGNITO
       CallbackURLs:
-        - !Sub "https://${AMPLIFY_APP_URL}/"
+        - !Sub "https://feature-frontend-gh-deploy.${AMPLIFY_APP_URL}/"
       LogoutURLs:
-        - !Sub "https://${AMPLIFY_APP_URL}/"
+        - !Sub "https://feature-frontend-gh-deploy.${AMPLIFY_APP_URL}/"
       AllowedOAuthFlows:
         - code
       AllowedOAuthFlowsUserPoolClient: true

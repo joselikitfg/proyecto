@@ -75,7 +75,7 @@ jobs:
               echo "Amplify App ID is missing"
               exit 1
             fi
-            amplify_branch_url=$(aws amplify get-branch --app-id ${{ env.AMPLIFY_APP_ID }} --branch-name feature/frontend_gh_deploy --query 'branch.branchArn' --output text)
+            amplify_branch_url=$(aws amplify get-branch --app-id ${{ env.AMPLIFY_APP_ID }} --branch-name feature/frontend_gh_deploy --query 'branch.branchUrl' --output text)
             echo "AMPLIFY_BRANCH_URL=$amplify_branch_url" >> $GITHUB_ENV
       - name: Deploy CloudFormation stack for cognito
         run: |

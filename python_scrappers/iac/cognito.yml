@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation para crear una user pool en cognito con flujos OAuth'
 Parameters:
-  AMPLIFY_APP_URL:  
+  AmplifyAppURL:  
     Type: String
     Description: "URL base for the Amplify app (without https:// and trailing slash)"
 
@@ -30,9 +30,9 @@ Resources:
       SupportedIdentityProviders:
         - COGNITO
       CallbackURLs:
-        - !Sub "https://feature-frontend-gh-deploy.${AMPLIFY_APP_URL}/"
+        - !Sub "https://feature-frontend-gh-deploy.${AmplifyAppURL}/"
       LogoutURLs:
-        - !Sub "https://feature-frontend-gh-deploy.${AMPLIFY_APP_URL}/"
+        - !Sub "https://feature-frontend-gh-deploy.${AmplifyAppURL}/"
       AllowedOAuthFlows:
         - code
       AllowedOAuthFlowsUserPoolClient: true

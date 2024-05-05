@@ -97,8 +97,8 @@ jobs:
             secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{
             steps.cf-outputs.outputs.user_pool_id }}\",\"userPoolWebClientId\":\"${{
             steps.cf-outputs.outputs.user_pool_web_client_id }}\"}}" >
-            ./frontend/src/components/amplify-config.js
-        working-directory: frontend
+            amplify-config.js
+        working-directory: frontend/src/components
   build-and-deploy:
     needs: cloudformation
     runs-on: ubuntu-latest

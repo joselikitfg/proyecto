@@ -65,11 +65,18 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region eu-west-1
         working-directory: frontend/iac
-      - name: Retrieve Amplify Branch URL
-        id: cf-outputs-amplify-url
+      - name: Get Amplify App ID
         run: |
-            amplify_app_url=$(aws amplify get-branch --app-id ${{ steps.deploy.outputs.amplify_app_id }} --branch-name feature/frontend_gh_deploy --query 'branch.branchArn' --output text)
-            echo "AMPLIFY_APP_URL=$amplify_app_url" >> $GITHUB_ENV
+          amplify_app_id=$(aws amplify list-apps --query "apps[?name=='${{ env.AMPLIFY_APP_NAME }}'].appId" --output text)
+          echo "AMPLIFY_APP_ID=$amplify_app_id" >> $GITHUB_ENV
+      - name: Retrieve Amplify Branch URL
+        run: |
+            if [ -z "${{ env.AMPLIFY_APP_ID }}" ]; then
+              echo "Amplify App ID is missing"
+              exit 1
+            fi
+            amplify_branch_url=$(aws amplify get-branch --app-id ${{ env.AMPLIFY_APP_ID }} --branch-name feature/frontend_gh_deploy --query 'branch.branchArn' --output text)
+            echo "AMPLIFY_BRANCH_URL=$amplify_branch_url" >> $GITHUB_ENV
       - name: Deploy CloudFormation stack for cognito
         run: |
               

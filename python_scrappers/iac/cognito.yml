@@ -40,7 +40,11 @@ Resources:
         - email
         - openid
         - profile
-
+  MyCognitoDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: prueba-dominio-123
+      UserPoolId: !Ref MyCognitoUserPool
 Outputs:
   CognitoUserPoolID:
     Description: 'The UserPool ID'
@@ -52,3 +56,8 @@ Outputs:
     Value: !GetAtt UserPoolClient.ClientId
     Export:
       Name: !Sub "${AWS::StackName}-UserPoolWebClientId"
+  CognitoDomain:
+    Description: 'The Cognito domain for the UserPool'
+    Value: !GetAtt MyCognitoDomain.CloudFrontDistribution
+    Export:
+      Name: !Sub "${AWS::StackName}-CognitoDomain"

@@ -44,7 +44,7 @@ Resources:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
       Domain: prueba-dominio-123
-      UserPoolId: !Ref MyCognitoUserPool
+      UserPoolId: !Ref UserPool
 Outputs:
   CognitoUserPoolID:
     Description: 'The UserPool ID'

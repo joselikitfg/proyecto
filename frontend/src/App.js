@@ -11,7 +11,7 @@ import useItems from './useItems';
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Auth from '@aws-amplify/auth';
+import { Auth } from 'aws-amplify';
 import Login from "./components/Login";
 import { API } from '@aws-amplify/api';
 import { Storage } from '@aws-amplify/storage';

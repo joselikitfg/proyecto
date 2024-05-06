@@ -2,7 +2,7 @@
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
 import React from 'react';
-import Auth from '@aws-amplify/auth';
+import { Auth } from 'aws-amplify';
 
 Amplify.configure(config);
 

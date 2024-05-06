@@ -10,19 +10,31 @@ def app():
 def client(app):
     return app.test_client()
 
-# @patch('src.app.generate_urls')
-# @patch('src.app.scrape_product_details')
-# def test_start_scraping_alcampo(mock_scrape_product_details, mock_generate_urls, client):
-#     mock_generate_urls.return_value = ['https://www.compraonline.alcampo.es/search?q=leche']
-#     mock_scrape_product_details.return_value = [{'name': 'Leche', 'price': '1€'}]
+@pytest.fixture
+def mock_boto_client():
+    with patch('src.app.boto3.client') as mock:
+        yield mock
 
-#     response = client.post('/scrape/alcampo', json={'terms': ['leche']})
-#     data = response.get_json()
+def test_start_scraping_alcampo(client, mock_boto_client):
+    mock_sqs = mock_boto_client.return_value
+    mock_sqs.send_message.return_value = {'MessageId': '12345'}
 
-#     assert response.status_code == 200
-#     assert 'message' in data
-#     assert len(data['data']) == 1
-#     assert data['data'][0]['name'] == 'Leche'
+    terms = ['pasta', 'leche']
+    response = client.post('/scrape/alcampo', json={'terms': terms})
+
+    assert response.status_code == 200
+    assert 'Scraping iniciado' in response.json['message']
+
+    mock_boto_client.assert_called_once_with('sqs')
+    mock_sqs.send_message.assert_called_once()
+    args, kwargs = mock_sqs.send_message.call_args
+    assert kwargs['QueueUrl'] == 'https://sqs.eu-west-1.amazonaws.com/590183922248/MiColaSQS'
+    assert 'alcampo' in kwargs['MessageBody']
+
+def test_start_scraping_alcampo_no_terms(client):
+    response = client.post('/scrape/alcampo', json={})
+    assert response.status_code == 400
+    assert 'No se proporcionaron términos' in response.json['error']
 
 
 # Simulación de un evento y contexto de AWS Lambda

@@ -226,10 +226,16 @@ def scrap_one_product(
         None: Esta función modifica las listas y el conjunto proporcionados directamente, no tiene retorno.
     """
     product = {}
+    print("")
+    print("")
+    print("")
+    print(product_containers[0])
+    print("")
+    print("")
+    print("")
 
     mi_contenedor = container.find('div', {'data-test': 'fop-body'})
     title_element = mi_contenedor.find('h3', {'data-test': 'fop-title'})
-    # title_element = container.find('a', {'data-test': 'fop-product-link'})
     if title_element:
         product['name'] = title_element.text
 

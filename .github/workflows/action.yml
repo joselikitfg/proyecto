@@ -146,10 +146,19 @@ jobs:
           --source-url s3://$S3_BUCKET/$ARTIFAC_NAME
       - name: Prepare Amplify configuration
         run: |
-            echo "Region: ${{ secrets.AWS_DEFAULT_REGION }}"
-            echo "User Pool ID: ${{ env.USER_POOL_ID }}"
-            echo "User Pool Web Client ID: ${{ env.USER_POOL_WEB_CLIENT_ID }}"
-            echo "Amplify App URL: ${{ env.AMPLIFY_APP_URL }}"
-            echo "Cognito Domain: ${{ env.COGNITO_DOMAIN }}"
-            echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{ secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{ env.USER_POOL_ID }}\",\"userPoolWebClientId\":\"${{ env.USER_POOL_WEB_CLIENT_ID }}\",\"oauth\":{\"domain\":\"${{ env.COGNITO_DOMAIN }}\",\"scope\":[\"email\",\"openid\",\"profile\"],\"redirectSignIn\":\"https://${{ env.AMPLIFY_APP_URL }}/callback\",\"redirectSignOut\":\"https://${{ env.AMPLIFY_APP_URL }}/logout\",\"responseType\":\"token\"}}}" > Login.js
-        working-directory: frontend/src/components
+            echo "const config = {" > aws-exports.js
+            echo "  Auth: {" >> aws-exports.js
+            echo "    region: '${{ secrets.AWS_DEFAULT_REGION }}'," >> aws-exports.js
+            echo "    userPoolId: '${{ env.USER_POOL_ID }}'," >> aws-exports.js
+            echo "    userPoolWebClientId: '${{ env.USER_POOL_WEB_CLIENT_ID }}'," >> aws-exports.js
+            echo "    oauth: {" >> aws-exports.js
+            echo "      domain: '${{ env.COGNITO_DOMAIN }}'," >> aws-exports.js
+            echo "      scope: ['email', 'openid', 'profile']," >> aws-exports.js
+            echo "      redirectSignIn: 'https://${{ env.AMPLIFY_APP_URL }}/callback'," >> aws-exports.js
+            echo "      redirectSignOut: 'https://${{ env.AMPLIFY_APP_URL }}/logout'," >> aws-exports.js
+            echo "      responseType: 'token'" >> aws-exports.js
+            echo "    }" >> aws-exports.js
+            echo "  }" >> aws-exports.js
+            echo "};" >> aws-exports.js
+            echo "export default config;" >> aws-exports.js
+        working-directory: frontend/src

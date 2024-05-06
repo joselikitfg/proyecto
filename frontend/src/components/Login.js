@@ -1,16 +1,16 @@
-// Amplify configuration file (aws-exports.js)
-import Amplify from 'aws-amplify';
 
+import Amplify from 'aws-amplify';
+import config from '../aws-exports';
+import React from 'react';
+import Auth from '@aws-amplify/auth';
 
 Amplify.configure(config);
 
-// Login component
-import React from 'react';
-import { Auth } from 'aws-amplify';
+
 
 function Login() {
   const signIn = () => {
-    Auth.federatedSignIn(); // Esto lanzará la Hosted UI de Cognito
+    Auth.federatedSignIn(); 
   }
 
   return (

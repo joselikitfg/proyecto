@@ -151,5 +151,5 @@ jobs:
             echo "User Pool Web Client ID: ${{ env.USER_POOL_WEB_CLIENT_ID }}"
             echo "Amplify App URL: ${{ env.AMPLIFY_APP_URL }}"
             echo "Cognito Domain: ${{ env.COGNITO_DOMAIN }}"
-            echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{ secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{ env.USER_POOL_ID }}\",\"userPoolWebClientId\":\"${{ env.USER_POOL_WEB_CLIENT_ID }}\",\"oauth\":{\"domain\":\"${{ env.COGNITO_DOMAIN }}\",\"scope\":[\"email\",\"openid\",\"profile\"],\"redirectSignIn\":\"https://${{ env.AMPLIFY_APP_URL }}/callback\",\"redirectSignOut\":\"https://${{ env.AMPLIFY_APP_URL }}/logout\",\"responseType\":\"token\"}}}" > ./src/components/Login.js
+            echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{ secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{ env.USER_POOL_ID }}\",\"userPoolWebClientId\":\"${{ env.USER_POOL_WEB_CLIENT_ID }}\",\"oauth\":{\"domain\":\"${{ env.COGNITO_DOMAIN }}\",\"scope\":[\"email\",\"openid\",\"profile\"],\"redirectSignIn\":\"https://${{ env.AMPLIFY_APP_URL }}/callback\",\"redirectSignOut\":\"https://${{ env.AMPLIFY_APP_URL }}/logout\",\"responseType\":\"token\"}}}" > Login.js
         working-directory: frontend/src/components

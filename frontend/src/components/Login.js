@@ -1,6 +1,6 @@
 // Amplify configuration file (aws-exports.js)
 import Amplify from 'aws-amplify';
-import config from './aws-exports'; // Asegúrate de que el path es correcto
+
 
 Amplify.configure(config);
 

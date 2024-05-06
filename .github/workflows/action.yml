@@ -96,21 +96,6 @@ jobs:
           cognito_domain=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoDomain'].OutputValue" --output text)
           echo "COGNITO_DOMAIN=$cognito_domain" >> $GITHUB_ENV
         working-directory: python_scrappers/iac
-      
-    
-      
-  build-and-deploy:
-    needs: cloudformation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: set up node js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.12.1
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
       - name: Prepare Amplify configuration
         run: |
               echo "const config = {" > aws-exports.js
@@ -134,7 +119,22 @@ jobs:
         working-directory: frontend/src
       - name: comprobacion2
         run: cat aws-exports.js
-        working-directory: frontend/src       
+        working-directory: frontend/src   
+      
+    
+      
+  build-and-deploy:
+    needs: cloudformation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up node js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.12.1
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8    
       - name: install dependencies
         run: pnpm install
         working-directory: frontend

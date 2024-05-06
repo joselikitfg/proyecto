@@ -97,16 +97,7 @@ jobs:
           echo "COGNITO_DOMAIN=$cognito_domain" >> $GITHUB_ENV
         working-directory: python_scrappers/iac
       
-      
-      - name: Prepare Amplify configuration
-        run: |
-          echo "Region: ${{ secrets.AWS_DEFAULT_REGION }}"
-          echo "User Pool ID: ${{ env.USER_POOL_ID }}"
-          echo "User Pool Web Client ID: ${{ env.USER_POOL_WEB_CLIENT_ID }}"
-          echo "Amplify App URL: ${{ env.AMPLIFY_APP_URL }}"
-          echo "Cognito Domain: ${{ env.COGNITO_DOMAIN }}"
-          echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{ secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{ env.USER_POOL_ID }}\",\"userPoolWebClientId\":\"${{ env.USER_POOL_WEB_CLIENT_ID }}\",\"oauth\":{\"domain\":\"${{ env.COGNITO_DOMAIN }}\",\"scope\":[\"email\",\"openid\",\"profile\"],\"redirectSignIn\":\"https://${{ env.AMPLIFY_APP_URL }}/callback\",\"redirectSignOut\":\"https://${{ env.AMPLIFY_APP_URL }}/logout\",\"responseType\":\"token\"}}}" > ./src/components/Login.js
-        working-directory: frontend/src/components
+    
       
   build-and-deploy:
     needs: cloudformation
@@ -153,3 +144,12 @@ jobs:
           --branch-name $AMPLIFY_APP_BRANCH \
 
           --source-url s3://$S3_BUCKET/$ARTIFAC_NAME
+      - name: Prepare Amplify configuration
+        run: |
+            echo "Region: ${{ secrets.AWS_DEFAULT_REGION }}"
+            echo "User Pool ID: ${{ env.USER_POOL_ID }}"
+            echo "User Pool Web Client ID: ${{ env.USER_POOL_WEB_CLIENT_ID }}"
+            echo "Amplify App URL: ${{ env.AMPLIFY_APP_URL }}"
+            echo "Cognito Domain: ${{ env.COGNITO_DOMAIN }}"
+            echo "AMPLIFY_CONFIG={\"Auth\":{\"region\":\"${{ secrets.AWS_DEFAULT_REGION }}\",\"userPoolId\":\"${{ env.USER_POOL_ID }}\",\"userPoolWebClientId\":\"${{ env.USER_POOL_WEB_CLIENT_ID }}\",\"oauth\":{\"domain\":\"${{ env.COGNITO_DOMAIN }}\",\"scope\":[\"email\",\"openid\",\"profile\"],\"redirectSignIn\":\"https://${{ env.AMPLIFY_APP_URL }}/callback\",\"redirectSignOut\":\"https://${{ env.AMPLIFY_APP_URL }}/logout\",\"responseType\":\"token\"}}}" > ./src/components/Login.js
+        working-directory: frontend/src/components

@@ -129,6 +129,12 @@ jobs:
               echo "};" >> aws-exports.js
               echo "export default config;" >> aws-exports.js
         working-directory: frontend/src
+      - name: comprobacion
+        run: ls -l
+        working-directory: frontend/src
+      - name: comprobacion2
+        run: cat aws-exports.js
+        working-directory: frontend/src       
       - name: install dependencies
         run: pnpm install
         working-directory: frontend

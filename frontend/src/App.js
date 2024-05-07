@@ -13,14 +13,16 @@ import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Amplify } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { awsExports } from './aws-exports';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
-    region: 'eu-west-1', 
-    userPoolId: 'eu-west-1_Fwl5xoymu', 
-    userPoolWebClientId: '6l0a6bjva2jrg1r4to7sa9fddc', 
+    region: awsExports.REGION, 
+    userPoolId: awsExports.USER_POOL_ID, 
+    userPoolWebClientId: awsExports.USER_POOL_CLIENT_ID 
   }
 });
 
@@ -56,6 +58,13 @@ function App() {
   console.log('Pagination props in App:', { page, totalPages });
 
   return (
+    <Authenticator>
+    {({signOut, user})=>(
+      <div>
+        <p> Welcome {user.username}  </p>
+        <button onClick={signOut}>Sign out</button>
+      </div>
+    )}
     <Router>
       <Navbar onSearch={searchItems} />
       <div className="container mt-4">
@@ -85,12 +94,12 @@ function App() {
               <ScrapingFormH/>
             </>
           } />
-          <AmplifySignOut/>
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
       </div>
     </Router>
+    </Authenticator>
   );
 }
 
-export default withAuthenticator(App);
+export default App;

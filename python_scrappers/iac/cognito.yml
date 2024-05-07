@@ -9,19 +9,38 @@ Resources:
   UserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UsernameConfiguration: 
+      AliasAttributes:
+        - email
+      UsernameConfiguration:
         CaseSensitive: false
       AutoVerifiedAttributes:
         - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireUppercase: true
+          RequireSymbols: true
       Schema:
-        - Name: email
-          AttributeDataType: String
+        - AttributeDataType: String
           Mutable: true
+          Name: given_name
           Required: true
-        - Name: name
-          AttributeDataType: String
+          StringAttributeConstraints:
+            MinLength: "1"
+        - AttributeDataType: String
           Mutable: true
+          Name: family_name
           Required: true
+          StringAttributeConstraints:
+            MinLength: "1"
+        - AttributeDataType: String
+          Mutable: true
+          Name: email
+          Required: true
+          StringAttributeConstraints:
+            MinLength: "1"
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
@@ -29,22 +48,11 @@ Resources:
       UserPoolId: !Ref UserPool
       SupportedIdentityProviders:
         - COGNITO
-      CallbackURLs:
-        - !Sub "https://feature-frontend-gh-deploy.${AmplifyAppURL}/"
-      LogoutURLs:
-        - !Sub "https://feature-frontend-gh-deploy.${AmplifyAppURL}/"
-      AllowedOAuthFlows:
-        - code
-      AllowedOAuthFlowsUserPoolClient: true
-      AllowedOAuthScopes:
-        - email
-        - openid
-        - profile
-  MyCognitoDomain:
-    Type: AWS::Cognito::UserPoolDomain
-    Properties:
-      Domain: prueba-dominio-123
-      UserPoolId: !Ref UserPool
+      ExplicitAuthFlows:
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      PreventUserExistenceErrors: ENABLED
+
 Outputs:
   CognitoUserPoolID:
     Description: 'The UserPool ID'
@@ -56,8 +64,3 @@ Outputs:
     Value: !GetAtt UserPoolClient.ClientId
     Export:
       Name: !Sub "${AWS::StackName}-UserPoolWebClientId"
-  CognitoDomain:
-    Description: 'The Cognito domain for the UserPool'
-    Value: !GetAtt MyCognitoDomain.CloudFrontDistribution
-    Export:
-      Name: !Sub "${AWS::StackName}-CognitoDomain"

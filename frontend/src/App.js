@@ -19,7 +19,6 @@ import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure({
   Auth: {
-    mandatorySignIn: true,
     region: awsExports.REGION, 
     userPoolId: awsExports.USER_POOL_ID, 
     userPoolWebClientId: awsExports.USER_POOL_CLIENT_ID 
@@ -58,14 +57,14 @@ function App() {
   console.log('Pagination props in App:', { page, totalPages });
 
   return (
-    <Authenticator>
+    <Router>
+      <Authenticator>
     {({signOut, user})=>(
       <div>
         <p> Welcome {user.username}  </p>
         <button onClick={signOut}>Sign out</button>
       </div>
     )}
-    <Router>
       <Navbar onSearch={searchItems} />
       <div className="container mt-4">
         <Routes>
@@ -97,8 +96,8 @@ function App() {
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
       </div>
-    </Router>
     </Authenticator>
+    </Router>
   );
 }
 

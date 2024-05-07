@@ -13,7 +13,7 @@ import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Amplify } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 Amplify.configure({
   Auth: {
@@ -85,6 +85,7 @@ function App() {
               <ScrapingFormH/>
             </>
           } />
+          <AmplifySignOut/>
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
       </div>

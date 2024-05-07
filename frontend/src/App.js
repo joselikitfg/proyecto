@@ -19,9 +19,11 @@ import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure({
   Auth: {
-    region: awsExports.REGION, 
-    userPoolId: awsExports.USER_POOL_ID, 
-    userPoolWebClientId: awsExports.USER_POOL_CLIENT_ID 
+    Cognito:{
+      region: awsExports.REGION, 
+      userPoolId: awsExports.USER_POOL_ID, 
+      userPoolWebClientId: awsExports.USER_POOL_CLIENT_ID 
+    }
   }
 });
 
@@ -47,7 +49,6 @@ function App() {
 
   useEffect(() => {
     fetchItems();
-    checkUser(); 
   }, [page]); 
 
   const handlePageChange = (newPage) => {
@@ -70,11 +71,6 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-            {user ? (
-                <p>Hola, {user.username}</p>
-              ) : (
-                <Link to="/login">Iniciar sesión</Link>
-              )}
               <ItemList items={items} deleteItem={deleteItem} />
               <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
               <ItemForm

@@ -11,10 +11,18 @@ import useItems from './useItems';
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Auth } from 'aws-amplify';
-import Login from "./components/Login";
-import { API } from '@aws-amplify/api';
-import { Storage } from '@aws-amplify/storage';
+
+import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
+Amplify.configure({
+  Auth: {
+    mandatorySignIn: true,
+    region: 'eu-west-1', 
+    userPoolId: 'eu-west-1_Fwl5xoymu', 
+    userPoolWebClientId: '6l0a6bjva2jrg1r4to7sa9fddc', 
+  }
+});
 
 function App() {
   const {
@@ -41,15 +49,6 @@ function App() {
     checkUser(); 
   }, [page]); 
 
-  async function checkUser() {
-    try {
-      const userData = await Auth.currentAuthenticatedUser();
-      setUser(userData);
-    } catch (error) {
-      console.error('No hay usuario logueado:', error);
-      setUser(null);
-    }
-  }
   const handlePageChange = (newPage) => {
     setPage(newPage); 
   };
@@ -86,7 +85,6 @@ function App() {
               <ScrapingFormH/>
             </>
           } />
-          <Route path="/login" element={<Login />} />
           <Route path="/item/:id" element={<ItemDetail />} />
         </Routes>
       </div>
@@ -94,4 +92,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

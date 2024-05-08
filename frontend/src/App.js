@@ -22,7 +22,7 @@ Amplify.configure({
     Cognito:{
       region: awsExports.REGION, 
       userPoolId: awsExports.USER_POOL_ID, 
-      userPoolWebClientId: awsExports.USER_POOL_CLIENT_ID 
+      userPoolClientId: awsExports.USER_POOL_CLIENT_ID 
     }
   }
 });

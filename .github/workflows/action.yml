@@ -89,12 +89,13 @@ jobs:
       - name: Retrieve CloudFormation Outputs
         id: cf-outputs
         run: |
-          user_pool_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
+
+          user_pool_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoUserPoolID'].OutputValue" --output text)
           echo "USER_POOL_ID=$user_pool_id" >> $GITHUB_ENV
-          user_pool_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
+    
+          user_pool_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoAppClientID'].OutputValue" --output text)
           echo "USER_POOL_CLIENT_ID=$user_pool_client_id" >> $GITHUB_ENV
-          cognito_domain=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoDomain'].OutputValue" --output text)
-          echo "COGNITO_DOMAIN=$cognito_domain" >> $GITHUB_ENV
+          
         working-directory: python_scrappers/iac
       
       - name: Prepare Amplify configuration

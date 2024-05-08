@@ -25,18 +25,6 @@ Resources:
       Schema:
         - AttributeDataType: String
           Mutable: true
-          Name: given_name
-          Required: true
-          StringAttributeConstraints:
-            MinLength: "1"
-        - AttributeDataType: String
-          Mutable: true
-          Name: family_name
-          Required: true
-          StringAttributeConstraints:
-            MinLength: "1"
-        - AttributeDataType: String
-          Mutable: true
           Name: email
           Required: true
           StringAttributeConstraints:

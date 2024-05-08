@@ -91,43 +91,25 @@ jobs:
         run: |
           user_pool_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
           echo "USER_POOL_ID=$user_pool_id" >> $GITHUB_ENV
-          user_pool_web_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolWebClientId'].OutputValue" --output text)
-          echo "USER_POOL_WEB_CLIENT_ID=$user_pool_web_client_id" >> $GITHUB_ENV
+          user_pool_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
+          echo "USER_POOL_CLIENT_ID=$user_pool_client_id" >> $GITHUB_ENV
           cognito_domain=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoDomain'].OutputValue" --output text)
           echo "COGNITO_DOMAIN=$cognito_domain" >> $GITHUB_ENV
         working-directory: python_scrappers/iac
-      # - name: Prepare Amplify configuration
-      #   run: |
-      #         echo "const config = {" > aws-exports.js
-      #         echo "  Auth: {" >> aws-exports.js
-      #         echo "    region: '${{ secrets.AWS_DEFAULT_REGION }}'," >> aws-exports.js
-      #         echo "    userPoolId: '${{ env.USER_POOL_ID }}'," >> aws-exports.js
-      #         echo "    userPoolWebClientId: '${{ env.USER_POOL_WEB_CLIENT_ID }}'," >> aws-exports.js
-      #         echo "    oauth: {" >> aws-exports.js
-      #         echo "      domain: '${{ env.COGNITO_DOMAIN }}'," >> aws-exports.js
-      #         echo "      scope: ['email', 'openid', 'profile']," >> aws-exports.js
-      #         echo "      redirectSignIn: 'https://${{ env.AMPLIFY_APP_URL }}/callback'," >> aws-exports.js
-      #         echo "      redirectSignOut: 'https://${{ env.AMPLIFY_APP_URL }}/logout'," >> aws-exports.js
-      #         echo "      responseType: 'token'" >> aws-exports.js
-      #         echo "    }" >> aws-exports.js
-      #         echo "  }" >> aws-exports.js
-      #         echo "};" >> aws-exports.js
-      #         echo "export default config;" >> aws-exports.js
-      #   working-directory: frontend/src
-      # - name: comprobacion
-      #   run: ls -l
-      #   working-directory: frontend/src
-      # - name: comprobacion2
-      #   run: cat aws-exports.js
-      #  working-directory: frontend/src   
       
-    
+      - name: Prepare Amplify configuration
+        run: |
+          echo "export const awsExports = {" > aws-exports.js
+          echo "  Auth: {" >> aws-exports.js
+          echo "  Cognito: {" >> aws-exports.js
+          echo "    region: '${{ secrets.AWS_DEFAULT_REGION }}'," >> aws-exports.js
+          echo "    userPoolId: '${{ env.USER_POOL_ID }}'," >> aws-exports.js
+          echo "    userPoolClientId: '${{ env.USER_POOL_CLIENT_ID }}'," >> aws-exports.js
+          echo "  }," >> aws-exports.js
+          echo "}," >> aws-exports.js
+          echo "}" >> aws-exports.js
+        working-directory: frontend/src
       
-  build-and-deploy:
-    needs: cloudformation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
       - name: set up node js
         uses: actions/setup-node@v4
         with:

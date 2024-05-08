@@ -45,7 +45,7 @@ const App = () => {
   console.log("Pagination props in App:", { page, totalPages });
   return (
     <Router>
-      <Authenticator>
+      <Authenticator signUpAttributes={['email']}>
         <ChildComponent fetchItems={fetchItems} />
         <Navbar onSearch={searchItems} />
         <div className="container mt-4">

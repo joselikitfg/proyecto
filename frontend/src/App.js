@@ -17,6 +17,7 @@ import "@aws-amplify/ui-react/styles.css";
 import ChildComponent from "./ChildComponent";
 Amplify.configure(awsExports);
 
+
 const App = () => {
   const {
     items,

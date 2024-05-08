@@ -33,8 +33,6 @@ const ChildComponent = ({ fetchItems }) => {
       <button onClick={signOut}>Sign out</button>
       <h4>Tu JWT ID Token:</h4>
       <p>{jwtToken}</p> 
-      <h4>Tu Access Token:</h4>
-      <p>{accessToken}</p> 
     </div>
   ) : null;
 };

@@ -21,7 +21,7 @@ const ChildComponent = ({ fetchItems }) => {
       const idToken = session.tokens.idToken.toString();
       const accessTok = session.tokens.accessToken.toString(); 
       setJwtToken(idToken);
-      setAccessToken(accessTok); //
+      setAccessToken(accessTok);
     } catch (error) {
       console.log("Error fetching JWT token:", error);
     }

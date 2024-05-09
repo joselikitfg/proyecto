@@ -12,7 +12,15 @@ import ScrapingFormH from "./components/ScrapingFormH";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Amplify } from "aws-amplify";
 import { awsExports } from "./aws-exports";
-import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
+import {
+  Authenticator,
+  useAuthenticator,
+  useTheme,
+  View,
+  Heading,
+  Image,
+  Button,
+} from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import ChildComponent from "./ChildComponent";
 Amplify.configure(awsExports);
@@ -43,10 +51,66 @@ const App = () => {
   const handlePageChange = (newPage) => {
     setPage(newPage);
   };
+
+  const components = {
+    Header() {
+      const { tokens } = useTheme();
+      return (
+        <View
+          textAlign="center"
+          padding={tokens.space.large}
+          backgroundColor={tokens.colors.background.primary}
+        >
+          <Image
+            alt="Company Logo"
+            src="https://docs.amplify.aws/assets/logo-dark.svg"
+            style={{ height: "100px", marginBottom: "20px" }}
+          />
+          <Heading level={1} color={tokens.colors.font.primary}>
+            DescuentApp
+          </Heading>
+        </View>
+      );
+    },
+
+    SignIn: {
+      Header() {
+        const { tokens } = useTheme();
+        return (
+          <Heading
+            padding={`${tokens.space.xl} 0`}
+            level={3}
+            color={tokens.colors.font}
+            style={{ backgroundColor: tokens.colors.background.secondary }}
+            textAlign="center"
+          >
+            Sign in to your account
+          </Heading>
+        );
+      },
+      Footer() {
+        const { toForgotPassword } = useAuthenticator();
+        const { tokens } = useTheme();
+        return (
+          <View textAlign="center" padding={tokens.space.large}>
+            <Button
+              fontWeight="normal"
+              onClick={toForgotPassword}
+              size="small"
+              variation="link"
+            >
+              Forgot Password?
+            </Button>
+          </View>
+        );
+      },
+    },
+  };
+
   console.log("Pagination props in App:", { page, totalPages });
   return (
     <Router>
-      <Authenticator signUpAttributes={['email']}>
+      <Authenticator signUpAttributes={["email"]} components={components}>
         <ChildComponent fetchItems={fetchItems} />
         <Navbar onSearch={searchItems} />
         <div className="container mt-4">

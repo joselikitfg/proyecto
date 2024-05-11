@@ -67,7 +67,7 @@ const App = () => {
             style={{ height: "100px", marginBottom: "20px" }}
           />
           <Heading level={1} color={tokens.colors.font.primary}>
-            DescuentApp
+            SmartTrackApp
           </Heading>
         </View>
       );

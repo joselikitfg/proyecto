@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation para crear una user pool en cognito con flujos OAuth'
+Description: 'CloudFormation para crear una user pool en cognito'
 Parameters:
   AmplifyAppURL:  
     Type: String
@@ -29,7 +29,8 @@ Resources:
           Required: true
           StringAttributeConstraints:
             MinLength: "1"
-
+      LambdaConfig:
+        PreSignUp: !GetAtt UserGroupAssignmentFunction.Arn
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
@@ -40,6 +41,77 @@ Resources:
         - ALLOW_USER_SRP_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
       PreventUserExistenceErrors: ENABLED
+  AdminGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: Admins
+      UserPoolId: !Ref UserPool
+      Description: "Administrators group with full access"
+      Precedence: 1
+
+  CollaboratorGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: Collaborators
+      UserPoolId: !Ref UserPool
+      Description: "Collaborators with limited access"
+      Precedence: 2
+
+  NormalUserGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: Users
+      UserPoolId: !Ref UserPool
+      Description: "Regular users"
+      Precedence: 3
+
+  UserGroupAssignmentFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          def handler(event, context):
+              client = boto3.client('cognito-idp')
+              try:
+                  # Default to 'Users' group, modify logic as needed
+                  group_name = 'Users'
+                  if 'admin@example.com' in event['request']['userAttributes']['email']:
+                      group_name = 'Admins'
+                  client.admin_add_user_to_group(
+                      UserPoolId=event['userPoolId'],
+                      Username=event['userName'],
+                      GroupName=group_name
+                  )
+              except Exception as e:
+                  print(e)
+              return event
+      Runtime: python3.8
+      Timeout: 30
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: CognitoPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - cognito-idp:AdminAddUserToGroup
+                Resource: !GetAtt UserPool.Arn
+
 
 Outputs:
   CognitoUserPoolID:

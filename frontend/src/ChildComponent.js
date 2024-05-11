@@ -27,14 +27,6 @@ const ChildComponent = ({ fetchItems }) => {
     }
   };
 
-  return user ? (
-    <div>
-      Hola {user.username}
-      <button onClick={signOut}>Sign out</button>
-      <h4>Tu JWT ID Token:</h4>
-      <p>{jwtToken}</p> 
-    </div>
-  ) : null;
 };
 
 export default ChildComponent;

@@ -1,9 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation para crear una user pool en cognito'
-Parameters:
-  AmplifyAppURL:  
-    Type: String
-    Description: "URL base for the Amplify app (without https:// and trailing slash)"
 
 Resources:
   UserPool:
@@ -27,49 +23,47 @@ Resources:
           Mutable: true
           Name: email
           Required: true
-          StringAttributeConstraints:
-            MinLength: "1"
-      LambdaConfig:
-        PreSignUp: !GetAtt UserGroupAssignmentFunction.Arn
+
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
       UserPoolId: !Ref UserPool
-      SupportedIdentityProviders:
-        - COGNITO
       ExplicitAuthFlows:
         - ALLOW_USER_SRP_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
       PreventUserExistenceErrors: ENABLED
-  AdminGroup:
-    Type: AWS::Cognito::UserPoolGroup
-    Properties:
-      GroupName: Admins
-      UserPoolId: !Ref UserPool
-      Description: "Administrators group with full access"
-      Precedence: 1
 
-  CollaboratorGroup:
-    Type: AWS::Cognito::UserPoolGroup
+  LambdaExecutionRole:
+    Type: 'AWS::IAM::Role'
     Properties:
-      GroupName: Collaborators
-      UserPoolId: !Ref UserPool
-      Description: "Collaborators with limited access"
-      Precedence: 2
-
-  NormalUserGroup:
-    Type: AWS::Cognito::UserPoolGroup
-    Properties:
-      GroupName: Users
-      UserPoolId: !Ref UserPool
-      Description: "Regular users"
-      Precedence: 3
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'lambda.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: 'lambda-policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action:
+                  - 'logs:*'
+                  - 'cognito-idp:*'
+                Resource: '*'
 
   UserGroupAssignmentFunction:
     Type: AWS::Lambda::Function
     Properties:
       Handler: index.handler
       Role: !GetAtt LambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          USER_POOL_ID: !Ref UserPool
       Code:
         ZipFile: |
           import json
@@ -89,29 +83,27 @@ Resources:
               except Exception as e:
                   print(e)
               return event
-      Runtime: python3.8
+      Runtime: python3.11
       Timeout: 30
+      
 
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
+  AdminGroup:
+    Type: AWS::Cognito::UserPoolGroup
     Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: lambda.amazonaws.com
-            Action: sts:AssumeRole
-      Policies:
-        - PolicyName: CognitoPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - cognito-idp:AdminAddUserToGroup
-                Resource: !GetAtt UserPool.Arn
+      UserPoolId: !Ref UserPool
+      GroupName: Admin
 
+  NormalUserGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      UserPoolId: !Ref UserPool
+      GroupName: User
+
+  CollaboratorGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      UserPoolId: !Ref UserPool
+      GroupName: Collaborator
 
 Outputs:
   CognitoUserPoolID:
@@ -119,8 +111,11 @@ Outputs:
     Value: !Ref UserPool
     Export:
       Name: !Sub "${AWS::StackName}-UserPoolId"
+
   CognitoAppClientID:
     Description: 'The app client ID'
     Value: !GetAtt UserPoolClient.ClientId
     Export:
       Name: !Sub "${AWS::StackName}-UserPoolWebClientId"
+
+

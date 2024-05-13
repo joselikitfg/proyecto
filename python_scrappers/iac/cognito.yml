@@ -23,6 +23,14 @@ Resources:
           Mutable: true
           Name: email
           Required: true
+          StringAttributeConstraints:
+            MinLength: "1"
+        - AttributeDataType: String
+          Mutable: true
+          Name: "custom:userType"
+          Required: true
+          StringAttributeConstraints:
+            MinLength: "1"
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
@@ -32,60 +40,6 @@ Resources:
         - ALLOW_USER_SRP_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
       PreventUserExistenceErrors: ENABLED
-
-  LambdaExecutionRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: 'Allow'
-            Principal:
-              Service:
-                - 'lambda.amazonaws.com'
-            Action:
-              - 'sts:AssumeRole'
-      Policies:
-        - PolicyName: 'lambda-policy'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: 'Allow'
-                Action:
-                  - 'logs:*'
-                  - 'cognito-idp:*'
-                Resource: '*'
-
-  UserGroupAssignmentFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      Handler: index.handler
-      Role: !GetAtt LambdaExecutionRole.Arn
-      Environment:
-        Variables:
-          USER_POOL_ID: !Ref UserPool
-      Code:
-        ZipFile: |
-          import json
-          import boto3
-          def handler(event, context):
-              client = boto3.client('cognito-idp')
-              try:
-                  # Default to 'Users' group, modify logic as needed
-                  group_name = 'Users'
-                  if 'admin@example.com' in event['request']['userAttributes']['email']:
-                      group_name = 'Admins'
-                  client.admin_add_user_to_group(
-                      UserPoolId=event['userPoolId'],
-                      Username=event['userName'],
-                      GroupName=group_name
-                  )
-              except Exception as e:
-                  print(e)
-              return event
-      Runtime: python3.11
-      Timeout: 30
-      
 
   AdminGroup:
     Type: AWS::Cognito::UserPoolGroup
@@ -117,5 +71,3 @@ Outputs:
     Value: !GetAtt UserPoolClient.ClientId
     Export:
       Name: !Sub "${AWS::StackName}-UserPoolWebClientId"
-
-

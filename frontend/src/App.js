@@ -62,13 +62,10 @@ const App = () => {
           backgroundColor={tokens.colors.background.primary}
         >
           <Image
-            alt="Company Logo"
-            src="https://docs.amplify.aws/assets/logo-dark.svg"
-            style={{ height: "100px", marginBottom: "20px" }}
+            alt="SmartTrackApp"
+            src="https://i.postimg.cc/BnyPBXs8/2-YURCjl-Imgur.png"
+            style={{width:"100%", height: "100%" }}
           />
-          <Heading level={1} color={tokens.colors.font.primary}>
-            SmartTrackApp
-          </Heading>
         </View>
       );
     },

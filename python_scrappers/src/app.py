@@ -18,6 +18,9 @@ app = Flask(__name__)
 CORS(app)
 
 
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
+table = dynamodb.Table('ScrappedProductsTable')
+
 gunicorn_logger = logging.getLogger('gunicorn.error')
 gunicorn_logger.setLevel(logging.DEBUG)
 app.logger.handlers = gunicorn_logger.handlers
@@ -27,6 +30,16 @@ app.logger.setLevel(gunicorn_logger.level)
 uri = os.getenv('MONGO_URI')
 client = MongoClient(uri)
 db = client['webapp']
+
+@app.route('/items', methods=['GET'])
+def get_items():
+    try:
+        response = table.scan()
+        items = response['Items']
+        return jsonify(items), 200
+    except Exception as e:
+        app.logger.error(f"Error retrieving items: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/')

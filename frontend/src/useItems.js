@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8082/items";
+const BASE_URL = "https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items";
 const SEARCH_URL = `${BASE_URL}/search`;
 
 const useItems = () => {
   const [items, setItems] = useState([]);
   const [newItemName, setNewItemName] = useState("");
-  const [newItemPricePerUnit, setNewItemPricePerUnit] = useState(""); 
-  const [newItemTotalPrice, setNewItemTotalPrice] = useState(""); 
+  const [newItemPricePerUnit, setNewItemPricePerUnit] = useState("");
+  const [newItemTotalPrice, setNewItemTotalPrice] = useState("");
   const [newItemImageUrl, setNewItemImageUrl] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -18,12 +18,17 @@ const useItems = () => {
   const fetchItems = useCallback(async () => {
     const endpoint = searchTerm
       ? `${SEARCH_URL}?q=${encodeURIComponent(searchTerm)}&page=${page}&limit=12`
-      : `${BASE_URL}?page=${page}&limit=12`;
+      : `${BASE_URL}`;
 
     try {
       const response = await axios.get(endpoint);
-      setItems(response.data.items || []);
-      setTotalPages(response.data.totalPages);
+      console.log("API response:", response.data);
+      if (response.data && Array.isArray(response.data)) {
+        setItems(response.data);
+      } else {
+        setItems(response.data.items || []);
+        setTotalPages(response.data.totalPages || 0);
+      }
       setError(null);
     } catch (err) {
       console.error("Error fetching items:", err);
@@ -39,8 +44,8 @@ const useItems = () => {
     event.preventDefault();
     const newItem = {
       name: newItemName,
-      price_per_unit: newItemPricePerUnit, 
-      total_price: newItemTotalPrice, 
+      price_per_unit: newItemPricePerUnit,
+      total_price: newItemTotalPrice,
       image_url: newItemImageUrl,
     };
 
@@ -48,8 +53,8 @@ const useItems = () => {
       await axios.post(BASE_URL, newItem);
       fetchItems();
       setNewItemName("");
-      setNewItemPricePerUnit(""); 
-      setNewItemTotalPrice(""); 
+      setNewItemPricePerUnit("");
+      setNewItemTotalPrice("");
       setNewItemImageUrl("");
       setError(null);
     } catch (err) {

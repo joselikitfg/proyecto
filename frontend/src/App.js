@@ -45,9 +45,11 @@ const App = () => {
     totalPages,
     fetchItems,
   } = useItems();
+
   useEffect(() => {
     fetchItems();
   }, [page]);
+
   const handlePageChange = (newPage) => {
     setPage(newPage);
   };
@@ -105,6 +107,7 @@ const App = () => {
   };
 
   console.log("Pagination props in App:", { page, totalPages });
+  
   return (
     <Router>
       <Authenticator signUpAttributes={["email"]} components={components}>

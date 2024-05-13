@@ -25,13 +25,7 @@ Resources:
           Required: true
           StringAttributeConstraints:
             MinLength: "1"
-        - AttributeDataType: String
-          Mutable: true
-          Name: "custom:userType"
-          Required: true
-          StringAttributeConstraints:
-            MinLength: "1"
-
+            
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:

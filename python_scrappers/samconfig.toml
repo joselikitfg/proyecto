@@ -4,7 +4,9 @@ version = 0.1
 
 [default]
 [default.global.parameters]
-stack_name = "seleniumpython-joseliki"
+
+stack_name = "seleniumpython-test-nuevo"
+
 
 [default.build.parameters]
 parallel = true

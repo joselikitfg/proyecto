@@ -7,9 +7,11 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 29
+    Timeout: 900
     Architectures: x86_64
-    MemorySize:  3008 #10240 # 8192 #4096
+    MemorySize:  512 #10240 # 8192 #4096
+    EphemeralStorage:
+        Size: 512
     Environment:
       Variables:
         ENVIRONMENT: dev
@@ -19,6 +21,72 @@ Globals:
       environment: develop
 
 Resources:
+  ProductPricesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ScrappedProductsTable
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+      AttributeDefinitions:
+      - AttributeName: origin
+        AttributeType: S
+      - AttributeName: timestamp
+        AttributeType: N
+      - AttributeName: name
+        AttributeType: S
+      KeySchema:
+      - AttributeName: origin
+        KeyType: HASH
+      - AttributeName: timestamp
+        KeyType: RANGE
+      GlobalSecondaryIndexes:
+      - IndexName: NameIndex
+        KeySchema:
+        - AttributeName: name
+          KeyType: HASH
+        Projection:
+          ProjectionType: INCLUDE
+          NonKeyAttributes:
+          - price_per_unit
+          - total_price
+          - image_url
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+  MySQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "MiColaSQS"
+      VisibilityTimeout: 900
+
+  LambdaDispatcher:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.event_processor
+      DockerContext: ./
+      DockerTag: v1
+    Properties:
+      PackageType: Image
+      Timeout: 900
+      MemorySize:  4096
+      EphemeralStorage:
+        Size: 2048
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSQSFullAccess
+      Architectures:
+        - x86_64
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt MySQSQueue.Arn
+            BatchSize: 1
+
   AlcampoScrappingLambdaFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -26,9 +94,11 @@ Resources:
       Architectures:
         - x86_64
       Policies:
-        - AWSLambdaBasicExecutionRole # Política de IAM básica para ejecución de Lambda
-        - AmazonDynamoDBFullAccess # Ejemplo de política adicional, ajustar según necesidad
-      ReservedConcurrentExecutions: 2
+
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSQSFullAccess
+
       Events:
         FlaskAppAPI:
           Type: Api

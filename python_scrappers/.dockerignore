@@ -1,0 +1,9 @@
+.*
+test*
+Dockerfile
+requirements-dev.txt
+tox*
+sam*
+template*
+ruff*
+htmlcov

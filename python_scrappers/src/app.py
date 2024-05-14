@@ -12,10 +12,15 @@ from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, sav
 from .hipercor.Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
+import boto3
+from boto3.dynamodb.conditions import Key, Attr
 
 app = Flask(__name__)
 CORS(app)
 
+
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
+table = dynamodb.Table('ScrappedProductsTable')
 
 gunicorn_logger = logging.getLogger('gunicorn.error')
 gunicorn_logger.setLevel(logging.DEBUG)
@@ -27,6 +32,91 @@ uri = os.getenv('MONGO_URI')
 client = MongoClient(uri)
 db = client['webapp']
 
+@app.route('/items', methods=['GET'])
+def get_all_items():
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 12))
+    start_key = request.args.get('start_key', None)
+
+    # Primero, obtenemos el total de items
+    response_count = table.scan(
+        Select='COUNT'
+    )
+    total_items = response_count.get('Count', 0)
+    total_pages = (total_items + limit - 1) // limit
+
+    scan_kwargs = {
+        'Limit': limit,
+    }
+    
+    if start_key:
+        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+
+    try:
+        response = table.scan(**scan_kwargs)
+        items = response.get('Items', [])
+        last_evaluated_key = response.get('LastEvaluatedKey', None)
+
+        result = {
+            'items': items,
+            'lastEvaluatedKey': last_evaluated_key,
+            'totalPages': total_pages,
+        }
+
+        return jsonify(result), 200
+    except Exception as e:
+        app.logger.error(f"Error retrieving items: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/items/<item_id>', methods=['GET'])
+def get_item(item_id):
+    try:
+        response = table.get_item(Key={'id': item_id})
+        item = response.get('Item', None)
+        if item:
+            return jsonify(item), 200
+        else:
+            return jsonify({'error': 'Item no encontrado'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/search', methods=['GET'])
+@cross_origin(origin='localhost')
+def search():
+    query = request.args.get('q', '')
+    limit = int(request.args.get('limit', 12))
+    start_key = request.args.get('start_key', None)
+
+    scan_kwargs = {
+        'FilterExpression': Attr('name').contains(query),
+        'Limit': limit,
+    }
+
+    if start_key:
+        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+
+    try:
+        response = table.scan(**scan_kwargs)
+        items = response.get('Items', [])
+        last_evaluated_key = response.get('LastEvaluatedKey', None)
+
+        result = {
+            'items': items,
+            'lastEvaluatedKey': last_evaluated_key,
+        }
+
+        return jsonify(result), 200
+    except Exception as e:
+        app.logger.error(f"Error retrieving items: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/items/<item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    try:
+        response = table.delete_item(Key={'id': item_id})
+        return jsonify({'message': 'Item borrado correctamente'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/')
 @cross_origin(origin='localhost')
@@ -48,20 +138,37 @@ def start_scraping_alcampo():
     if not terms:
         return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
 
-    url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
-    generated_urls = generate_urls(terms, url_base)
-    all_products = []
+    sqs = boto3.client('sqs')
 
-    for url in generated_urls:
-        products = scrape_product_details(url)
-        all_products.extend(products)
+    # URL de la cola de SQS
+    queue_url = 'https://sqs.eu-west-1.amazonaws.com/590183922248/MiColaSQS'
+
+    # Mensaje a enviar
+    message = {
+        "scrapper": "alcampo",
+        "terms": terms
+    }
+
+    # Envía el mensaje a SQS
+    response = sqs.send_message(
+        QueueUrl=queue_url,
+        MessageBody=json.dumps(message)
+    )
+
+    # url_base = 'https://www.compraonline.alcampo.es/search?q={name}'
+    # generated_urls = generate_urls(terms, url_base)
+    # all_products = []
+
+    # for url in generated_urls:
+    #     products = scrape_product_details(url)
+    #     all_products.extend(products)
 
     try:
         # send_scraped_data_to_uploader(all_products)
         return jsonify(
             {
                 'message': 'Scraping iniciado y datos enviados al servicio de carga.',
-                'data': all_products,
+                # 'data': all_products,
             }
         ), 200
     except Exception as e:

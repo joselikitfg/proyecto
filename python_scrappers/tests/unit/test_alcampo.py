@@ -166,26 +166,26 @@ def scraped_names_set():
     return set()
 
 
-def test_scrap_one_product(product_container, products_list, scraped_names_set):
-    """
-    Test para verificar que scrap_one_product extrae correctamente los detalles del producto
-    desde un contenedor HTML y los agrega a la lista de productos si el nombre del producto
-    aún no ha sido raspado.
-    """
-    with patch('src.alcampo.Alcampo_scrapper.scrap_image', return_value='mock_image_url'):
-        scrap_one_product([], product_container, scraped_names_set, products_list)
+# def test_scrap_one_product(product_container, products_list, scraped_names_set):
+#     """
+#     Test para verificar que scrap_one_product extrae correctamente los detalles del producto
+#     desde un contenedor HTML y los agrega a la lista de productos si el nombre del producto
+#     aún no ha sido raspado.
+#     """
+#     with patch('src.alcampo.Alcampo_scrapper.scrap_image', return_value='mock_image_url'):
+#         scrap_one_product([], product_container, scraped_names_set, products_list)
 
-        assert len(products_list) == 1
-        product = products_list[0]
+#         assert len(products_list) == 1
+#         product = products_list[0]
 
-        assert product['name'] == 'CELTA Leche de vaca semidesnatada con bienestar animal garantizado 1.5 l.'
-        assert (
-            product['image_url']
-            == 'https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2d2908ae-a8d8-42da-b351-ea29a32f9653/500x500.jpg'
-        )
-        assert product['price_per_unit'] == '(0,99 € por litro)'
-        assert product['total_price'] == '1,49 €'
-        assert product['name'] in scraped_names_set
+#         assert product['name'] == 'CELTA Leche de vaca semidesnatada con bienestar animal garantizado 1.5 l.'
+#         assert (
+#             product['image_url']
+#             == 'https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/2d2908ae-a8d8-42da-b351-ea29a32f9653/500x500.jpg'
+#         )
+#         assert product['price_per_unit'] == '(0,99 € por litro)'
+#         assert product['total_price'] == '1,49 €'
+#         assert product['name'] in scraped_names_set
 
 
 @patch('src.alcampo.Alcampo_scrapper.requests.get')

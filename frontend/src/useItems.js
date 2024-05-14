@@ -14,19 +14,26 @@ const useItems = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
+  const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
 
-  const fetchItems = useCallback(async () => {
+  const fetchItems = useCallback(async (reset = false) => {
     const endpoint = searchTerm
-      ? `${SEARCH_URL}?q=${encodeURIComponent(searchTerm)}&page=${page}&limit=12`
+      ? `${SEARCH_URL}?q=${encodeURIComponent(searchTerm)}`
       : `${BASE_URL}`;
 
     try {
-      const response = await axios.get(endpoint);
+      const response = await axios.get(endpoint, {
+        params: {
+          page: page,
+          limit: 12,
+          start_key: lastEvaluatedKey ? JSON.stringify(lastEvaluatedKey) : null,
+        },
+      });
       console.log("API response:", response.data);
-      if (response.data && Array.isArray(response.data)) {
-        setItems(response.data);
-      } else {
-        setItems(response.data.items || []);
+
+      if (response.data && Array.isArray(response.data.items)) {
+        setItems(prevItems => reset ? response.data.items : [...prevItems, ...response.data.items]);
+        setLastEvaluatedKey(response.data.lastEvaluatedKey || null);
         setTotalPages(response.data.totalPages || 0);
       }
       setError(null);
@@ -34,11 +41,11 @@ const useItems = () => {
       console.error("Error fetching items:", err);
       setError(err.message || "Error fetching data");
     }
-  }, [page, searchTerm]);
+  }, [searchTerm, page, lastEvaluatedKey]);
 
   useEffect(() => {
-    fetchItems();
-  }, [fetchItems]);
+    fetchItems(true); 
+  }, [searchTerm, page]);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -51,7 +58,7 @@ const useItems = () => {
 
     try {
       await axios.post(BASE_URL, newItem);
-      fetchItems();
+      fetchItems(true);
       setNewItemName("");
       setNewItemPricePerUnit("");
       setNewItemTotalPrice("");
@@ -66,7 +73,7 @@ const useItems = () => {
   const deleteItem = useCallback(async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
-      fetchItems();
+      fetchItems(true);
       setError(null);
     } catch (err) {
       console.error("Error deleting item:", err);
@@ -77,6 +84,8 @@ const useItems = () => {
   const searchItems = useCallback((term) => {
     setSearchTerm(term);
     setPage(1);
+    setItems([]);
+    setLastEvaluatedKey(null);
   }, []);
 
   return {

@@ -1,12 +1,12 @@
 describe('Login Test', () => {
-    beforeEach(()=>{
-        cy.viewport(1920, 1080)
-        Cypress.Keyboard.defaults({
-            keystrokeDelay: 80,
-          })
-    })
-    it('Logs in with valid credentials', () => {
-         
+  beforeEach(() => {
+      cy.viewport(1920, 1080)
+      Cypress.Keyboard.defaults({
+          keystrokeDelay: 80,
+      })
+  })
+  it('Logs in with valid credentials', () => {
+
       cy.visit('/');
       cy.screenshot('home-login')
 
@@ -26,6 +26,6 @@ describe('Login Test', () => {
       cy.get('.nav-link.active').contains('Sesión iniciada con cypressuser')
       cy.wait(700)
       cy.screenshot('home')
-    });
-    
+  });
+
 });

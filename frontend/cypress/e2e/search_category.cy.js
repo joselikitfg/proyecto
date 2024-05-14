@@ -1,5 +1,5 @@
 describe('Search Product', () => {
-	beforeEach(()=>{
+    beforeEach(() => {
         cy.viewport(1920, 1080)
         Cypress.Keyboard.defaults({
             keystrokeDelay: 80,
@@ -10,18 +10,18 @@ describe('Search Product', () => {
         cy.get('button[type="submit"]').click();
     })
 
-      
+
     it('should actually be accessible', () => {
-        
+
         cy.get('input[name="search"]').should('have.attr', 'placeholder', 'Buscar productos')
         cy.screenshot('contains search button')
     })
-  
+
     // it('should search detergente', () => {
     //     cy.get('input[name="search"]').type('detergente')
     //     cy.get('button[type="submit"]').contains('Buscar').click()
     //     cy.wait(700)
     //     cy.screenshot('search result')
     // });
-    
-  })
+
+})

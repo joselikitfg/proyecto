@@ -46,7 +46,7 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: frontend
-        run: npm run e2e
+        run: pnpm run e2e
 
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4

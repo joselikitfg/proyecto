@@ -8,6 +8,7 @@ describe('Login Test', () => {
     it('Logs in with valid credentials', () => {
          
       cy.visit('/');
+      cy.screenshot('home-login')
 
       cy.contains('label', 'Username').should('be.visible')
       cy.get('input[name="username"]').should('have.attr', 'placeholder', 'Enter your Username')
@@ -17,12 +18,14 @@ describe('Login Test', () => {
       cy.wait(700)
       cy.get('input[name="username"]').type('cypressuser');
       cy.get('input[name="password"]').type('Unapassword.123');
+      cy.screenshot('home-signin')
+      cy.screenshot()
       cy.wait(1000)
       cy.get('button[type="submit"]').click();
 
       cy.get('.nav-link.active').contains('Sesión iniciada con cypressuser')
       cy.wait(1000)
-      cy.screenshot()
+      ccy.screenshot('home')
     });
     
 });

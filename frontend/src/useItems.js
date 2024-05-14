@@ -25,14 +25,14 @@ const useItems = () => {
       const response = await axios.get(endpoint, {
         params: {
           page: page,
-          limit: 12,
+          limit: 20,
           start_key: lastEvaluatedKey ? JSON.stringify(lastEvaluatedKey) : null,
         },
       });
       console.log("API response:", response.data);
 
       if (response.data && Array.isArray(response.data.items)) {
-        setItems(prevItems => reset ? response.data.items : [...prevItems, ...response.data.items]);
+        setItems(reset ? response.data.items : [...items, ...response.data.items]);
         setLastEvaluatedKey(response.data.lastEvaluatedKey || null);
         setTotalPages(response.data.totalPages || 0);
       }
@@ -44,7 +44,7 @@ const useItems = () => {
   }, [searchTerm, page, lastEvaluatedKey]);
 
   useEffect(() => {
-    fetchItems(true); 
+    fetchItems(true); // Reset items on initial load or search
   }, [searchTerm, page]);
 
   const handleFormSubmit = useCallback(async (event) => {
@@ -58,7 +58,7 @@ const useItems = () => {
 
     try {
       await axios.post(BASE_URL, newItem);
-      fetchItems(true);
+      fetchItems(true); // Reset items after adding a new item
       setNewItemName("");
       setNewItemPricePerUnit("");
       setNewItemTotalPrice("");
@@ -73,7 +73,7 @@ const useItems = () => {
   const deleteItem = useCallback(async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
-      fetchItems(true);
+      fetchItems(true); // Reset items after deleting an item
       setError(null);
     } catch (err) {
       console.error("Error deleting item:", err);

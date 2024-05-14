@@ -1,4 +1,4 @@
-name: Run Cypress Tests
+name: 🧪📺[Tests][E2E] Frontend
 
 on: 
   schedule:

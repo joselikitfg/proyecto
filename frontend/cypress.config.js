@@ -5,7 +5,7 @@ module.exports = defineConfig({
     supportFile: false,
     video: true,
     videoCompression: true,
-    videoCompression: 8,
+    videoCompression: 9,
     baseUrl: 'https://feature-frontend-gh-deploy.dpfhq9pfczcez.amplifyapp.com',
   },
   

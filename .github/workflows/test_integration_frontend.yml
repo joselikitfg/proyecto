@@ -51,8 +51,6 @@ jobs:
 
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
-        working-directory: frontend
-        if: always()
         with:
           name: cypress-videos
           path: {{ github.workspace }}/frontend/cypress/videos
@@ -60,8 +58,6 @@ jobs:
 
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
-        working-directory: frontend
-        if: always()
         with:
           name: cypress-screenshots
           path: {{ github.workspace }}/frontend/cypress/screenshots

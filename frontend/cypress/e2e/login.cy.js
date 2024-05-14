@@ -22,6 +22,7 @@ describe('Login Test', () => {
 
       cy.get('.nav-link.active').contains('Sesión iniciada con cypressuser')
       cy.wait(1000)
+      cy.screenshot()
     });
     
 });

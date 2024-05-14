@@ -103,7 +103,7 @@ Resources:
             Method: any
       ImageUri: alcamposcrappinglambdafunction:v1
     Metadata:
-      DockerContext: /Users/pp/VirtualDesktop/proyecto/python_scrappers
+      DockerContext: /home/jose/Escritorio/proyecto/proyecto/python_scrappers
       DockerTag: v1
       Dockerfile: Dockerfile
       SamResourceId: AlcampoScrappingLambdaFunction

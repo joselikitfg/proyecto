@@ -94,9 +94,11 @@ Resources:
       Architectures:
         - x86_64
       Policies:
+
         - AWSLambdaBasicExecutionRole
         - AmazonDynamoDBFullAccess
         - AmazonSQSFullAccess
+
       Events:
         FlaskAppAPI:
           Type: Api

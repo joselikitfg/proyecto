@@ -10,9 +10,7 @@ on:
     #   - '.github/test_integration_frontend.yml'
 
 jobs:
-  cypress-tests:
-    runs-on: ubuntu-latest
-
+  e2e-cypress-tests:
     strategy:
       fail-fast: false
       matrix:
@@ -57,7 +55,7 @@ jobs:
         if: always()
         with:
           name: cypress-videos
-          path: cypress/videos
+          path: {{ github.workspace }}/frontend/cypress/videos
 
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
@@ -65,4 +63,4 @@ jobs:
         if: always()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: {{ github.workspace }}/frontend/cypress/screenshots

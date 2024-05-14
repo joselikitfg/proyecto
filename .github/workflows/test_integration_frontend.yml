@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'frontend/**'  # Run on push to any path under frontend/
+      - '.github/test_integration_frontend.yml'  # Run on push to any path under frontend/
 
 jobs:
   cypress-tests:

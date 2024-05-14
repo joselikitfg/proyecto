@@ -51,13 +51,13 @@ jobs:
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos
+          name: cypress-videos-${{ matrix.node-version }}-${{ matrix.node-version }}
           path: ${{ github.workspace }}/frontend/cypress/videos
           retention-days: 90
 
       - name: Upload Cypress screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-screenshots
+          name: cypress-screenshots-${{ matrix.node-version }}-${{ matrix.node-version }}
           path: ${{ github.workspace }}/frontend/cypress/screenshots
           retention-days: 90

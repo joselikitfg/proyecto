@@ -33,11 +33,17 @@ client = MongoClient(uri)
 db = client['webapp']
 
 @app.route('/items', methods=['GET'])
-@cross_origin(origin='localhost')
 def get_all_items():
     page = int(request.args.get('page', 1))
-    limit = int(request.args.get('limit', 60))
+    limit = int(request.args.get('limit', 12))
     start_key = request.args.get('start_key', None)
+
+    # Primero, obtenemos el total de items
+    response_count = table.scan(
+        Select='COUNT'
+    )
+    total_items = response_count.get('Count', 0)
+    total_pages = (total_items + limit - 1) // limit
 
     scan_kwargs = {
         'Limit': limit,
@@ -46,16 +52,21 @@ def get_all_items():
     if start_key:
         scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
 
-    response = table.scan(**scan_kwargs)
-    items = response.get('Items', [])
-    last_evaluated_key = response.get('LastEvaluatedKey', None)
+    try:
+        response = table.scan(**scan_kwargs)
+        items = response.get('Items', [])
+        last_evaluated_key = response.get('LastEvaluatedKey', None)
 
-    result = {
-        'items': items,
-        'lastEvaluatedKey': last_evaluated_key,
-    }
+        result = {
+            'items': items,
+            'lastEvaluatedKey': last_evaluated_key,
+            'totalPages': total_pages,
+        }
 
-    return jsonify(result), 200
+        return jsonify(result), 200
+    except Exception as e:
+        app.logger.error(f"Error retrieving items: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/items/<item_id>', methods=['GET'])
 def get_item(item_id):
@@ -73,8 +84,7 @@ def get_item(item_id):
 @cross_origin(origin='localhost')
 def search():
     query = request.args.get('q', '')
-    page = int(request.args.get('page', 1))
-    limit = int(request.args.get('limit', 10))
+    limit = int(request.args.get('limit', 12))
     start_key = request.args.get('start_key', None)
 
     scan_kwargs = {
@@ -85,16 +95,20 @@ def search():
     if start_key:
         scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
 
-    response = table.scan(**scan_kwargs)
-    items = response.get('Items', [])
-    last_evaluated_key = response.get('LastEvaluatedKey', None)
+    try:
+        response = table.scan(**scan_kwargs)
+        items = response.get('Items', [])
+        last_evaluated_key = response.get('LastEvaluatedKey', None)
 
-    result = {
-        'items': items,
-        'lastEvaluatedKey': last_evaluated_key,
-    }
+        result = {
+            'items': items,
+            'lastEvaluatedKey': last_evaluated_key,
+        }
 
-    return jsonify(result), 200
+        return jsonify(result), 200
+    except Exception as e:
+        app.logger.error(f"Error retrieving items: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/items/<item_id>', methods=['DELETE'])
 def delete_item(item_id):

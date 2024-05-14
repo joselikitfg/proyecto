@@ -2,10 +2,11 @@ name: Run Cypress Tests
 
 on: 
   schedule:
-    - cron: "0 21 * * *"
-  workflow_dispatch:
+    - cron: "0 21 * * *"  # Run at 21:00 UTC every day
+  workflow_dispatch:  # Allow manual trigger of the workflow
   push:
-    - 'frontend/**'
+    paths:
+      - 'frontend/**'  # Run on push to any path under frontend/
 
 jobs:
   cypress-tests:

@@ -13,6 +13,7 @@ from .hipercor.Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
 import boto3
+from boto3.dynamodb.conditions import Key, Attr
 
 app = Flask(__name__)
 CORS(app)
@@ -32,15 +33,76 @@ client = MongoClient(uri)
 db = client['webapp']
 
 @app.route('/items', methods=['GET'])
-def get_items():
+@cross_origin(origin='localhost')
+def get_all_items():
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 60))
+    start_key = request.args.get('start_key', None)
+
+    scan_kwargs = {
+        'Limit': limit,
+    }
+    
+    if start_key:
+        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+
+    response = table.scan(**scan_kwargs)
+    items = response.get('Items', [])
+    last_evaluated_key = response.get('LastEvaluatedKey', None)
+
+    result = {
+        'items': items,
+        'lastEvaluatedKey': last_evaluated_key,
+    }
+
+    return jsonify(result), 200
+
+@app.route('/items/<item_id>', methods=['GET'])
+def get_item(item_id):
     try:
-        response = table.scan()
-        items = response['Items']
-        return jsonify(items), 200
+        response = table.get_item(Key={'id': item_id})
+        item = response.get('Item', None)
+        if item:
+            return jsonify(item), 200
+        else:
+            return jsonify({'error': 'Item no encontrado'}), 404
     except Exception as e:
-        app.logger.error(f"Error retrieving items: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/search', methods=['GET'])
+@cross_origin(origin='localhost')
+def search():
+    query = request.args.get('q', '')
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 10))
+    start_key = request.args.get('start_key', None)
+
+    scan_kwargs = {
+        'FilterExpression': Attr('name').contains(query),
+        'Limit': limit,
+    }
+
+    if start_key:
+        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+
+    response = table.scan(**scan_kwargs)
+    items = response.get('Items', [])
+    last_evaluated_key = response.get('LastEvaluatedKey', None)
+
+    result = {
+        'items': items,
+        'lastEvaluatedKey': last_evaluated_key,
+    }
+
+    return jsonify(result), 200
+
+@app.route('/items/<item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    try:
+        response = table.delete_item(Key={'id': item_id})
+        return jsonify({'message': 'Item borrado correctamente'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/')
 @cross_origin(origin='localhost')

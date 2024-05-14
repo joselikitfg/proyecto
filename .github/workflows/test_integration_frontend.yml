@@ -2,12 +2,12 @@ name: 🧪📺[Tests][E2E] Frontend
 
 on: 
   schedule:
-    - cron: "0 21 * * *"  # Run at 21:00 UTC every day
-  workflow_dispatch:  # Allow manual trigger of the workflow
+    - cron: "0 21 * * *"
+  workflow_dispatch:
   push:
     paths:
-      - 'frontend/**'  # Run on push to any path under frontend/
-      - '.github/test_integration_frontend.yml'  # Run on push to any path under frontend/
+      - 'frontend/**'
+      - '.github/test_integration_frontend.yml'
 
 jobs:
   cypress-tests:

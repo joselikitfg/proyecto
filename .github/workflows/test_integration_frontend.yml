@@ -5,9 +5,9 @@ on:
     - cron: "0 21 * * *"
   workflow_dispatch:
   push:
-    paths:
-      - 'frontend/**'
-      - '.github/test_integration_frontend.yml'
+    # paths:
+    #   - 'frontend/**'
+    #   - '.github/test_integration_frontend.yml'
 
 jobs:
   cypress-tests:

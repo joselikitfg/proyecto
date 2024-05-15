@@ -3,6 +3,7 @@ import time
 import json
 import logging
 from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
+from boto3.dynamodb.conditions import Key, Attr
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -33,16 +34,55 @@ def alcampo_handler(scrapper_terms):
         table = dynamodb.Table(table_name)
         item = {
             'origin': 'alcampo',
-            'name': product["name"],
+            'pname': product["name"],
             'total_price': product["total_price"],
             'price_per_unit': product["price_per_unit"],
             'image_url': product["image_url"],
             'timestamp': timestamp
         }
-        print("Sending to dynamoDB")
-        print(item)
-        response = table.put_item(Item=item)
-        print(response)
+
+        response = table.query(
+            TableName='ScrappedProductsTable',
+            IndexName='NameIndex',
+            KeyConditionExpression='#keyname = :compared_value',
+            ExpressionAttributeNames={'#keyname': 'pname'},
+            ExpressionAttributeValues={':compared_value': product['name']},
+        )
+
+        items = response.get('Items', [])
+        exists_any = any((item['total_price'] == product['total_price']) for item in items)
+        if not exists_any:
+            print("Sending to dynamoDB because item is not saved on dynamodb or its price has changed")
+            response = table.put_item(Item=item)
+            print(response)
+        else:
+            print("Not sending to dynamoDB because item is already saved and price is the same")
+        
+        # search_item_in_dynamodb = table.scan(
+        #     FilterExpression=Attr('origin').eq(item['origin']) & Attr('name').eq(item['name'])
+        # )
+        # print("SCAN")
+        # print(search_item_in_dynamodb)
+        # if 'Items' in search_item_in_dynamodb and len(search_item_in_dynamodb['Items']) == 0:
+        #     print("Sending to dynamoDB because item is not saved on dynamodb or its price has changed")
+        #     print(item)
+        #     response = table.put_item(Item=item)
+        #     # print(response)
+
+        # if 'Items' in search_item_in_dynamodb and len(search_item_in_dynamodb['Items']) > 0:
+        #     existing_item = search_item_in_dynamodb['Items'][0]
+        #     print(existing_item['total_price'])
+        #     print(item['total_price'])
+        #     if existing_item['total_price'] != item['total_price']:
+        #         response = table.put_item(Item=item)
+        #         print(response)
+        #         print("Sending to dynamoDB because item is not saved on dynamodb or its price has changed")
+        #         print(item)
+        # else:
+        #     print("Not sending to dynamoDB because item is already saved and price is the same")
+        #     print(item)
+
+        
 
 def lambda_handler(event, context):
     for record in event['Records']:

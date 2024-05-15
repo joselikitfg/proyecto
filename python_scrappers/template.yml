@@ -27,14 +27,14 @@ Resources:
       TableName: ScrappedProductsTable
       BillingMode: PROVISIONED
       ProvisionedThroughput:
-        ReadCapacityUnits: 2
-        WriteCapacityUnits: 2
+        ReadCapacityUnits: 15
+        WriteCapacityUnits: 15
       AttributeDefinitions:
       - AttributeName: origin
         AttributeType: S
       - AttributeName: timestamp
         AttributeType: N
-      - AttributeName: name
+      - AttributeName: pname
         AttributeType: S
       KeySchema:
       - AttributeName: origin
@@ -44,7 +44,7 @@ Resources:
       GlobalSecondaryIndexes:
       - IndexName: NameIndex
         KeySchema:
-        - AttributeName: name
+        - AttributeName: pname
           KeyType: HASH
         Projection:
           ProjectionType: INCLUDE
@@ -53,8 +53,8 @@ Resources:
           - total_price
           - image_url
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
 
   MySQSQueue:
     Type: AWS::SQS::Queue

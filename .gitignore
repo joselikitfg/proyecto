@@ -142,3 +142,5 @@ uploader/__pycache__/
 **/.pytest_cache
 **/.tox
 **/htmlcov
+
+**/.aws-sam

@@ -27,8 +27,8 @@ Resources:
       TableName: ScrappedProductsTable
       BillingMode: PROVISIONED
       ProvisionedThroughput:
-        ReadCapacityUnits: 2
-        WriteCapacityUnits: 2
+        ReadCapacityUnits: 25
+        WriteCapacityUnits: 25
       AttributeDefinitions:
       - AttributeName: origin
         AttributeType: S

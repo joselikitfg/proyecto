@@ -1,0 +1,327 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'python3.12 Sample SAM Template for python_scrappers
+
+  '
+Globals:
+  Function:
+    Timeout: 900
+    Architectures: x86_64
+    MemorySize: 512
+    EphemeralStorage:
+      Size: 512
+    Environment:
+      Variables:
+        ENVIRONMENT: dev
+    Tags:
+      project: descuentapp
+      environment: develop
+Resources:
+  ProductPricesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ScrappedProductsTable
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 15
+        WriteCapacityUnits: 15
+      AttributeDefinitions:
+      - AttributeName: origin
+        AttributeType: S
+      - AttributeName: timestamp
+        AttributeType: N
+      - AttributeName: pname
+        AttributeType: S
+      KeySchema:
+      - AttributeName: origin
+        KeyType: HASH
+      - AttributeName: timestamp
+        KeyType: RANGE
+      GlobalSecondaryIndexes:
+      - IndexName: NameIndex
+        KeySchema:
+        - AttributeName: pname
+          KeyType: HASH
+        Projection:
+          ProjectionType: INCLUDE
+          NonKeyAttributes:
+          - price_per_unit
+          - total_price
+          - image_url
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+  ReadCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Alarm if read capacity exceeds threshold
+      Namespace: AWS/DynamoDB
+      MetricName: ConsumedReadCapacityUnits
+      Dimensions:
+      - Name: TableName
+        Value:
+          Ref: ProductPricesTable
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 15
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+  WriteCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Alarm if write capacity exceeds threshold
+      Namespace: AWS/DynamoDB
+      MetricName: ConsumedWriteCapacityUnits
+      Dimensions:
+      - Name: TableName
+        Value:
+          Ref: ProductPricesTable
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 15
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+  ReadCapacityIndexAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Alarm if read capacity exceeds threshold for GSI
+      Namespace: AWS/DynamoDB
+      MetricName: ConsumedReadCapacityUnits
+      Dimensions:
+      - Name: TableName
+        Value:
+          Ref: ProductPricesTable
+      - Name: GlobalSecondaryIndexName
+        Value: NameIndex
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+  WriteCapacityIndexAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Alarm if write capacity exceeds threshold for GSI
+      Namespace: AWS/DynamoDB
+      MetricName: ConsumedWriteCapacityUnits
+      Dimensions:
+      - Name: TableName
+        Value:
+          Ref: ProductPricesTable
+      - Name: GlobalSecondaryIndexName
+        Value: NameIndex
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+  MySQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: MiColaSQS
+      VisibilityTimeout: 900
+  TermsParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /smart-track-app/scrappers/global/terms
+      Type: StringList
+      Value: agua,leche,pan
+  LambdaInvokeEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: GenerateMessageInSQSScrapperTerms
+      ScheduleExpression: cron(0 9,17 * * ? *)
+      State: ENABLED
+      Targets:
+      - Arn:
+          Fn::GetAtt:
+          - AutomaticScrapperDispatcherFromEventbridge
+          - Arn
+        Id: AutomaticScrapperDispatcherFromEventbridgeTarget
+    DependsOn: AutomaticScrapperDispatcherFromEventbridge
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Ref: AutomaticScrapperDispatcherFromEventbridge
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn:
+        Fn::GetAtt:
+        - LambdaInvokeEventRule
+        - Arn
+  AutomaticScrapperDispatcherFromEventbridge:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: automatic-scrapper-sqs
+      Handler: index.handler
+      Runtime: python3.12
+      Role:
+        Fn::GetAtt:
+        - AutomaticLambdaDispatcherRole
+        - Arn
+      Environment:
+        Variables:
+          QUEUE_URL:
+            Ref: MySQSQueue
+          TERMS_PARAMETER: /smart-track-app/scrappers/global/terms
+      Code:
+        ZipFile: "import boto3\nimport json\nimport os\n\ndef handler(event, context):\n\
+          \    ssm = boto3.client('ssm')\n    sqs = boto3.client('sqs')\n\n    parameter_name\
+          \ = os.getenv('TERMS_PARAMETER')\n    queue_url = os.getenv('QUEUE_URL')\n\
+          \n    response = ssm.get_parameter(\n        Name=parameter_name\n    )\n\
+          \    \n    terms = response['Parameter']['Value'].split(',')\n    print(terms)\n\
+          \    for term in terms:\n      message = {\n          \"scrapper\": \"alcampo\"\
+          ,\n          \"terms\": [term]\n      }\n      print(\"Generating message\
+          \ to sqs...\")\n      print(message)\n\n      sqs_response = sqs.send_message(\n\
+          \          QueueUrl=queue_url,\n          MessageBody=json.dumps(message)\n\
+          \      )\n      print(sqs_response)\n\n    return {\n        'statusCode':\
+          \ 200,\n        'body': json.dumps('Message sent to SQS!')\n    }\n"
+  AutomaticLambdaDispatcherRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+      Policies:
+      - PolicyName: LambdaSQSAndSSMPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - sqs:SendMessage
+            Resource:
+              Fn::GetAtt:
+              - MySQSQueue
+              - Arn
+          - Effect: Allow
+            Action:
+            - ssm:GetParameter
+            Resource:
+              Fn::Sub: arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/smart-track-app/scrappers/global/terms
+      - PolicyName: AWSLambdaBasicExecutionRole
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: '*'
+  LambdaDispatcher:
+    Type: AWS::Serverless::Function
+    Metadata:
+      DockerContext: /home/jose/Escritorio/proyecto/proyecto/python_scrappers
+      DockerTag: v1
+      Dockerfile: Dockerfile.event_processor
+      SamResourceId: LambdaDispatcher
+    Properties:
+      PackageType: Image
+      Timeout: 900
+      MemorySize: 4096
+      EphemeralStorage:
+        Size: 2048
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AmazonDynamoDBFullAccess
+      - AmazonSQSFullAccess
+      Architectures:
+      - x86_64
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue:
+              Fn::GetAtt:
+              - MySQSQueue
+              - Arn
+            BatchSize: 1
+      ImageUri: lambdadispatcher:v1
+  AlcampoScrappingLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+      - x86_64
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AmazonDynamoDBFullAccess
+      - AmazonSQSFullAccess
+      Events:
+        FlaskAppAPI:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+      ImageUri: alcamposcrappinglambdafunction:v1
+    Metadata:
+      DockerContext: /home/jose/Escritorio/proyecto/proyecto/python_scrappers
+      DockerTag: v1
+      Dockerfile: Dockerfile
+      SamResourceId: AlcampoScrappingLambdaFunction
+  CloudWatchDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: SmartTrackApp-Scrappers-Operational-Dashboard
+      DashboardBody:
+        Fn::Sub: "{\n  \"widgets\": [\n    {\n      \"type\": \"metric\",\n      \"\
+          x\": 0,\n      \"y\": 0,\n      \"width\": 24,\n      \"height\": 6,\n \
+          \     \"properties\": {\n        \"metrics\": [\n          [ \"AWS/SQS\"\
+          , \"NumberOfMessagesReceived\", \"QueueName\", \"MiColaSQS\", { \"region\"\
+          : \"eu-west-1\" } ],\n          [ \".\", \"NumberOfMessagesSent\", \".\"\
+          , \".\", { \"region\": \"eu-west-1\" } ]\n        ],\n        \"sparkline\"\
+          : true,\n        \"view\": \"singleValue\",\n        \"region\": \"eu-west-1\"\
+          ,\n        \"stat\": \"Sum\",\n        \"period\": 1,\n        \"title\"\
+          : \"Messages Received to SQS (MiColaSQS) / Messages sent to Lambda (automatic-scrapper-sqs)\"\
+          \n      }\n    },\n    {\n      \"type\": \"metric\",\n      \"x\": 0,\n\
+          \      \"y\": 6,\n      \"width\": 24,\n      \"height\": 6,\n      \"properties\"\
+          : {\n        \"metrics\": [\n          [ \"AWS/Events\", \"Invocations\"\
+          , \"RuleName\", \"GenerateMessageInSQSScrapperTerms\" ],\n          [ \"\
+          .\", \"FailedInvocations\", \".\", \".\" ]\n        ],\n        \"period\"\
+          : 1,\n        \"stat\": \"Sum\",\n        \"region\": \"${AWS::Region}\"\
+          ,\n        \"title\": \"EventBridge Rule Invocations and Failures\"\n  \
+          \    }\n    },\n    {\n      \"type\": \"metric\",\n      \"x\": 0,\n  \
+          \    \"y\": 12,\n      \"width\": 24,\n      \"height\": 6,\n      \"properties\"\
+          : {\n        \"metrics\": [\n          [ \"AWS/Lambda\", \"Invocations\"\
+          , \"FunctionName\", \"automatic-scrapper-sqs\" ],\n          [ \".\", \"\
+          Errors\", \".\", \".\" ],\n          [ \".\", \"ConcurrentExecutions\",\
+          \ \".\", \".\" ]\n        ],\n        \"period\": 1,\n        \"stat\":\
+          \ \"Sum\",\n        \"region\": \"${AWS::Region}\",\n        \"view\": \"\
+          bar\",\n        \"title\": \"Lambda Invocations automatic-scrapper-sqs\"\
+          ,\n        \"stacked\": false,\n        \"setPeriodToTimeRange\": true\n\
+          \      }\n    },\n    {\n      \"type\": \"metric\",\n      \"x\": 0,\n\
+          \      \"y\": 18,\n      \"width\": 24,\n      \"height\": 6,\n      \"\
+          properties\": {\n        \"metrics\": [\n          [ \"AWS/DynamoDB\", \"\
+          ConsumedReadCapacityUnits\", \"TableName\", \"${ProductPricesTable}\" ],\n\
+          \          [ \".\", \"ConsumedWriteCapacityUnits\", \"TableName\", \"${ProductPricesTable}\"\
+          \ ],\n          [ \".\", \"ConsumedReadCapacityUnits\", \"TableName\", \"\
+          ${ProductPricesTable}\", \"GlobalSecondaryIndexName\", \"NameIndex\" ],\n\
+          \          [ \".\", \"ConsumedWriteCapacityUnits\", \"TableName\", \"${ProductPricesTable}\"\
+          , \"GlobalSecondaryIndexName\", \"NameIndex\" ]\n        ],\n        \"\
+          view\": \"timeSeries\",\n        \"stacked\": false,\n        \"region\"\
+          : \"eu-west-1\",\n        \"stat\": \"Maximum\",\n        \"period\": 1,\n\
+          \        \"title\": \"DynamoDB Read/Write Capacity Time Series\"\n     \
+          \ }\n    }\n  ]\n}\n"
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+  AlcampoScrappingLambdaFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - AlcampoScrappingLambdaFunction
+      - Arn
+  AlcampoScrappingLambdaFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - AlcampoScrappingLambdaFunctionRole
+      - Arn

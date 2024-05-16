@@ -41,7 +41,7 @@ function ItemList({ items = [], deleteItem }) {
               </p>
             </div>
             <div className="mt-auto p-2">
-              <Link to={`/item/${item.timestamp}`} className="btn btn-primary">
+              <Link to={`/item/${item.pname}`} className="btn btn-primary">
                 Ver Detalles
               </Link>
               <button

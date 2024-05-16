@@ -78,7 +78,7 @@ def get_all_items():
 @app.route('/items/<item_id>', methods=['GET'])
 def get_item(item_id):
     try:
-        response = table.get_item(Key={'id': item_id})
+        response = table.get_item(Key={'timestamp': item_id})
         item = response.get('Item', None)
         if item:
             return jsonify(item), 200
@@ -143,7 +143,7 @@ def search():
 @app.route('/items/<item_id>', methods=['DELETE'])
 def delete_item(item_id):
     try:
-        response = table.delete_item(Key={'id': item_id})
+        response = table.delete_item(Key={'timestamp': item_id})
         return jsonify({'message': 'Item borrado correctamente'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500

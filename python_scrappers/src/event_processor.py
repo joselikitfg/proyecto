@@ -34,10 +34,10 @@ def alcampo_handler(scrapper_terms):
         table = dynamodb.Table(table_name)
         item = {
             'origin': 'alcampo',
-            'pname': product["name"],
+            'pname': product["name"].lower(),
             'total_price': product["total_price"],
             'price_per_unit': product["price_per_unit"],
-            'image_url': product["image_url"],
+            'image_url': product["image_url"].lower(),
             'timestamp': timestamp
         }
 

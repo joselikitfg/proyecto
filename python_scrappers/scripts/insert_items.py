@@ -47,11 +47,12 @@ def simulate_insert_lambda(table_name):
     #     if(item['total_price'] != to_insert['total_price']):
     #         should_insert=True
     exists_any = any((item['total_price'] == to_insert['total_price']) for item in items)
-        
+
     if not exists_any:
-        print("Se debe insertar")
+        print('Se debe insertar')
     else:
-        print("No se debe insertar")
+        print('No se debe insertar')
+
 
 if __name__ == '__main__':
     table_name = 'ScrappedProductsTable'

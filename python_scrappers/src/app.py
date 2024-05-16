@@ -14,7 +14,7 @@ import requests
 import awsgi
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-
+import unicodedata
 app = Flask(__name__)
 CORS(app)
 
@@ -32,40 +32,47 @@ uri = os.getenv('MONGO_URI')
 client = MongoClient(uri)
 db = client['webapp']
 
+def normalize_query(input_string):
+    """Normalize and lowercase the input string."""
+    return unicodedata.normalize('NFKD', input_string).encode('ASCII', 'ignore').decode('ASCII').lower()
+
 @app.route('/items', methods=['GET'])
 def get_all_items():
-    page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 12))
     start_key = request.args.get('start_key', None)
 
-    # Primero, obtenemos el total de items
-    response_count = table.scan(
-        Select='COUNT'
-    )
-    total_items = response_count.get('Count', 0)
-    total_pages = (total_items + limit - 1) // limit
+    scan_kwargs = {'Limit': limit}
 
-    scan_kwargs = {
-        'Limit': limit,
-    }
-    
-    if start_key:
-        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+    if start_key and start_key != 'null':
+        try:
+            decoded_key = json.loads(start_key)
+            app.logger.debug(f"Decoded start_key: {decoded_key}")
+            if isinstance(decoded_key, dict):
+                decoded_key['timestamp'] = int(decoded_key['timestamp'])
+                scan_kwargs['ExclusiveStartKey'] = decoded_key
+            else:
+                raise ValueError("start_key must be a dictionary.")
+        except (json.JSONDecodeError, ValueError) as e:
+            app.logger.error(f"Invalid start_key: {start_key}, error: {str(e)}")
+            return jsonify({'error': 'Invalid start_key parameter'}), 400
 
     try:
         response = table.scan(**scan_kwargs)
         items = response.get('Items', [])
         last_evaluated_key = response.get('LastEvaluatedKey', None)
 
-        result = {
+        response_count = table.scan(Select='COUNT')
+        total_items = response_count.get('Count', 0)
+        total_pages = (total_items + limit - 1) // limit
+
+        return jsonify({
             'items': items,
             'lastEvaluatedKey': last_evaluated_key,
             'totalPages': total_pages,
-        }
-
-        return jsonify(result), 200
+        }), 200
     except Exception as e:
         app.logger.error(f"Error retrieving items: {str(e)}")
+        app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/items/<item_id>', methods=['GET'])
@@ -83,31 +90,54 @@ def get_item(item_id):
 @app.route('/search', methods=['GET'])
 @cross_origin(origin='localhost')
 def search():
-    query = request.args.get('q', '')
+    raw_query = request.args.get('q', '')
+    query = normalize_query(raw_query)
     limit = int(request.args.get('limit', 12))
     start_key = request.args.get('start_key', None)
 
+    app.logger.debug(f"Searching for: '{query}' with limit {limit} and start_key {start_key}")
+
+    filter_expression = Attr('pname').contains(query)
     scan_kwargs = {
-        'FilterExpression': Attr('name').contains(query),
+        'FilterExpression': filter_expression,
         'Limit': limit,
     }
 
-    if start_key:
-        scan_kwargs['ExclusiveStartKey'] = json.loads(start_key)
+    if start_key and start_key != 'null':
+        try:
+            decoded_key = json.loads(start_key)
+            app.logger.debug(f"Decoded start_key: {decoded_key}")
+            if isinstance(decoded_key, dict):
+                decoded_key['timestamp'] = int(decoded_key['timestamp'])
+                scan_kwargs['ExclusiveStartKey'] = decoded_key
+            else:
+                raise ValueError("start_key must be a dictionary.")
+        except (json.JSONDecodeError, ValueError) as e:
+            app.logger.error(f"Invalid start_key: {start_key}, error: {str(e)}")
+            return jsonify({'error': 'Invalid start_key parameter'}), 400
 
     try:
         response = table.scan(**scan_kwargs)
+        app.logger.debug(f"DynamoDB response: {response}")
+
         items = response.get('Items', [])
         last_evaluated_key = response.get('LastEvaluatedKey', None)
 
-        result = {
+        response_count = table.scan(
+            FilterExpression=filter_expression,
+            Select='COUNT'
+        )
+        total_items = response_count.get('Count', 0)
+        total_pages = (total_items + limit - 1) // limit
+
+        return jsonify({
             'items': items,
             'lastEvaluatedKey': last_evaluated_key,
-        }
-
-        return jsonify(result), 200
+            'totalPages': total_pages,
+        }), 200
     except Exception as e:
         app.logger.error(f"Error retrieving items: {str(e)}")
+        app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/items/<item_id>', methods=['DELETE'])

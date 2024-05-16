@@ -25,7 +25,6 @@ import "@aws-amplify/ui-react/styles.css";
 import ChildComponent from "./ChildComponent";
 Amplify.configure(awsExports);
 
-
 const App = () => {
   const {
     items,
@@ -44,14 +43,20 @@ const App = () => {
     setPage,
     totalPages,
     fetchItems,
+    lastEvaluatedKey,
   } = useItems();
 
   useEffect(() => {
-    fetchItems();
-  }, [page]);
+    fetchItems(lastEvaluatedKey);
+  }, [ page]);
 
   const handlePageChange = (newPage) => {
-    setPage(newPage);
+    if (newPage === 'prev' && page > 1) {
+      setPage(page - 1);
+    } else if (newPage === 'next' && page < totalPages) {
+      setPage(page + 1);
+    }
+
   };
 
   const components = {
@@ -66,7 +71,7 @@ const App = () => {
           <Image
             alt="SmartTrackApp"
             src="https://i.postimg.cc/BnyPBXs8/2-YURCjl-Imgur.png"
-            style={{width:"100%", height: "100%" }}
+            style={{ width: "100%", height: "100%" }}
           />
         </View>
       );
@@ -106,12 +111,10 @@ const App = () => {
     },
   };
 
-  console.log("Pagination props in App:", { page, totalPages });
-  
   return (
     <Router>
       <Authenticator signUpAttributes={["email"]} components={components}>
-        <ChildComponent fetchItems={fetchItems} />
+        <ChildComponent />
         <Navbar onSearch={searchItems} />
         <div className="container mt-4">
           <Routes>
@@ -121,7 +124,7 @@ const App = () => {
                 <>
                   <ItemList items={items} deleteItem={deleteItem} />
                   <Pagination
-                    page={page}
+                    currentPage={page}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                   />

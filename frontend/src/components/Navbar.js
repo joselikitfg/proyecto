@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 function Navbar({ onSearch }) {
   const navigate = useNavigate();
-  
+  const [searchTerm, setSearchTerm] = useState("");
   const { user, signOut } = useAuthenticator();
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +12,10 @@ function Navbar({ onSearch }) {
     onSearch(searchTerm); 
     navigate('/'); 
   };
-
+  const handleSearch = (event) => {
+    event.preventDefault();
+    onSearch(searchTerm);
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -30,8 +33,8 @@ function Navbar({ onSearch }) {
             <a className="nav-link active" aria-current="page" href="/"> Sesión iniciada con  {user.username} </a>
           </div>
             
-          <form className="d-flex" onSubmit={handleSearchSubmit}>
-            <input className="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="search" />
+          <form className="d-flex" onSubmit={handleSearch}>
+            <input className="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="search" onChange={(e) => setSearchTerm(e.target.value)}/>
             <button className="btn btn-outline-success" type="submit">Buscar</button>
           </form>
             <button onClick={signOut}className="btn btn-outline-success" >Sign out</button>

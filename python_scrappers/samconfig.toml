@@ -19,7 +19,7 @@ capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
 resolve_image_repos = true
-s3_prefix = "seleniumpython-joseliki"
+s3_prefix = "seleniumpython-test-nuevo"
 region = "eu-west-1"
 
 [default.package.parameters]

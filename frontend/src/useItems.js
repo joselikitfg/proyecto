@@ -15,10 +15,11 @@ const useItems = () => {
   const [error, setError] = useState(null);
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
 
-  const fetchItems = useCallback(async (currentPage = 1) => {
+  const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
-      const startKey = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
-      const url = `${BASE_URL}?limit=12&page=${currentPage}${startKey}`;
+      const startKey = lastEvaluatedKey && !searchTerm ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
+      const searchParam = searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : '';
+      const url = `${BASE_URL}?limit=12&page=${currentPage}${startKey}${searchParam}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`An error occurred: ${response.statusText}`);
@@ -29,10 +30,12 @@ const useItems = () => {
       setLastEvaluatedKey(data.lastEvaluatedKey || null);
 
       const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-      storedData[`items-page-${currentPage}`] = data.items;
-      storedData[`lastEvaluatedKey-page-${currentPage}`] = data.lastEvaluatedKey;
-      storedData.totalPages = data.totalPages || 0;
-      localStorage.setItem('paginationData', JSON.stringify(storedData));
+      if (!searchTerm) {
+        storedData[`items-page-${currentPage}`] = data.items;
+        storedData[`lastEvaluatedKey-page-${currentPage}`] = data.lastEvaluatedKey;
+        storedData.totalPages = data.totalPages || 0;
+        localStorage.setItem('paginationData', JSON.stringify(storedData));
+      }
 
       setError(null);
     } catch (err) {
@@ -66,7 +69,7 @@ const useItems = () => {
   const deleteItem = useCallback(async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
-      fetchItems(); 
+      fetchItems(); // Llamar a fetchItems sin startKey para reiniciar la lista
       setError(null);
     } catch (err) {
       console.error("Error deleting item:", err);
@@ -78,7 +81,7 @@ const useItems = () => {
     setSearchTerm(term);
     setPage(1);
     setLastEvaluatedKey(null);
-    fetchItems();
+    fetchItems(1, term); // Llamar a fetchItems con el término de búsqueda
   }, [fetchItems]);
 
   return {
@@ -102,6 +105,7 @@ const useItems = () => {
     fetchItems,
     lastEvaluatedKey,
     setLastEvaluatedKey,
+    searchTerm,
     error
   };
 };

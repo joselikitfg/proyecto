@@ -48,6 +48,7 @@ const App = () => {
     fetchItems,
     lastEvaluatedKey,
     setLastEvaluatedKey,
+    searchTerm,
   } = useItems();
 
   // Función para leer los parámetros de la URL
@@ -58,18 +59,13 @@ const App = () => {
 
   useEffect(() => {
     const currentPage = getPageFromUrl();
-    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-    const storedItems = storedData[`items-page-${currentPage}`];
-    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${currentPage}`];
-
-    if (storedItems && storedLastEvaluatedKey !== undefined) {
-      setItems(storedItems);
-      setTotalPages(storedData.totalPages);
-      setLastEvaluatedKey(storedLastEvaluatedKey);
-    } else {
+    if (!searchTerm) {
+      localStorage.removeItem('paginationData'); // Limpiar localStorage al cargar la página principal
       fetchItems(currentPage);
+    } else {
+      fetchItems(currentPage, searchTerm);
     }
-  }, []); // Este useEffect se ejecuta solo una vez al montar el componente
+  }, [searchTerm]); // Este useEffect se ejecuta al montar el componente y cuando cambia searchTerm
 
   const handlePageChange = (newPage) => {
     let newPageNum = page;
@@ -85,16 +81,20 @@ const App = () => {
     window.history.pushState({ path: newUrl }, '', newUrl);
     setPage(newPageNum);
 
-    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-    const storedItems = storedData[`items-page-${newPageNum}`];
-    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${newPageNum}`];
+    if (!searchTerm) {
+      const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
+      const storedItems = storedData[`items-page-${newPageNum}`];
+      const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${newPageNum}`];
 
-    if (storedItems && storedLastEvaluatedKey !== undefined) {
-      setItems(storedItems);
-      setTotalPages(storedData.totalPages);
-      setLastEvaluatedKey(storedLastEvaluatedKey);
+      if (storedItems && storedLastEvaluatedKey !== undefined) {
+        setItems(storedItems);
+        setTotalPages(storedData.totalPages);
+        setLastEvaluatedKey(storedLastEvaluatedKey);
+      } else {
+        fetchItems(newPageNum);
+      }
     } else {
-      fetchItems(newPageNum);
+      fetchItems(newPageNum, searchTerm);
     }
   };
 

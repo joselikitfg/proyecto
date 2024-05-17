@@ -24,6 +24,10 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import ChildComponent from "./ChildComponent";
 
+import { UserProvider } from './contexts/UserContext';
+import { CartProvider } from './contexts/CartContext';
+import TestComponent from "./components/TestComponent";
+
 Amplify.configure(awsExports);
 
 const App = () => {
@@ -151,8 +155,11 @@ const App = () => {
   };
 
   return (
+    
     <Router>
       <Authenticator signUpAttributes={["email"]} components={components}>
+        <UserProvider>
+        <CartProvider>
         <ChildComponent />
         <Navbar onSearch={searchItems} />
         <div className="container mt-4">
@@ -161,6 +168,7 @@ const App = () => {
               path="/"
               element={
                 <>
+                  <TestComponent></TestComponent>
                   <ItemList items={items} deleteItem={deleteItem} />
                   <Pagination onPageChange={handlePageChange} />
                   <ItemForm
@@ -183,8 +191,11 @@ const App = () => {
             <Route path="/item/:id" element={<ItemDetail />} />
           </Routes>
         </div>
+        </CartProvider>
+      </UserProvider>
       </Authenticator>
     </Router>
+    
   );
 };
 

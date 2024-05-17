@@ -1,0 +1,5 @@
+.test-component {
+    background-color: #ffffe0; /* Light yellow background */
+    border: 2px solid red;     /* Red border */
+    padding: 20px;             /* Optional: some padding for better spacing */
+}

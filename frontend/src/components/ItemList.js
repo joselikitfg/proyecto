@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { getUserRoles } from "../utils/auth";
+
 function formatDate(timestamp) {
   const date = new Date(parseInt(timestamp));
   return date.toLocaleDateString("es-ES");
@@ -15,6 +17,9 @@ function ItemList({ items = [], deleteItem }) {
 
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
+      <button onClick={getUserRoles}>
+        Click me
+      </button>
       {items.map((item, index) => (
         <div
           key={item._id ? item._id.$oid : index}

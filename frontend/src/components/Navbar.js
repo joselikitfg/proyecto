@@ -1,21 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticator } from "@aws-amplify/ui-react";
+
+import { useUser } from '../contexts/UserContext';
+import { useCart } from '../contexts/CartContext';
 
 function Navbar({ onSearch }) {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const { user, signOut } = useAuthenticator();
+  const [cognitoGroups, setCognitoGroups] = useState([]);
+  const { state: userState, dispatch: userDispatch } = useUser();
+  const { state: cartState, dispatch: cartDispatch } = useCart();
+  
+
+  const myCustomSignOutHandler = async () => {
+    try {
+      localStorage.clear(); // Clear all items in localStorage
+      // userDispatch({ type: 'SIGN_OUT' });
+      cartDispatch({ type: 'CLEAR_ALL_ITEMS' });
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
+
+  // useEffect(() => {
+  //   const fetchUserGroups = async () => {
+  //     try {
+  //       setCognitoGroups(groups || []);
+  //     } catch (error) {
+  //       console.error('Error fetching user groups:', error);
+  //     }
+  //   };
+
+  //   fetchUserGroups();
+  // }, []);
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.search.value.trim();
-    onSearch(searchTerm); 
-    navigate('/'); 
+    onSearch(searchTerm);
+    navigate('/');
   };
+
   const handleSearch = (event) => {
     event.preventDefault();
     onSearch(searchTerm);
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -29,15 +63,14 @@ function Navbar({ onSearch }) {
               <a className="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
           </ul>
-          <div className="nav"> 
-            <a className="nav-link active" aria-current="page" href="/"> Sesión iniciada con  {user.username} </a>
+          <div className="nav">
+            <a className="nav-link active" aria-current="page" href="/">Sesión iniciada con {user.username}</a>
           </div>
-            
           <form className="d-flex" onSubmit={handleSearch}>
-            <input className="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="search" onChange={(e) => setSearchTerm(e.target.value)}/>
+            <input className="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="search" onChange={(e) => setSearchTerm(e.target.value)} />
             <button className="btn btn-outline-success" type="submit">Buscar</button>
           </form>
-            <button onClick={signOut}className="btn btn-outline-success" >Sign out</button>
+          <button onClick={myCustomSignOutHandler} className="btn btn-outline-success">Sign out</button>
         </div>
       </div>
     </nav>

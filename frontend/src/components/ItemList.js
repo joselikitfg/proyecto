@@ -11,8 +11,7 @@ function formatPrice(price) {
 }
 
 function ItemList({ items = [], deleteItem }) {
-  console.log("Rendering items", items);
-  console.log("ItemList --------------------------------");
+
 
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">

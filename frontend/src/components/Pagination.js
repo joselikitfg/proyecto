@@ -1,13 +1,6 @@
 import React from 'react';
 
 const Pagination = ({ onPageChange }) => {
-  const handlePageChange = (newPage) => {
-    if (newPage === 'prev') {
-      onPageChange(currentPage - 1);
-    } else if (newPage === 'next') {
-      onPageChange(currentPage + 1);
-    }
-  };
   return (
     <nav>
       <ul className="pagination">

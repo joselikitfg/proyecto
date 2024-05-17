@@ -121,7 +121,6 @@ def delete_item(item_id):
         return jsonify({'error': str(e)}), 500
 
 @app.route('/search', methods=['GET'])
-@cross_origin(origin='localhost')
 def search():
     raw_query = request.args.get('q', '')
     query = normalize_query(raw_query)
@@ -151,10 +150,10 @@ def search():
 
     try:
         response = table.scan(**scan_kwargs)
-        app.logger.debug(f"DynamoDB response: {response}")
-
         items = response.get('Items', [])
         last_evaluated_key = response.get('LastEvaluatedKey', None)
+
+        filtered_items = [item for item in items if query.lower() in item['pname'].lower()]
 
         response_count = table.scan(
             FilterExpression=filter_expression,
@@ -164,7 +163,7 @@ def search():
         total_pages = (total_items + limit - 1) // limit
 
         return jsonify({
-            'items': items,
+            'items': filtered_items,
             'lastEvaluatedKey': last_evaluated_key,
             'totalPages': total_pages,
         }), 200

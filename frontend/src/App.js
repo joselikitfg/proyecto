@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
@@ -29,6 +29,7 @@ Amplify.configure(awsExports);
 const App = () => {
   const {
     items,
+    setItems,
     newItemName,
     setNewItemName,
     newItemPricePerUnit,
@@ -43,21 +44,58 @@ const App = () => {
     page,
     setPage,
     totalPages,
+    setTotalPages,
     fetchItems,
     lastEvaluatedKey,
+    setLastEvaluatedKey,
   } = useItems();
 
+  // Función para leer los parámetros de la URL
+  const getPageFromUrl = () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    return parseInt(queryParams.get('page')) || 1;
+  };
+
   useEffect(() => {
-    fetchItems(lastEvaluatedKey);
-  }, [ page]);
+    const currentPage = getPageFromUrl();
+    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
+    const storedItems = storedData[`items-page-${currentPage}`];
+    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${currentPage}`];
+
+    if (storedItems && storedLastEvaluatedKey !== undefined) {
+      setItems(storedItems);
+      setTotalPages(storedData.totalPages);
+      setLastEvaluatedKey(storedLastEvaluatedKey);
+    } else {
+      fetchItems(currentPage);
+    }
+  }, []); // Este useEffect se ejecuta solo una vez al montar el componente
 
   const handlePageChange = (newPage) => {
+    let newPageNum = page;
     if (newPage === 'prev' && page > 1) {
-      setPage(page - 1);
+      newPageNum = page - 1;
     } else if (newPage === 'next' && page < totalPages) {
-      setPage(page + 1);
+      newPageNum = page + 1;
+    } else if (typeof newPage === 'number') {
+      newPageNum = newPage;
     }
 
+    const newUrl = `/?page=${newPageNum}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+    setPage(newPageNum);
+
+    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
+    const storedItems = storedData[`items-page-${newPageNum}`];
+    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${newPageNum}`];
+
+    if (storedItems && storedLastEvaluatedKey !== undefined) {
+      setItems(storedItems);
+      setTotalPages(storedData.totalPages);
+      setLastEvaluatedKey(storedLastEvaluatedKey);
+    } else {
+      fetchItems(newPageNum);
+    }
   };
 
   const components = {
@@ -124,11 +162,7 @@ const App = () => {
               element={
                 <>
                   <ItemList items={items} deleteItem={deleteItem} />
-                  <Pagination
-                    currentPage={page}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                  />
+                  <Pagination onPageChange={handlePageChange} />
                   <ItemForm
                     newItemName={newItemName}
                     setNewItemName={setNewItemName}

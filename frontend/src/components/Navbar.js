@@ -16,27 +16,13 @@ function Navbar({ onSearch }) {
 
   const myCustomSignOutHandler = async () => {
     try {
-      localStorage.clear(); // Clear all items in localStorage
-      // userDispatch({ type: 'SIGN_OUT' });
+      userDispatch({ type: 'SIGN_OUT' });
       cartDispatch({ type: 'CLEAR_ALL_ITEMS' });
       await signOut();
     } catch (error) {
       console.error('Error signing out:', error);
     }
   };
-
-
-  // useEffect(() => {
-  //   const fetchUserGroups = async () => {
-  //     try {
-  //       setCognitoGroups(groups || []);
-  //     } catch (error) {
-  //       console.error('Error fetching user groups:', error);
-  //     }
-  //   };
-
-  //   fetchUserGroups();
-  // }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();

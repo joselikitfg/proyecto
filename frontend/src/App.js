@@ -22,7 +22,7 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import ChildComponent from "./ChildComponent";
+// import ChildComponent from "./ChildComponent";
 
 import { UserProvider } from './contexts/UserContext';
 import { CartProvider } from './contexts/CartContext';
@@ -155,12 +155,11 @@ const App = () => {
   };
 
   return (
-    
     <Router>
       <Authenticator signUpAttributes={["email"]} components={components}>
         <UserProvider>
         <CartProvider>
-        <ChildComponent />
+        {/* <ChildComponent /> */}
         <Navbar onSearch={searchItems} />
         <div className="container mt-4">
           <Routes>

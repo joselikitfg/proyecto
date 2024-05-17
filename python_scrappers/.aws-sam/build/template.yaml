@@ -32,6 +32,8 @@ Resources:
         AttributeType: N
       - AttributeName: pname
         AttributeType: S
+      - AttributeName: pid
+        AttributeType: S
       KeySchema:
       - AttributeName: origin
         KeyType: HASH
@@ -49,8 +51,21 @@ Resources:
           - total_price
           - image_url
         ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
+      - IndexName: PidIndex
+        KeySchema:
+        - AttributeName: pid
+          KeyType: HASH
+        Projection:
+          ProjectionType: INCLUDE
+          NonKeyAttributes:
+          - price_per_unit
+          - total_price
+          - image_url
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
   ReadCapacityAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:

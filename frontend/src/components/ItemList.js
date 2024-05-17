@@ -13,6 +13,7 @@ function formatPrice(price) {
 function ItemList({ items = [], deleteItem }) {
   console.log("Rendering items", items);
   console.log("ItemList --------------------------------");
+
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
       {items.map((item, index) => (
@@ -41,11 +42,14 @@ function ItemList({ items = [], deleteItem }) {
               </p>
             </div>
             <div className="mt-auto p-2">
-              <Link to={`/item/${item.pname}`} className="btn btn-primary">
+              <Link
+                to={`/item/${(item.pid)}`}
+                className="btn btn-primary"
+              >
                 Ver Detalles
               </Link>
               <button
-                onClick={() => deleteItem(item._id.$oid)}
+                onClick={() => deleteItem((item.pid))}
                 className="btn btn-danger ms-2"
               >
                 Borrar Ítem

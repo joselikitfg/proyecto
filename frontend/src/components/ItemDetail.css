@@ -1,0 +1,26 @@
+/* ItemDetail.css */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img.item-image {
+    border-radius: 10px;
+    max-height: 300px;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  .card p {
+    font-size: 1.1em;
+  }
+  
+  .card .btn {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+  
+  .card h2 {
+    color: #007bff;
+  }
+  

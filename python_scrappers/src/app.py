@@ -15,6 +15,7 @@ import awsgi
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import unicodedata
+import urllib.parse
 app = Flask(__name__)
 CORS(app)
 
@@ -75,15 +76,47 @@ def get_all_items():
         app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/items/<item_id>', methods=['GET'])
-def get_item(item_id):
+@app.route('/item/<string:pid>', methods=['GET'])
+def get_item_by_pid(pid):
     try:
-        response = table.get_item(Key={'pname': item_id})
-        item = response.get('Item', None)
-        if item:
-            return jsonify(item), 200
+        response = table.query(
+            IndexName='PidIndex',
+            KeyConditionExpression='pid = :pid',
+            ExpressionAttributeValues={
+                ':pid': pid
+            },
+            ProjectionExpression='#ts, origin',  
+            ExpressionAttributeNames={
+                '#ts': 'timestamp'
+            }
+        )
+        if 'Items' in response and response['Items']:
+            item_key = {
+                'origin': response['Items'][0]['origin'],
+                'timestamp': response['Items'][0]['timestamp']
+            }
+
+            full_item_response = table.get_item(
+                Key=item_key
+            )
+            if 'Item' in full_item_response:
+                item = full_item_response['Item']
+                return jsonify(item), 200
+            else:
+                return jsonify({'error': 'Item no encontrado'}), 404
         else:
             return jsonify({'error': 'Item no encontrado'}), 404
+    
+    except Exception as e:
+        app.logger.error(f"Error al buscar el item: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/items/<item_id>', methods=['DELETE']) 
+def delete_item(item_id):
+    try:
+        decoded_item_id = urllib.parse.unquote(item_id)
+        response = table.delete_item(Key={'pname': item_id})
+        return jsonify({'message': 'Item borrado correctamente'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -140,13 +173,7 @@ def search():
         app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/items/<item_id>', methods=['DELETE'])
-def delete_item(item_id):
-    try:
-        response = table.delete_item(Key={'pname': item_id})
-        return jsonify({'message': 'Item borrado correctamente'}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+
 
 @app.route('/')
 @cross_origin(origin='localhost')

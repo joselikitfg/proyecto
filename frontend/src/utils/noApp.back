@@ -1,0 +1,89 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeComponent from './components/HomeComponent';
+import UserComponent from './components/UserComponent';
+import AdminComponent from './components/AdminComponent';
+import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
+import { UserProvider } from './contexts/UserContext';
+import { CartProvider } from './contexts/CartContext';
+import { Authenticator, useTheme, View, Heading, Image, Button } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from 'aws-amplify';
+import { awsExports } from './aws-exports';
+
+Amplify.configure(awsExports);
+
+const App = () => {
+  const components = {
+    Header() {
+      const { tokens } = useTheme();
+      return (
+        <View
+          textAlign="center"
+          padding={tokens.space.large}
+          backgroundColor={tokens.colors.background.primary}
+        >
+          <Image
+            alt="SmartTrackApp"
+            src="https://i.postimg.cc/BnyPBXs8/2-YURCjl-Imgur.png"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </View>
+      );
+    },
+    SignIn: {
+      Header() {
+        const { tokens } = useTheme();
+        return (
+          <Heading
+            padding={`${tokens.space.xl} 0`}
+            level={3}
+            color={tokens.colors.font.primary}
+            style={{ backgroundColor: tokens.colors.background.secondary }}
+            textAlign="center"
+          >
+            Sign in to your account
+          </Heading>
+        );
+      },
+      Footer() {
+        const { toForgotPassword } = useAuthenticator();
+        const { tokens } = useTheme();
+        return (
+          <View textAlign="center" padding={tokens.space.large}>
+            <Button
+              fontWeight="normal"
+              onClick={toForgotPassword}
+              size="small"
+              variation="link"
+            >
+              Forgot Password?
+            </Button>
+          </View>
+        );
+      },
+    },
+  };
+
+  return (
+    <Router>
+      <Authenticator signUpAttributes={['email']} components={components}>
+        <UserProvider>
+          <CartProvider>
+            <Navbar />
+            <div className="container mt-4">
+              <Routes>
+                <Route path="/" element={<HomeComponent />} />
+                <ProtectedRoute path="/user" element={<UserComponent />} allowedRoles={['User', 'Admin']} />
+                <ProtectedRoute path="/admin" element={<AdminComponent />} allowedRoles={['Admin']} />
+              </Routes>
+            </div>
+          </CartProvider>
+        </UserProvider>
+      </Authenticator>
+    </Router>
+  );
+};
+
+export default App;

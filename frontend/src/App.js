@@ -12,6 +12,13 @@ import ScrapingFormH from "./components/ScrapingFormH";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Amplify } from "aws-amplify";
 import { awsExports } from "./aws-exports";
+
+import GuestComponent from './components/GuestComponent';
+import UserComponent from './components/UserComponent';
+import AdminComponent from './components/AdminComponent';
+import ProtectedRoute from './components/ProtectedRoute';
+
+
 import {
   Authenticator,
   useAuthenticator,
@@ -22,11 +29,14 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-// import ChildComponent from "./ChildComponent";
+
+import ChildComponent from "./ChildComponent";
 
 import { UserProvider } from './contexts/UserContext';
 import { CartProvider } from './contexts/CartContext';
 import TestComponent from "./components/TestComponent";
+
+
 
 Amplify.configure(awsExports);
 
@@ -156,42 +166,38 @@ const App = () => {
 
   return (
     <Router>
-      <Authenticator signUpAttributes={["email"]} components={components}>
+      <Authenticator signUpAttributes={['email']} components={components}>
         <UserProvider>
-        <CartProvider>
-        {/* <ChildComponent /> */}
-        <Navbar onSearch={searchItems} />
-        <div className="container mt-4">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <TestComponent></TestComponent>
-                  <ItemList items={items} deleteItem={deleteItem} />
-                  <Pagination onPageChange={handlePageChange} />
-                  <ItemForm
-                    newItemName={newItemName}
-                    setNewItemName={setNewItemName}
-                    newItemPricePerUnit={newItemPricePerUnit}
-                    setNewItemPricePerUnit={setNewItemPricePerUnit}
-                    newItemTotalPrice={newItemTotalPrice}
-                    setNewItemTotalPrice={setNewItemTotalPrice}
-                    newItemImageUrl={newItemImageUrl}
-                    setNewItemImageUrl={setNewItemImageUrl}
-                    handleFormSubmit={handleFormSubmit}
-                  />
-                  <UploadFile />
-                  <ScrapingFormA />
-                  <ScrapingFormH />
-                </>
-              }
-            />
-            <Route path="/item/:id" element={<ItemDetail />} />
-          </Routes>
-        </div>
-        </CartProvider>
-      </UserProvider>
+          <CartProvider>
+            <Navbar />
+            <div className="container mt-4">
+              <Routes>
+                <Route path="/" element={<GuestComponent />} />
+                {/* <Route element={<PrivateRoutes />}>
+                    <Route path="/user" element={<UserComponent/>} />
+                    <Route path="/admin" element={<AdminComponent/>} />
+                </Route> */}
+
+                <Route
+                  path="/user"
+                  element={
+                    <ProtectedRoute allowedRoles={['User']}>
+                      <UserComponent />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={
+                    <ProtectedRoute allowedRoles={['Admin']}>
+                      <AdminComponent />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </div>
+          </CartProvider>
+        </UserProvider>
       </Authenticator>
     </Router>
     

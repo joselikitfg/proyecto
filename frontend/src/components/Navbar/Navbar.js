@@ -5,18 +5,9 @@ import styled from 'styled-components';
 
 import { useUser } from '../../contexts/UserContext';
 import { useCart } from '../../contexts/CartContext';
+import Avatar from './Avatar';
 
-const AvatarContainer = styled.div`
-  position: relative;
-  cursor: pointer;
-  margin-left: 20px;
-`;
 
-const AvatarImage = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-`;
 
 const DropdownMenu = styled.div`
   position: absolute;
@@ -42,51 +33,11 @@ const DropdownMenu = styled.div`
   }
 `;
 
-const UserName = styled.p`
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-`;
 
-const AppVersion = styled.p`
-  margin: 0;
-  padding: 0;
-  color: gray;
-  font-size: 0.8em;
-`;
 
-const MenuItem = styled.a`
-  margin-top: 10px;
-  padding: 5px 10px;
-  color: #007bff;
-  text-decoration: none;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
 
-  &:hover {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-  }
-`;
 
-const Avatar = ({ userName, appVersion, onSignOut, onUserDetails }) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <AvatarContainer onClick={() => setIsOpen(!isOpen)}>
-      <AvatarImage src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Kurt&facialHairType=BeardLight&facialHairColor=Black&clotheType=BlazerSweater&eyeType=Dizzy&eyebrowType=RaisedExcited&mouthType=Default&skinColor=Light" alt="avatar" />
-      {isOpen && (
-        <DropdownMenu>
-          <UserName>{userName}</UserName>
-          <AppVersion>{appVersion}</AppVersion>
-          <MenuItem onClick={onUserDetails}>User Details</MenuItem>
-          <MenuItem onClick={onSignOut}>Sign Out</MenuItem>
-        </DropdownMenu>
-      )}
-    </AvatarContainer>
-  );
-};
 
 function Navbar({ onSearch }) {
   const navigate = useNavigate();

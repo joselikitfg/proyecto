@@ -1,8 +1,8 @@
 import { React, useEffect }from 'react';
-import SearchBar from './SearchBar';
-import ItemList from './ItemList';
+import SearchBar from '../SearchBar';
+import ItemList from '../ItemList';
 
-import useItems from "../useItems";
+import useItems from "../../useItems";
 
 const UserComponent = () => {
 

@@ -14,11 +14,10 @@ import { Amplify } from "aws-amplify";
 import { awsExports } from "./aws-exports";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GuestComponent from './components/GuestComponent';
-import UserComponent from './components/UserComponent';
-import AdminComponent from './components/AdminComponent';
-import ProtectedRoute from './components/ProtectedRoute';
-
+import GuestComponent from './components/RolesComponents/GuestComponent';
+import UserComponent from './components/RolesComponents/UserComponent';
+import AdminComponent from './components/RolesComponents/AdminComponent';
+import ProtectedRoute from './components/RolesComponents/ProtectedRoute';
 
 import {
   Authenticator,
@@ -38,6 +37,7 @@ import { CartProvider } from './contexts/CartContext';
 import TestComponent from "./components/TestComponent";
 import RoleBasedRedirect from "./components/RoleBasedRedirect";
 import Loading from "./components/Loading";
+import UserDetails from "./components/UserDetails";
 
 
 
@@ -199,6 +199,8 @@ const App = () => {
             }
 
             {state.user?.groups.includes('Guest') && <Route path="/" element={<GuestComponent />} /> }
+
+            { state.user && <Route path="/user-details" element={<UserDetails />} /> }
           </Routes>
         </div>
       </>

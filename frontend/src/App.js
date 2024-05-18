@@ -207,7 +207,7 @@ const App = () => {
   
     return (
       <Router>
-        <Authenticator signUpAttributes={['email']}>
+        <Authenticator signUpAttributes={['email']} components={components}>
           <UserProvider>
             <CartProvider>
               <RoleBasedRedirect />

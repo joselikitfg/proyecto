@@ -88,29 +88,6 @@ const Avatar = ({ userName, appVersion, onSignOut, onUserDetails }) => {
   );
 };
 
-const SearchForm = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm);
-  };
-
-  return (
-    <form className="d-flex" onSubmit={handleSearchSubmit}>
-      <input
-        className="form-control me-2"
-        type="search"
-        placeholder="Buscar productos"
-        aria-label="Search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button className="btn btn-outline-success" type="submit">Buscar</button>
-    </form>
-  );
-};
-
 function Navbar({ onSearch }) {
   const navigate = useNavigate();
   const { user, signOut } = useAuthenticator();
@@ -158,7 +135,6 @@ function Navbar({ onSearch }) {
               <a className="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
           </ul>
-          <SearchForm onSearch={handleSearch} />
           <Avatar userName={user.username} appVersion={appVersion} onSignOut={myCustomSignOutHandler} onUserDetails={handleUserDetails} />
         </div>
       </div>

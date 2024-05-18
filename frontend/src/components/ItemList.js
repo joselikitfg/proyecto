@@ -17,9 +17,9 @@ function ItemList({ items = [], deleteItem }) {
 
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
-      <button onClick={getUserRoles}>
+      {/* <button onClick={getUserRoles}>
         Click me
-      </button>
+      </button> */}
       {items.map((item, index) => (
         <div
           key={item._id ? item._id.$oid : index}

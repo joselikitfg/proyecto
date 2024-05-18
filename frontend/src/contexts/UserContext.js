@@ -1,23 +1,25 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import React, { createContext, useReducer, useContext, useEffect, useState } from 'react';
 import { fetchAuthSession, getCurrentUser, signOut as amplifySignOut } from '@aws-amplify/auth';
+import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 
 const userReducer = (state, action) => {
     switch (action.type) {
         case 'SET_USER':
-            return { ...state, user: action.payload };
+            return { ...state, user: action.payload, loading: false };
         case 'CLEAR_USER':
-            return { ...state, user: null };
+            return { ...state, user: null, loading: false };
         case 'SIGN_OUT':
-            return { ...state, user: null };
+            return { ...state, user: null, loading: false };
         default:
             return state;
     }
 };
 
 const UserProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(userReducer, { user: null });
+    const [state, dispatch] = useReducer(userReducer, { user: null, loading: true });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -46,6 +48,7 @@ const UserProvider = ({ children }) => {
             await amplifySignOut();
             localStorage.clear(); // Clear all items in localStorage
             dispatch({ type: 'SIGN_OUT' });
+            navigate('/'); // Redirect to the home page
         } catch (error) {
             console.error('Error signing out:', error);
         }
@@ -59,7 +62,11 @@ const UserProvider = ({ children }) => {
 };
 
 const useUser = () => {
-    return useContext(UserContext);
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error('useUser must be used within a UserProvider');
+    }
+    return context;
 };
 
 export { UserProvider, useUser };

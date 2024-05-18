@@ -33,9 +33,11 @@ import "@aws-amplify/ui-react/styles.css";
 
 import ChildComponent from "./ChildComponent";
 
-import { UserProvider } from './contexts/UserContext';
+import { UserProvider, useUser } from './contexts/UserContext';
 import { CartProvider } from './contexts/CartContext';
 import TestComponent from "./components/TestComponent";
+import RoleBasedRedirect from "./components/RoleBasedRedirect";
+import Loading from "./components/Loading";
 
 
 
@@ -164,40 +166,58 @@ const App = () => {
       },
     },
   };
+  const AppContent = () => {
+    const { loading, state } = useUser();
+  
+    if (loading) {
+      return <Loading />;
+    }
+  
+    return (
+      <>
+        <Navbar />
+        <div className="container mt-4">
+          <Routes>
+            {console.debug(state.user)}
+            {state.user?.groups.includes('User') &&
+                <Route
+              path="/user"
+              element={
+                <ProtectedRoute allowedRoles={['User']}>
+                  <UserComponent />
+                </ProtectedRoute>
+              }
+            />}
+            {state.user?.groups.includes('Admin') && <Route
+              path="/admin"
+              element={
+                <ProtectedRoute allowedRoles={['Admin']}>
+                  <AdminComponent />
+                </ProtectedRoute>
+              }
+            />
+            }
 
-  return (
-    <Router>
-      <Authenticator signUpAttributes={['email']} components={components}>
-        <UserProvider>
-          <CartProvider>
-            <Navbar />
-            <div className="container mt-4">
-              <Routes>
-                <Route path="/" element={<GuestComponent />} />
-                <Route
-                  path="/user"
-                  element={
-                    <ProtectedRoute allowedRoles={['User']}>
-                      <UserComponent />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute allowedRoles={['Admin']}>
-                      <AdminComponent />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </div>
-          </CartProvider>
-        </UserProvider>
-      </Authenticator>
-    </Router>
-    
-  );
-};
+            {state.user?.groups.includes('Guest') && <Route path="/" element={<GuestComponent />} /> }
+          </Routes>
+        </div>
+      </>
+    );
+  };
+  
+    return (
+      <Router>
+        <Authenticator signUpAttributes={['email']}>
+          <UserProvider>
+            <CartProvider>
+              <RoleBasedRedirect />
+              <AppContent />
+            </CartProvider>
+          </UserProvider>
+        </Authenticator>
+      </Router>
+    )
+}
 
 export default App;
+  

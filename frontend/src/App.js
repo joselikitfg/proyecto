@@ -188,6 +188,15 @@ const App = () => {
                 </ProtectedRoute>
               }
             />}
+            {state.user?.groups.includes('User') &&
+                <Route
+              path="/item/:id"
+              element={
+                <ProtectedRoute allowedRoles={['User']}>
+                  <ItemDetail/>
+                </ProtectedRoute>
+              }
+            />}
             {state.user?.groups.includes('Admin') && <Route
               path="/admin"
               element={
@@ -201,6 +210,7 @@ const App = () => {
             {state.user?.groups.includes('Guest') && <Route path="/" element={<GuestComponent />} /> }
 
             { state.user && <Route path="/user-details" element={<UserDetails />} /> }
+            
           </Routes>
         </div>
       </>

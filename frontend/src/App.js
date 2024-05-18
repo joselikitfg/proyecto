@@ -4,15 +4,16 @@ import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
 import UploadFile from "./components/UploadFile";
-import Navbar from "./components/Navbar";
+
 import Pagination from "./components/Pagination";
 import useItems from "./useItems";
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { Amplify } from "aws-amplify";
 import { awsExports } from "./aws-exports";
-
+import Navbar from "./components/Navbar/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 import GuestComponent from './components/GuestComponent';
 import UserComponent from './components/UserComponent';
 import AdminComponent from './components/AdminComponent';
@@ -173,11 +174,6 @@ const App = () => {
             <div className="container mt-4">
               <Routes>
                 <Route path="/" element={<GuestComponent />} />
-                {/* <Route element={<PrivateRoutes />}>
-                    <Route path="/user" element={<UserComponent/>} />
-                    <Route path="/admin" element={<AdminComponent/>} />
-                </Route> */}
-
                 <Route
                   path="/user"
                   element={

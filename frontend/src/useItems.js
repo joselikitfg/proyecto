@@ -16,7 +16,6 @@ const useItems = () => {
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
 
   const fetchItems = useCallback(async (currentPage = 1) => {
-    console.log("LLAMANDO API")
     try {
       const startKey = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
       const url = `${BASE_URL}?limit=12&page=${currentPage}${startKey}`;

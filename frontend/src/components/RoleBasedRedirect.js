@@ -11,7 +11,7 @@ const RoleBasedRedirect = () => {
     if (state.loading === false && state.user && !hasRedirected) {
       const roles = state.user.groups;
       console.log(state);
-      
+
       if (roles.includes('Admin')) {
         navigate('/admin');
       } else if (roles.includes('User')) {
@@ -24,8 +24,6 @@ const RoleBasedRedirect = () => {
       setHasRedirected(true);
     }
   }, [state, hasRedirected, navigate]);
-
-    console.log("retornamos null");
   return null;
 };
 

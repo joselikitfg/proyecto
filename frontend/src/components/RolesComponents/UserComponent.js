@@ -1,14 +1,13 @@
-import { React, useEffect }from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar';
 import ItemList from '../ItemList';
-
 import useItems from "../../useItems";
 
 const UserComponent = () => {
+  const [loading, setLoading] = useState(true);
 
   const handleSearch = (searchTerm) => {
     console.log('Buscar:', searchTerm);
-    
   };
 
   const {
@@ -20,17 +19,25 @@ const UserComponent = () => {
   } = useItems();
 
   useEffect(() => {
-    fetchItems(lastEvaluatedKey);
-  }, [ page]);
+    const loadItems = async () => {
+      setLoading(true);
+      await fetchItems(lastEvaluatedKey);
+      setTimeout(() => {
+        setLoading(false);
+      }, 450);
+    };
+
+    loadItems();
+  }, [page]);
 
   return (
     <div>
       <h2>User Page</h2>
       <p>Accessible by Users and Admins</p>
 
-      <SearchBar onSearch={handleSearch}/>
+      <SearchBar onSearch={handleSearch} />
 
-      <ItemList items={items} deleteItem={deleteItem} />
+      <ItemList items={items} deleteItem={deleteItem} loading={loading} />
     </div>
   );
 };

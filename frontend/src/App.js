@@ -51,7 +51,6 @@ const App = () => {
     searchTerm,
   } = useItems();
 
-  // Función para leer los parámetros de la URL
   const getPageFromUrl = () => {
     const queryParams = new URLSearchParams(window.location.search);
     return parseInt(queryParams.get('page')) || 1;
@@ -60,12 +59,13 @@ const App = () => {
   useEffect(() => {
     const currentPage = getPageFromUrl();
     if (!searchTerm) {
-      localStorage.removeItem('paginationData'); // Limpiar localStorage al cargar la página principal
+      localStorage.removeItem('paginationData');
       fetchItems(currentPage);
     } else {
+      console.log(searchTerm);
       fetchItems(currentPage, searchTerm);
     }
-  }, [searchTerm]); // Este useEffect se ejecuta al montar el componente y cuando cambia searchTerm
+  }, [searchTerm]);
 
   const handlePageChange = (newPage) => {
     let newPageNum = page;
@@ -180,7 +180,7 @@ const App = () => {
                 </>
               }
             />
-            <Route path="/item/:id" element={<ItemDetail />} />
+            <Route path="/item/:pname" element={<ItemDetail />} />
           </Routes>
         </div>
       </Authenticator>

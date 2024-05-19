@@ -11,8 +11,6 @@ function formatPrice(price) {
 }
 
 function ItemList({ items = [], deleteItem }) {
-
-
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
       {items.map((item, index) => (
@@ -30,7 +28,7 @@ function ItemList({ items = [], deleteItem }) {
               <h5 className="card-title">{item.pname}</h5>
               <p className="card-text">
                 <strong>Precio por unidad:</strong>{" "}
-                {formatPrice(item.price_per_unit)})
+                {formatPrice(item.price_per_unit)}
               </p>
               <p className="card-text">
                 <strong>Precio total:</strong> {item.total_price}
@@ -42,13 +40,13 @@ function ItemList({ items = [], deleteItem }) {
             </div>
             <div className="mt-auto p-2">
               <Link
-                to={`/item/${(item.pid)}`}
+                to={`/item/${(item.pname)}`}
                 className="btn btn-primary"
               >
                 Ver Detalles
               </Link>
               <button
-                onClick={() => deleteItem((item.pid))}
+                onClick={() => deleteItem(encodeURIComponent(item.pname))}
                 className="btn btn-danger ms-2"
               >
                 Borrar Ítem

@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
-const BASE_URL = "https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items";
+const BASE_SEARCH_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/search';
+const BASE_ITEMS_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items';
 
 const useItems = () => {
   const [items, setItems] = useState([]);
@@ -17,9 +18,16 @@ const useItems = () => {
 
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
-      const startKey = lastEvaluatedKey && !searchTerm ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
-      const searchParam = searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : '';
-      const url = `${BASE_URL}?limit=12&page=${currentPage}${startKey}${searchParam}`;
+      const limit = 12;
+      const startKeyParam = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
+      
+      let url;
+      if (searchTerm) {
+        url = `${BASE_SEARCH_URL}/${encodeURIComponent(searchTerm)}`;
+      } else {
+        url = `${BASE_ITEMS_URL}?limit=${limit}&page=${currentPage}${startKeyParam}`;
+      }
+
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`An error occurred: ${response.statusText}`);
@@ -53,7 +61,7 @@ const useItems = () => {
     };
 
     try {
-      await axios.post(BASE_URL, newItem);
+      await axios.post(BASE_ITEMS_URL, newItem);
       fetchItems(); // Llamar a fetchItems sin startKey para reiniciar la lista
       setNewItemName("");
       setNewItemPricePerUnit("");
@@ -66,9 +74,9 @@ const useItems = () => {
     }
   }, [newItemName, newItemPricePerUnit, newItemTotalPrice, newItemImageUrl, fetchItems]);
 
-  const deleteItem = useCallback(async (id) => {
+  const deleteItem = useCallback(async (pname) => {
     try {
-      await axios.delete(`${BASE_URL}/${id}`);
+      await axios.delete(`${BASE_ITEMS_URL}/${encodeURIComponent(pname)}`);
       fetchItems(); // Llamar a fetchItems sin startKey para reiniciar la lista
       setError(null);
     } catch (err) {
@@ -81,7 +89,7 @@ const useItems = () => {
     setSearchTerm(term);
     setPage(1);
     setLastEvaluatedKey(null);
-    fetchItems(1, term); // Llamar a fetchItems con el término de búsqueda
+    fetchItems(1, term); 
   }, [fetchItems]);
 
   return {

@@ -3,13 +3,9 @@ import json
 from flask import Flask, Response, request, jsonify, abort
 from bson import json_util, ObjectId
 from flask_cors import cross_origin
-from pymongo import MongoClient
 import logging
 import re
 from flask_cors import CORS
-from werkzeug.utils import secure_filename
-from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
-from .hipercor.Hipercor_scrapper import scrap_product_by_category
 import requests
 import awsgi
 import boto3
@@ -22,20 +18,13 @@ CORS(app)
 
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
 table = dynamodb.Table('ScrappedProductsTable')
+dynamodb_client = boto3.client('dynamodb')
 
-gunicorn_logger = logging.getLogger('gunicorn.error')
-gunicorn_logger.setLevel(logging.DEBUG)
-app.logger.handlers = gunicorn_logger.handlers
-app.logger.setLevel(gunicorn_logger.level)
+logger = logging.getLogger()
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
-
-uri = os.getenv('MONGO_URI')
-client = MongoClient(uri)
-db = client['webapp']
-
-def normalize_query(input_string):
-    """Normalize and lowercase the input string."""
-    return unicodedata.normalize('NFKD', input_string).encode('ASCII', 'ignore').decode('ASCII').lower()
+def normalize_query(query):
+    return query.strip().lower()
 
 @app.route('/items', methods=['GET'])
 def get_all_items():
@@ -76,29 +65,39 @@ def get_all_items():
         app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/item/<string:pid>', methods=['GET'])
-def get_item_by_pid(pid):
+@app.route('/item/name/<string:pname>', methods=['GET'])
+def get_item_by_pname(pname):
     try:
+        # Decodificar URL
+        pname_decoded = urllib.parse.unquote(pname)
+        # Normalizar
+        pname_normalized = normalize_query(pname_decoded)
+        
+        logger.debug(f"Normalized pname: {pname_normalized}")
+        
         response = table.query(
-            IndexName='PidIndex',
-            KeyConditionExpression='pid = :pid',
-            ExpressionAttributeValues={
-                ':pid': pid
-            },
-            ProjectionExpression='#ts, origin',  
+            IndexName='NameIndex',
+            KeyConditionExpression=Key('pname').eq(pname_normalized),
+            ProjectionExpression='#ts, origin',
             ExpressionAttributeNames={
                 '#ts': 'timestamp'
             }
         )
+        
+        logger.debug(f"Query response: {response}")
+        
         if 'Items' in response and response['Items']:
             item_key = {
                 'origin': response['Items'][0]['origin'],
-                'timestamp': response['Items'][0]['timestamp']
+                'timestamp': int(response['Items'][0]['timestamp'])
             }
 
             full_item_response = table.get_item(
                 Key=item_key
             )
+            
+            logger.debug(f"Full item response: {full_item_response}")
+            
             if 'Item' in full_item_response:
                 item = full_item_response['Item']
                 return jsonify(item), 200
@@ -108,7 +107,7 @@ def get_item_by_pid(pid):
             return jsonify({'error': 'Item no encontrado'}), 404
     
     except Exception as e:
-        app.logger.error(f"Error al buscar el item: {str(e)}")
+        logger.error(f"Error al buscar el item: {str(e)}")
         return jsonify({'error': str(e)}), 500
     
 @app.route('/items/<item_id>', methods=['DELETE']) 
@@ -120,56 +119,36 @@ def delete_item(item_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/search', methods=['GET'])
-def search():
-    raw_query = request.args.get('q', '')
-    query = normalize_query(raw_query)
-    limit = int(request.args.get('limit', 12))
-    start_key = request.args.get('start_key', None)
-
-    app.logger.debug(f"Searching for: '{query}' with limit {limit} and start_key {start_key}")
-
-    filter_expression = Attr('pname').contains(query)
-    scan_kwargs = {
-        'FilterExpression': filter_expression,
-        'Limit': limit,
-    }
-
-    if start_key and start_key != 'null':
-        try:
-            decoded_key = json.loads(start_key)
-            app.logger.debug(f"Decoded start_key: {decoded_key}")
-            if isinstance(decoded_key, dict):
-                decoded_key['timestamp'] = int(decoded_key['timestamp'])
-                scan_kwargs['ExclusiveStartKey'] = decoded_key
-            else:
-                raise ValueError("start_key must be a dictionary.")
-        except (json.JSONDecodeError, ValueError) as e:
-            app.logger.error(f"Invalid start_key: {start_key}, error: {str(e)}")
-            return jsonify({'error': 'Invalid start_key parameter'}), 400
+@app.route('/search/<search_query>', methods=['GET'])
+def search_items(search_query):
+    query = f"SELECT * FROM \"ScrappedProductsTable\".\"NameIndex\" WHERE contains(pname, '{search_query}')"
 
     try:
-        response = table.scan(**scan_kwargs)
+        response = dynamodb_client.execute_statement(Statement=query)
+
         items = response.get('Items', [])
-        last_evaluated_key = response.get('LastEvaluatedKey', None)
-
-        filtered_items = [item for item in items if query.lower() in item['pname'].lower()]
-
-        response_count = table.scan(
-            FilterExpression=filter_expression,
-            Select='COUNT'
-        )
-        total_items = response_count.get('Count', 0)
-        total_pages = (total_items + limit - 1) // limit
-
+        
+        app.logger.debug(f"items: {items}")
+        formatted_items = [
+            {
+                'pid': item.get('pid', {}).get('S', ''),
+                'pname': item.get('pname', {}).get('S', ''),
+                'price_per_unit': item.get('price_per_unit', {}).get('S', ''),
+                'total_price': item.get('total_price', {}).get('S', ''),
+                'image_url': item.get('image_url', {}).get('S', ''),
+                'timestamp': item.get('timestamp', {}).get('N', ''),
+                'origin': item.get('origin', {}).get('S', '')
+            } 
+            for item in items
+        ]
+        
+        # app.logger.debug(f"items: {formatted_items}")
         return jsonify({
-            'items': filtered_items,
-            'lastEvaluatedKey': last_evaluated_key,
-            'totalPages': total_pages,
+            'items': formatted_items,
         }), 200
+        
     except Exception as e:
         app.logger.error(f"Error retrieving items: {str(e)}")
-        app.logger.error(f"Scan kwargs: {scan_kwargs}")
         return jsonify({'error': str(e)}), 500
 
 

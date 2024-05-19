@@ -15,15 +15,17 @@ const useItems = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
+  const [nextToken, setNextToken] = useState(null);
+  const [tokenHistory, setTokenHistory] = useState({});
 
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
       const limit = 12;
       const startKeyParam = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
-      
+      const nextTokenParam = nextToken ? `&next_token=${encodeURIComponent(nextToken)}` : '';
       let url;
       if (searchTerm) {
-        url = `${BASE_SEARCH_URL}/${encodeURIComponent(searchTerm)}`;
+        url = `${BASE_SEARCH_URL}/${searchTerm}?next_token=${encodeURIComponent(nextToken || '')}`;
       } else {
         url = `${BASE_ITEMS_URL}?limit=${limit}&page=${currentPage}${startKeyParam}`;
       }
@@ -36,6 +38,17 @@ const useItems = () => {
       setItems(data.items);
       setTotalPages(data.totalPages || 0);
       setLastEvaluatedKey(data.lastEvaluatedKey || null);
+      setNextToken(data.next_token || null);
+
+      setTokenHistory(prev => {
+        const newHistory = { ...prev };
+        if (!searchTerm) {
+          newHistory[`page-${currentPage}`] = nextToken;
+        } else {
+          newHistory[`search-${searchTerm}-page-${currentPage}`] = nextToken;
+        }
+        return newHistory;
+      });
 
       const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
       if (!searchTerm) {
@@ -49,7 +62,7 @@ const useItems = () => {
     } catch (err) {
       setError(err.message || "Error fetching data");
     }
-  }, [lastEvaluatedKey]);
+  }, [lastEvaluatedKey,nextToken]);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -62,7 +75,7 @@ const useItems = () => {
 
     try {
       await axios.post(BASE_ITEMS_URL, newItem);
-      fetchItems(); // Llamar a fetchItems sin startKey para reiniciar la lista
+      fetchItems(); 
       setNewItemName("");
       setNewItemPricePerUnit("");
       setNewItemTotalPrice("");
@@ -77,7 +90,7 @@ const useItems = () => {
   const deleteItem = useCallback(async (pname) => {
     try {
       await axios.delete(`${BASE_ITEMS_URL}/${encodeURIComponent(pname)}`);
-      fetchItems(); // Llamar a fetchItems sin startKey para reiniciar la lista
+      fetchItems(); 
       setError(null);
     } catch (err) {
       console.error("Error deleting item:", err);
@@ -114,7 +127,10 @@ const useItems = () => {
     lastEvaluatedKey,
     setLastEvaluatedKey,
     searchTerm,
-    error
+    error,
+    tokenHistory,
+    setNextToken,
+    nextToken
   };
 };
 

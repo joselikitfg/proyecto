@@ -121,17 +121,24 @@ def delete_item(item_id):
 
 @app.route('/search/<search_query>', methods=['GET'])
 def search_items(search_query):
+    next_token = request.args.get('next_token', None)
     query = f"SELECT * FROM \"ScrappedProductsTable\".\"NameIndex\" WHERE contains(pname, '{search_query}')"
+    app.logger.debug(f"Decoded start_key: {search_query}")
+
+    params = {
+        'Statement': query
+    }
+
+    if next_token and next_token != 'null':
+         params['NextToken'] = next_token
 
     try:
-        response = dynamodb_client.execute_statement(Statement=query)
-
+        response = dynamodb_client.execute_statement(**params)
         items = response.get('Items', [])
+        next_token = response.get('NextToken', None)
         
-        app.logger.debug(f"items: {items}")
         formatted_items = [
             {
-                'pid': item.get('pid', {}).get('S', ''),
                 'pname': item.get('pname', {}).get('S', ''),
                 'price_per_unit': item.get('price_per_unit', {}).get('S', ''),
                 'total_price': item.get('total_price', {}).get('S', ''),
@@ -142,9 +149,9 @@ def search_items(search_query):
             for item in items
         ]
         
-        # app.logger.debug(f"items: {formatted_items}")
         return jsonify({
             'items': formatted_items,
+            'next_token': next_token
         }), 200
         
     except Exception as e:

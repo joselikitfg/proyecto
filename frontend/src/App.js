@@ -42,6 +42,10 @@ const App = () => {
     lastEvaluatedKey,
     setLastEvaluatedKey,
     searchTerm,
+    nextToken,
+    setNextToken,
+    error,
+    tokenHistory
   } = useItems();
 
   const getPageFromUrl = () => {
@@ -51,11 +55,13 @@ const App = () => {
 
   useEffect(() => {
     const currentPage = getPageFromUrl();
+    const storedPage = parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+    setPage(storedPage);
     if (!searchTerm) {
       localStorage.removeItem("paginationData");
       fetchItems(currentPage);
     } else {
-      fetchItems(currentPage, searchTerm);
+      fetchItems(storedPage, searchTerm);
     }
   }, [searchTerm]);
 
@@ -80,6 +86,8 @@ const App = () => {
                     setTotalPages={setTotalPages}
                     setLastEvaluatedKey={setLastEvaluatedKey}
                     fetchItems={fetchItems}
+                    tokenHistory={tokenHistory}
+                    setNextToken={setNextToken}
                   />
                   <ItemForm
                     newItemName={newItemName}

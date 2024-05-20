@@ -7,7 +7,7 @@ function formatDate(timestamp) {
 }
 
 function formatPrice(price) {
-  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €");
+  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €)");
 }
 
 function ItemList({ items = [], deleteItem }) {

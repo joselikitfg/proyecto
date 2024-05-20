@@ -121,6 +121,7 @@ def delete_item(item_id):
 
 @app.route('/search/<search_query>', methods=['GET'])
 def search_items(search_query):
+    search_query = urllib.parse.unquote(search_query)
     next_token = request.args.get('next_token', None)
     query = f"SELECT * FROM \"ScrappedProductsTable\".\"NameIndex\" WHERE contains(pname, '{search_query}')"
     app.logger.debug(f"Decoded start_key: {search_query}")

@@ -18,14 +18,21 @@ const useItems = () => {
   const [nextToken, setNextToken] = useState(null);
   const [tokenHistory, setTokenHistory] = useState({});
 
+  const resetPagination = () => {
+    setPage(1);
+    setLastEvaluatedKey(null);
+    setNextToken(null);
+    setTokenHistory({});
+  };
+
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
       const limit = 12;
       const startKeyParam = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
-      const nextTokenParam = nextToken ? `&next_token=${encodeURIComponent(nextToken)}` : '';
       let url;
       if (searchTerm) {
-        url = `${BASE_SEARCH_URL}/${searchTerm}?next_token=${encodeURIComponent(nextToken || '')}`;
+        const encodedSearchTerm = encodeURIComponent(searchTerm);
+        url = `${BASE_SEARCH_URL}/${encodedSearchTerm}?next_token=${encodeURIComponent(nextToken || '')}`;
       } else {
         url = `${BASE_ITEMS_URL}?limit=${limit}&page=${currentPage}${startKeyParam}`;
       }
@@ -43,9 +50,9 @@ const useItems = () => {
       setTokenHistory(prev => {
         const newHistory = { ...prev };
         if (!searchTerm) {
-          newHistory[`page-${currentPage}`] = nextToken;
+          newHistory[`page-${currentPage}`] = data.next_token;
         } else {
-          newHistory[`search-${searchTerm}-page-${currentPage}`] = nextToken;
+          newHistory[`search-${searchTerm}-page-${currentPage}`] = data.next_token;
         }
         return newHistory;
       });
@@ -62,7 +69,7 @@ const useItems = () => {
     } catch (err) {
       setError(err.message || "Error fetching data");
     }
-  }, [lastEvaluatedKey,nextToken]);
+  }, [lastEvaluatedKey, nextToken]);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -100,8 +107,7 @@ const useItems = () => {
 
   const searchItems = useCallback((term) => {
     setSearchTerm(term);
-    setPage(1);
-    setLastEvaluatedKey(null);
+    resetPagination();
     fetchItems(1, term); 
   }, [fetchItems]);
 

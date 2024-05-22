@@ -29,7 +29,7 @@ const useItems = () => {
 
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
-      const limit = 12;
+      const limit = 48;
       const startKeyParam = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
       let url;
       if (searchTerm) {

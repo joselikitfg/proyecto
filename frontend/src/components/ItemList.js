@@ -26,10 +26,7 @@ function ItemList({ items = [], deleteItem }) {
             />
             <div className="card-body">
               <h5 className="card-title">{item.pname}</h5>
-              <p className="card-text">
-                <strong>Precio por unidad:</strong>{" "}
-                {formatPrice(item.price_per_unit)}
-              </p>
+
               <p className="card-text">
                 <strong>Precio total:</strong> {item.total_price}
               </p>

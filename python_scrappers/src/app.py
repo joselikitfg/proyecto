@@ -28,7 +28,7 @@ def normalize_query(query):
 
 @app.route('/items', methods=['GET'])
 def get_all_items():
-    limit = int(request.args.get('limit', 12))
+    limit = int(request.args.get('limit', 48))
     start_key = request.args.get('start_key', None)
 
     scan_kwargs = {'Limit': limit}

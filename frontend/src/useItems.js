@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
-const BASE_SEARCH_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/search';
+const BASE_SEARCH_URL = 'http://localhost:5000/search';
 const BASE_ITEMS_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items';
 
 const useItems = () => {
@@ -16,13 +16,15 @@ const useItems = () => {
   const [error, setError] = useState(null);
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
   const [nextToken, setNextToken] = useState(null);
-  const [tokenHistory, setTokenHistory] = useState({});
 
   const resetPagination = () => {
     setPage(1);
     setLastEvaluatedKey(null);
     setNextToken(null);
-    setTokenHistory({});
+    localStorage.removeItem('paginationData');
+    localStorage.removeItem('paginationDataSearch');
+    const newUrl = `/?page=${1}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
   };
 
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
@@ -47,29 +49,25 @@ const useItems = () => {
       setLastEvaluatedKey(data.lastEvaluatedKey || null);
       setNextToken(data.next_token || null);
 
-      setTokenHistory(prev => {
-        const newHistory = { ...prev };
-        if (!searchTerm) {
-          newHistory[`page-${currentPage}`] = data.next_token;
-        } else {
-          newHistory[`search-${searchTerm}-page-${currentPage}`] = data.next_token;
-        }
-        return newHistory;
-      });
-
-      const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
       if (!searchTerm) {
+        const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
         storedData[`items-page-${currentPage}`] = data.items;
         storedData[`lastEvaluatedKey-page-${currentPage}`] = data.lastEvaluatedKey;
         storedData.totalPages = data.totalPages || 0;
         localStorage.setItem('paginationData', JSON.stringify(storedData));
+      }else{
+        const storedData = JSON.parse(localStorage.getItem('paginationDataSearch')) || {};
+        storedData[`items-search-page-${currentPage}`] = data.items;
+        storedData[`nextToken-page-${currentPage}`] = data.next_token;
+        storedData.totalPages = data.totalPages || 0;
+        localStorage.setItem('paginationDataSearch', JSON.stringify(storedData));
       }
 
       setError(null);
     } catch (err) {
       setError(err.message || "Error fetching data");
     }
-  }, [lastEvaluatedKey, nextToken]);
+  }, [lastEvaluatedKey,nextToken]);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -134,9 +132,7 @@ const useItems = () => {
     setLastEvaluatedKey,
     searchTerm,
     error,
-    tokenHistory,
     setNextToken,
-    nextToken
   };
 };
 

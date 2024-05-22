@@ -1,28 +1,27 @@
 import React from 'react';
 
-const Pagination = ({ page, totalPages, searchTerm, setPage, setItems, setTotalPages, setLastEvaluatedKey, fetchItems,  setNextToken, tokenHistory }) => {
+const Pagination = ({ page, totalPages, searchTerm, setPage, setItems, setTotalPages, setLastEvaluatedKey, fetchItems, setNextToken }) => {
 
   const handlePageChange = (newPage) => {
-    let newPageNum = page;
-    let newNextToken = null;
 
-    if (newPage === 'prev' && page > 1) {
-      newPageNum = page - 1;
-      if(searchTerm){
-        newNextToken = tokenHistory[`search-${searchTerm}-page-${newPageNum}`] || null;
+    let newPageNum = page;
+    console.log("PAGINA : ", page);
+    console.log(" NEW PAGINA : ", newPageNum);
+    if(!searchTerm){
+      if (newPage === 'prev' && page > 1) {
+        newPageNum = page - 1;
+      } else if (newPage === 'next' && page < totalPages) {
+        newPageNum = page + 1;
       } 
-    } else if (newPage === 'next' && page < totalPages) {
-      newPageNum = page + 1;
-      if (searchTerm) {
-        newNextToken = tokenHistory[`search-${searchTerm}-page-${newPageNum}`] || null;
+    }else{
+      if (newPage === 'prev' && page > 1) {
+        newPageNum = page - 1;
+      } else if (newPage === 'next') {
+        newPageNum = page + 1;
       } 
-    } else if (typeof newPage === 'number') {
-      newPageNum = newPage;
-      if (searchTerm) {
-        newNextToken = tokenHistory[`search-${searchTerm}-page-${newPageNum}`] || null;
-      } 
-  }
-  setNextToken(newNextToken);
+    }
+
+
   window.scrollTo(0, 0);
   if (!searchTerm) {
       const newUrl = `/?page=${newPageNum}`;
@@ -40,7 +39,20 @@ const Pagination = ({ page, totalPages, searchTerm, setPage, setItems, setTotalP
         fetchItems(newPageNum);
       }
     } else {
-      fetchItems(newPageNum, searchTerm);
+      const newUrl = `/?page=${newPageNum}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+      setPage(newPageNum);
+      const storedData = JSON.parse(localStorage.getItem('paginationDataSearch')) || {};
+      const storedItems = storedData[`items-search-page-${newPageNum}`];
+      const storedNextToken = storedData[`nextToken-page-${newPageNum}`];
+
+      if (storedItems && storedNextToken !== undefined) {
+        setItems(storedItems);
+        //setTotalPages(storedData.totalPages);
+        setNextToken(storedNextToken);
+      } else {
+        fetchItems(newPageNum, searchTerm);
+      }
     }
   };
 

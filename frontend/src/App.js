@@ -42,10 +42,9 @@ const App = () => {
     lastEvaluatedKey,
     setLastEvaluatedKey,
     searchTerm,
+    error,
     nextToken,
     setNextToken,
-    error,
-    tokenHistory
   } = useItems();
 
   const getPageFromUrl = () => {
@@ -61,6 +60,7 @@ const App = () => {
       localStorage.removeItem("paginationData");
       fetchItems(currentPage);
     } else {
+      localStorage.removeItem("paginationData");
       fetchItems(storedPage, searchTerm);
     }
   }, [searchTerm]);
@@ -86,7 +86,7 @@ const App = () => {
                     setTotalPages={setTotalPages}
                     setLastEvaluatedKey={setLastEvaluatedKey}
                     fetchItems={fetchItems}
-                    tokenHistory={tokenHistory}
+                    nextToken={nextToken}
                     setNextToken={setNextToken}
                   />
                   <ItemForm

@@ -122,43 +122,56 @@ def delete_item(item_id):
 @app.route('/search/<search_query>', methods=['GET'])
 def search_items(search_query):
     search_query = urllib.parse.unquote(search_query)
+    final_query = normalize_query(search_query)
     next_token = request.args.get('next_token', None)
-    query = f"SELECT * FROM \"ScrappedProductsTable\".\"NameIndex\" WHERE contains(pname, '{search_query}')"
+    limit = 48  
+    page_limit = 48
+    accumulated_items = []
+    query = f"SELECT * FROM \"ScrappedProductsTable\".\"NameIndex\" WHERE contains(pname, '{final_query}')"
     app.logger.debug(f"Decoded start_key: {search_query}")
 
-    params = {
-        'Statement': query
-    }
+    while len(accumulated_items) < limit:
+        params = {
+            'Statement': query,
+            'Limit': page_limit
+        }
 
-    if next_token and next_token != 'null':
-         params['NextToken'] = next_token
+        if next_token and next_token != 'null':
+            params['NextToken'] = next_token
 
-    try:
-        response = dynamodb_client.execute_statement(**params)
-        items = response.get('Items', [])
-        next_token = response.get('NextToken', None)
-        
-        formatted_items = [
-            {
-                'pname': item.get('pname', {}).get('S', ''),
-                'price_per_unit': item.get('price_per_unit', {}).get('S', ''),
-                'total_price': item.get('total_price', {}).get('S', ''),
-                'image_url': item.get('image_url', {}).get('S', ''),
-                'timestamp': item.get('timestamp', {}).get('N', ''),
-                'origin': item.get('origin', {}).get('S', '')
-            } 
-            for item in items
-        ]
-        
-        return jsonify({
-            'items': formatted_items,
-            'next_token': next_token
-        }), 200
-        
-    except Exception as e:
-        app.logger.error(f"Error retrieving items: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        try:
+            response = dynamodb_client.execute_statement(**params)
+            items = response.get('Items', [])
+            next_token = response.get('NextToken', None)
+            
+            accumulated_items.extend(items)
 
+            if not next_token:
+                break  
+        
+        except Exception as e:
+            app.logger.error(f"Error retrieving items: {str(e)}")
+            return jsonify({'error': str(e)}), 500
+
+
+    limited_items = accumulated_items[:limit]
+
+    formatted_items = [
+        {
+            'pname': item.get('pname', {}).get('S', ''),
+            'price_per_unit': item.get('price_per_unit', {}).get('S', ''),
+            'total_price': item.get('total_price', {}).get('S', ''),
+            'image_url': item.get('image_url', {}).get('S', ''),
+            'timestamp': item.get('timestamp', {}).get('N', ''),
+            'origin': item.get('origin', {}).get('S', '')
+        } 
+        for item in limited_items
+    ]
+    
+    return jsonify({
+        'items': formatted_items,
+        'next_token': next_token if len(accumulated_items) >= limit else None
+    }), 200
 
 
 @app.route('/')

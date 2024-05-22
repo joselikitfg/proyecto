@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
-const BASE_SEARCH_URL = 'http://localhost:5000/search';
+const BASE_SEARCH_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/search';
 const BASE_ITEMS_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items';
 
 const useItems = () => {

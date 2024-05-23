@@ -17,6 +17,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import urllib.parse
 import concurrent.futures
 
@@ -163,12 +164,30 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
     Returns:
         None: Esta función modifica directamente la lista `products` y el conjunto `scraped_product_names`.
     """
+    # Aceptar las cookies
+    # try:
+    #     WebDriverWait(driver, 10).until(
+    #         EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
+    #     ).click()
+    # except (TimeoutException, NoSuchElementException):
+    #     pass
+    # for _ in range(5):  
+    #     driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
+    #     time.sleep(1)
+        
     driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
     driver.implicitly_wait(1)
 
     WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, "//li[@data-test-id='search-product-card-list-item']"))
     )
+    # Hacer scroll 
+    # try:
+    #     WebDriverWait(driver, 10).until(
+    #         EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Aceptar')]"))
+    #     ).click()
+    # except (TimeoutException, NoSuchElementException):
+    #     pass 
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -213,7 +232,13 @@ def scrap_one_product(
     image_element = container.find('img', {'data-test-id': 'search-product-card-image'})
     if image_element and 'src' in image_element.attrs:
         good_image = modify_url_image(image_element['src'], 500)
-        product['image_url'] = 'https://www.dia.es' + good_image
+        if not good_image.startswith('http'):
+            good_image = 'https://www.dia.es' + good_image
+        if "iso_0_es.jpg" in good_image:
+            print(f"Warning: default image detected for product '{product['name']}'. Skipping.")
+            product['image_url'] = ''
+        else:
+            product['image_url'] = good_image
     else:
         product['image_url'] = ''
     

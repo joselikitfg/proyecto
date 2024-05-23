@@ -4,7 +4,7 @@ import json
 import logging
 from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
 from boto3.dynamodb.conditions import Key, Attr
-from .dia.Dia_scrapper import scrape_product_details, generate_urls, save_product_to_json
+from .dia.Dia_scrapper import scrape_product_details_dia, generate_urls, save_product_to_json
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -89,7 +89,7 @@ def dia_handler(scrapper_terms):
     all_products = []
 
     for url in generated_urls:
-        products = scrape_product_details(url)
+        products = scrape_product_details_dia(url)
         all_products.extend(products)
     
     dynamodb = boto3.resource('dynamodb')
@@ -98,6 +98,7 @@ def dia_handler(scrapper_terms):
     
     for product in all_products:
         timestamp = int(time.time() * 1000)
+        table = dynamodb.Table(table_name)
         item = {
             'origin': 'dia',
             'pname': product["name"].lower(),
@@ -108,10 +109,11 @@ def dia_handler(scrapper_terms):
         }
 
         response = table.query(
+            TableName='ScrappedProductsTable',
             IndexName='NameIndex',
-            KeyConditionExpression=Key('pname').eq(product['name'].lower()),
+            KeyConditionExpression='#keyname = :compared_value',
             ExpressionAttributeNames={'#keyname': 'pname'},
-            ExpressionAttributeValues={':compared_value': product['name'].lower()},
+            ExpressionAttributeValues={':compared_value': product['name']},
         )
 
         items = response.get('Items', [])

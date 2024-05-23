@@ -93,6 +93,9 @@ out
 .nuxt
 dist
 
+# Aws build
+.aws-sam/build.toml
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js

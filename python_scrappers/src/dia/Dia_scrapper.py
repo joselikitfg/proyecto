@@ -123,7 +123,7 @@ def get_driver() -> Any:
 
 
 # @timeit
-def scrape_product_details(url: str) -> List[Dict[str, Any]]:
+def scrape_product_details_dia(url: str) -> List[Dict[str, Any]]:
     """
     Navega a una URL dada con un navegador controlado por Selenium, extrae detalles de los productos
     presentes en la página y retorna una lista de diccionarios con los detalles de cada producto.
@@ -167,12 +167,12 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
     driver.implicitly_wait(1)
 
     WebDriverWait(driver, 20).until(
-        EC.presence_of_all_elements_located((By.XPATH, "//img[@data-test='lazy-load-image']"))
+        EC.presence_of_all_elements_located((By.XPATH, "//li[@data-test-id='search-product-card-list-item']"))
     )
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
-    product_containers = soup.find_all('div', {'class': 'product-card-list-item'})
+    product_containers = soup.find_all('li', {'data-test-id': 'search-product-card-list-item'})
 
     logger.info(f'Products to be scrapped in this driver session: {len(product_containers)}')
 
@@ -206,22 +206,22 @@ def scrap_one_product(
     print("")
     print("")
 
-    mi_contenedor = container.find('div', {'data-test-id': 'product-card'})
-    title_element = mi_contenedor.find('a', {'data-test-id': 'search-product-card-name'})
+    title_element = container.find('a', {'data-test-id': 'search-product-card-name'})
     if title_element:
         product['name'] = title_element.text.strip()
 
-    image_element = mi_contenedor.find('img', {'data-test-id': 'search-product-card-image'})
+    image_element = container.find('img', {'data-test-id': 'search-product-card-image'})
     if image_element and 'src' in image_element.attrs:
-        product['image_url'] = 'ttps://www.dia.es' + image_element['src']
+        good_image = modify_url_image(image_element['src'], 500)
+        product['image_url'] = 'https://www.dia.es' + good_image
     else:
         product['image_url'] = ''
-
-    price_per_unit_element = mi_contenedor.find('p', {'data-test-id': 'search-product-card-kilo-price'})
+    
+    price_per_unit_element = container.find('p', {'data-test-id': 'search-product-card-kilo-price'})
     if price_per_unit_element:
         product['price_per_unit'] = price_per_unit_element.text.strip()
 
-    total_price_element = mi_contenedor.find('p', {'data-test-id': 'search-product-card-unit-price'})
+    total_price_element = container.find('p', {'data-test-id': 'search-product-card-unit-price'})
     if total_price_element:
         product['total_price'] = total_price_element.text.strip()
 
@@ -296,7 +296,7 @@ def scrap_product_by_category(url: str) -> Optional[List[Dict[str, Any]]]:
     """
     products = None
     try:
-        products = scrape_product_details(url)
+        products = scrape_product_details_dia(url)
     except Exception as e:
         logger.exception(f'Error al procesar la URL {url}: {e}')
         import traceback
@@ -333,7 +333,7 @@ def lambda_handler(event: Optional[dict] = None, context: Optional[object] = Non
     all_products = []
 
     for url in generated_urls:
-        products = scrape_product_details(url)
+        products = scrape_product_details_dia(url)
         all_products.extend(products)
 
     return all_products

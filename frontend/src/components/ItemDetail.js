@@ -9,25 +9,29 @@ function formatDate(timestamp) {
 }
 
 function formatPrice(price) {
-  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, '$1,$2 €');
+  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, '$1,$2 €)');
 }
 
 function ItemDetail() {
-  const { id } = useParams();
+  const { pname } = useParams();
   const navigate = useNavigate();
   const [item, setItem] = useState(null);
 
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await axios.get(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/item/${id}`);
-        setItem(response.data);
+        const response = await axios.get(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/item/name/${pname}`);
+        if (response.status === 200) {
+          setItem(response.data);
+        } else {
+          throw new Error(`Item not found: ${response.status}`);
+        }
       } catch (error) {
         console.error("Error fetching item details:", error);
       }
     };
     fetchItem();
-  }, [id]);
+  }, [pname]);
 
   const handleBack = () => {
     navigate('/');
@@ -36,7 +40,8 @@ function ItemDetail() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items/${id}`);
+      const encodedPname = encodeURIComponent(pname);
+      await axios.delete(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items/${encodedPname}`);
       navigate('/');
     } catch (error) {
       console.error("Error deleting item:", error);

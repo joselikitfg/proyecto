@@ -21,7 +21,7 @@ const UserComponent = () => {
   useEffect(() => {
     const loadItems = async () => {
       setLoading(true);
-      await fetchItems(lastEvaluatedKey);
+      await fetchItems();
       setTimeout(() => {
         setLoading(false);
       }, 450);
@@ -36,7 +36,7 @@ const UserComponent = () => {
       <p>Accessible by Users and Admins</p>
 
       <SearchBar onSearch={handleSearch} />
-
+      
       <ItemList items={items} deleteItem={deleteItem} loading={loading} />
     </div>
   );

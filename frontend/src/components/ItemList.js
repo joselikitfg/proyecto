@@ -55,7 +55,7 @@ function formatDate(timestamp) {
 }
 
 function formatPrice(price) {
-  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €");
+  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €)");
 }
 
 function ItemList({ items = [], deleteItem, loading }) {
@@ -73,6 +73,7 @@ function ItemList({ items = [], deleteItem, loading }) {
             key={item._id ? item._id.$oid : index}
             className="col d-flex align-items-stretch"
           >
+            
             <Card className="card h-100 d-flex flex-column">
               <CardImageWrapper>
                 <CardImage
@@ -96,7 +97,7 @@ function ItemList({ items = [], deleteItem, loading }) {
               </CardBody>
               <ButtonGroup className="mt-auto">
                 <Link
-                  to={`/item/${item.pid}`}
+                  to={`/item/${(item.pname)}`}
                   className="btn btn-primary"
                 >
                   Ver Detalles

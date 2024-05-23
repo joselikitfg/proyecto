@@ -18,7 +18,7 @@ import GuestComponent from './components/RolesComponents/GuestComponent';
 import UserComponent from './components/RolesComponents/UserComponent';
 import AdminComponent from './components/RolesComponents/AdminComponent';
 import ProtectedRoute from './components/RolesComponents/ProtectedRoute';
-
+import { AuthComponents } from "./AuthComponents";
 import {
   Authenticator,
   useAuthenticator,
@@ -65,107 +65,31 @@ const App = () => {
     fetchItems,
     lastEvaluatedKey,
     setLastEvaluatedKey,
+    searchTerm,
+    error,
+    nextToken,
+    setNextToken,
   } = useItems();
 
-  // Función para leer los parámetros de la URL
   const getPageFromUrl = () => {
     const queryParams = new URLSearchParams(window.location.search);
-    return parseInt(queryParams.get('page')) || 1;
+    return parseInt(queryParams.get("page")) || 1;
   };
 
   useEffect(() => {
     const currentPage = getPageFromUrl();
-    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-    const storedItems = storedData[`items-page-${currentPage}`];
-    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${currentPage}`];
-
-    if (storedItems && storedLastEvaluatedKey !== undefined) {
-      setItems(storedItems);
-      setTotalPages(storedData.totalPages);
-      setLastEvaluatedKey(storedLastEvaluatedKey);
-    } else {
+    const storedPage = parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+    setPage(storedPage);
+    if (!searchTerm) {
+      localStorage.removeItem("paginationData");
       fetchItems(currentPage);
-    }
-  }, []); // Este useEffect se ejecuta solo una vez al montar el componente
-
-  const handlePageChange = (newPage) => {
-    let newPageNum = page;
-    if (newPage === 'prev' && page > 1) {
-      newPageNum = page - 1;
-    } else if (newPage === 'next' && page < totalPages) {
-      newPageNum = page + 1;
-    } else if (typeof newPage === 'number') {
-      newPageNum = newPage;
-    }
-
-    const newUrl = `/?page=${newPageNum}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
-    setPage(newPageNum);
-
-    const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-    const storedItems = storedData[`items-page-${newPageNum}`];
-    const storedLastEvaluatedKey = storedData[`lastEvaluatedKey-page-${newPageNum}`];
-
-    if (storedItems && storedLastEvaluatedKey !== undefined) {
-      setItems(storedItems);
-      setTotalPages(storedData.totalPages);
-      setLastEvaluatedKey(storedLastEvaluatedKey);
     } else {
-      fetchItems(newPageNum);
+      localStorage.removeItem("paginationData");
+      fetchItems(storedPage, searchTerm);
     }
-  };
+  }, []);
 
-  const components = {
-    Header() {
-      const { tokens } = useTheme();
-      return (
-        <View
-          textAlign="center"
-          padding={tokens.space.large}
-          backgroundColor={tokens.colors.background.primary}
-        >
-          <Image
-            alt="SmartTrackApp"
-            src="https://i.postimg.cc/BnyPBXs8/2-YURCjl-Imgur.png"
-            style={{ width: "100%", height: "100%" }}
-          />
-        </View>
-      );
-    },
 
-    SignIn: {
-      Header() {
-        const { tokens } = useTheme();
-        return (
-          <Heading
-            padding={`${tokens.space.xl} 0`}
-            level={3}
-            color={tokens.colors.font}
-            style={{ backgroundColor: tokens.colors.background.secondary }}
-            textAlign="center"
-          >
-            Sign in to your account
-          </Heading>
-        );
-      },
-      Footer() {
-        const { toForgotPassword } = useAuthenticator();
-        const { tokens } = useTheme();
-        return (
-          <View textAlign="center" padding={tokens.space.large}>
-            <Button
-              fontWeight="normal"
-              onClick={toForgotPassword}
-              size="small"
-              variation="link"
-            >
-              Forgot Password?
-            </Button>
-          </View>
-        );
-      },
-    },
-  };
   const AppContent = () => {
     const { loading, state } = useUser();
   
@@ -219,7 +143,7 @@ const App = () => {
   
     return (
       <Router>
-        <Authenticator signUpAttributes={['email']} components={components}>
+        <Authenticator signUpAttributes={['email']} components={AuthComponents}>
           <UserProvider>
             <CartProvider>
               <RoleBasedRedirect />

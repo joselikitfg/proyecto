@@ -230,6 +230,41 @@ def start_scraping_alcampo():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/scrape/dia', methods=['POST'])
+@cross_origin(origin='localhost')
+def start_scraping_dia():
+    data = request.get_json()
+    terms = data.get('terms', [])
+    if not terms:
+        return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
+
+    sqs = boto3.client('sqs')
+
+    # URL de la cola de SQS
+    queue_url = 'https://sqs.eu-west-1.amazonaws.com/590183922248/MiColaSQS'
+
+    # Mensaje a enviar
+    message = {
+        "scrapper": "dia",
+        "terms": terms
+    }
+
+    # Envía el mensaje a SQS
+    response = sqs.send_message(
+        QueueUrl=queue_url,
+        MessageBody=json.dumps(message)
+    )
+
+    try:
+        return jsonify(
+            {
+                'message': 'Scraping iniciado y datos enviados al servicio de carga.',
+            }
+        ), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 
 # @app.route('/scrape/hipercor', methods=['POST'])
 # @cross_origin(origin='localhost')

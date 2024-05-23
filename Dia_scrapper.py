@@ -48,12 +48,23 @@ def scrape_product_details(url):
     options = Options()
     options.add_argument("--headless")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
-    options.add_argument("--window-size=30720x18280")
+    options.add_argument("--window-size=1920x1080")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     
     driver.get(url)
+    try:
+        # Aceptar cookies si hay un banner
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Aceptar')]"))
+        ).click()
+    except (TimeoutException, NoSuchElementException):
+        pass  # Si no hay un banner de cookies, continuar
+
     scraped_product_names = set()
     products = []
     scrap_product_list(driver, products, scraped_product_names)
@@ -72,7 +83,13 @@ def scrap_one_product(container, scraped_product_names, products):
     image_element = container.find('img', {'data-test-id': 'search-product-card-image'})
     if image_element and 'src' in image_element.attrs:
         good_image = modify_url_image(image_element['src'], 500)
-        product['image_url'] = 'https://www.dia.es' + good_image
+        if not good_image.startswith('http'):
+            good_image = 'https://www.dia.es' + good_image
+        if "iso_0_es.jpg" in good_image:
+            print(f"Warning: default image detected for product '{product['name']}'. Skipping.")
+            product['image_url'] = ''
+        else:
+            product['image_url'] = good_image
     else:
         product['image_url'] = ''
     

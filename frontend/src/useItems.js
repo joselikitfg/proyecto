@@ -132,6 +132,7 @@ const useItems = () => {
     setLastEvaluatedKey,
     searchTerm,
     error,
+    nextToken,
     setNextToken,
   };
 };

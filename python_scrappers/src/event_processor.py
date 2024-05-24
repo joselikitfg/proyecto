@@ -42,21 +42,20 @@ def alcampo_handler(scrapper_terms):
         }
 
         response = table.query(
-            TableName='ScrappedProductsTable',
             IndexName='NameIndex',
             KeyConditionExpression='#keyname = :compared_value',
             ExpressionAttributeNames={'#keyname': 'pname'},
-            ExpressionAttributeValues={':compared_value': product['name']},
+            ExpressionAttributeValues={':compared_value': product['name'].lower()},
         )
 
         items = response.get('Items', [])
         exists_any = any((item['total_price'] == product['total_price']) for item in items)
         if not exists_any:
-            print("Sending to dynamoDB because item is not saved on dynamodb or its price has changed")
+            logger.info("Sending to DynamoDB because item is not saved or its price has changed")
             response = table.put_item(Item=item)
-            print(response)
+            logger.info(response)
         else:
-            print("Not sending to dynamoDB because item is already saved and price is the same")
+            logger.info("Not sending to DynamoDB because item is already saved and price is the same")
             
             
         
@@ -83,6 +82,8 @@ def alcampo_handler(scrapper_terms):
         # else:
         #     print("Not sending to dynamoDB because item is already saved and price is the same")
         #     print(item)
+        
+
 def dia_handler(scrapper_terms):
     url_base = 'https://www.dia.es/search?q={name}'
     generated_urls = generate_urls(scrapper_terms, url_base)
@@ -98,7 +99,6 @@ def dia_handler(scrapper_terms):
     
     for product in all_products:
         timestamp = int(time.time() * 1000)
-        table = dynamodb.Table(table_name)
         item = {
             'origin': 'dia',
             'pname': product["name"].lower(),
@@ -108,15 +108,18 @@ def dia_handler(scrapper_terms):
             'timestamp': timestamp
         }
 
+        logger.info(f"Consultando DynamoDB con el nombre del producto: {product['name']}")
         response = table.query(
-            TableName='ScrappedProductsTable',
             IndexName='NameIndex',
             KeyConditionExpression='#keyname = :compared_value',
             ExpressionAttributeNames={'#keyname': 'pname'},
-            ExpressionAttributeValues={':compared_value': product['name']},
+            ExpressionAttributeValues={':compared_value': product['name'].lower()},
         )
-
+        
         items = response.get('Items', [])
+        logger.info(f"Estos son los items que hay con el mismo nombre: {items}")
+        logger.info(f"NAME DEL PRODUCTO: {product['name']}")
+
         exists_any = any((item['total_price'] == product['total_price']) for item in items)
         if not exists_any:
             logger.info("Sending to DynamoDB because item is not saved or its price has changed")
@@ -124,6 +127,7 @@ def dia_handler(scrapper_terms):
             logger.info(response)
         else:
             logger.info("Not sending to DynamoDB because item is already saved and price is the same")
+
 
         
 

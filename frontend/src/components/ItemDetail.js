@@ -20,6 +20,7 @@ function ItemDetail() {
   useEffect(() => {
     const fetchItem = async () => {
       try {
+        console.log("Fetching item with pname:", pname); 
         const response = await axios.get(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/item/name/${pname}`);
         if (response.status === 200) {
           setItem(response.data);

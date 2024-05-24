@@ -79,7 +79,9 @@ const App = () => {
   useEffect(() => {
     const currentPage = getPageFromUrl();
     const storedPage = parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+    console.log(currentPage);
     setPage(storedPage);
+    console.log(storedPage);
     if (!searchTerm) {
       localStorage.removeItem("paginationData");
       fetchItems(currentPage);
@@ -114,7 +116,7 @@ const App = () => {
             />}
             {state.user?.groups.includes('User') &&
                 <Route
-              path="/item/:id"
+              path="/item/:pname"
               element={
                 <ProtectedRoute allowedRoles={['User']}>
                   <ItemDetail/>

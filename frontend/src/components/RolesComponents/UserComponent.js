@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar';
 import ItemList from '../ItemList';
+import Pagination from '../Pagination';  // Asegúrate de importar el componente Pagination
 import useItems from "../../useItems";
 
 const UserComponent = () => {
@@ -14,21 +15,29 @@ const UserComponent = () => {
     items,
     deleteItem,
     page,
+    setPage,
+    totalPages,
+    setItems,
+    setTotalPages,
+    setLastEvaluatedKey,
     fetchItems,
-    lastEvaluatedKey
+    setNextToken,
+    lastEvaluatedKey,
+    nextToken,
+    searchTerm
   } = useItems();
 
   useEffect(() => {
     const loadItems = async () => {
       setLoading(true);
-      await fetchItems();
+      await fetchItems(page, searchTerm);
       setTimeout(() => {
         setLoading(false);
       }, 450);
     };
 
     loadItems();
-  }, [page]);
+  }, [page, searchTerm]);
 
   return (
     <div>
@@ -38,6 +47,19 @@ const UserComponent = () => {
       <SearchBar onSearch={handleSearch} />
       
       <ItemList items={items} deleteItem={deleteItem} loading={loading} />
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        searchTerm={searchTerm}
+        setPage={setPage}
+        setItems={setItems}
+        setTotalPages={setTotalPages}
+        setLastEvaluatedKey={setLastEvaluatedKey}
+        fetchItems={fetchItems}
+        setNextToken={setNextToken}
+        nextToken={nextToken}
+      />
     </div>
   );
 };

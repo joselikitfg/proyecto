@@ -103,7 +103,7 @@ function ItemList({ items = [], deleteItem, loading }) {
                   Ver Detalles
                 </Link>
                 <button
-                  onClick={() => deleteItem(item.pid)}
+                  onClick={() => deleteItem(item.pname)}
                   className="btn btn-danger ms-2"
                 >
                   Borrar Ítem

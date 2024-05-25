@@ -78,16 +78,11 @@ const App = () => {
 
   useEffect(() => {
     const currentPage = getPageFromUrl();
-    const storedPage = parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
-    console.log(currentPage);
-    setPage(storedPage);
-    console.log(storedPage);
+    setPage(currentPage);
     if (!searchTerm) {
-      localStorage.removeItem("paginationData");
       fetchItems(currentPage);
     } else {
-      localStorage.removeItem("paginationData");
-      fetchItems(storedPage, searchTerm);
+      fetchItems(currentPage, searchTerm);
     }
   }, []);
 

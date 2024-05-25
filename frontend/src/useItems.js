@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import axios from "axios";
 
 const BASE_SEARCH_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/search';
-const BASE_ITEMS_URL = 'http://localhost:5000/items';
+const BASE_ITEMS_URL = 'https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items';
 
 const useItems = () => {
   const [items, setItems] = useState([]);
@@ -16,14 +16,15 @@ const useItems = () => {
   const [error, setError] = useState(null);
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
   const [nextToken, setNextToken] = useState(null);
+  const [pageTokens, setPageTokens] = useState({});
+
 
   const resetPagination = () => {
     console.log("SE RESETEA");
     setPage(1);
     setLastEvaluatedKey(null);
     setNextToken(null);
-    localStorage.removeItem('paginationData');
-    localStorage.removeItem('paginationDataSearch');
+    setPageTokens({});
     const newUrl = `/?page=${1}`;
     window.history.pushState({ path: newUrl }, '', newUrl);
   };
@@ -31,13 +32,14 @@ const useItems = () => {
   const fetchItems = useCallback(async (currentPage = 1, searchTerm = '') => {
     try {
       const limit = 48;
-      const startKeyParam = lastEvaluatedKey ? `&start_key=${encodeURIComponent(JSON.stringify(lastEvaluatedKey))}` : '';
+      const token = pageTokens[currentPage - 1] || null;
+      const startKeyParam = token ? `&start_key=${encodeURIComponent(JSON.stringify(token))}` : '';
       let url;
       if (searchTerm) {
+        console.log(searchTerm);
         const encodedSearchTerm = encodeURIComponent(searchTerm);
-        url = `${BASE_SEARCH_URL}/${encodedSearchTerm}?next_token=${encodeURIComponent(nextToken || '')}`;
+        url = `${BASE_SEARCH_URL}/${encodedSearchTerm}?next_token=${encodeURIComponent(token || '')}`;
       } else {
-        console.log("LAST EVALUATED EN USE ITEMS, ",startKeyParam)
         url = `${BASE_ITEMS_URL}?limit=${limit}&page=${currentPage}${startKeyParam}`;
       }
 
@@ -46,36 +48,25 @@ const useItems = () => {
         throw new Error(`An error occurred: ${response.statusText}`);
       }
       const data = await response.json();
-      setItems(data.items);
-      console.log("Data items guardados",data.items);
-      setTotalPages(data.totalPages || 0);
-      console.log("Data total pages guardados",data.totalPages);
-      setLastEvaluatedKey(data.lastEvaluatedKey || null);
-      console.log("Data lastevaluated guardados",data.lastEvaluatedKey);
-      setNextToken(data.next_token || null);
-      console.log("Data nexttoken guardados",data.next_token);
-      if (!searchTerm) {
-        const storedData = JSON.parse(localStorage.getItem('paginationData')) || {};
-        console.log("CURRENT PAGE", currentPage)
-        storedData[`items-page-${currentPage}`] = data.items;
-        console.log("CURRENT DATA ", storedData[`items-page-${currentPage}`])
-        storedData[`lastEvaluatedKey-page-${currentPage}`] = data.lastEvaluatedKey;
-        console.log("CURRENT DATA lastevaluatedkey", storedData[`lastEvaluatedKey-page-${currentPage}`])
-        storedData.totalPages = data.totalPages || 0;
-        localStorage.setItem('paginationData', JSON.stringify(storedData));
-      }else{
-        const storedData = JSON.parse(localStorage.getItem('paginationDataSearch')) || {};
-        storedData[`items-search-page-${currentPage}`] = data.items;
-        storedData[`nextToken-page-${currentPage}`] = data.next_token;
-        storedData.totalPages = data.totalPages || 0;
-        localStorage.setItem('paginationDataSearch', JSON.stringify(storedData));
-      }
 
+      setItems(data.items);
+      setTotalPages(data.totalPages || 0);
+      setLastEvaluatedKey(data.lastEvaluatedKey || null);
+
+      setNextToken(data.next_token || null);
+
+      setPageTokens((prevTokens) => ({
+        ...prevTokens,
+        [currentPage]: data.lastEvaluatedKey || data.next_token,
+      }));
+
+      
       setError(null);
+
     } catch (err) {
       setError(err.message || "Error fetching data");
     }
-  }, [lastEvaluatedKey,nextToken]);
+  }, [lastEvaluatedKey,pageTokens,searchTerm]);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -111,11 +102,11 @@ const useItems = () => {
     }
   }, [fetchItems]);
 
-  const searchItems = useCallback((term) => {
-    setSearchTerm(term);
+  const searchItems = useCallback(searchTerm => {
     resetPagination();
-    fetchItems(1, term); 
-  }, [fetchItems]);
+    setSearchTerm(searchTerm);
+    fetchItems(1, searchTerm); 
+  }, [fetchItems,searchTerm]);
 
   return {
     items,
@@ -139,9 +130,11 @@ const useItems = () => {
     lastEvaluatedKey,
     setLastEvaluatedKey,
     searchTerm,
+    setSearchTerm,
     error,
     nextToken,
     setNextToken,
+    searchItems
   };
 };
 

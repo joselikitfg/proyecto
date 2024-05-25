@@ -7,10 +7,7 @@ import useItems from "../../useItems";
 const UserComponent = () => {
   const [loading, setLoading] = useState(true);
 
-  const handleSearch = (searchTerm) => {
-    console.log('Buscar:', searchTerm);
-  };
-
+  
   const {
     items,
     deleteItem,
@@ -24,9 +21,11 @@ const UserComponent = () => {
     setNextToken,
     lastEvaluatedKey,
     nextToken,
-    searchTerm
+    searchTerm,
+    searchItems,
+    setSearchTerm,
   } = useItems();
-
+  
   useEffect(() => {
     const loadItems = async () => {
       setLoading(true);
@@ -35,9 +34,16 @@ const UserComponent = () => {
         setLoading(false);
       }, 450);
     };
-
+    
     loadItems();
   }, [page, searchTerm]);
+  
+  const handleSearch = (searchTerm) => {
+    console.log('Buscar:', searchTerm);
+    setPage(1);
+    fetchItems(page,searchTerm);
+    setSearchTerm(searchTerm);
+  };
 
   return (
     <div>
@@ -59,6 +65,8 @@ const UserComponent = () => {
         fetchItems={fetchItems}
         setNextToken={setNextToken}
         nextToken={nextToken}
+        lastEvaluatedKey={lastEvaluatedKey}
+        setSearchTerm={setSearchTerm}
       />
     </div>
   );

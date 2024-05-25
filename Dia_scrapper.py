@@ -14,7 +14,7 @@ import json
 from multiprocessing import Process
 import multiprocessing
 import urllib.parse
-
+from tempfile import mkdtemp
 def modify_url_image(url, new_width):
     parsed_url = urllib.parse.urlparse(url)
     query_params = urllib.parse.parse_qs(parsed_url.query)
@@ -47,23 +47,32 @@ def scrap_product_list(driver, products, scraped_product_names):
 def scrape_product_details(url):
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
-    options.add_argument("--window-size=1920x1080")
+    options.add_argument(
+        'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+    )
+    options.add_argument(f'--window-size={1920*64},{1080*64}')
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument('--no-sandbox')
+    options.add_argument("--disable-dev-tools")
+    options.add_argument("--no-zygote")
+    options.add_argument(f"--user-data-dir={mkdtemp()}")
+    options.add_argument(f"--data-path={mkdtemp()}")
+    options.add_argument(f"--disk-cache-dir={mkdtemp()}")
+    options.add_argument("--remote-debugging-port=9222")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     
     driver.get(url)
     try:
-        # Aceptar cookies si hay un banner
+        
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Aceptar')]"))
         ).click()
     except (TimeoutException, NoSuchElementException):
-        pass  # Si no hay un banner de cookies, continuar
+        pass  
 
     scraped_product_names = set()
     products = []

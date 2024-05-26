@@ -52,7 +52,7 @@ Resources:
   UpdateUserPoolWithTrigger:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolId: !ImportValue CognitoUserPoolID
+      UserPoolId: !ImportValue cognito-prueba-UserPoolId
       LambdaConfig:
         PostConfirmation: !GetAtt PostConfirmationFunction.Arn
 

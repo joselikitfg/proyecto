@@ -28,10 +28,10 @@ def alcampo_handler(scrapper_terms):
     
     dynamodb = boto3.resource('dynamodb')
     table_name = 'ScrappedProductsTable'
-    for product in products:
+    table = dynamodb.Table(table_name)
+    
+    for product in all_products:
         timestamp = int(time.time() * 1000)
-        # Referencia a la tabla
-        table = dynamodb.Table(table_name)
         item = {
             'origin': 'alcampo',
             'pname': product["name"].lower(),
@@ -49,13 +49,41 @@ def alcampo_handler(scrapper_terms):
         )
 
         items = response.get('Items', [])
-        exists_any = any((item['total_price'] == product['total_price']) for item in items)
-        if not exists_any:
-            logger.info("Sending to DynamoDB because item is not saved or its price has changed")
-            response = table.put_item(Item=item)
-            logger.info(response)
+        if items:
+            existing_item = items[0]
+            if existing_item['total_price'] != product['total_price']:
+                if 'price_history' not in existing_item:
+                    existing_item['price_history'] = []
+
+                price_entry = {
+                    'price': existing_item['total_price'],
+                    'timestamp': existing_item['timestamp']
+                }
+                existing_item['price_history'].append(price_entry)
+
+                table.update_item(
+                    Key={'origin': existing_item['origin'], 'timestamp': existing_item['timestamp']},
+                    UpdateExpression="""
+                        SET total_price = :new_total_price,
+                            price_per_unit = :new_price_per_unit,
+                            timestamp = :new_timestamp,
+                            price_history = :price_history
+                    """,
+                    ExpressionAttributeValues={
+                        ':new_total_price': product['total_price'],
+                        ':new_price_per_unit': product['price_per_unit'],
+                        ':new_timestamp': timestamp,
+                        ':price_history': existing_item['price_history']
+                    }
+                )
+                logger.info("Updated item in DynamoDB with new price and price history")
+            else:
+                logger.info("Price is the same, no update needed")
         else:
-            logger.info("Not sending to DynamoDB because item is already saved and price is the same")
+            item['price_history'] = []
+            response = table.put_item(Item=item)
+            logger.info("Inserted new item in DynamoDB")
+
             
             
         
@@ -120,13 +148,40 @@ def dia_handler(scrapper_terms):
         logger.info(f"Estos son los items que hay con el mismo nombre: {items}")
         logger.info(f"NAME DEL PRODUCTO: {product['name']}")
 
-        exists_any = any((item['total_price'] == product['total_price']) for item in items)
-        if not exists_any:
-            logger.info("Sending to DynamoDB because item is not saved or its price has changed")
-            response = table.put_item(Item=item)
-            logger.info(response)
+        if items:
+            existing_item = items[0]
+            if existing_item['total_price'] != product['total_price']:
+                if 'price_history' not in existing_item:
+                    existing_item['price_history'] = []
+
+                price_entry = {
+                    'price': existing_item['total_price'],
+                    'timestamp': existing_item['timestamp']
+                }
+                existing_item['price_history'].append(price_entry)
+
+                table.update_item(
+                    Key={'origin': existing_item['origin'], 'timestamp': existing_item['timestamp']},
+                    UpdateExpression="""
+                        SET total_price = :new_total_price,
+                            price_per_unit = :new_price_per_unit,
+                            timestamp = :new_timestamp,
+                            price_history = :price_history
+                    """,
+                    ExpressionAttributeValues={
+                        ':new_total_price': product['total_price'],
+                        ':new_price_per_unit': product['price_per_unit'],
+                        ':new_timestamp': timestamp,
+                        ':price_history': existing_item['price_history']
+                    }
+                )
+                logger.info("Updated item in DynamoDB with new price and price history")
+            else:
+                logger.info("Price is the same, no update needed")
         else:
-            logger.info("Not sending to DynamoDB because item is already saved and price is the same")
+            item['price_history'] = []
+            response = table.put_item(Item=item)
+            logger.info("Inserted new item in DynamoDB")
 
 
         

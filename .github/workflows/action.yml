@@ -84,7 +84,7 @@ jobs:
                   --stack-name cognito-prueba \
                   --capabilities CAPABILITY_IAM \
                   --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}" \
-                  --region eu-west-1
+                  --region ${{ secrets.AWS_DEFAULT_REGION }}
         working-directory: python_scrappers/iac
       - name: Retrieve CloudFormation Outputs
         id: cf-outputs
@@ -97,14 +97,14 @@ jobs:
           echo "USER_POOL_CLIENT_ID=$user_pool_client_id" >> $GITHUB_ENV
           
         working-directory: python_scrappers/iac
-      - name: Deploy CloudFormation stack for cognito
+      - name: Deploy CloudFormation stack (part 2)
         run: |
-                aws cloudformation deploy \
-                  --template-file cognito2.yml \
-                  --stack-name cognito-prueba \
-                  --capabilities CAPABILITY_IAM \
-                  --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}" \
-                  --region eu-west-1
+          aws cloudformation deploy \
+            --template-file cognito2.yml \
+            --stack-name cognito-prueba \
+            --capabilities CAPABILITY_IAM \
+            --parameter-overrides CognitoUserPoolID=${{ env.USER_POOL_ID }} \
+            --region ${{ secrets.AWS_DEFAULT_REGION }}
         working-directory: python_scrappers/iac
       
       - name: Prepare Amplify configuration

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 import "./ItemDetail.css";
 
 function formatDate(timestamp) {
@@ -15,6 +16,7 @@ function formatPrice(price) {
 function ItemDetail() {
   const { pname } = useParams();
   const navigate = useNavigate();
+  const { state } = useUser();
   const [item, setItem] = useState(null);
 
   useEffect(() => {
@@ -42,7 +44,8 @@ function ItemDetail() {
   const handleDelete = async () => {
     try {
       const encodedPname = encodeURIComponent(pname);
-      await axios.delete(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/items/${encodedPname}`);
+      console.log("NAME ", encodedPname)
+      await axios.delete(`http://localhost:5000/item/name/${encodedPname}`);
       navigate('/');
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -52,6 +55,8 @@ function ItemDetail() {
   if (!item) {
     return <div className="container mt-5">Cargando...</div>;
   }
+
+  const isAdmin = state.user?.groups.includes('User');
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
@@ -64,7 +69,9 @@ function ItemDetail() {
         {item.image_url && <img src={item.image_url} alt={`Imagen de ${item.pname}`} className="img-fluid mb-3 item-image" />}
         <div className="d-flex justify-content-between">
           <button onClick={handleBack} className="btn btn-secondary">Volver</button>
-          <button onClick={handleDelete} className="btn btn-danger">Borrar Ítem</button>
+          {isAdmin && (
+            <button onClick={handleDelete} className="btn btn-danger">Borrar Ítem</button>
+          )}
         </div>
       </div>
     </div>

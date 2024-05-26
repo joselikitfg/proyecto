@@ -165,18 +165,18 @@ def scrap_product_list(driver: WebDriver, products: List[Dict[str, Any]], scrape
         None: Esta función modifica directamente la lista `products` y el conjunto `scraped_product_names`.
     """
     # Aceptar las cookies
-    # try:
-    #     WebDriverWait(driver, 10).until(
-    #         EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
-    #     ).click()
-    # except (TimeoutException, NoSuchElementException):
-    #     pass
-    # for _ in range(5):  
-    #     driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
-    #     time.sleep(1)
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
+        ).click()
+    except (TimeoutException, NoSuchElementException):
+        pass
+    for _ in range(10):  
+        driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
         
     driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(10)
 
     WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, "//li[@data-test-id='search-product-card-list-item']"))
@@ -234,11 +234,16 @@ def scrap_one_product(
         good_image = modify_url_image(image_element['src'], 500)
         if not good_image.startswith('http'):
             good_image = 'https://www.dia.es' + good_image
-        if "iso_0_es.jpg" in good_image:
-            print(f"Warning: default image detected for product '{product['name']}'. Skipping.")
-            product['image_url'] = ''
-        else:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+            'Referer': 'https://www.dia.es/',
+        }
+        response = requests.get(good_image, headers=headers)
+        if response.status_code == 200 and "iso_0_es.jpg" not in good_image:
             product['image_url'] = good_image
+        else:
+            product['image_url'] = ''
+            print(f"Warning: default or inaccessible image detected for product '{product['name']}'. Skipping.")
     else:
         product['image_url'] = ''
     

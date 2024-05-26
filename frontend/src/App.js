@@ -32,14 +32,12 @@ import "@aws-amplify/ui-react/styles.css";
 
 import ChildComponent from "./ChildComponent";
 
-import { UserProvider, useUser } from './contexts/UserContext';
+import { UserProvider, useUser } from './contexts/UserContext';  
 import { CartProvider } from './contexts/CartContext';
 import TestComponent from "./components/TestComponent";
 import RoleBasedRedirect from "./components/RoleBasedRedirect";
 import Loading from "./components/Loading";
 import UserDetails from "./components/UserDetails";
-
-
 
 Amplify.configure(awsExports);
 
@@ -153,4 +151,3 @@ const App = () => {
 }
 
 export default App;
-  

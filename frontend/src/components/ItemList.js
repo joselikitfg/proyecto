@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SkeletonItem from './SkeletonItem'; // Asegúrate de importar el SkeletonItem
+import SkeletonItem from './SkeletonItem';
+import { useUser } from "../contexts/UserContext"; // Asegúrate de importar el contexto de usuario
 
 const Card = styled.div`
   background-color: #fff;
@@ -59,6 +60,9 @@ function formatPrice(price) {
 }
 
 function ItemList({ items = [], deleteItem, loading }) {
+  const { state } = useUser();
+  const isAdmin = state.user?.groups.includes('Admin');
+
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
       {loading ? (
@@ -73,7 +77,6 @@ function ItemList({ items = [], deleteItem, loading }) {
             key={item._id ? item._id.$oid : index}
             className="col d-flex align-items-stretch"
           >
-            
             <Card className="card h-100 d-flex flex-column">
               <CardImageWrapper>
                 <CardImage
@@ -102,12 +105,14 @@ function ItemList({ items = [], deleteItem, loading }) {
                 >
                   Ver Detalles
                 </Link>
-                <button
-                  onClick={() => deleteItem(item.pname)}
-                  className="btn btn-danger ms-2"
-                >
-                  Borrar Ítem
-                </button>
+                {isAdmin && (
+                  <button
+                    onClick={() => deleteItem(item.pname)}
+                    className="btn btn-danger ms-2"
+                  >
+                    Borrar Ítem
+                  </button>
+                )}
               </ButtonGroup>
             </Card>
           </div>

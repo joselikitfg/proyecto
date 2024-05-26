@@ -25,7 +25,7 @@ Resources:
           Required: true
           StringAttributeConstraints:
             MinLength: "1"
-            
+
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
@@ -52,6 +52,59 @@ Resources:
     Properties:
       UserPoolId: !Ref UserPool
       GroupName: Collaborator
+
+  PostConfirmationFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          import json
+
+          def handler(event, context):
+              user_pool_id = event['userPoolId']
+              user_name = event['userName']
+              
+              client = boto3.client('cognito-idp')
+              
+              response = client.admin_add_user_to_group(
+                  UserPoolId=user_pool_id,
+                  Username=user_name,
+                  GroupName='User'
+              )
+              
+              return event
+      Runtime: python3.8
+      Timeout: 60
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaCognitoPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - cognito-idp:AdminAddUserToGroup
+                Resource: 
+                  - !Sub arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${UserPool}
+
+  PostConfirmationTrigger:
+    Type: AWS::Cognito::UserPoolLambdaConfig
+    Properties:
+      UserPoolId: !Ref UserPool
+      PostConfirmation: !GetAtt PostConfirmationFunction.Arn
 
 Outputs:
   CognitoUserPoolID:

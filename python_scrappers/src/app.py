@@ -12,6 +12,7 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import unicodedata
 import urllib.parse
+from botocore.exceptions import ClientError
 app = Flask(__name__)
 CORS(app)
 
@@ -110,13 +111,26 @@ def get_item_by_pname(pname):
         logger.error(f"Error al buscar el item: {str(e)}")
         return jsonify({'error': str(e)}), 500
     
-@app.route('/items/<item_id>', methods=['DELETE']) 
-def delete_item(item_id):
+@app.route('/item/name/<string:pname>', methods=['DELETE']) 
+def delete_item(pname):
     try:
-        decoded_item_id = urllib.parse.unquote(item_id)
-        response = table.delete_item(Key={'pname': item_id})
+        # Decodificar URL
+        pname_decoded = urllib.parse.unquote(pname)
+        # Normalizar
+        pname_normalized = normalize_query(pname_decoded)
+        app.logger.debug(f"Decoded pname: {pname_decoded}")
+        app.logger.debug(f"Normalized pname: {pname_normalized}")
+        
+        response = table.delete_item(Key={'pname': pname_normalized})
+        
+        app.logger.debug(f"Delete response: {response}")
+        
         return jsonify({'message': 'Item borrado correctamente'}), 200
+    except ClientError as e:
+        app.logger.error(f"ClientError: {e.response['Error']['Message']}")
+        return jsonify({'error': e.response['Error']['Message']}), 500
     except Exception as e:
+        app.logger.error(f"Exception: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/search/<search_query>', methods=['GET'])

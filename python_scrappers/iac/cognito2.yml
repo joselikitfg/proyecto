@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation para configurar triggers y funciones Lambda para Cognito'
 
+Parameters:
+  CognitoUserPoolID:
+    Type: String
+    Description: "ID del User Pool de Cognito"
+
 Resources:
   LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -52,7 +57,7 @@ Resources:
   UpdateUserPoolWithTrigger:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolId: !ImportValue cognito-prueba-UserPoolId
+      UserPoolId: !Ref CognitoUserPoolID
       LambdaConfig:
         PostConfirmation: !GetAtt PostConfirmationFunction.Arn
 

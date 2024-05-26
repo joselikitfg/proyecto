@@ -100,15 +100,15 @@ jobs:
           
         working-directory: python_scrappers/iac
 
-      - name: Deploy CloudFormation stack (part 2)
-        run: |
-          aws cloudformation deploy \
-            --template-file cognito2.yml \
-            --stack-name cognito-prueba \
-            --capabilities CAPABILITY_IAM \
-            --parameter-overrides CognitoUserPoolID=${{ env.USER_POOL_ID }} \
-            --region ${{ secrets.AWS_DEFAULT_REGION }}
-        working-directory: python_scrappers/iac
+      # - name: Deploy CloudFormation stack (part 2)
+      #   run: |
+      #     aws cloudformation deploy \
+      #       --template-file cognito2.yml \
+      #       --stack-name cognito-prueba \
+      #       --capabilities CAPABILITY_IAM \
+      #       --parameter-overrides CognitoUserPoolID=${{ env.USER_POOL_ID }} \
+      #       --region ${{ secrets.AWS_DEFAULT_REGION }}
+      #   working-directory: python_scrappers/iac
       
       - name: Prepare Amplify configuration
         run: |

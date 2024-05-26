@@ -55,11 +55,11 @@ Resources:
       Timeout: 60
 
   UpdateUserPoolWithTrigger:
-    Type: AWS::Cognito::UserPool
+    Type: Custom::UpdateUserPool
     Properties:
+      ServiceToken: !GetAtt PostConfirmationFunction.Arn
       UserPoolId: !Ref CognitoUserPoolID
-      LambdaConfig:
-        PostConfirmation: !GetAtt PostConfirmationFunction.Arn
+      LambdaArn: !GetAtt PostConfirmationFunction.Arn
 
 Outputs:
   PostConfirmationFunctionArn:

@@ -97,6 +97,15 @@ jobs:
           echo "USER_POOL_CLIENT_ID=$user_pool_client_id" >> $GITHUB_ENV
           
         working-directory: python_scrappers/iac
+      - name: Deploy CloudFormation stack for cognito
+        run: |
+                aws cloudformation deploy \
+                  --template-file cognito2.yml \
+                  --stack-name cognito-prueba \
+                  --capabilities CAPABILITY_IAM \
+                  --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}" \
+                  --region eu-west-1
+        working-directory: python_scrappers/iac
       
       - name: Prepare Amplify configuration
         run: |

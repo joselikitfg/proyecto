@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation para crear una user pool en cognito sin configuraciones de triggers'
+Description: 'CloudFormation para crear una user pool en cognito con trigger de Lambda en el evento PreSignUp'
 
 Resources:
   UserPool:
@@ -25,6 +25,10 @@ Resources:
           Required: true
           StringAttributeConstraints:
             MinLength: "1"
+      LambdaConfig:
+        PostAuthentication: !GetAtt SignUpTriggerFunction.Arn
+      UserPoolAddOns:
+        AdvancedSecurityMode: AUDIT
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
@@ -52,6 +56,67 @@ Resources:
     Properties:
       UserPoolId: !Ref UserPool
       GroupName: Collaborator
+
+  SignUpTriggerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role: !GetAtt TriggerSignUpLambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          import json
+
+          def handler(event, context):
+              user_pool_id = event['userPoolId']
+              user_name = event['userName']
+              
+              client = boto3.client('cognito-idp')
+              
+              response = client.admin_add_user_to_group(
+                  UserPoolId=user_pool_id,
+                  Username=user_name,
+                  GroupName='User'
+              )
+              
+              return event
+      Runtime: python3.12
+      Timeout: 30
+      MemorySize: 128
+
+  TriggerSignUpLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - cognito-idp:AdminAddUserToGroup
+                  - cognito-idp:DescribeUserPool
+                  - cognito-idp:AdminCreateUser
+                  - cognito-idp:AdminGetUser
+                Resource: "*"
+
+  CognitoLambdaInvokePolicy:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref SignUpTriggerFunction
+      Action: lambda:InvokeFunction
+      Principal: cognito-idp.amazonaws.com
+      SourceArn: !Sub arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${UserPool}
 
 Outputs:
   CognitoUserPoolID:

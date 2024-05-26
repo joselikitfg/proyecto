@@ -23,7 +23,7 @@ function ItemDetail() {
     const fetchItem = async () => {
       try {
         console.log("Fetching item with pname:", pname); 
-        const response = await axios.get(`https://m6p642oycf.execute-api.eu-west-1.amazonaws.com/Prod/item/name/${pname}`);
+        const response = await axios.get(`https://alccm18ogi.execute-api.eu-west-1.amazonaws.com/Prod/item/name/${pname}`);
         if (response.status === 200) {
           setItem(response.data);
         } else {
@@ -45,7 +45,7 @@ function ItemDetail() {
     try {
       const encodedPname = encodeURIComponent(pname);
       console.log("NAME ", encodedPname)
-      await axios.delete(`http://localhost:5000/item/name/${encodedPname}`);
+      await axios.delete(`https://alccm18ogi.execute-api.eu-west-1.amazonaws.com/Prod/item/name/${encodedPname}`);
       navigate('/');
     } catch (error) {
       console.error("Error deleting item:", error);

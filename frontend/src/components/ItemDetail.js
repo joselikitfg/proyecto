@@ -56,6 +56,7 @@ function ItemDetail() {
   const [item, setItem] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [forecastDates, setForecastDates] = useState([]);
+  const [showArimaMessage, setShowArimaMessage] = useState(false);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -66,7 +67,7 @@ function ItemDetail() {
         if (response.status === 200) {
           setItem(response.data);
           const priceHistory = response.data.price_history || [];
-          if (priceHistory.length > 20) {
+          if (priceHistory.length >= 20) {
             const prices = priceHistory.map((entry) =>
               formatPriceForArima(entry.total_price)
             );
@@ -88,6 +89,8 @@ function ItemDetail() {
             );
             setForecast(data.forecast);
             setForecastDates(forecastDates);
+          } else {
+            setShowArimaMessage(true);
           }
         } else {
           throw new Error(`Item not found: ${response.status}`);
@@ -165,7 +168,6 @@ function ItemDetail() {
     }
   }
 
-
   const chartData = {
     labels: dates.concat(forecastDates),
     datasets: [
@@ -233,6 +235,11 @@ function ItemDetail() {
         <div className="mt-4">
           <h3>Historial de Precios y Predicciones</h3>
           <Line data={chartData} />
+          {showArimaMessage && (
+            <div className="alert alert-warning mt-3" role="alert">
+              Este item no cuenta con los suficientes datos como para realizar una predicción ARIMA.
+            </div>
+          )}
         </div>
       </div>
     </div>

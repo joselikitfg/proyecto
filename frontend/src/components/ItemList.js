@@ -87,7 +87,7 @@ function ItemList({ items = [], deleteItem, loading }) {
               <CardBody className="card-body">
                 <CardTitle className="card-title">{item.pname}</CardTitle>
                 <CardText className="card-text">
-                  <strong>Precio por unidad:</strong>{" "}
+                  <strong>Precio por unidad/kilo/litro:</strong>{" "}
                   {formatPrice(item.price_per_unit)}
                 </CardText>
                 <CardText className="card-text">
@@ -96,6 +96,10 @@ function ItemList({ items = [], deleteItem, loading }) {
                 <CardText className="card-text">
                   <strong>Fecha de obtención:</strong>{" "}
                   {formatDate(item.timestamp)}
+                </CardText>
+                <CardText className="card-text">
+                  <strong> Proveedor : </strong>{" "}
+                  {item.origin}
                 </CardText>
               </CardBody>
               <ButtonGroup className="mt-auto">

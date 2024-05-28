@@ -269,6 +269,7 @@ Resources:
       - AWSLambdaBasicExecutionRole
       - AmazonDynamoDBFullAccess
       - AmazonSQSFullAccess
+      - AmazonCognitoPowerUser
       Events:
         FlaskAppAPI:
           Type: Api

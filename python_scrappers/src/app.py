@@ -13,6 +13,11 @@ from boto3.dynamodb.conditions import Key, Attr
 import unicodedata
 import urllib.parse
 from botocore.exceptions import ClientError
+from statsmodels.tsa.arima_model import ARIMA
+import pandas as pd
+import pmdarima as pm
+import pickle
+
 app = Flask(__name__)
 CORS(app)
 
@@ -21,8 +26,116 @@ dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
 table = dynamodb.Table('ScrappedProductsTable')
 dynamodb_client = boto3.client('dynamodb')
 
+cognito_client = boto3.client('cognito-idp', region_name='eu-west-1')
+USER_POOL_ID = 'eu-west-1_nRtCoCYik'
+
 logger = logging.getLogger()
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
+
+
+
+class Modelo:
+
+    def predict(self, prices):
+        model = pm.auto_arima(
+            prices,
+            start_p=1, start_q=1,
+            test='adf',
+            max_p=3, max_q=3,
+            m=1,
+            d=None,
+            seasonal=False,
+            start_P=0,
+            D=0,
+            trace=True,
+            error_action='ignore',
+            suppress_warnings=True,
+            stepwise=True)
+        forecast, conf_int = model.predict(n_periods=30, return_conf_int=True)
+        return forecast, conf_int
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    prices = data['prices']
+    modelo = Modelo()
+    forecast, conf_int = modelo.predict(prices)
+    return jsonify({'forecast': forecast.tolist(), 'conf_int': conf_int.tolist()})
+
+########################################################################
+
+def is_admin(email):
+    response = cognito_client.admin_list_groups_for_user(
+        UserPoolId=USER_POOL_ID,
+        Username=email
+    )
+    groups = [group['GroupName'] for group in response['Groups']]
+    return 'Admin' in groups
+
+@app.route('/users', methods=['GET'])
+def list_users():
+    email = request.args.get('email')
+    if not email or not is_admin(email):
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    response = cognito_client.list_users(UserPoolId=USER_POOL_ID)
+    users = []
+    for user in response['Users']:
+        user_attributes = {attr['Name']: attr['Value'] for attr in user['Attributes']}
+        users.append({
+            'Email': user_attributes.get('email', ''),
+            'Username': user_attributes.get('preferred_username', user['Username'])
+        })
+    return jsonify(users)
+
+@app.route('/users/<email>/groups', methods=['GET'])
+def list_user_groups(email):
+    admin_email = request.args.get('admin_email')
+    if not admin_email or not is_admin(admin_email):
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    response = cognito_client.admin_list_groups_for_user(
+        UserPoolId=USER_POOL_ID,
+        Username=email
+    )
+    groups = [group['GroupName'] for group in response['Groups']]
+    return jsonify({'groups': groups})
+
+@app.route('/users/add-to-group', methods=['POST'])
+def add_user_to_group():
+    admin_email = request.json.get('admin_email')
+    if not admin_email or not is_admin(admin_email):
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    email = request.json['email']
+    group_name = request.json['groupName']
+    
+    cognito_client.admin_add_user_to_group(
+        UserPoolId=USER_POOL_ID,
+        Username=email,
+        GroupName=group_name
+    )
+    
+    return jsonify({'message': f'User {email} added to group {group_name}'})
+
+@app.route('/users/remove-from-group', methods=['POST'])
+def remove_user_from_group():
+    admin_email = request.json.get('admin_email')
+    if not admin_email or not is_admin(admin_email):
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    email = request.json['email']
+    group_name = request.json['groupName']
+    
+    cognito_client.admin_remove_user_from_group(
+        UserPoolId=USER_POOL_ID,
+        Username=email,
+        GroupName=group_name
+    )
+    
+    return jsonify({'message': f'User {email} removed from group {group_name}'})
+
+########################################################################
 
 def normalize_query(query):
     return query.strip().lower()
@@ -187,6 +300,7 @@ def search_items(search_query):
         'next_token': next_token if len(accumulated_items) >= limit else None
     }), 200
 
+################################################################
 
 @app.route('/')
 @cross_origin(origin='localhost')
@@ -199,6 +313,7 @@ def hello_world():
 def hello_world_V2():
     return 'Hello, World! from /hello'
 
+################################################################
 
 @app.route('/scrape/alcampo', methods=['POST'])
 @cross_origin(origin='localhost')
@@ -237,7 +352,7 @@ def start_scraping_alcampo():
         # send_scraped_data_to_uploader(all_products)
         return jsonify(
             {
-                'message': 'Scraping iniciado y datos enviados al servicio de carga.',
+                'message': 'Scraping alcampo iniciado y datos enviados al servicio de carga.',
                 # 'data': all_products,
             }
         ), 200
@@ -272,47 +387,12 @@ def start_scraping_dia():
     try:
         return jsonify(
             {
-                'message': 'Scraping iniciado y datos enviados al servicio de carga.',
+                'message': 'Scraping dia iniciado y datos enviados al servicio de carga.',
             }
         ), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
-
-# @app.route('/scrape/hipercor', methods=['POST'])
-# @cross_origin(origin='localhost')
-# def start_scraping_hipercor():
-#     data = request.get_json()
-#     terms = data.get('terms', [])
-#     if not terms:
-#         return jsonify({'error': 'No se proporcionaron términos para el scraping.'}), 400
-
-#     url_base = 'https://www.hipercor.es/supermercado/buscar/'
-#     generated_urls = generate_urls_h(url_base, terms)
-#     all_products = []
-
-#     for url in generated_urls:
-#         products = scrap_product_by_category(url, terms[generated_urls.index(url)], url_base)
-#         if products:
-#             all_products.extend(products)
-
-#     try:
-#         # send_scraped_data_to_uploader(all_products)
-#         return jsonify({'message': 'Scraping iniciado y datos enviados al servicio de carga.'}), 200
-#     except Exception as e:
-#         return jsonify({'error': str(e)}), 500
-
-
-@cross_origin(origin='localhost')
-def send_scraped_data_to_uploader(data):
-    url = 'http://uploader:8094/api/scraped-items'
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, json=data, headers=headers)
-    if response.status_code == 201:
-        print('Datos enviados exitosamente al servicio de carga.')
-    else:
-        print('Error al enviar datos al servicio de carga:', response.text)
 
 
 if __name__ == '__main__':

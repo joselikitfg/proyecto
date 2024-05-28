@@ -37,18 +37,16 @@ def alcampo_handler(scrapper_terms):
             'pname': product["name"].lower(),
             'total_price': product["total_price"],
             'price_per_unit': product["price_per_unit"],
-            'image_url': product["image_url"].lower(),
+            'image_url': product["image_url"],
             'timestamp': timestamp
         }
 
         response = table.query(
             IndexName='NameIndex',
-            KeyConditionExpression='#keyname = :compared_value',
-            ExpressionAttributeNames={'#keyname': 'pname'},
-            ExpressionAttributeValues={':compared_value': product['name'].lower()},
+            KeyConditionExpression=Key('pname').eq(product['name'].lower())
         )
 
-        items = response.get('Items', [])
+        items = [item for item in response.get('Items', []) if item['origin'] == 'alcampo']
         if items:
             existing_item = items[0]
             if existing_item['total_price'] != product['total_price']:
@@ -132,19 +130,17 @@ def dia_handler(scrapper_terms):
             'pname': product["name"].lower(),
             'total_price': product["total_price"],
             'price_per_unit': product["price_per_unit"],
-            'image_url': product["image_url"].lower(),
+            'image_url': product["image_url"],
             'timestamp': timestamp
         }
 
         logger.info(f"Consultando DynamoDB con el nombre del producto: {product['name']}")
         response = table.query(
             IndexName='NameIndex',
-            KeyConditionExpression='#keyname = :compared_value',
-            ExpressionAttributeNames={'#keyname': 'pname'},
-            ExpressionAttributeValues={':compared_value': product['name'].lower()},
+            KeyConditionExpression=Key('pname').eq(product['name'].lower())
         )
         
-        items = response.get('Items', [])
+        items = [item for item in response.get('Items', []) if item['origin'] == 'dia']
         logger.info(f"Estos son los items que hay con el mismo nombre: {items}")
         logger.info(f"NAME DEL PRODUCTO: {product['name']}")
 

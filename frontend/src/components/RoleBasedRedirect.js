@@ -17,7 +17,7 @@ const RoleBasedRedirect = () => {
       } else if (roles.includes('User')) {
         navigate('/user');
       } else {
-        console.log("VAmos a la riaz")
+        console.log("Vamos a la rai z")
         navigate('/');
       }
 

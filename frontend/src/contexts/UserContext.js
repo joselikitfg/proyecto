@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext, useEffect, useState } from 'react';
 import { fetchAuthSession, getCurrentUser, signOut as amplifySignOut } from '@aws-amplify/auth';
 import { useNavigate } from 'react-router-dom';
+import { cognitoUserPoolsTokenProvider } from 'aws-amplify/auth/cognito'
 
 const UserContext = createContext();
 

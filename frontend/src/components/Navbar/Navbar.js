@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import styled from 'styled-components';
-
 import { useUser } from '../../contexts/UserContext';
 import { useCart } from '../../contexts/CartContext';
 import Avatar from './Avatar';
 
-
-
 const DropdownMenu = styled.div`
   position: absolute;
-  top: 90px; /* Ajustado para el nuevo tamaño del avatar */
+  top: 90px;
   right: 0;
   background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -20,7 +17,7 @@ const DropdownMenu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px; /* Ancho aumentado */
+  width: 200px;
   
   &::before {
     content: '';
@@ -33,18 +30,11 @@ const DropdownMenu = styled.div`
   }
 `;
 
-
-
-
-
-
-
 function Navbar({ onSearch }) {
   const navigate = useNavigate();
   const { user, signOut } = useAuthenticator();
   const { state: userState, dispatch: userDispatch } = useUser();
   const { state: cartState, dispatch: cartDispatch } = useCart();
-  
   const appVersion = "v1.0.0";
 
   const myCustomSignOutHandler = async () => {
@@ -64,13 +54,12 @@ function Navbar({ onSearch }) {
     navigate('/');
   };
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    onSearch(searchTerm);
-  };
-
   const handleUserDetails = () => {
     navigate('/user-details');
+  };
+
+  const handleAdminPanel = () => {
+    navigate('/admin-panel');
   };
 
   return (
@@ -85,6 +74,11 @@ function Navbar({ onSearch }) {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
+            {userState.user?.groups.includes('Admin') && (
+              <li className="nav-item">
+                <button className="nav-link" onClick={handleAdminPanel}>Admin Panel</button>
+              </li>
+            )}
           </ul>
           <Avatar userName={user.username} appVersion={appVersion} onSignOut={myCustomSignOutHandler} onUserDetails={handleUserDetails} />
         </div>

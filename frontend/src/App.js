@@ -4,12 +4,10 @@ import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
 import ItemForm from "./components/ItemForm";
 import UploadFile from "./components/UploadFile";
-
 import Pagination from "./components/Pagination";
 import useItems from "./useItems";
 import ScrapingFormA from "./components/ScrapingForm";
 import ScrapingFormH from "./components/ScrapingFormH";
-
 import { Amplify } from "aws-amplify";
 import { awsExports } from "./aws-exports";
 import Navbar from "./components/Navbar/Navbar";
@@ -29,16 +27,15 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-
 import ChildComponent from "./ChildComponent";
-
 import { UserProvider, useUser } from './contexts/UserContext';  
 import { CartProvider } from './contexts/CartContext';
 import TestComponent from "./components/TestComponent";
 import RoleBasedRedirect from "./components/RoleBasedRedirect";
 import Loading from "./components/Loading";
 import UserDetails from "./components/UserDetails";
-
+import AdminPanel from "./components/AdminPanel";
+import 'bootstrap/dist/css/bootstrap.min.css';
 Amplify.configure(awsExports);
 
 const App = () => {
@@ -98,56 +95,66 @@ const App = () => {
         <div className="container mt-4">
           <Routes>
             {console.debug(state.user)}
-            {state.user?.groups.includes('User') &&
-                <Route
-              path="/user"
-              element={
-                <ProtectedRoute allowedRoles={['User']}>
-                  <UserComponent />
-                </ProtectedRoute>
-              }
-            />}
-            {state.user?.groups.includes('User') &&
-                <Route
-              path="/item/:pname"
-              element={
-                <ProtectedRoute allowedRoles={['User']}>
-                  <ItemDetail/>
-                </ProtectedRoute>
-              }
-            />}
-            {state.user?.groups.includes('Admin') && <Route
-              path="/admin"
-              element={
-                <ProtectedRoute allowedRoles={['Admin']}>
-                  <AdminComponent />
-                </ProtectedRoute>
-              }
-            />
-            }
-
+            {state.user?.groups.includes('User') && (
+              <Route
+                path="/user"
+                element={
+                  <ProtectedRoute allowedRoles={['User']}>
+                    <UserComponent />
+                  </ProtectedRoute>
+                }
+              />
+            )}
+            {state.user?.groups.includes('User') && (
+              <Route
+                path="/item/:pname"
+                element={
+                  <ProtectedRoute allowedRoles={['User']}>
+                    <ItemDetail />
+                  </ProtectedRoute>
+                }
+              />
+            )}
+            {state.user?.groups.includes('Admin') && (
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute allowedRoles={['Admin']}>
+                    <AdminComponent />
+                  </ProtectedRoute>
+                }
+              />
+            )}
+            {state.user?.groups.includes('Admin') && (
+              <Route
+                path="/admin-panel"
+                element={
+                  <ProtectedRoute allowedRoles={['Admin']}>
+                    <AdminPanel />
+                  </ProtectedRoute>
+                }
+              />
+            )}
             {state.user?.groups.includes('Guest') && <Route path="/" element={<GuestComponent />} /> }
-
             { state.user && <Route path="/user-details" element={<UserDetails />} /> }
-            
           </Routes>
         </div>
       </>
     );
   };
   
-    return (
-      <Router>
-        <Authenticator signUpAttributes={['email']} components={AuthComponents}>
-          <UserProvider>
-            <CartProvider>
-              <RoleBasedRedirect />
-              <AppContent />
-            </CartProvider>
-          </UserProvider>
-        </Authenticator>
-      </Router>
-    )
+  return (
+    <Router>
+      <Authenticator signUpAttributes={['email']} components={AuthComponents}>
+        <UserProvider>
+          <CartProvider>
+            <RoleBasedRedirect />
+            <AppContent />
+          </CartProvider>
+        </UserProvider>
+      </Authenticator>
+    </Router>
+  );
 }
 
 export default App;

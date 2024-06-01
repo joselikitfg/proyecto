@@ -168,7 +168,9 @@ def get_all_items():
         response_count = table.scan(Select='COUNT')
         total_items = response_count.get('Count', 0)
         total_pages = (total_items + limit - 1) // limit
-
+        for item in items:
+            if 'price_history' not in item:
+                item['price_history'] = []
         return jsonify({
             'items': items,
             'lastEvaluatedKey': last_evaluated_key,

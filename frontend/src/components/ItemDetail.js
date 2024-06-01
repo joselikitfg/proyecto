@@ -33,7 +33,7 @@ function formatDate(timestamp) {
 
 function formatPriceForDisplay(price) {
   if (!price) return "0,00 €";
-  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €");
+  return price.replace(/(\d),(\d\d)\u00a0\u20ac.*/, "$1,$2 €)");
 }
 
 function formatPrice(price) {
@@ -130,6 +130,11 @@ function ItemDetail() {
   const dates = [];
   const unitPrices = [];
   const totalPrices = [];
+  const latestTimestamp = priceHistory.length > 0 
+    ? priceHistory[priceHistory.length - 1].timestamp 
+    : item.timestamp;
+  console.log(latestTimestamp)
+  console.log("price history",priceHistory)
 
   if (priceHistory.length === 0) {
     const startDate = new Date(parseInt(item.timestamp));
@@ -143,7 +148,9 @@ function ItemDetail() {
   } else {
     priceHistory.forEach((entry) => {
       dates.push(formatDate(entry.timestamp));
+      console.log("ppu", entry.price_per_unit)
       unitPrices.push(parseFloat(entry.price_per_unit.replace(",", ".")));
+      console.log("ppu", unitPrices)
       totalPrices.push(parseFloat(entry.total_price.replace(",", ".")));
     });
 
@@ -213,7 +220,7 @@ function ItemDetail() {
           {formatPriceForDisplay(item.total_price)}
         </p>
         <p>
-          <strong>Fecha de obtención:</strong> {formatDate(item.timestamp)}
+          <strong>Fecha de obtención:</strong> {formatDate(latestTimestamp)}
         </p>
         {item.image_url && (
           <img

@@ -50,6 +50,7 @@ const useItems = () => {
       const data = await response.json();
 
       setItems(data.items);
+      console.log(data.items.price_history);
       setTotalPages(data.totalPages || 0);
       setLastEvaluatedKey(data.lastEvaluatedKey || null);
 

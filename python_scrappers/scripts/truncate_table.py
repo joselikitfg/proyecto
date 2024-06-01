@@ -17,11 +17,23 @@ def backup_and_delete_table_data(table_name):
     dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
     table = dynamodb.Table(table_name)
 
-    response = table.scan()
-    items = response['Items']
+    scan_kwargs = {}
+    done = False
+    start_key = None
+    items = []
+
+    while not done:
+        if start_key:
+            scan_kwargs['ExclusiveStartKey'] = start_key
+        
+        response = table.scan(**scan_kwargs)
+        items.extend(response.get('Items', []))
+        start_key = response.get('LastEvaluatedKey', None)
+        done = start_key is None
 
     with open('backup.json', 'w') as backup_file:
         json.dump(items, backup_file, cls=DecimalEncoder, indent=4)
+
 
     # with table.batch_writer() as batch:
     #     for item in items:

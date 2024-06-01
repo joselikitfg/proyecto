@@ -4,6 +4,7 @@ import json
 import logging
 from .alcampo.Alcampo_scrapper import scrape_product_details, generate_urls, save_product_to_json
 from boto3.dynamodb.conditions import Key, Attr
+import re
 from .dia.Dia_scrapper import scrape_product_details_dia, generate_urls, save_product_to_json
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -41,45 +42,57 @@ def alcampo_handler(scrapper_terms):
             'timestamp': timestamp
         }
 
+        logger.info(f"Consultando DynamoDB con el nombre del producto: {product['name']}")
         response = table.query(
             IndexName='NameIndex',
             KeyConditionExpression=Key('pname').eq(product['name'].lower())
         )
-
+        
         items = [item for item in response.get('Items', []) if item['origin'] == 'alcampo']
+        logger.info(f"Estos son los items que hay con el mismo nombre: {items}")
+        logger.info(f"NAME DEL PRODUCTO: {product['name']}")
+
         if items:
             existing_item = items[0]
-            if existing_item['total_price'] != product['total_price']:
-                if 'price_history' not in existing_item:
-                    existing_item['price_history'] = []
+            price_history = existing_item.get('price_history', [])
 
-                price_entry = {
-                    'price': existing_item['total_price'],
-                    'timestamp': existing_item['timestamp']
-                }
-                existing_item['price_history'].append(price_entry)
+            if existing_item['total_price'] != product['total_price'] or existing_item['price_per_unit'] != product['price_per_unit']:
+                if not price_history:
+                    price_history.append({
+                        'total_price': existing_item['total_price'],
+                        'price_per_unit': existing_item['price_per_unit'],
+                        'timestamp': existing_item['timestamp']
+                    })
+
+                price_history.append({
+                    'total_price': product['total_price'],
+                    'price_per_unit': product['price_per_unit'],
+                    'timestamp': timestamp
+                })
 
                 table.update_item(
                     Key={'origin': existing_item['origin'], 'timestamp': existing_item['timestamp']},
                     UpdateExpression="""
                         SET total_price = :new_total_price,
                             price_per_unit = :new_price_per_unit,
-                            timestamp = :new_timestamp,
                             price_history = :price_history
                     """,
                     ExpressionAttributeValues={
                         ':new_total_price': product['total_price'],
                         ':new_price_per_unit': product['price_per_unit'],
-                        ':new_timestamp': timestamp,
-                        ':price_history': existing_item['price_history']
+                        ':price_history': price_history
                     }
                 )
                 logger.info("Updated item in DynamoDB with new price and price history")
             else:
                 logger.info("Price is the same, no update needed")
         else:
-            item['price_history'] = []
-            response = table.put_item(Item=item)
+            item['price_history'] = [{
+                'total_price': item['total_price'],
+                'price_per_unit': item['price_per_unit'],
+                'timestamp': item['timestamp']
+            }]
+            table.put_item(Item=item)
             logger.info("Inserted new item in DynamoDB")
 
             
@@ -108,7 +121,14 @@ def alcampo_handler(scrapper_terms):
         # else:
         #     print("Not sending to dynamoDB because item is already saved and price is the same")
         #     print(item)
-        
+
+
+def format_price_per_unit(price_per_unit):
+
+    clean_price = re.sub(r'[^\d,.-]', '', price_per_unit)
+
+    clean_price = clean_price.replace(',', '.')
+    return clean_price        
 
 def dia_handler(scrapper_terms):
     url_base = 'https://www.dia.es/search?q={name}'
@@ -125,11 +145,12 @@ def dia_handler(scrapper_terms):
     
     for product in all_products:
         timestamp = int(time.time() * 1000)
+        formatted_price_per_unit = format_price_per_unit(product["price_per_unit"])
         item = {
             'origin': 'dia',
             'pname': product["name"].lower(),
             'total_price': product["total_price"],
-            'price_per_unit': product["price_per_unit"],
+            'price_per_unit': formatted_price_per_unit,
             'image_url': product["image_url"],
             'timestamp': timestamp
         }
@@ -146,39 +167,46 @@ def dia_handler(scrapper_terms):
 
         if items:
             existing_item = items[0]
-            if existing_item['total_price'] != product['total_price']:
-                if 'price_history' not in existing_item:
-                    existing_item['price_history'] = []
+            price_history = existing_item.get('price_history', [])
 
-                price_entry = {
-                    'price': existing_item['total_price'],
-                    'timestamp': existing_item['timestamp']
-                }
-                existing_item['price_history'].append(price_entry)
+            if existing_item['total_price'] != product['total_price'] or existing_item['price_per_unit'] != product['price_per_unit']:
+                if not price_history:
+                    price_history.append({
+                        'total_price': existing_item['total_price'],
+                        'price_per_unit': existing_item['price_per_unit'],
+                        'timestamp': existing_item['timestamp']
+                    })
+
+                price_history.append({
+                    'total_price': product['total_price'],
+                    'price_per_unit': formatted_price_per_unit,
+                    'timestamp': timestamp
+                })
 
                 table.update_item(
                     Key={'origin': existing_item['origin'], 'timestamp': existing_item['timestamp']},
                     UpdateExpression="""
                         SET total_price = :new_total_price,
                             price_per_unit = :new_price_per_unit,
-                            timestamp = :new_timestamp,
                             price_history = :price_history
                     """,
                     ExpressionAttributeValues={
                         ':new_total_price': product['total_price'],
-                        ':new_price_per_unit': product['price_per_unit'],
-                        ':new_timestamp': timestamp,
-                        ':price_history': existing_item['price_history']
+                        ':new_price_per_unit': formatted_price_per_unit,
+                        ':price_history': price_history
                     }
                 )
                 logger.info("Updated item in DynamoDB with new price and price history")
             else:
                 logger.info("Price is the same, no update needed")
         else:
-            item['price_history'] = []
-            response = table.put_item(Item=item)
+            item['price_history'] = [{
+                'total_price': item['total_price'],
+                'price_per_unit': formatted_price_per_unit,
+                'timestamp': item['timestamp']
+            }]
+            table.put_item(Item=item)
             logger.info("Inserted new item in DynamoDB")
-
 
         
 

@@ -424,11 +424,735 @@
     },
     {
         "origin": "alcampo",
-        "total_price": "1,07\u00a0\u20ac",
         "price_per_unit": "(1,07\u00a0\u20ac por litro)",
+        "total_price": "1,07\u00a0\u20ac",
+        "price_history": [
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709053224760"
+            },
+            {
+                "price": "1.01 \u20ac",
+                "timestamp": "1709139624760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709226024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709312424760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709398824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709485224760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709571624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709658024760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709744424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709830824760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709917224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710003624760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710090024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710176424760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710262824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710349224760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710435624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710522024760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710608424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710694824760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710781224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710867624760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710954024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711040424760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711126824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711213224760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711299624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711386024760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711472424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711558824760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711645224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711731624760"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711818024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711900824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1711987224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712073624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712160024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712246424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712332824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712419224760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712505624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712592024760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712678424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712764824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712851224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712937624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713024024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713110424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713196824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713283224760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713369624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713456024760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713542424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713628824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713715224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713801624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713888024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713974424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714060824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714147224760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714233624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714320024760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714406424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714492824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714579224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714665624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714752024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714838424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714924824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715011224760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715097624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715184024760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715270424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715356824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715443224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715529624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715616024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715702424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715788824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715875224760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715961624760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716048024760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716134424760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716220824760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716307224760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716393624760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716480024760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716566424760"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716652824760"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716739224760"
+            }
+        ],
+        "priceHistory": [
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709052515708"
+            },
+            {
+                "price": "1.01 \u20ac",
+                "timestamp": "1709138915708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709225315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709311715708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709398115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709484515708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709570915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709657315708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709743715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1709830115708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1709916515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710002915708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710089315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710175715708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710262115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710348515708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710434915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710521315708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710607715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710694115708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710780515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1710866915708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1710953315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711039715708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711126115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711212515708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711298915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711385315708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711471715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711558115708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711644515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711730915708"
+            },
+            {
+                "price": "1.00 \u20ac",
+                "timestamp": "1711817315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1711900115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1711986515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712072915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712159315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712245715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712332115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712418515708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712504915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712591315708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712677715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712764115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1712850515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1712936915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713023315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713109715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713196115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713282515708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713368915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713455315708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713541715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713628115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713714515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713800915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1713887315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1713973715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714060115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714146515708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714232915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714319315708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714405715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714492115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714578515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714664915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714751315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1714837715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1714924115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715010515708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715096915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715183315708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715269715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715356115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715442515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715528915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715615315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715701715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715788115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1715874515708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1715960915708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716047315708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716133715708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716220115708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716306515708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716392915708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716479315708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716565715708"
+            },
+            {
+                "price": "0.98 \u20ac",
+                "timestamp": "1716652115708"
+            },
+            {
+                "price": "0.99 \u20ac",
+                "timestamp": "1716738515708"
+            }
+        ],
         "timestamp": 1715850109829.0,
-        "pname": "font dor agua mineral maximum botella 1 l",
         "pid": "421db03b-822f-401a-bbc4-c016ee04fef0",
+        "pname": "font dor agua mineral maximum botella 1 l",
         "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/29b40202-5c6c-4e07-bcec-7eed150c993f/300x300.jpg"
     },
     {
@@ -5725,11 +6449,463 @@
     },
     {
         "origin": "alcampo",
-        "total_price": "1,44\u00a0\u20ac",
         "price_per_unit": "(0,29\u00a0\u20ac por litro)",
+        "total_price": "1,44\u00a0\u20ac",
+        "price_history": [
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709061564095"
+            },
+            {
+                "total_price": "1.39 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709147964095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709234364095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1709320764095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709407164095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1709493564095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709579964095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1709666364095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709752764095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1709839164095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1709925564095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710011964095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710098364095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710184764095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710271164095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710357564095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710443964095"
+            },
+            {
+                "total_price": "1.37 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710530364095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710616764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710703164095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710789564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1710875964095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1710962364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711048764095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1711135164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711221564095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1711307964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711394364095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1711480764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711567164095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1711653564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711739964095"
+            },
+            {
+                "total_price": "1.38 \u20ac",
+                "price_per_unit": "0.28 \u20ac",
+                "timestamp": "1711826364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711909164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1711995564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712081964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712168364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712254764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712341164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712427564095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712513964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712600364095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712686764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712773164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712859564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1712945964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713032364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713118764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713205164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713291564095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713377964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713464364095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713550764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713637164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713723564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713809964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713896364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1713982764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714069164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714155564095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714241964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714328364095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714414764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714501164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714587564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714673964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714760364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714846764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1714933164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715019564095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715105964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715192364095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715278764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715365164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715451564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715537964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715624364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715710764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715797164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715883564095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1715969964095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716056364095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716142764095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716229164095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716315564095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716401964095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716488364095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716574764095"
+            },
+            {
+                "total_price": "1.35 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716661164095"
+            },
+            {
+                "total_price": "1.36 \u20ac",
+                "price_per_unit": "0.27 \u20ac",
+                "timestamp": "1716747564095"
+            }
+        ],
         "timestamp": 1715878926499.0,
-        "pname": "nestl\u00e9 aquarel  agua mineral garrafa de 5 l.",
         "pid": "e6d3552e-d762-4dbc-8862-b5c6e5c51f33",
+        "pname": "nestl\u00e9 aquarel  agua mineral garrafa de 5 l.",
         "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/9cc3cc78-053b-495d-9bb3-7d49ce6aaace/300x300.jpg"
     },
     {
@@ -28407,5 +29583,2228 @@
         "price_per_unit": "(8,83\u00a0\u20ac por kilogramo)",
         "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/1915a36f-a86f-429a-b83f-7617dbe042a8/300x300.jpg",
         "timestamp": 1715965321094.0
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "0,94\u00a0\u20ac",
+        "price_per_unit": "(2,85\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716742928958.0,
+        "pname": "producto alcampo pan para perritos calientes (hot dogs)  6 uds. 330 g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/a49de9b2-7141-445a-9970-fe066887ce78/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "1,79\u00a0\u20ac",
+        "price_per_unit": "(4,48\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716742929020.0,
+        "pname": "alcampo cultivamos lo bueno chapata grande, , 400g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e077b4e6-37a4-4461-aaf0-556009fa1603/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(4,45\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716742929037.0,
+        "pname": "pan de chapata 380g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/8b389b6c-67a1-4c87-959e-a1123df8a63b/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "0,47\u00a0\u20ac",
+        "price_per_unit": "(2,35\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716760031033.0,
+        "pname": "barra de pan con masa madre de fabricaci\u00f3n propia 200 g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/7ee73f5b-2040-41a5-8231-30e700a6f6d8/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(2,60\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716760031045.0,
+        "pname": "barra de pan cl\u00e1sica 250g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/e2fdb550-2ff2-45d4-8938-da7b3b8f09b5/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "3,83\u00a0\u20ac",
+        "price_per_unit": "(5,11\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716760031071.0,
+        "pname": "barra de pan, 3 uds, 750g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/4faa0f9d-7b23-4a57-86d1-e82c3382f113/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "1,45\u00a0\u20ac",
+        "price_per_unit": "(7,25\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716760031080.0,
+        "pname": "barra de pan viena nube, 200g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/6993d049-1ac4-4df7-a1f4-85293a441b2e/300x300.jpg"
+    },
+    {
+        "origin": "alcampo",
+        "total_price": "0,42\u00a0\u20ac",
+        "price_per_unit": "(2,10\u00a0\u20ac por kilogramo)",
+        "price_history": [],
+        "timestamp": 1716760031090.0,
+        "pname": "barra de pan, 200g.",
+        "image_url": "https://www.compraonline.alcampo.es/images-v3/37ea0506-72ec-4543-93c8-a77bb916ec12/c3953f71-83d2-41c6-a3ae-eb0dbc6af1ca/300x300.jpg"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,60\u00a0\u20ac",
+        "price_per_unit": "(10,67\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376463.0,
+        "pname": "aceitunas rellenas de anchoa vegecampo de dia lata 3 x 50 g",
+        "image_url": "https://www.dia.es/product_images/69057/69057_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,60\u00a0\u20ac",
+        "price_per_unit": "(6,50\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376521.0,
+        "pname": "aceitunas verdes sin hueso vegecampo de dia frasco 400 g",
+        "image_url": "https://www.dia.es/product_images/142072/142072_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,89\u00a0\u20ac",
+        "price_per_unit": "(5,93\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376531.0,
+        "pname": "aceitunas negras sin hueso vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/142058/142058_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(7,33\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376540.0,
+        "pname": "aceitunas verdes sin hueso vegecampo de dia bolsa 3 x 75 g",
+        "image_url": "https://www.dia.es/product_images/116850/116850_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,40\u00a0\u20ac",
+        "price_per_unit": "(9,33\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376550.0,
+        "pname": "aceitunas rellenas de anchoa suave vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/273264/273264_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,00\u00a0\u20ac",
+        "price_per_unit": "(6,67\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376559.0,
+        "pname": "aceitunas rellenas de anchoa vegecampo de dia lata 3 x 150 g",
+        "image_url": "https://www.dia.es/product_images/219480/219480_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,80\u00a0\u20ac",
+        "price_per_unit": "(6,83\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376569.0,
+        "pname": "aceitunas chupadedos con hueso vegecampo de dia frasco 410 g",
+        "image_url": "https://www.dia.es/product_images/274032/274032_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,16\u00a0\u20ac",
+        "price_per_unit": "(9,29\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376580.0,
+        "pname": "aceitunas gordal ali\u00f1ada sin hueso vegecampo de dia frasco 340 g",
+        "image_url": "https://www.dia.es/product_images/273336/273336_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,80\u00a0\u20ac",
+        "price_per_unit": "(12,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376590.0,
+        "pname": "aceitunas rellenas de anchoa suave vegecampo de dia lata 3 x 50 g",
+        "image_url": "https://www.dia.es/product_images/273617/273617_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,60\u00a0\u20ac",
+        "price_per_unit": "(5,20\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376599.0,
+        "pname": "aceitunas verdes con hueso vegecampo de dia frasco 500 g",
+        "image_url": "https://www.dia.es/product_images/46239/46239_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(7,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376609.0,
+        "pname": "aceitunas ali\u00f1adas estilo tradicional  vegecampo de dia frasco 250 g",
+        "image_url": "https://www.dia.es/product_images/293847/293847_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,80\u00a0\u20ac",
+        "price_per_unit": "(6,83\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376618.0,
+        "pname": "aceitunas estilo casero vegecampo de dia frasco 410 g",
+        "image_url": "https://www.dia.es/product_images/274031/274031_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(11,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376629.0,
+        "pname": "aceitunas verdes sin hueso jolca bolsa 90 g",
+        "image_url": "https://www.dia.es/product_images/20663/20663_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,15\u00a0\u20ac",
+        "price_per_unit": "(14,33\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376639.0,
+        "pname": "aceitunas negras en rodajas vegecampo de dia lata 3 x 50 g",
+        "image_url": "https://www.dia.es/product_images/273338/273338_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,55\u00a0\u20ac",
+        "price_per_unit": "(9,69\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376648.0,
+        "pname": "aceitunas hechizos del sur sarasa lata 160 g",
+        "image_url": "https://www.dia.es/product_images/299034/299034_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,39\u00a0\u20ac",
+        "price_per_unit": "(15,93\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376658.0,
+        "pname": "aceitunas rellenas de anchoa la espa\u00f1ola lata 150 g",
+        "image_url": "https://www.dia.es/product_images/155149/155149_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,78\u00a0\u20ac",
+        "price_per_unit": "(5,56\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376668.0,
+        "pname": "aceitunas verdes con hueso sabor anchoa vegecampo de dia frasco 500 g",
+        "image_url": "https://www.dia.es/product_images/129165/129165_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(11,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376677.0,
+        "pname": "aceitunas rellenas de jalape\u00f1o vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/273335/273335_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(11,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376687.0,
+        "pname": "aceitunas rellenas de anchoa vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/273337/273337_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,85\u00a0\u20ac",
+        "price_per_unit": "(25,67\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376697.0,
+        "pname": "aceitunas verdes rellenas de anchoas la espa\u00f1ola lata 3 x 50 g",
+        "image_url": "https://www.dia.es/product_images/64784/64784_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,89\u00a0\u20ac",
+        "price_per_unit": "(14,54\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376707.0,
+        "pname": "aceitunas manzanilla rellena de anchoa fragata lata 130 g",
+        "image_url": "https://www.dia.es/product_images/302295/302295_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,75\u00a0\u20ac",
+        "price_per_unit": "(21,15\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376719.0,
+        "pname": "aceitunas rellenas de boquer\u00f3n marinas la espa\u00f1ola lata 130 g",
+        "image_url": "https://www.dia.es/product_images/296364/296364_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,35\u00a0\u20ac",
+        "price_per_unit": "(18,08\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376729.0,
+        "pname": "aceitunas suaves rellenas de anchoa la espa\u00f1ola lata 130 g",
+        "image_url": "https://www.dia.es/product_images/44073/44073_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(13,27\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376738.0,
+        "pname": "aceitunas rellenas de trufa la explanada lata 150 g",
+        "image_url": "https://www.dia.es/product_images/299051/299051_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,45\u00a0\u20ac",
+        "price_per_unit": "(13,61\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376749.0,
+        "pname": "aceitunas rellenas con pepinillos la sota frasco 180 g",
+        "image_url": "https://www.dia.es/product_images/297398/297398_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(15,31\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376759.0,
+        "pname": "aceitunas negras sin hueso serpis lata 130 g",
+        "image_url": "https://www.dia.es/product_images/294415/294415_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(13,27\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376768.0,
+        "pname": "aceituna manzanilla en rodajas jolca bolsa 3 x 50 g",
+        "image_url": "https://www.dia.es/product_images/294213/294213_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,49\u00a0\u20ac",
+        "price_per_unit": "(9,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376778.0,
+        "pname": "aceitunas con hueso ali\u00f1o del abuelo fragata frasco 250 g",
+        "image_url": "https://www.dia.es/product_images/291319/291319_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,49\u00a0\u20ac",
+        "price_per_unit": "(9,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376787.0,
+        "pname": "aceitunas con hueso ali\u00f1o sevillano fragata frasco 250 g",
+        "image_url": "https://www.dia.es/product_images/291318/291318_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(10,76\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376797.0,
+        "pname": "aceituna ali\u00f1ada receta del cortijo sarasa lata 185 g",
+        "image_url": "https://www.dia.es/product_images/289335/289335_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,85\u00a0\u20ac",
+        "price_per_unit": "(9,25\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376807.0,
+        "pname": "aceitunas receta andaluza sarasa tarrina 200 g",
+        "image_url": "https://www.dia.es/product_images/289233/289233_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,09\u00a0\u20ac",
+        "price_per_unit": "(14,53\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376816.0,
+        "pname": "aceitunas negras sin hueso jolca bolsa 75 g",
+        "image_url": "https://www.dia.es/product_images/288942/288942_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,05\u00a0\u20ac",
+        "price_per_unit": "(5,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376826.0,
+        "pname": "aceitunas gazpacha vegecampo de dia frasco 410 g",
+        "image_url": "https://www.dia.es/product_images/275224/275224_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,49\u00a0\u20ac",
+        "price_per_unit": "(9,93\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376837.0,
+        "pname": "aceitunas rellenas de lim\u00f3n vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/273616/273616_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,50\u00a0\u20ac",
+        "price_per_unit": "(6,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376847.0,
+        "pname": "aceitunas pelotin vegecampo de dia frasco 250 g",
+        "image_url": "https://www.dia.es/product_images/273341/273341_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,35\u00a0\u20ac",
+        "price_per_unit": "(9,40\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376857.0,
+        "pname": "aceitunas negras de arag\u00f3n vegecampo de dia frasco 250 g",
+        "image_url": "https://www.dia.es/product_images/273340/273340_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(6,76\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376867.0,
+        "pname": "aceitunas negras con hueso vegecampo de dia lata 185 g",
+        "image_url": "https://www.dia.es/product_images/273263/273263_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,39\u00a0\u20ac",
+        "price_per_unit": "(22,60\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376877.0,
+        "pname": "aceitunas rellenas de anchoa serpis lata 4 x 50 g",
+        "image_url": "https://www.dia.es/product_images/271797/271797_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(10,76\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376886.0,
+        "pname": "aceitunas partidas ali\u00f1adas jolca lata 185 g",
+        "image_url": "https://www.dia.es/product_images/250742/250742_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,55\u00a0\u20ac",
+        "price_per_unit": "(18,24\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376895.0,
+        "pname": "aceitunas negras sin hueso serpis lata 85 g",
+        "image_url": "https://www.dia.es/product_images/229563/229563_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,19\u00a0\u20ac",
+        "price_per_unit": "(7,93\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376905.0,
+        "pname": "aceitunas rellenas de pimiento vegecampo de dia lata 150 g",
+        "image_url": "https://www.dia.es/product_images/223839/223839_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(8,25\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376914.0,
+        "pname": "aceitunas verdes con hueso jolca bolsa 120 g",
+        "image_url": "https://www.dia.es/product_images/20654/20654_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,25\u00a0\u20ac",
+        "price_per_unit": "(16,25\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376924.0,
+        "pname": "aceitunas rellenas de anchoa 35% menos sal serpis lata 3+1 x 50 g",
+        "image_url": "https://www.dia.es/product_images/168402/168402_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,89\u00a0\u20ac",
+        "price_per_unit": "(14,54\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376933.0,
+        "pname": "aceitunas rellenas de anchoa jolca lata 130 g",
+        "image_url": "https://www.dia.es/product_images/146920/146920_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,89\u00a0\u20ac",
+        "price_per_unit": "(14,54\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376943.0,
+        "pname": "aceitunas rellenas de anchoa suave jolca lata 130 g",
+        "image_url": "https://www.dia.es/product_images/138659/138659_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,95\u00a0\u20ac",
+        "price_per_unit": "(15,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376952.0,
+        "pname": "aceitunas rellenas de anchoas serpis lata 130 g",
+        "image_url": "https://www.dia.es/product_images/125055/125055_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(15,31\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376961.0,
+        "pname": "aceitunas rellenas de anchoa bajo en sal serpis lata 130 g",
+        "image_url": "https://www.dia.es/product_images/101358/101358_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,49\u00a0\u20ac",
+        "price_per_unit": "(13,55\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376971.0,
+        "pname": "pat\u00e9 olivada vegedia frasco 110 g",
+        "image_url": "https://www.dia.es/product_images/286533/286533_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,99\u00a0\u20ac",
+        "price_per_unit": "(19,93\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376981.0,
+        "pname": "aceituna gordal rellena de boquer\u00f3n del cant\u00e1brico msc kiele bandeja 150 g",
+        "image_url": "https://www.dia.es/product_images/296521/296521_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,09\u00a0\u20ac",
+        "price_per_unit": "(11,30\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813376990.0,
+        "pname": "aceitunas manzanilla sabor anchoa con hueso jolca lata 185 g",
+        "image_url": "https://www.dia.es/product_images/24621/24621_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(5,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377000.0,
+        "pname": "mortadela con aceitunas nuestra alacena de dia sobre 250 g",
+        "image_url": "https://www.dia.es/product_images/273961/273961_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,99\u00a0\u20ac",
+        "price_per_unit": "(11,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377009.0,
+        "pname": "ensalada con verduras asadas, aceitunas negras y especias medisalad lata 250 g",
+        "image_url": "https://www.dia.es/product_images/296477/296477_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,18\u00a0\u20ac",
+        "price_per_unit": "(19,67\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377019.0,
+        "pname": "palitos de trigo con olivas y s\u00e9samo snatt's bolsa 60 g",
+        "image_url": "https://www.dia.es/product_images/217666/217666_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,99\u00a0\u20ac",
+        "price_per_unit": "(11,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377029.0,
+        "pname": "ensalada tomate asado, pimiento verde y aceituna kalamata medisalad lata 250 g",
+        "image_url": "https://www.dia.es/product_images/296476/296476_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,99\u00a0\u20ac",
+        "price_per_unit": "(11,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377038.0,
+        "pname": "lunch bowl espelta, guisantes, alubias, cherry, pimiento rojo y aceitunas bonduelle bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/290517/290517_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,40\u00a0\u20ac",
+        "price_per_unit": "(10,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377048.0,
+        "pname": "banderillas dulces vegecampo de dia frasco 140 g",
+        "image_url": "https://www.dia.es/product_images/72623/72623_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(9,39\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377057.0,
+        "pname": "pepinillo sabor anchoa rioverde frasco 180 g",
+        "image_url": "https://www.dia.es/product_images/64393/64393_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(10,42\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377066.0,
+        "pname": "guindillas en vinagre vegecampo de dia frasco 120 g",
+        "image_url": "https://www.dia.es/product_images/5129/5129_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,39\u00a0\u20ac",
+        "price_per_unit": "(6,95\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377076.0,
+        "pname": "picadillo de variantes vegecampo de dia frasco 200 g",
+        "image_url": "https://www.dia.es/product_images/50437/50437_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(19,41\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813377086.0,
+        "pname": "jalape\u00f1os en rodajas rioverde frasco 85 g",
+        "image_url": "https://www.dia.es/product_images/301867/301867_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,25\u00a0\u20ac",
+        "price_per_unit": "(0,17\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767186.0,
+        "pname": "agua mineral natural dia botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/26995/26995_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(0,13\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767248.0,
+        "pname": "agua mineral natural dia garrafa 5 l",
+        "image_url": "https://www.dia.es/product_images/26996/26996_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,44\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767258.0,
+        "pname": "agua mineral natural bezoya botella 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/44302P6/44302P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,22\u00a0\u20ac",
+        "price_per_unit": "(0,44\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767270.0,
+        "pname": "agua mineral natural dia botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/37776/37776_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,89\u00a0\u20ac",
+        "price_per_unit": "(0,59\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767281.0,
+        "pname": "agua mineral natural sol\u00e1n de cabras botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/56684/56684_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,24\u00a0\u20ac",
+        "price_per_unit": "(0,73\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767293.0,
+        "pname": "agua mineral natural dia botella 33 cl",
+        "image_url": "https://www.dia.es/product_images/50567/50567_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,59\u00a0\u20ac",
+        "price_per_unit": "(0,39\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767304.0,
+        "pname": "agua mineral natural aquarel botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/38301/38301_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,73\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767318.0,
+        "pname": "agua mineral natural font vella botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/85/85_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,64\u00a0\u20ac",
+        "price_per_unit": "(0,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767328.0,
+        "pname": "agua mineral natural aquabona botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/53267/53267_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,53\u00a0\u20ac",
+        "price_per_unit": "(1,61\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767338.0,
+        "pname": "agua mineral natural aquarel botella 33 cl",
+        "image_url": "https://www.dia.es/product_images/41117/41117_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,79\u00a0\u20ac",
+        "price_per_unit": "(1,58\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767347.0,
+        "pname": "agua mineral natural sol\u00e1n de cabras botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/144819/144819_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,73\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767359.0,
+        "pname": "agua mineral natural lanjar\u00f3n botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/47768/47768_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,41\u00a0\u20ac",
+        "price_per_unit": "(0,27\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767368.0,
+        "pname": "agua mineral con gas dia botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/99265/99265_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,75\u00a0\u20ac",
+        "price_per_unit": "(0,35\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767378.0,
+        "pname": "agua mineral natural aquarel garrafa 5 l",
+        "image_url": "https://www.dia.es/product_images/40570/40570_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,29\u00a0\u20ac",
+        "price_per_unit": "(0,37\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767389.0,
+        "pname": "agua mineral natural font vella garrafa 6.25 l",
+        "image_url": "https://www.dia.es/product_images/120230/120230_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,49\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767400.0,
+        "pname": "agua mineral natural fuente primavera botella 1 l",
+        "image_url": "https://www.dia.es/product_images/297837/297837_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,69\u00a0\u20ac",
+        "price_per_unit": "(0,54\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767410.0,
+        "pname": "agua mineral natural sol\u00e1n de cabras garrafa 5 l",
+        "image_url": "https://www.dia.es/product_images/63295/63295_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,74\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767421.0,
+        "pname": "agua mineral natural bezoya botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/44302/44302_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,38\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767431.0,
+        "pname": "agua mineral natural font vella botella 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/85P6/85P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,79\u00a0\u20ac",
+        "price_per_unit": "(0,53\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767442.0,
+        "pname": "agua mineral natural cabreiro\u00e1 botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/77746/77746_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,49\u00a0\u20ac",
+        "price_per_unit": "(1,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767453.0,
+        "pname": "agua mineral con gas vichy botella 1 l",
+        "image_url": "https://www.dia.es/product_images/683/683_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,97\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767463.0,
+        "pname": "agua mineral natural font vella botella 2 l",
+        "image_url": "https://www.dia.es/product_images/66364/66364_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,59\u00a0\u20ac",
+        "price_per_unit": "(1,18\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767474.0,
+        "pname": "agua mineral natural aquarel botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/54486/54486_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,84\u00a0\u20ac",
+        "price_per_unit": "(0,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767484.0,
+        "pname": "agua mineral natural aquabona pack 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/53267P6/53267P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,44\u00a0\u20ac",
+        "price_per_unit": "(0,73\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767494.0,
+        "pname": "agua mineral natural dia pack 6 x 33 cl",
+        "image_url": "https://www.dia.es/product_images/50567P6/50567P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,55\u00a0\u20ac",
+        "price_per_unit": "(1,10\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767505.0,
+        "pname": "agua mineral natural font vella botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/47771/47771_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,45\u00a0\u20ac",
+        "price_per_unit": "(1,36\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767516.0,
+        "pname": "agua mineral natural font vella botella 33 cl",
+        "image_url": "https://www.dia.es/product_images/47770/47770_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,14\u00a0\u20ac",
+        "price_per_unit": "(1,14\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767525.0,
+        "pname": "agua mineral con gas fonter botella 1 l",
+        "image_url": "https://www.dia.es/product_images/47769/47769_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,38\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767536.0,
+        "pname": "agua mineral natural lanjar\u00f3n pack 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/47768P6/47768P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,18\u00a0\u20ac",
+        "price_per_unit": "(1,61\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767546.0,
+        "pname": "agua mineral natural aquarel pack 6 x 33 cl",
+        "image_url": "https://www.dia.es/product_images/41117P6/41117P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,50\u00a0\u20ac",
+        "price_per_unit": "(0,35\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767559.0,
+        "pname": "agua mineral natural aquarel pack 2 x 5 l",
+        "image_url": "https://www.dia.es/product_images/40570P2/40570P2_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,54\u00a0\u20ac",
+        "price_per_unit": "(0,39\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767569.0,
+        "pname": "agua mineral natural aquarel pack 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/38301P6/38301P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,05\u00a0\u20ac",
+        "price_per_unit": "(2,10\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767579.0,
+        "pname": "agua con gas sabor lim\u00f3n maison perrier botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/303100/303100_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,64\u00a0\u20ac",
+        "price_per_unit": "(0,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767593.0,
+        "pname": "agua mineral natural monte pinos botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/302664/302664_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,49\u00a0\u20ac",
+        "price_per_unit": "(0,44\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767604.0,
+        "pname": "agua mineral natural aquarel garrafa 8 l",
+        "image_url": "https://www.dia.es/product_images/301021/301021_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(1,98\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767614.0,
+        "pname": "agua con gas san pellegrino botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/292973/292973_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,94\u00a0\u20ac",
+        "price_per_unit": "(1,88\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767625.0,
+        "pname": "agua con gas font vella botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/273476/273476_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,75\u00a0\u20ac",
+        "price_per_unit": "(0,50\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767636.0,
+        "pname": "agua mineral natural alcalina ph9 ursu9 botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/263473/263473_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,73\u00a0\u20ac",
+        "price_per_unit": "(0,97\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767646.0,
+        "pname": "agua mineral natural aquarel botella 75 cl",
+        "image_url": "https://www.dia.es/product_images/258807/258807_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,27\u00a0\u20ac",
+        "price_per_unit": "(0,54\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767657.0,
+        "pname": "agua mineral con gas dia botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/24874/24874_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,15\u00a0\u20ac",
+        "price_per_unit": "(2,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767668.0,
+        "pname": "agua mineral con gas perrier botella 50 cl",
+        "image_url": "https://www.dia.es/product_images/247772/247772_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(3,79\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767678.0,
+        "pname": "agua con gas sol\u00e1n de cabras botella 33 cl",
+        "image_url": "https://www.dia.es/product_images/184169/184169_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,59\u00a0\u20ac",
+        "price_per_unit": "(1,18\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767688.0,
+        "pname": "agua mineral natural aquabona botella 500 ml",
+        "image_url": "https://www.dia.es/product_images/158425/158425_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,36\u00a0\u20ac",
+        "price_per_unit": "(1,36\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767699.0,
+        "pname": "agua mineral con gas san pellegrino botella 1 l",
+        "image_url": "https://www.dia.es/product_images/146199/146199_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,79\u00a0\u20ac",
+        "price_per_unit": "(0,79\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767713.0,
+        "pname": "agua mineral natural font vella botella 1 l",
+        "image_url": "https://www.dia.es/product_images/114231/114231_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,59\u00a0\u20ac",
+        "price_per_unit": "(4,59\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813767723.0,
+        "pname": "aguacate granel 1 kg aprox.",
+        "image_url": "https://www.dia.es/product_images/42069/42069_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,89\u00a0\u20ac",
+        "price_per_unit": "(5,73\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767733.0,
+        "pname": "agua de coco vita coco brik 330 ml",
+        "image_url": "https://www.dia.es/product_images/281105/281105_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,89\u00a0\u20ac",
+        "price_per_unit": "(7,23\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813767744.0,
+        "pname": "aguacate bio bandeja 400 g",
+        "image_url": "https://www.dia.es/product_images/245089/245089_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,59\u00a0\u20ac",
+        "price_per_unit": "(3,53\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716813767754.0,
+        "pname": "aguacate bandeja 450 g",
+        "image_url": "https://www.dia.es/product_images/220373/220373_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767765.0,
+        "pname": "agua fuerte dia botella 1 l",
+        "image_url": "https://www.dia.es/product_images/129118/129118_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(0,26\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767776.0,
+        "pname": "agua oxigenada botikit de dia botella 250 ml",
+        "image_url": "https://www.dia.es/product_images/285800/285800_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,89\u00a0\u20ac",
+        "price_per_unit": "(2,23\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716813767786.0,
+        "pname": "agua mineral con frutos rojos zero san benedetto botella 40 cl",
+        "image_url": "https://www.dia.es/product_images/280278/280278_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,75\u00a0\u20ac",
+        "price_per_unit": "(0,23\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767797.0,
+        "pname": "agua de colonia infantil planeta beb\u00e9 de dia botella 750 ml",
+        "image_url": "https://www.dia.es/product_images/278740/278740_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,49\u00a0\u20ac",
+        "price_per_unit": "(1,75\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767807.0,
+        "pname": "agua micelar natural antipoluci\u00f3n & detox imaqe de dia bote 200 ml",
+        "image_url": "https://www.dia.es/product_images/272028/272028_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,25\u00a0\u20ac",
+        "price_per_unit": "(0,90\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767818.0,
+        "pname": "agua micelar con extracto de p\u00e9talos de rosa imaqe de dia bote 250 ml",
+        "image_url": "https://www.dia.es/product_images/272021/272021_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,45\u00a0\u20ac",
+        "price_per_unit": "(0,46\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767828.0,
+        "pname": "agua de colonia cl\u00e1sica fresh s3 frasco 750 ml",
+        "image_url": "https://www.dia.es/product_images/270997/270997_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,69\u00a0\u20ac",
+        "price_per_unit": "(0,49\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767839.0,
+        "pname": "agua de colonia petit cheri botella 750 ml",
+        "image_url": "https://www.dia.es/product_images/242948/242948_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "9,90\u00a0\u20ac",
+        "price_per_unit": "(1,32\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767849.0,
+        "pname": "agua de colonia gotas frescas instituto espa\u00f1ol frasco 750 ml",
+        "image_url": "https://www.dia.es/product_images/231213/231213_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,95\u00a0\u20ac",
+        "price_per_unit": "(1,06\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767860.0,
+        "pname": "agua de colonia gotas frescas instituto espa\u00f1ol botella 750 ml",
+        "image_url": "https://www.dia.es/product_images/231212/231212_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,30\u00a0\u20ac",
+        "price_per_unit": "(1,72\u00a0\u20ac/100 ML.)",
+        "price_history": [],
+        "timestamp": 1716813767871.0,
+        "pname": "agua de colonia gotas frescas instituto espa\u00f1ol spray 250 ml",
+        "image_url": "https://www.dia.es/product_images/231211/231211_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,48\u00a0\u20ac",
+        "price_per_unit": "(1,92\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002511.0,
+        "pname": "barra de pan el molino de dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/38109/38109_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(1,52\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002572.0,
+        "pname": "pan de molde formato familiar el molino de dia bolsa 820 g",
+        "image_url": "https://www.dia.es/product_images/77955/77955_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(2,78\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002582.0,
+        "pname": "pan de molde blanco sin corteza el molino de dia bolsa 450 g",
+        "image_url": "https://www.dia.es/product_images/48666/48666_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(2,83\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002593.0,
+        "pname": "hogaza el molino de dia bolsa 350 g",
+        "image_url": "https://www.dia.es/product_images/295264/295264_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(2,17\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002603.0,
+        "pname": "barra de pan chapata el molino de dia bolsa 300 g",
+        "image_url": "https://www.dia.es/product_images/157982/157982_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,68\u00a0\u20ac",
+        "price_per_unit": "(2,62\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002615.0,
+        "pname": "barra de pan de picos el molino de dia bolsa 260 g",
+        "image_url": "https://www.dia.es/product_images/121237/121237_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,51\u00a0\u20ac",
+        "price_per_unit": "(2,04\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002624.0,
+        "pname": "barra de pan baguette el molino de dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/40814/40814_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,71\u00a0\u20ac",
+        "price_per_unit": "(9,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002634.0,
+        "pname": "chapata de cristal 2 unidades bolsa 190 g",
+        "image_url": "https://www.dia.es/product_images/277674/277674_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,72\u00a0\u20ac",
+        "price_per_unit": "(2,88\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002645.0,
+        "pname": "barra de pan peregrina el molino de dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/66939/66939_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,27\u00a0\u20ac",
+        "price_per_unit": "(2,16\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002678.0,
+        "pname": "barra de pan el molino de dia bolsa 125 g",
+        "image_url": "https://www.dia.es/product_images/169479/169479_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,89\u00a0\u20ac",
+        "price_per_unit": "(5,40\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002693.0,
+        "pname": "pan de leche el molino de dia bolsa 350 g",
+        "image_url": "https://www.dia.es/product_images/288023/288023_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,87\u00a0\u20ac",
+        "price_per_unit": "(4,14\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002705.0,
+        "pname": "barra de pan 8 cereales el molino de dia caja 210 g",
+        "image_url": "https://www.dia.es/product_images/209604/209604_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,90\u00a0\u20ac",
+        "price_per_unit": "(3,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002722.0,
+        "pname": "pan de hamburguesa maxi el molino de dia bolsa 300 g",
+        "image_url": "https://www.dia.es/product_images/182644/182644_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,95\u00a0\u20ac",
+        "price_per_unit": "(2,88\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002735.0,
+        "pname": "panecillos para perritos el molino de dia bolsa 330 g",
+        "image_url": "https://www.dia.es/product_images/40381/40381_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,39\u00a0\u20ac",
+        "price_per_unit": "(2,78\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002745.0,
+        "pname": "pan candeal grande el molino de dia bolsa 500 g",
+        "image_url": "https://www.dia.es/product_images/185169/185169_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,35\u00a0\u20ac",
+        "price_per_unit": "(3,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002758.0,
+        "pname": "pan de molde 100% integral sin corteza el molino de dia bolsa 450 g",
+        "image_url": "https://www.dia.es/product_images/74397/74397_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(2,20\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002780.0,
+        "pname": "pan de centeno 100% de masa madre el molino de dia 450 g",
+        "image_url": "https://www.dia.es/product_images/291563/291563_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(2,60\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002791.0,
+        "pname": "picos de pan el molino de dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/5528/5528_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,19\u00a0\u20ac",
+        "price_per_unit": "(5,48\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002802.0,
+        "pname": "pan de molde alto en prote\u00ednas el molino de dia bolsa 400 g",
+        "image_url": "https://www.dia.es/product_images/297061/297061_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(5,63\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002813.0,
+        "pname": "pan de hamburguesa brioche el molino de dia bolsa 300 g",
+        "image_url": "https://www.dia.es/product_images/297060/297060_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,99\u00a0\u20ac",
+        "price_per_unit": "(4,63\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002824.0,
+        "pname": "pan de molde blanco grande bimbo bolsa 430 g",
+        "image_url": "https://www.dia.es/product_images/297702/297702_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,39\u00a0\u20ac",
+        "price_per_unit": "(4,21\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002836.0,
+        "pname": "pan hot dog r\u00fastico el molino de dia bolsa 330 g",
+        "image_url": "https://www.dia.es/product_images/297059/297059_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,59\u00a0\u20ac",
+        "price_per_unit": "(10,60\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002847.0,
+        "pname": "surtido de picos y rega\u00f1\u00e1s horno el antequerano bolsa 150 g",
+        "image_url": "https://www.dia.es/product_images/296453/296453_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,49\u00a0\u20ac",
+        "price_per_unit": "(5,19\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002857.0,
+        "pname": "pan de molde reduce colesterol el molino de dia bolsa 480 g",
+        "image_url": "https://www.dia.es/product_images/293008/293008_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,59\u00a0\u20ac",
+        "price_per_unit": "(2,68\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002872.0,
+        "pname": "barra de pan integral 100% el molino de dia bolsa 220 g",
+        "image_url": "https://www.dia.es/product_images/57134/57134_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,59\u00a0\u20ac",
+        "price_per_unit": "(2,89\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002884.0,
+        "pname": "pan r\u00fastico en rebanadas el molino de dia bolsa 550 g",
+        "image_url": "https://www.dia.es/product_images/35832/35832_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,69\u00a0\u20ac",
+        "price_per_unit": "(6,73\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002897.0,
+        "pname": "pan rallado sin gluten panceliac bolsa 400 g",
+        "image_url": "https://www.dia.es/product_images/302131/302131_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,29\u00a0\u20ac",
+        "price_per_unit": "(3,91\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002908.0,
+        "pname": "hogaza de ma\u00edz 20% de masa madre el molino de dia bolsa 330 g",
+        "image_url": "https://www.dia.es/product_images/300469/300469_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,14\u00a0\u20ac",
+        "price_per_unit": "(4,07\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002919.0,
+        "pname": "mollete de antequera el molino de dia bolsa 280 g",
+        "image_url": "https://www.dia.es/product_images/299000/299000_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,79\u00a0\u20ac",
+        "price_per_unit": "(5,58\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002930.0,
+        "pname": "pan brioche selecci\u00f3n mundial de dia bolsa 500 g",
+        "image_url": "https://www.dia.es/product_images/297058/297058_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,75\u00a0\u20ac",
+        "price_per_unit": "(2,78\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002943.0,
+        "pname": "barra de pan espiga 270 g",
+        "image_url": "https://www.dia.es/product_images/287216/287216_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,39\u00a0\u20ac",
+        "price_per_unit": "(2,32\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002953.0,
+        "pname": "pan de horno de piedra el molino de dia 600 g",
+        "image_url": "https://www.dia.es/product_images/284801/284801_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,27\u00a0\u20ac",
+        "price_per_unit": "(3,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002963.0,
+        "pname": "pan viena integral (10%) el molino de dia 90 g",
+        "image_url": "https://www.dia.es/product_images/274757/274757_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,91\u00a0\u20ac",
+        "price_per_unit": "(3,64\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002974.0,
+        "pname": "barra de pan baguette con semillas la hornada dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/262566/262566_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,89\u00a0\u20ac",
+        "price_per_unit": "(2,07\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002985.0,
+        "pname": "barra de pan premium el molino de dia bolsa 430 g",
+        "image_url": "https://www.dia.es/product_images/262556/262556_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,41\u00a0\u20ac",
+        "price_per_unit": "(3,73\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814002995.0,
+        "pname": "pan flauta el molino de dia 110 g",
+        "image_url": "https://www.dia.es/product_images/249505/249505_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,48\u00a0\u20ac",
+        "price_per_unit": "(4,80\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003009.0,
+        "pname": "panecillo con quinoa el molino de dia 100 g",
+        "image_url": "https://www.dia.es/product_images/244719/244719_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,74\u00a0\u20ac",
+        "price_per_unit": "(2,47\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003020.0,
+        "pname": "barra de pan parisienne el molino de dia caja 300 g",
+        "image_url": "https://www.dia.es/product_images/209602/209602_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,05\u00a0\u20ac",
+        "price_per_unit": "(3,96\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003033.0,
+        "pname": "barra de pan con s\u00e9samo y fibra blanca el molino de dia caja 265 g",
+        "image_url": "https://www.dia.es/product_images/207313/207313_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,40\u00a0\u20ac",
+        "price_per_unit": "(7,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003043.0,
+        "pname": "preparado para rebozar crujiente sin gluten esgir bolsa 200 g",
+        "image_url": "https://www.dia.es/product_images/162439/162439_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,25\u00a0\u20ac",
+        "price_per_unit": "(5,63\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003055.0,
+        "pname": "pan de pita precocido star bolsa 400 g",
+        "image_url": "https://www.dia.es/product_images/14461/14461_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,18\u00a0\u20ac",
+        "price_per_unit": "(7,38\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003067.0,
+        "pname": "panecillos tostados con tomate y or\u00e9gano el molino de dia bolsa 160 g",
+        "image_url": "https://www.dia.es/product_images/135902/135902_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,35\u00a0\u20ac",
+        "price_per_unit": "(2,69\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003078.0,
+        "pname": "barra de pan picado andaluz el molino de dia bolsa 130 g",
+        "image_url": "https://www.dia.es/product_images/117243/117243_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(3,07\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003089.0,
+        "pname": "pan r\u00fastico integral en rebanadas el molino de dia bolsa 550 g",
+        "image_url": "https://www.dia.es/product_images/102528/102528_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,75\u00a0\u20ac",
+        "price_per_unit": "(2,92\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003099.0,
+        "pname": "pan de molde r\u00fastico el molino de dia bolsa 600 g",
+        "image_url": "https://www.dia.es/product_images/67431/67431_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,49\u00a0\u20ac",
+        "price_per_unit": "(8,30\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003112.0,
+        "pname": "pan de hamburguesas bimbo bolsa 300 g",
+        "image_url": "https://www.dia.es/product_images/66255/66255_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,79\u00a0\u20ac",
+        "price_per_unit": "(10,53\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003123.0,
+        "pname": "picatostes fritos el molino de dia bolsa 75 g",
+        "image_url": "https://www.dia.es/product_images/60049/60049_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,65\u00a0\u20ac",
+        "price_per_unit": "(2,60\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003133.0,
+        "pname": "picos integrales el molino de dia bolsa 250 g",
+        "image_url": "https://www.dia.es/product_images/59304/59304_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,59\u00a0\u20ac",
+        "price_per_unit": "(5,76\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003145.0,
+        "pname": "pan de molde blanco sin corteza bimbo bolsa 450 g",
+        "image_url": "https://www.dia.es/product_images/57691/57691_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,90\u00a0\u20ac",
+        "price_per_unit": "(1,20\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003157.0,
+        "pname": "pan rallado el molino de dia bolsa 750 g",
+        "image_url": "https://www.dia.es/product_images/56050/56050_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,45\u00a0\u20ac",
+        "price_per_unit": "(5,37\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003175.0,
+        "pname": "pan tostado integral el molino de dia bolsa 270 g",
+        "image_url": "https://www.dia.es/product_images/5387/5387_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,05\u00a0\u20ac",
+        "price_per_unit": "(3,89\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003185.0,
+        "pname": "pan tostado normal el molino de dia bolsa 270 g",
+        "image_url": "https://www.dia.es/product_images/5386/5386_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,35\u00a0\u20ac",
+        "price_per_unit": "(13,50\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003196.0,
+        "pname": "mini tostas el molino de dia caja 100 g",
+        "image_url": "https://www.dia.es/product_images/50754/50754_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(4,50\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003209.0,
+        "pname": "pan de hamburguesa el molino de dia bolsa 220 g",
+        "image_url": "https://www.dia.es/product_images/40380/40380_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,19\u00a0\u20ac",
+        "price_per_unit": "(21,25\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003221.0,
+        "pname": "palitos de pan con queso snatt's bolsa 56 g",
+        "image_url": "https://www.dia.es/product_images/37570/37570_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "3,29\u00a0\u20ac",
+        "price_per_unit": "(9,40\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003236.0,
+        "pname": "pan de leche la bella easo bolsa 350 g",
+        "image_url": "https://www.dia.es/product_images/34772/34772_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,55\u00a0\u20ac",
+        "price_per_unit": "(15,50\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003247.0,
+        "pname": "picos artesanos sin gluten abuelobread bolsa 100 g",
+        "image_url": "https://www.dia.es/product_images/302094/302094_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,59\u00a0\u20ac",
+        "price_per_unit": "(3,70\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003262.0,
+        "pname": "pan de molde formato familiar bimbo bolsa 700 g",
+        "image_url": "https://www.dia.es/product_images/29778/29778_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,49\u00a0\u20ac",
+        "price_per_unit": "(12,15\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716814003273.0,
+        "pname": "pan tostado original wasa paquete 205 g",
+        "image_url": "https://www.dia.es/product_images/294358/294358_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,98\u00a0\u20ac",
+        "price_per_unit": "(0,83\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692466.0,
+        "pname": "leche semidesnatada dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/504P6/504P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "5,46\u00a0\u20ac",
+        "price_per_unit": "(0,91\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692532.0,
+        "pname": "leche entera dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/608P6/608P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "4,80\u00a0\u20ac",
+        "price_per_unit": "(0,80\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692549.0,
+        "pname": "leche desnatada dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/607P6/607P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "5,46\u00a0\u20ac",
+        "price_per_unit": "(0,91\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692562.0,
+        "pname": "leche semidesnatada sin lactosa dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/130063P6/130063P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,83\u00a0\u20ac",
+        "price_per_unit": "(0,83\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692576.0,
+        "pname": "leche semidesnatada dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/504/504_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "6,54\u00a0\u20ac",
+        "price_per_unit": "(1,09\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692590.0,
+        "pname": "leche semidesnatada central lechera asturiana brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/17548P6/17548P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,91\u00a0\u20ac",
+        "price_per_unit": "(0,91\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692603.0,
+        "pname": "leche entera dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/608/608_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "6,84\u00a0\u20ac",
+        "price_per_unit": "(1,14\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692616.0,
+        "pname": "leche entera central lechera asturiana brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/16065P6/16065P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "5,28\u00a0\u20ac",
+        "price_per_unit": "(0,88\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692629.0,
+        "pname": "leche desnatada sin lactosa dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/185450P6/185450P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,80\u00a0\u20ac",
+        "price_per_unit": "(0,80\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692643.0,
+        "pname": "leche desnatada dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/607/607_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,91\u00a0\u20ac",
+        "price_per_unit": "(0,91\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692664.0,
+        "pname": "leche semidesnatada sin lactosa dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/130063/130063_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "13,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692677.0,
+        "pname": "leche semidesnatada central lechera asturiana botella 6 x 2.2 l",
+        "image_url": "https://www.dia.es/product_images/173903P6/173903P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "5,94\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692692.0,
+        "pname": "leche entera sin lactosa dia l\u00e1ctea brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/225278P6/225278P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "10,14\u00a0\u20ac",
+        "price_per_unit": "(1,13\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692704.0,
+        "pname": "leche entera central lechera asturiana botella 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/74720P6/74720P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,88\u00a0\u20ac",
+        "price_per_unit": "(0,88\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692718.0,
+        "pname": "leche desnatada sin lactosa dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/185450/185450_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "6,30\u00a0\u20ac",
+        "price_per_unit": "(1,05\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692731.0,
+        "pname": "leche desnatada central lechera asturiana brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/16066P6/16066P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "9,90\u00a0\u20ac",
+        "price_per_unit": "(1,10\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692743.0,
+        "pname": "leche semidesnatada central lechera asturiana botella 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/5716P6/5716P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,05\u00a0\u20ac",
+        "price_per_unit": "(1,05\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692759.0,
+        "pname": "leche fresca entera dia l\u00e1ctea botella 1 l",
+        "image_url": "https://www.dia.es/product_images/271329/271329_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(1,13\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692775.0,
+        "pname": "leche entera central lechera asturiana botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/74720/74720_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(1,10\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692791.0,
+        "pname": "leche semidesnatada central lechera asturiana botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/5716/5716_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "9,54\u00a0\u20ac",
+        "price_per_unit": "(1,06\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692805.0,
+        "pname": "leche desnatada central lechera asturiana botella 6 x 1.5 l",
+        "image_url": "https://www.dia.es/product_images/74722P6/74722P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,59\u00a0\u20ac",
+        "price_per_unit": "(1,06\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692823.0,
+        "pname": "leche desnatada central lechera asturiana botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/74722/74722_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,80\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692835.0,
+        "pname": "leche desnatada pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/73678P6/73678P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,30\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692848.0,
+        "pname": "leche desnatada pascual brik 1 l",
+        "image_url": "https://www.dia.es/product_images/73678/73678_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,80\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692862.0,
+        "pname": "leche semidesnatada pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/73677P6/73677P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,30\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692877.0,
+        "pname": "leche semidesnatada pascual brik 1 l",
+        "image_url": "https://www.dia.es/product_images/73677/73677_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,80\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692894.0,
+        "pname": "leche entera pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/73676P6/73676P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,30\u00a0\u20ac",
+        "price_per_unit": "(1,30\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692907.0,
+        "pname": "leche entera pascual brik 1 l",
+        "image_url": "https://www.dia.es/product_images/73676/73676_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "8,40\u00a0\u20ac",
+        "price_per_unit": "(14,00\u00a0\u20ac/KILO)",
+        "price_history": [],
+        "timestamp": 1716820692945.0,
+        "pname": "leche en polvo sveltesse lata 600 g",
+        "image_url": "https://www.dia.es/product_images/616/616_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692960.0,
+        "pname": "leche semidesnatada lauki brik 1 l",
+        "image_url": "https://www.dia.es/product_images/34578/34578_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,47\u00a0\u20ac",
+        "price_per_unit": "(0,98\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692981.0,
+        "pname": "leche semidesnatada celta brik 1.5 l",
+        "image_url": "https://www.dia.es/product_images/31961/31961_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(1,65\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820692993.0,
+        "pname": "leche desnatada rica en prote\u00ednas puleva brik 1 l",
+        "image_url": "https://www.dia.es/product_images/297193/297193_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,65\u00a0\u20ac",
+        "price_per_unit": "(1,65\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693020.0,
+        "pname": "bebida l\u00e1ctea buenas noches puleva brik 1 l",
+        "image_url": "https://www.dia.es/product_images/296413/296413_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,69\u00a0\u20ac",
+        "price_per_unit": "(1,13\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693035.0,
+        "pname": "leche semidesnatada pascual botella 1.5 l",
+        "image_url": "https://www.dia.es/product_images/289933/289933_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,04\u00a0\u20ac",
+        "price_per_unit": "(1,04\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693049.0,
+        "pname": "leche fresca semidesnatada dia l\u00e1ctea botella 1 l",
+        "image_url": "https://www.dia.es/product_images/271330/271330_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,48\u00a0\u20ac",
+        "price_per_unit": "(1,48\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693063.0,
+        "pname": "leche desnatada suprema central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/250631/250631_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,74\u00a0\u20ac",
+        "price_per_unit": "(1,29\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693079.0,
+        "pname": "leche entera sin lactosa central lechera asturiana pack 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/240523P6/240523P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,29\u00a0\u20ac",
+        "price_per_unit": "(1,29\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693092.0,
+        "pname": "leche entera sin lactosa central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/240523/240523_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693108.0,
+        "pname": "leche entera sin lactosa dia l\u00e1ctea brik 1 l",
+        "image_url": "https://www.dia.es/product_images/225278/225278_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "13,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693121.0,
+        "pname": "leche desnatada central lechera asturiana pack 6 x 2.2 l",
+        "image_url": "https://www.dia.es/product_images/214269P6/214269P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693133.0,
+        "pname": "leche desnatada central lechera asturiana botella 2.2 l",
+        "image_url": "https://www.dia.es/product_images/214269/214269_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693146.0,
+        "pname": "leche entera lauki brik 1 l",
+        "image_url": "https://www.dia.es/product_images/19814/19814_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "0,99\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693166.0,
+        "pname": "leche desnatada lauki brik 1 l",
+        "image_url": "https://www.dia.es/product_images/1917/1917_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,09\u00a0\u20ac",
+        "price_per_unit": "(2,09\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693178.0,
+        "pname": "leche semidesnatada de cabra covap brik 1 l",
+        "image_url": "https://www.dia.es/product_images/188442/188442_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "13,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693190.0,
+        "pname": "leche entera central lechera asturiana pack 6 x 2.2 l",
+        "image_url": "https://www.dia.es/product_images/184889P6/184889P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693203.0,
+        "pname": "leche entera central lechera asturiana botella 2.2 l",
+        "image_url": "https://www.dia.es/product_images/184889/184889_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,49\u00a0\u20ac",
+        "price_per_unit": "(0,99\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693218.0,
+        "pname": "leche entera celta brik 1.5 l",
+        "image_url": "https://www.dia.es/product_images/1786/1786_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,09\u00a0\u20ac",
+        "price_per_unit": "(1,09\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693232.0,
+        "pname": "leche semidesnatada central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/17548/17548_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "2,20\u00a0\u20ac",
+        "price_per_unit": "(1,00\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693248.0,
+        "pname": "leche semidesnatada central lechera asturiana botella 2.2 l",
+        "image_url": "https://www.dia.es/product_images/173903/173903_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,14\u00a0\u20ac",
+        "price_per_unit": "(1,19\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693260.0,
+        "pname": "leche desnatada sin lactosa central lechera asturiana brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/169355P6/169355P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,19\u00a0\u20ac",
+        "price_per_unit": "(1,19\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693273.0,
+        "pname": "leche desnatada sin lactosa central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/169355/169355_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,05\u00a0\u20ac",
+        "price_per_unit": "(1,05\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693290.0,
+        "pname": "leche desnatada central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/16066/16066_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,14\u00a0\u20ac",
+        "price_per_unit": "(1,14\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693305.0,
+        "pname": "leche entera central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/16065/16065_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "7,50\u00a0\u20ac",
+        "price_per_unit": "(1,25\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693318.0,
+        "pname": "leche semidesnatada sin lactosa central lechera asturiana brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/148777P6/148777P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,25\u00a0\u20ac",
+        "price_per_unit": "(1,25\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693341.0,
+        "pname": "leche semidesnatada sin lactosa central lechera asturiana brik 1 l",
+        "image_url": "https://www.dia.es/product_images/148777/148777_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "8,58\u00a0\u20ac",
+        "price_per_unit": "(1,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693353.0,
+        "pname": "leche entera sin lactosa pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/142327P6/142327P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,43\u00a0\u20ac",
+        "price_per_unit": "(1,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693369.0,
+        "pname": "leche entera sin lactosa pascual brik 1 l",
+        "image_url": "https://www.dia.es/product_images/142327/142327_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "8,58\u00a0\u20ac",
+        "price_per_unit": "(1,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693382.0,
+        "pname": "leche desnatada sin lactosa pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/119676P6/119676P6_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "1,43\u00a0\u20ac",
+        "price_per_unit": "(1,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693397.0,
+        "pname": "leche desnatada sin lactosa pascual brik 1 l",
+        "image_url": "https://www.dia.es/product_images/119676/119676_ISO_0_ES.jpg?imwidth=500"
+    },
+    {
+        "origin": "dia",
+        "total_price": "8,58\u00a0\u20ac",
+        "price_per_unit": "(1,43\u00a0\u20ac/LITRO)",
+        "price_history": [],
+        "timestamp": 1716820693411.0,
+        "pname": "leche semidesnatada sin lactosa pascual brik 6 x 1 l",
+        "image_url": "https://www.dia.es/product_images/119675P6/119675P6_ISO_0_ES.jpg?imwidth=500"
     }
 ]

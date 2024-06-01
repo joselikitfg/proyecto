@@ -28,7 +28,7 @@ def get_item_by_pname(pname):
     return items[0]
 
 
-pname = 'nestlé aquarel  agua mineral garrafa de 5 l.'
+pname = 'aquarel agua mineral pack de 6 uds. x 1,5 l.'
 
 def generate_price_history(start_date, num_days, initial_total_price, units):
     price_history = []

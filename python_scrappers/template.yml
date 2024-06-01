@@ -151,7 +151,7 @@ Resources:
     Type: 'AWS::SQS::Queue'
     Properties:
       QueueName: 'MyDLQName'
-      MessageRetentionPeriod: 43200
+      MessageRetentionPeriod: 7200
 
   TermsParameter:
     Type: AWS::SSM::Parameter

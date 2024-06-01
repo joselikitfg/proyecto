@@ -136,6 +136,18 @@ Resources:
     Properties:
       QueueName: MiColaSQS
       VisibilityTimeout: 900
+      MessageRetentionPeriod: 7200
+      RedrivePolicy:
+        deadLetterTargetArn:
+          Fn::GetAtt:
+          - MyDLQ
+          - Arn
+        maxReceiveCount: 1
+  MyDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: MyDLQName
+      MessageRetentionPeriod: 43200
   TermsParameter:
     Type: AWS::SSM::Parameter
     Properties:
@@ -233,16 +245,16 @@ Resources:
   LambdaDispatcher:
     Type: AWS::Serverless::Function
     Metadata:
-      DockerContext: /home/jose/Escritorio/proyecto/proyecto/python_scrappers
+      DockerContext: /Users/pp/VirtualDesktop/proyecto/python_scrappers
       DockerTag: v1
       Dockerfile: Dockerfile.event_processor
       SamResourceId: LambdaDispatcher
     Properties:
       PackageType: Image
       Timeout: 900
-      MemorySize: 4096
+      MemorySize: 2048
       EphemeralStorage:
-        Size: 2048
+        Size: 1024
       Policies:
       - AWSLambdaBasicExecutionRole
       - AmazonDynamoDBFullAccess
@@ -278,7 +290,7 @@ Resources:
             Method: any
       ImageUri: alcamposcrappinglambdafunction:v1
     Metadata:
-      DockerContext: /home/jose/Escritorio/proyecto/proyecto/python_scrappers
+      DockerContext: /Users/pp/VirtualDesktop/proyecto/python_scrappers
       DockerTag: v1
       Dockerfile: Dockerfile
       SamResourceId: AlcampoScrappingLambdaFunction

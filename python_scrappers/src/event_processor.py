@@ -211,9 +211,17 @@ def dia_handler(scrapper_terms):
         
 
 def lambda_handler(event, context):
+    
     for record in event['Records']:
         message_body = record['body']
         data = json.loads(message_body)
+
+        receipt_handle = record['receiptHandle']
+        sqs = boto3.client('sqs', region_name='eu-west-1')
+        sqs.delete_message(
+            QueueUrl='https://sqs.eu-west-1.amazonaws.com/590183922248/MiColaSQS',
+            ReceiptHandle=receipt_handle
+        )
         
         logger.info(f'Received message: {message_body}')
         scrapper_type = data["scrapper"]

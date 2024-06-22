@@ -13,7 +13,7 @@ export const AuthComponents = {
       >
         <Image
           alt="SmartTrackApp"
-          src="https://i.postimg.cc/BnyPBXs8/2-YURCjl-Imgur.png"
+          src="https://i.postimg.cc/MT0wbbPN/Logotipo-prueba-maldi2.png"
           style={{ width: "100%", height: "100%" }}
         />
       </View>

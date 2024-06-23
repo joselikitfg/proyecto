@@ -45,6 +45,8 @@ jspm_packages/
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
+
+
 # TypeScript cache
 *.tsbuildinfo
 
@@ -91,6 +93,9 @@ out
 .nuxt
 dist
 
+# Aws build
+.aws-sam/build.toml
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
@@ -128,3 +133,15 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+python_scrappers/__pycache__/
+uploader/__pycache__/
+
+
+**/.coverage
+**/coverage.xml
+**/.ruff_cache
+**/.pytest_cache
+**/.tox
+**/htmlcov

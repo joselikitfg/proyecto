@@ -1,0 +1,423 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  python3.12
+  Sample SAM Template for python_scrappers
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 900
+    Architectures: x86_64
+    MemorySize:  512 #10240 # 8192 #4096
+    EphemeralStorage:
+        Size: 512
+    Environment:
+      Variables:
+        ENVIRONMENT: dev
+
+    Tags:
+      project: descuentapp
+      environment: develop
+
+Resources:
+  #@TODO: indice en pid
+  ProductPricesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ScrappedProductsTable
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 15
+        WriteCapacityUnits: 15
+      AttributeDefinitions:
+      - AttributeName: origin
+        AttributeType: S
+      - AttributeName: timestamp
+        AttributeType: N
+      - AttributeName: pname
+        AttributeType: S
+      - AttributeName: pid
+        AttributeType: S
+      KeySchema:
+      - AttributeName: origin
+        KeyType: HASH
+      - AttributeName: timestamp
+        KeyType: RANGE
+      GlobalSecondaryIndexes:
+      - IndexName: NameIndex
+        KeySchema:
+        - AttributeName: pname
+          KeyType: HASH
+        Projection:
+          ProjectionType: INCLUDE
+          NonKeyAttributes:
+          - price_per_unit
+          - total_price
+          - image_url
+          - price_history
+        ProvisionedThroughput:
+          ReadCapacityUnits: 4
+          WriteCapacityUnits: 4
+      - IndexName: PidIndex
+        KeySchema:
+          - AttributeName: pid
+            KeyType: HASH
+        Projection:
+          ProjectionType: INCLUDE
+          NonKeyAttributes:
+            - price_per_unit
+            - total_price
+            - image_url
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
+
+  ReadCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties: 
+      AlarmDescription: "Alarm if read capacity exceeds threshold"
+      Namespace: "AWS/DynamoDB"
+      MetricName: "ConsumedReadCapacityUnits"
+      Dimensions: 
+        - Name: "TableName"
+          Value: !Ref ProductPricesTable
+      Statistic: "Sum"
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 15
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
+
+  WriteCapacityAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties: 
+      AlarmDescription: "Alarm if write capacity exceeds threshold"
+      Namespace: "AWS/DynamoDB"
+      MetricName: "ConsumedWriteCapacityUnits"
+      Dimensions: 
+        - Name: "TableName"
+          Value: !Ref ProductPricesTable
+      Statistic: "Sum"
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 15
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
+
+  ReadCapacityIndexAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties: 
+      AlarmDescription: "Alarm if read capacity exceeds threshold for GSI"
+      Namespace: "AWS/DynamoDB"
+      MetricName: "ConsumedReadCapacityUnits"
+      Dimensions: 
+        - Name: "TableName"
+          Value: !Ref ProductPricesTable
+        - Name: "GlobalSecondaryIndexName"
+          Value: "NameIndex"
+      Statistic: "Sum"
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
+
+  WriteCapacityIndexAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties: 
+      AlarmDescription: "Alarm if write capacity exceeds threshold for GSI"
+      Namespace: "AWS/DynamoDB"
+      MetricName: "ConsumedWriteCapacityUnits"
+      Dimensions: 
+        - Name: "TableName"
+          Value: !Ref ProductPricesTable
+        - Name: "GlobalSecondaryIndexName"
+          Value: "NameIndex"
+      Statistic: "Sum"
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
+
+  MySQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "MiColaSQS"
+      VisibilityTimeout: 900
+      MessageRetentionPeriod: 7200
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt MyDLQ.Arn
+        maxReceiveCount: 1
+
+  MyDLQ:
+    Type: 'AWS::SQS::Queue'
+    Properties:
+      QueueName: 'MyDLQName'
+      MessageRetentionPeriod: 7200
+
+  TermsParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: "/smart-track-app/scrappers/global/terms"
+      Type: StringList
+      Value: "agua,leche,pan"
+
+
+  LambdaInvokeEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: "GenerateMessageInSQSScrapperTerms"
+      ScheduleExpression: "cron(0 9,17 * * ? *)"
+      State: "ENABLED"
+      Targets:
+        - Arn: !GetAtt AutomaticScrapperDispatcherFromEventbridge.Arn
+          Id: "AutomaticScrapperDispatcherFromEventbridgeTarget"
+    DependsOn: AutomaticScrapperDispatcherFromEventbridge
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref AutomaticScrapperDispatcherFromEventbridge
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt LambdaInvokeEventRule.Arn
+
+
+
+
+
+  AutomaticScrapperDispatcherFromEventbridge:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: "automatic-scrapper-sqs"
+      Handler: index.handler
+      Runtime: python3.12
+      Role: !GetAtt AutomaticLambdaDispatcherRole.Arn
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref MySQSQueue
+          TERMS_PARAMETER: "/smart-track-app/scrappers/global/terms"
+      Code:
+        ZipFile: |
+          import boto3
+          import json
+          import os
+
+          def handler(event, context):
+              ssm = boto3.client('ssm')
+              sqs = boto3.client('sqs')
+
+              parameter_name = os.getenv('TERMS_PARAMETER')
+              queue_url = os.getenv('QUEUE_URL')
+
+              response = ssm.get_parameter(
+                  Name=parameter_name
+              )
+              
+              terms = response['Parameter']['Value'].split(',')
+              print(terms)
+              for term in terms:
+                message = {
+                    "scrapper": "alcampo",
+                    "terms": [term]
+                }
+                print("Generating message to sqs...")
+                print(message)
+
+                sqs_response = sqs.send_message(
+                    QueueUrl=queue_url,
+                    MessageBody=json.dumps(message)
+                )
+                print(sqs_response)
+
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Message sent to SQS!')
+              }
+
+  AutomaticLambdaDispatcherRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "lambda.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "LambdaSQSAndSSMPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "sqs:SendMessage"
+                Resource: !GetAtt MySQSQueue.Arn
+              - Effect: "Allow"
+                Action:
+                  - "ssm:GetParameter"
+                Resource: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/smart-track-app/scrappers/global/terms"
+        - PolicyName: "AWSLambdaBasicExecutionRole"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+
+
+  LambdaDispatcher:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.event_processor
+      DockerContext: ./
+      DockerTag: v1
+    Properties:
+      PackageType: Image
+      Timeout: 900
+      MemorySize:  2048
+      EphemeralStorage:
+        Size: 1024
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSQSFullAccess
+      Architectures:
+        - x86_64
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt MySQSQueue.Arn
+            BatchSize: 1
+
+  AlcampoScrappingLambdaFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Policies:
+
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSQSFullAccess
+        - AmazonCognitoPowerUser
+
+      Events:
+        FlaskAppAPI:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+    Metadata:
+      # Dockerfile: Dockerfile.alcampo.lambda
+      Dockerfile: Dockerfile
+      DockerContext: ./
+      DockerTag: v1
+
+
+  CloudWatchDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: SmartTrackApp-Scrappers-Operational-Dashboard
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 0,
+              "width": 24,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/SQS", "NumberOfMessagesReceived", "QueueName", "MiColaSQS", { "region": "eu-west-1" } ],
+                  [ ".", "NumberOfMessagesSent", ".", ".", { "region": "eu-west-1" } ]
+                ],
+                "sparkline": true,
+                "view": "singleValue",
+                "region": "eu-west-1",
+                "stat": "Sum",
+                "period": 1,
+                "title": "Messages Received to SQS (MiColaSQS) / Messages sent to Lambda (automatic-scrapper-sqs)"
+              }
+            },
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 6,
+              "width": 24,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/Events", "Invocations", "RuleName", "GenerateMessageInSQSScrapperTerms" ],
+                  [ ".", "FailedInvocations", ".", "." ]
+                ],
+                "period": 1,
+                "stat": "Sum",
+                "region": "${AWS::Region}",
+                "title": "EventBridge Rule Invocations and Failures"
+              }
+            },
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 12,
+              "width": 24,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/Lambda", "Invocations", "FunctionName", "automatic-scrapper-sqs" ],
+                  [ ".", "Errors", ".", "." ],
+                  [ ".", "ConcurrentExecutions", ".", "." ]
+                ],
+                "period": 1,
+                "stat": "Sum",
+                "region": "${AWS::Region}",
+                "view": "bar",
+                "title": "Lambda Invocations automatic-scrapper-sqs",
+                "stacked": false,
+                "setPeriodToTimeRange": true
+              }
+            },
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 18,
+              "width": 24,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  [ "AWS/DynamoDB", "ConsumedReadCapacityUnits", "TableName", "${ProductPricesTable}" ],
+                  [ ".", "ConsumedWriteCapacityUnits", "TableName", "${ProductPricesTable}" ],
+                  [ ".", "ConsumedReadCapacityUnits", "TableName", "${ProductPricesTable}", "GlobalSecondaryIndexName", "NameIndex" ],
+                  [ ".", "ConsumedWriteCapacityUnits", "TableName", "${ProductPricesTable}", "GlobalSecondaryIndexName", "NameIndex" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-west-1",
+                "stat": "Maximum",
+                "period": 1,
+                "title": "DynamoDB Read/Write Capacity Time Series"
+              }
+            }
+          ]
+        }
+
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  AlcampoScrappingLambdaFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt AlcampoScrappingLambdaFunction.Arn
+  AlcampoScrappingLambdaFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt AlcampoScrappingLambdaFunctionRole.Arn

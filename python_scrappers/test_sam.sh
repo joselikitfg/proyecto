@@ -1,0 +1,2 @@
+curl -X POST "https://irj37gdwwb.execute-api.eu-west-1.amazonaws.com/Prod/scrape/alcampo" -H "Content-Type: application/json" -d '{"terms": ["hebilla"]}'
+curl -X GET "https://irj37gdwwb.execute-api.eu-west-1.amazonaws.com/Prod/hello"

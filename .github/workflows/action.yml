@@ -1,0 +1,166 @@
+name: Deploy frontend in github actions with pnpm
+'on':
+  push:
+    branches:
+      - cloud-mvp
+  # workflow_run:
+  #   workflows:
+  #     - '🧪⚛️[Tests][Unit] Frontend'
+  #   types:
+  #     - completed
+env:
+  S3_BUCKET: frontend-amplify-descuentapp
+  ARTIFAC_NAME: build.zip
+  AMPLIFY_APP_NAME: descuentapp
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  # test:
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os:
+  #         - ubuntu-22.04
+  #         - ubuntu-20.04
+  #       node-version:
+  #         - "16.20.2"
+  #         - "18.20.2"
+  #         - "20.12.2"
+  #   runs-on: ${{ matrix.os }}
+
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     name: Checkout code
+  #     with:
+  #         fetch-depth: 0
+
+  #   - uses: pnpm/action-setup@v3
+  #     with:
+  #       version: 8
+
+  #   - name: Set up Node.js
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+      
+  #   - name: Install dependencies and run tests
+  #     working-directory: frontend
+  #     run: pnpm install-test
+  cloudformation:
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: '${{ secrets.AWS_OIDC_ROLE }}'
+          aws-region: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - name: Deploy CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --template-file frontend-s3-amplify.yml \
+            --stack-name frontend-amplify \
+            --capabilities CAPABILITY_IAM \
+            --region eu-west-1
+        working-directory: frontend/iac
+      - name: Get Amplify App ID
+        run: |
+          amplify_app_id=$(aws amplify list-apps --query "apps[?name=='${{ env.AMPLIFY_APP_NAME }}'].appId" --output text)
+          echo "AMPLIFY_APP_ID=$amplify_app_id" >> $GITHUB_ENV
+      - name: Retrieve Amplify app URL
+        run: |
+          if [ -z "${AMPLIFY_APP_ID}" ]; then
+            echo "Amplify App ID is missing"
+            exit 1
+          fi
+          amplify_app_url=$(aws amplify get-app --app-id $AMPLIFY_APP_ID --query 'app.defaultDomain' --output text)
+          echo "AMPLIFY_APP_URL=$amplify_app_url" >> $GITHUB_ENV
+
+      - name: Deploy CloudFormation stack for cognito
+        run: |
+                aws cloudformation deploy \
+                  --template-file cognito.yml \
+                  --stack-name cognito-prueba \
+                  --capabilities CAPABILITY_IAM \
+                  --parameter-overrides AmplifyAppURL="${{ env.AMPLIFY_APP_URL }}" \
+                  --region ${{ secrets.AWS_DEFAULT_REGION }}
+        working-directory: python_scrappers/iac
+
+      - name: Retrieve CloudFormation Outputs
+        id: cf-outputs
+        run: |
+
+          user_pool_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoUserPoolID'].OutputValue" --output text)
+          echo "USER_POOL_ID=$user_pool_id" >> $GITHUB_ENV
+    
+          user_pool_client_id=$(aws cloudformation describe-stacks --stack-name cognito-prueba --query "Stacks[0].Outputs[?OutputKey=='CognitoAppClientID'].OutputValue" --output text)
+          echo "USER_POOL_CLIENT_ID=$user_pool_client_id" >> $GITHUB_ENV
+          
+        working-directory: python_scrappers/iac
+
+      # - name: Deploy CloudFormation stack (part 2)
+      #   run: |
+      #     aws cloudformation deploy \
+      #       --template-file cognito2.yml \
+      #       --stack-name cognito-prueba \
+      #       --capabilities CAPABILITY_IAM \
+      #       --parameter-overrides CognitoUserPoolID=${{ env.USER_POOL_ID }} \
+      #       --region ${{ secrets.AWS_DEFAULT_REGION }}
+      #   working-directory: python_scrappers/iac
+      
+      - name: Prepare Amplify configuration
+        run: |
+          echo "export const awsExports = {" > aws-exports.js
+          echo "  Auth: {" >> aws-exports.js
+          echo "  Cognito: {" >> aws-exports.js
+          echo "    region: '${{ secrets.AWS_DEFAULT_REGION }}'," >> aws-exports.js
+          echo "    userPoolId: '${{ env.USER_POOL_ID }}'," >> aws-exports.js
+          echo "    userPoolClientId: '${{ env.USER_POOL_CLIENT_ID }}'," >> aws-exports.js
+          echo "  }," >> aws-exports.js
+          echo "}," >> aws-exports.js
+          echo "}" >> aws-exports.js
+        working-directory: frontend/src
+      
+      - name: set up node js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.12.1
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8    
+      - name: install dependencies
+        run: pnpm install
+        working-directory: frontend
+      - name: Build with pnpm
+        run: pnpm run build
+        working-directory: frontend
+      - name: Zip build directory
+        run: zip -r build.zip .
+        working-directory: frontend/build
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: '${{ secrets.AWS_OIDC_ROLE }}'
+          aws-region: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - name: Upload to S3
+        run: 'aws s3 cp build.zip s3://$S3_BUCKET/build.zip'
+        working-directory: frontend/build
+      - name: Start Deployment to Amplify
+        shell: bash
+        run: >
+          AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME
+          "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) |
+          .appId')
+
+          AMPLIFY_APP_BRANCH="feature/frontend_gh_deploy"
+
+          aws amplify start-deployment \
+
+          --app-id $AMPLIFY_APP_ID \
+
+          --branch-name $AMPLIFY_APP_BRANCH \
+
+          --source-url s3://$S3_BUCKET/$ARTIFAC_NAME
+

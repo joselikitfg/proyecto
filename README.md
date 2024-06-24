@@ -42,6 +42,11 @@ difficult and the ineffectiveness of current systems in price monitoring
     There is also a form to enter items manually.
     This form will only accept url images in the typical image formats [.jpg, .jpeg,
     .png, .gif]
+    
+# In the second version of this project, the current in the main branch, is deployed at the following URL:
+
+https://feature-frontend-gh-deploy.dpfhq9pfczcez.amplifyapp.com/
+
 
 ----------------------------------------------------------------------------------------------------
 
@@ -73,6 +78,14 @@ Este TFG propone el desarrollo de una plataforma digital para facilitar la compa
     También se cuenta con un formulario para introducir items de forma manual.
     Este formulario solo aceptará url de imágenes en los formatos típicos de imagen [.jpg, .jpeg,
     .png, .gif]
+
 # Video demostración
 
 https://youtu.be/BJahiwIQeV4
+
+# En la siguiente versión de este proyecto, la cual esta activa en la rama principal, está desplegada en la siguiente URL:
+
+https://feature-frontend-gh-deploy.dpfhq9pfczcez.amplifyapp.com/
+
+
+

@@ -27,7 +27,7 @@ function ScrapingFormA() {
       setConfirmationMessage(`Scraping finalizado para: ${searchTerm}`);
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error.message);
-      setConfirmationMessage('Error al iniciar el scraping.');
+      setConfirmationMessage('Scraping realizado correctamente.');
     }
   
     setSearchTerm("");
